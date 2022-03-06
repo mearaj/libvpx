@@ -29,8 +29,8 @@ func q2mbl(x int) int {
 	return x * x / 3
 }
 func vp8_de_mblock(post *scale.Yv12BufferConfig, q int) {
-	dsp.VpxMbPostProcAcrossIpC((*uint8)(unsafe.Pointer(post.Y_buffer)), post.Y_stride, post.Y_height, post.Y_width, q2mbl(q))
-	dsp.VpxMbPostProcDownC((*uint8)(unsafe.Pointer(post.Y_buffer)), post.Y_stride, post.Y_height, post.Y_width, q2mbl(q))
+	dsp.VpxMbPostProcAcrossIpC(post.Y_buffer, post.Y_stride, post.Y_height, post.Y_width, q2mbl(q))
+	dsp.VpxMbPostProcDownC(post.Y_buffer, post.Y_stride, post.Y_height, post.Y_width, q2mbl(q))
 }
 func vp8_deblock(cm *VP8Common, source *scale.Yv12BufferConfig, post *scale.Yv12BufferConfig, q int) {
 	var (
@@ -50,7 +50,7 @@ func vp8_deblock(cm *VP8Common, source *scale.Yv12BufferConfig, post *scale.Yv12
 			)
 			for mbc = 0; mbc < cm.Mb_cols; mbc++ {
 				var mb_ppl uint8
-				if mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+				if int(mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 					mb_ppl = uint8(int8(int(uint8(int8(ppl))) >> 1))
 				} else {
 					mb_ppl = uint8(int8(ppl))

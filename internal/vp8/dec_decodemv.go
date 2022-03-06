@@ -291,7 +291,7 @@ func decode_split_mv(bc *vp8_reader, mi *ModeInfo, left_mb *ModeInfo, above_mb *
 func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 	var bc *vp8_reader = &pbi.Mbc[8]
 	mbmi.Ref_frame = uint8(int8(int(vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), int(pbi.Prob_intra)))))
-	if mbmi.Ref_frame != 0 {
+	if int(mbmi.Ref_frame) != 0 {
 		const (
 			CNT_INTRA = iota
 			CNT_NEAREST
@@ -334,7 +334,7 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 			return *p
 		}()
 		if int(above.Mbmi.Ref_frame) != INTRA_FRAME {
-			if above.Mbmi.Mv.As_int != 0 {
+			if int(above.Mbmi.Mv.As_int) != 0 {
 				(func() *int_mv {
 					p := &nmv
 					*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -346,11 +346,11 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 			*cntx += 2
 		}
 		if int(left.Mbmi.Ref_frame) != INTRA_FRAME {
-			if left.Mbmi.Mv.As_int != 0 {
+			if int(left.Mbmi.Mv.As_int) != 0 {
 				var this_mv int_mv
 				this_mv.As_int = left.Mbmi.Mv.As_int
 				mv_bias(*(*int)(unsafe.Add(unsafe.Pointer(ref_frame_sign_bias), unsafe.Sizeof(int(0))*uintptr(left.Mbmi.Ref_frame))), int(mbmi.Ref_frame), &this_mv, ref_frame_sign_bias)
-				if this_mv.As_int != nmv.As_int {
+				if int(this_mv.As_int) != int(nmv.As_int) {
 					(func() *int_mv {
 						p := &nmv
 						*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -364,11 +364,11 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 			}
 		}
 		if int(aboveleft.Mbmi.Ref_frame) != INTRA_FRAME {
-			if aboveleft.Mbmi.Mv.As_int != 0 {
+			if int(aboveleft.Mbmi.Mv.As_int) != 0 {
 				var this_mv int_mv
 				this_mv.As_int = aboveleft.Mbmi.Mv.As_int
 				mv_bias(*(*int)(unsafe.Add(unsafe.Pointer(ref_frame_sign_bias), unsafe.Sizeof(int(0))*uintptr(aboveleft.Mbmi.Ref_frame))), int(mbmi.Ref_frame), &this_mv, ref_frame_sign_bias)
-				if this_mv.As_int != nmv.As_int {
+				if int(this_mv.As_int) != int(nmv.As_int) {
 					(func() *int_mv {
 						p := &nmv
 						*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -382,7 +382,7 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 			}
 		}
 		if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), vp8_mode_contexts[cnt[CNT_INTRA]][0]) != 0 {
-			cnt[CNT_NEAREST] += int(libc.BoolToInt(cnt[CNT_SPLITMV] > 0) & libc.BoolToInt(nmv.As_int == near_mvs[CNT_NEAREST].As_int))
+			cnt[CNT_NEAREST] += int(libc.BoolToInt((cnt[CNT_SPLITMV] > 0) & (int(nmv.As_int) == int(near_mvs[CNT_NEAREST].As_int))))
 			if cnt[CNT_NEAR] > cnt[CNT_NEAREST] {
 				var tmp int
 				tmp = cnt[CNT_NEAREST]
@@ -390,7 +390,7 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 				cnt[CNT_NEAR] = tmp
 				tmp = int(near_mvs[CNT_NEAREST].As_int)
 				near_mvs[CNT_NEAREST].As_int = near_mvs[CNT_NEAR].As_int
-				near_mvs[CNT_NEAR].As_int = uint32(tmp)
+				near_mvs[CNT_NEAR].As_int = uint32(int32(tmp))
 			}
 			if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), vp8_mode_contexts[cnt[CNT_NEAREST]][1]) != 0 {
 				if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), vp8_mode_contexts[cnt[CNT_NEAR]][2]) != 0 {
@@ -466,9 +466,9 @@ func read_mb_modes_mv(pbi *VP8D_COMP, mi *ModeInfo, mbmi *MB_MODE_INFO) {
 func read_mb_features(r *vp8_reader, mi *MB_MODE_INFO, x *MacroBlockd) {
 	if int(x.Segmentation_enabled) != 0 && int(x.Update_mb_segmentation_map) != 0 {
 		if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(r)), int(x.Mb_segment_tree_probs[0])) != 0 {
-			mi.Segment_id = uint8(uint8(int8(vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(r)), int(x.Mb_segment_tree_probs[2])) + 2)))
+			mi.Segment_id = uint8(int8(vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(r)), int(x.Mb_segment_tree_probs[2])) + 2))
 		} else {
-			mi.Segment_id = uint8(uint8(int8(vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(r)), int(x.Mb_segment_tree_probs[1])))))
+			mi.Segment_id = uint8(int8(vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(r)), int(x.Mb_segment_tree_probs[1]))))
 		}
 	}
 }

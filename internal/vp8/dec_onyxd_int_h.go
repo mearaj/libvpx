@@ -1,8 +1,7 @@
 package vp8
 
 import (
-	"github.com/mearaj/libvpx/internal/scale"
-	"github.com/mearaj/libvpx/internal/util"
+	"github.com/gotranspile/cxgo/runtime/pthread"
 	"github.com/mearaj/libvpx/internal/vpx"
 	"unsafe"
 )
@@ -49,7 +48,7 @@ type VP8D_COMP struct {
 	Mt_vleft_col                    **uint8
 	Mb_row_di                       *MB_ROW_DEC
 	De_thread_data                  *DECODETHREAD_DATA
-	H_decoding_thread               *pthread_t
+	H_decoding_thread               **pthread.Thread
 	H_event_start_decoding          *sem_t
 	H_event_end_decoding            sem_t
 	Last_time_stamp                 int64

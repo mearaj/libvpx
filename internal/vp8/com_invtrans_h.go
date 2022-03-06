@@ -22,5 +22,5 @@ func vp8_inverse_transform_mby(xd *MacroBlockd) {
 		eob_adjust(&xd.Eobs[0], &xd.Qcoeff[0])
 		DQC = &xd.Dequant_y1_dc[0]
 	}
-	vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), xd.Dst.Y_stride, &xd.Eobs[0])
+	vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, xd.Dst.Y_buffer, xd.Dst.Y_stride, &xd.Eobs[0])
 }

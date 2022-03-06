@@ -2,7 +2,6 @@ package vp8
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
-	"github.com/mearaj/libvpx/internal/scale"
 	"unsafe"
 )
 
@@ -38,8 +37,8 @@ func vp8_loop_filter_update_sharpness(lfi *loop_filter_info_n, sharpness_lvl int
 	var i int
 	for i = 0; i <= MAX_LOOP_FILTER; i++ {
 		var (
-			filt_lvl           = i
-			block_inside_limit = 0
+			filt_lvl           int = i
+			block_inside_limit int = 0
 		)
 		block_inside_limit = filt_lvl >> int(libc.BoolToInt(sharpness_lvl > 0))
 		block_inside_limit = block_inside_limit >> int(libc.BoolToInt(sharpness_lvl > 4))
@@ -58,7 +57,7 @@ func vp8_loop_filter_update_sharpness(lfi *loop_filter_info_n, sharpness_lvl int
 }
 func vp8_loop_filter_init(cm *VP8Common) {
 	var (
-		lfi = &cm.Lf_info
+		lfi *loop_filter_info_n = &cm.Lf_info
 		i   int
 	)
 	vp8_loop_filter_update_sharpness(lfi, cm.Sharpness_level)
@@ -73,7 +72,7 @@ func vp8_loop_filter_frame_init(cm *VP8Common, mbd *MacroBlockd, default_filt_lv
 		seg  int
 		ref  int
 		mode int
-		lfi  = &cm.Lf_info
+		lfi  *loop_filter_info_n = &cm.Lf_info
 	)
 	if cm.Last_sharpness_level != cm.Sharpness_level {
 		vp8_loop_filter_update_sharpness(lfi, cm.Sharpness_level)
@@ -81,8 +80,8 @@ func vp8_loop_filter_frame_init(cm *VP8Common, mbd *MacroBlockd, default_filt_lv
 	}
 	for seg = 0; seg < MAX_MB_SEGMENTS; seg++ {
 		var (
-			lvl_seg = default_filt_lvl
-			lvl_ref int
+			lvl_seg  int = default_filt_lvl
+			lvl_ref  int
 			lvl_mode int
 		)
 		if int(mbd.Segmentation_enabled) != 0 {
@@ -152,20 +151,20 @@ func vp8_loop_filter_row_normal(cm *VP8Common, mode_info_context *ModeInfo, mb_r
 	var (
 		mb_col       int
 		filter_level int
-		lfi_n        = &cm.Lf_info
+		lfi_n        *loop_filter_info_n = &cm.Lf_info
 		lfi          loop_filter_info
-		frame_type = cm.Frame_type
+		frame_type   int = cm.Frame_type
 	)
 	for mb_col = 0; mb_col < cm.Mb_cols; mb_col++ {
 		var (
-			skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-			mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-			seg            = int(mode_info_context.Mbmi.Segment_id)
-			ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+			skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+			mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+			seg        int = int(mode_info_context.Mbmi.Segment_id)
+			ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 		)
 		filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 		if filter_level != 0 {
-			var hev_index = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
+			var hev_index int = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
 			lfi.Mblim = &lfi_n.Mblim[filter_level][0]
 			lfi.Blim = &lfi_n.Blim[filter_level][0]
 			lfi.Lim = &lfi_n.Lim[filter_level][0]
@@ -193,14 +192,14 @@ func vp8_loop_filter_row_simple(cm *VP8Common, mode_info_context *ModeInfo, mb_r
 	var (
 		mb_col       int
 		filter_level int
-		lfi_n        = &cm.Lf_info
+		lfi_n        *loop_filter_info_n = &cm.Lf_info
 	)
 	for mb_col = 0; mb_col < cm.Mb_cols; mb_col++ {
 		var (
-			skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-			mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-			seg            = int(mode_info_context.Mbmi.Segment_id)
-			ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+			skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+			mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+			seg        int = int(mode_info_context.Mbmi.Segment_id)
+			ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 		)
 		filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 		if filter_level != 0 {
@@ -223,37 +222,37 @@ func vp8_loop_filter_row_simple(cm *VP8Common, mode_info_context *ModeInfo, mb_r
 }
 func vp8_loop_filter_frame(cm *VP8Common, mbd *MacroBlockd, frame_type int) {
 	var (
-		post  = cm.Frame_to_show
-		lfi_n = &cm.Lf_info
-		lfi   loop_filter_info
+		post              *scale.Yv12BufferConfig = cm.Frame_to_show
+		lfi_n             *loop_filter_info_n     = &cm.Lf_info
+		lfi               loop_filter_info
 		mb_row            int
-		mb_col  int
-		mb_rows = cm.Mb_rows
-		mb_cols = cm.Mb_cols
-		filter_level int
+		mb_col            int
+		mb_rows           int = cm.Mb_rows
+		mb_cols           int = cm.Mb_cols
+		filter_level      int
 		y_ptr             *uint8
 		u_ptr             *uint8
 		v_ptr             *uint8
-		mode_info_context = cm.Mi
-		post_y_stride     = post.Y_stride
-		post_uv_stride              = post.Uv_stride
+		mode_info_context *ModeInfo = cm.Mi
+		post_y_stride     int       = post.Y_stride
+		post_uv_stride    int       = post.Uv_stride
 	)
 	vp8_loop_filter_frame_init(cm, mbd, cm.Filter_level)
-	y_ptr = (*uint8)(unsafe.Pointer(post.Y_buffer))
-	u_ptr = (*uint8)(unsafe.Pointer(post.U_buffer))
-	v_ptr = (*uint8)(unsafe.Pointer(post.V_buffer))
+	y_ptr = post.Y_buffer
+	u_ptr = post.U_buffer
+	v_ptr = post.V_buffer
 	if cm.Filter_type == LOOPFILTERTYPE(NORMAL_LOOPFILTER) {
 		for mb_row = 0; mb_row < mb_rows; mb_row++ {
 			for mb_col = 0; mb_col < mb_cols; mb_col++ {
 				var (
-					skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-					mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-					seg            = int(mode_info_context.Mbmi.Segment_id)
-					ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+					skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+					mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+					seg        int = int(mode_info_context.Mbmi.Segment_id)
+					ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 				)
 				filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 				if filter_level != 0 {
-					var hev_index = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
+					var hev_index int = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
 					lfi.Mblim = &lfi_n.Mblim[filter_level][0]
 					lfi.Blim = &lfi_n.Blim[filter_level][0]
 					lfi.Lim = &lfi_n.Lim[filter_level][0]
@@ -285,16 +284,16 @@ func vp8_loop_filter_frame(cm *VP8Common, mbd *MacroBlockd, frame_type int) {
 		for mb_row = 0; mb_row < mb_rows; mb_row++ {
 			for mb_col = 0; mb_col < mb_cols; mb_col++ {
 				var (
-					skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-					mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-					seg            = int(mode_info_context.Mbmi.Segment_id)
-					ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+					skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+					mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+					seg        int = int(mode_info_context.Mbmi.Segment_id)
+					ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 				)
 				filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 				if filter_level != 0 {
 					var (
-						mblim = &lfi_n.Mblim[filter_level][0]
-						blim  = &lfi_n.Blim[filter_level][0]
+						mblim *uint8 = &lfi_n.Mblim[filter_level][0]
+						blim  *uint8 = &lfi_n.Blim[filter_level][0]
 					)
 					if mb_col > 0 {
 						Vp8LoopFilterSimpleVerticalEdgeC(y_ptr, post_y_stride, mblim)
@@ -323,30 +322,30 @@ func vp8_loop_filter_frame(cm *VP8Common, mbd *MacroBlockd, frame_type int) {
 }
 func vp8_loop_filter_frame_yonly(cm *VP8Common, mbd *MacroBlockd, default_filt_lvl int) {
 	var (
-		post  = cm.Frame_to_show
-		y_ptr *uint8
+		post              *scale.Yv12BufferConfig = cm.Frame_to_show
+		y_ptr             *uint8
 		mb_row            int
-		mb_col int
-		lfi_n  = &cm.Lf_info
-		lfi    loop_filter_info
+		mb_col            int
+		lfi_n             *loop_filter_info_n = &cm.Lf_info
+		lfi               loop_filter_info
 		filter_level      int
-		frame_type        = cm.Frame_type
-		mode_info_context = cm.Mi
+		frame_type        int       = cm.Frame_type
+		mode_info_context *ModeInfo = cm.Mi
 	)
 	vp8_loop_filter_frame_init(cm, mbd, default_filt_lvl)
-	y_ptr = (*uint8)(unsafe.Pointer(post.Y_buffer))
+	y_ptr = post.Y_buffer
 	for mb_row = 0; mb_row < cm.Mb_rows; mb_row++ {
 		for mb_col = 0; mb_col < cm.Mb_cols; mb_col++ {
 			var (
-				skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-				mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-				seg            = int(mode_info_context.Mbmi.Segment_id)
-				ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+				skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+				mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+				seg        int = int(mode_info_context.Mbmi.Segment_id)
+				ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 			)
 			filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 			if filter_level != 0 {
 				if cm.Filter_type == LOOPFILTERTYPE(NORMAL_LOOPFILTER) {
-					var hev_index = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
+					var hev_index int = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
 					lfi.Mblim = &lfi_n.Mblim[filter_level][0]
 					lfi.Blim = &lfi_n.Blim[filter_level][0]
 					lfi.Lim = &lfi_n.Lim[filter_level][0]
@@ -387,17 +386,17 @@ func vp8_loop_filter_frame_yonly(cm *VP8Common, mbd *MacroBlockd, default_filt_l
 }
 func vp8_loop_filter_partial_frame(cm *VP8Common, mbd *MacroBlockd, default_filt_lvl int) {
 	var (
-		post  = cm.Frame_to_show
-		y_ptr *uint8
+		post              *scale.Yv12BufferConfig = cm.Frame_to_show
+		y_ptr             *uint8
 		mb_row            int
-		mb_col  int
-		mb_cols = post.Y_width >> 4
-		mb_rows = post.Y_height >> 4
-		linestocopy int
-		lfi_n       = &cm.Lf_info
-		lfi         loop_filter_info
+		mb_col            int
+		mb_cols           int = post.Y_width >> 4
+		mb_rows           int = post.Y_height >> 4
+		linestocopy       int
+		lfi_n             *loop_filter_info_n = &cm.Lf_info
+		lfi               loop_filter_info
 		filter_level      int
-		frame_type        = cm.Frame_type
+		frame_type        int = cm.Frame_type
 		mode_info_context *ModeInfo
 	)
 	vp8_loop_filter_frame_init(cm, mbd, default_filt_lvl)
@@ -412,15 +411,15 @@ func vp8_loop_filter_partial_frame(cm *VP8Common, mbd *MacroBlockd, default_filt
 	for mb_row = 0; mb_row < (linestocopy >> 4); mb_row++ {
 		for mb_col = 0; mb_col < mb_cols; mb_col++ {
 			var (
-				skip_lf    = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))
-				mode_index = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
-				seg            = int(mode_info_context.Mbmi.Segment_id)
-				ref_frame      = int(mode_info_context.Mbmi.Ref_frame)
+				skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && int(mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+				mode_index int = int(lfi_n.Mode_lf_lut[mode_info_context.Mbmi.Mode])
+				seg        int = int(mode_info_context.Mbmi.Segment_id)
+				ref_frame  int = int(mode_info_context.Mbmi.Ref_frame)
 			)
 			filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 			if filter_level != 0 {
 				if cm.Filter_type == LOOPFILTERTYPE(NORMAL_LOOPFILTER) {
-					var hev_index = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
+					var hev_index int = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
 					lfi.Mblim = &lfi_n.Mblim[filter_level][0]
 					lfi.Blim = &lfi_n.Blim[filter_level][0]
 					lfi.Lim = &lfi_n.Lim[filter_level][0]

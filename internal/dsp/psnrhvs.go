@@ -6,6 +6,8 @@ import (
 	"unsafe"
 )
 
+const M_PI = 0
+
 func od_bin_fdct8x8(y *int16, ystride int, x *int16, xstride int) {
 	var (
 		i int
@@ -26,10 +28,7 @@ var csf_cr420 [8][8]float64 = [8][8]float64{{2.03871978502, 2.62502345193, 1.261
 
 func convert_score_db(_score float64, _weight float64, bit_depth int) float64 {
 	var pix_max int16 = math.MaxUint8
-	if _score*_weight >= 0.0 {
-	} else {
-		__assert_fail(libc.CString("_score * _weight >= 0.0"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(_score*_weight >= 0.0)
 	if bit_depth == 10 {
 		pix_max = 1023
 	} else if bit_depth == 12 {
@@ -38,13 +37,13 @@ func convert_score_db(_score float64, _weight float64, bit_depth int) float64 {
 	if _weight*_score < float64(int(pix_max)*int(pix_max))*1e-10 {
 		return MAX_PSNR
 	}
-	return (log10(float64(int(pix_max)*int(pix_max))) - log10(_weight*_score)) * 10
+	return (math.Log10(float64(int(pix_max)*int(pix_max))) - math.Log10(_weight*_score)) * 10
 }
 func calc_psnrhvs(src *uint8, _systride int, dst *uint8, _dystride int, _par float64, _w int, _h int, _step int, _csf [8][8]float64, bit_depth uint32, _shift uint32) float64 {
 	var (
 		ret        float64
-		_src8      *uint8  = (*uint8)(unsafe.Pointer(src))
-		_dst8      *uint8  = (*uint8)(unsafe.Pointer(dst))
+		_src8      *uint8  = src
+		_dst8      *uint8  = dst
 		_src16     *uint16 = ((*uint16)(unsafe.Pointer(uintptr((uint64(uintptr(unsafe.Pointer(src)))) << 1))))
 		_dst16     *uint16 = ((*uint16)(unsafe.Pointer(uintptr((uint64(uintptr(unsafe.Pointer(dst)))) << 1))))
 		dct_s      [64]int16
@@ -100,12 +99,12 @@ func calc_psnrhvs(src *uint8, _systride int, dst *uint8, _dystride int, _par flo
 			for i = 0; i < 8; i++ {
 				for j = 0; j < 8; j++ {
 					var sub int = ((i & 12) >> 2) + ((j & 12) >> 1)
-					if bit_depth == 8 && _shift == 0 {
+					if int(bit_depth) == 8 && int(_shift) == 0 {
 						dct_s[i*8+j] = int16(*(*uint8)(unsafe.Add(unsafe.Pointer(_src8), (y+i)*_systride+(j+x))))
 						dct_d[i*8+j] = int16(*(*uint8)(unsafe.Add(unsafe.Pointer(_dst8), (y+i)*_dystride+(j+x))))
-					} else if bit_depth == 10 || bit_depth == 12 {
-						dct_s[i*8+j] = int16(uint16(uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(_src16), unsafe.Sizeof(uint16(0))*uintptr((y+i)*_systride+(j+x))))) >> _shift))
-						dct_d[i*8+j] = int16(uint16(uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(_dst16), unsafe.Sizeof(uint16(0))*uintptr((y+i)*_dystride+(j+x))))) >> _shift))
+					} else if int(bit_depth) == 10 || int(bit_depth) == 12 {
+						dct_s[i*8+j] = int16(int(*(*uint16)(unsafe.Add(unsafe.Pointer(_src16), unsafe.Sizeof(uint16(0))*uintptr((y+i)*_systride+(j+x))))) >> int(_shift))
+						dct_d[i*8+j] = int16(int(*(*uint16)(unsafe.Add(unsafe.Pointer(_dst16), unsafe.Sizeof(uint16(0))*uintptr((y+i)*_dystride+(j+x))))) >> int(_shift))
 					}
 					s_gmean += float64(dct_s[i*8+j])
 					d_gmean += float64(dct_d[i*8+j])
@@ -144,7 +143,7 @@ func calc_psnrhvs(src *uint8, _systride int, dst *uint8, _dystride int, _par flo
 			if d_gvar > 0 {
 				d_gvar = (d_vars[0] + d_vars[1] + d_vars[2] + d_vars[3]) / d_gvar
 			}
-			if bit_depth == 8 {
+			if int(bit_depth) == 8 {
 				od_bin_fdct8x8(&dct_s_coef[0], 8, &dct_s[0], 8)
 				od_bin_fdct8x8(&dct_d_coef[0], 8, &dct_d[0], 8)
 			}
@@ -158,15 +157,15 @@ func calc_psnrhvs(src *uint8, _systride int, dst *uint8, _dystride int, _par flo
 					d_mask += float64(int(dct_d_coef[i*8+j])*int(dct_d_coef[i*8+j])) * mask[i][j]
 				}
 			}
-			s_mask = sqrt(s_mask*s_gvar) / 32.0
-			d_mask = sqrt(d_mask*d_gvar) / 32.0
+			s_mask = math.Sqrt(s_mask*s_gvar) / 32.0
+			d_mask = math.Sqrt(d_mask*d_gvar) / 32.0
 			if d_mask > s_mask {
 				s_mask = d_mask
 			}
 			for i = 0; i < 8; i++ {
 				for j = 0; j < 8; j++ {
 					var err float64
-					err = fabs(float64(int(dct_s_coef[i*8+j]) - int(dct_d_coef[i*8+j])))
+					err = math.Abs(float64(int(dct_s_coef[i*8+j]) - int(dct_d_coef[i*8+j])))
 					if i != 0 || j != 0 {
 						if err < s_mask/mask[i][j] {
 							err = 0
@@ -194,18 +193,12 @@ func vpx_psnrhvs(src *YV12_BUFFER_CONFIG, dest *YV12_BUFFER_CONFIG, y_psnrhvs *f
 		bd_shift uint32  = 0
 	)
 	vpx_clear_system_state()
-	if bd == 8 || bd == 10 || bd == 12 {
-	} else {
-		__assert_fail(libc.CString("bd == 8 || bd == 10 || bd == 12"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if bd >= in_bd {
-	} else {
-		__assert_fail(libc.CString("bd >= in_bd"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	bd_shift = bd - in_bd
-	*y_psnrhvs = calc_psnrhvs((*uint8)(unsafe.Pointer(src.Y_buffer)), src.Y_stride, (*uint8)(unsafe.Pointer(dest.Y_buffer)), dest.Y_stride, par, src.Y_crop_width, src.Y_crop_height, step, csf_y, bd, bd_shift)
-	*u_psnrhvs = calc_psnrhvs((*uint8)(unsafe.Pointer(src.U_buffer)), src.Uv_stride, (*uint8)(unsafe.Pointer(dest.U_buffer)), dest.Uv_stride, par, src.Uv_crop_width, src.Uv_crop_height, step, csf_cb420, bd, bd_shift)
-	*v_psnrhvs = calc_psnrhvs((*uint8)(unsafe.Pointer(src.V_buffer)), src.Uv_stride, (*uint8)(unsafe.Pointer(dest.V_buffer)), dest.Uv_stride, par, src.Uv_crop_width, src.Uv_crop_height, step, csf_cr420, bd, bd_shift)
+	libc.Assert(int(bd) == 8 || int(bd) == 10 || int(bd) == 12)
+	libc.Assert(int(bd) >= int(in_bd))
+	bd_shift = uint32(int32(int(bd) - int(in_bd)))
+	*y_psnrhvs = calc_psnrhvs(src.Y_buffer, src.Y_stride, dest.Y_buffer, dest.Y_stride, par, src.Y_crop_width, src.Y_crop_height, step, csf_y, bd, bd_shift)
+	*u_psnrhvs = calc_psnrhvs(src.U_buffer, src.Uv_stride, dest.U_buffer, dest.Uv_stride, par, src.Uv_crop_width, src.Uv_crop_height, step, csf_cb420, bd, bd_shift)
+	*v_psnrhvs = calc_psnrhvs(src.V_buffer, src.Uv_stride, dest.V_buffer, dest.Uv_stride, par, src.Uv_crop_width, src.Uv_crop_height, step, csf_cr420, bd, bd_shift)
 	psnrhvs = (*y_psnrhvs)*0.8 + ((*u_psnrhvs)+(*v_psnrhvs))*0.1
 	return convert_score_db(psnrhvs, 1.0, int(in_bd))
 }

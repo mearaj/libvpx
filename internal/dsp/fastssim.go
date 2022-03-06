@@ -124,8 +124,8 @@ func fs_downsample_level(_ctx *fs_ctx, _l int) {
 			} else {
 				i1 = w2
 			}
-			*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i1)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i1)))))
-			*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i1)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i1)))))
+			*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32(int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i1)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i1))))))
+			*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32(int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j0offs+i1)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i0)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(src2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i1))))))
 		}
 	}
 }
@@ -164,16 +164,16 @@ func fs_downsample_level0(_ctx *fs_ctx, _src1 *uint8, _s1ystride int, _src2 *uin
 			} else {
 				i1 = _w
 			}
-			if bd == 8 && shift == 0 {
-				*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(*(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j0*_s1ystride+i0)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j0*_s1ystride+i1)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j1*_s1ystride+i0)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j1*_s1ystride+i1)))
-				*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(*(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j0*_s2ystride+i0)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j0*_s2ystride+i1)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j1*_s2ystride+i0)) + *(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j1*_s2ystride+i1)))
+			if int(bd) == 8 && int(shift) == 0 {
+				*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32(int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j0*_s1ystride+i0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j0*_s1ystride+i1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j1*_s1ystride+i0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src1), j1*_s1ystride+i1)))))
+				*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32(int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j0*_s2ystride+i0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j0*_s2ystride+i1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j1*_s2ystride+i0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(_src2), j1*_s2ystride+i1)))))
 			} else {
 				var (
 					src1s *uint16 = ((*uint16)(unsafe.Pointer(uintptr((uint64(uintptr(unsafe.Pointer(_src1)))) << 1))))
 					src2s *uint16 = ((*uint16)(unsafe.Pointer(uintptr((uint64(uintptr(unsafe.Pointer(_src2)))) << 1))))
 				)
-				*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s1ystride+i0)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s1ystride+i1)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s1ystride+i0)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s1ystride+i1)))) >> shift)
-				*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s2ystride+i0)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s2ystride+i1)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s2ystride+i0)))) >> shift) + (uint32(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s2ystride+i1)))) >> shift)
+				*(*uint32)(unsafe.Add(unsafe.Pointer(dst1), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32((int(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s1ystride+i0)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s1ystride+i1)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s1ystride+i0)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src1s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s1ystride+i1)))) >> int(shift))))
+				*(*uint32)(unsafe.Add(unsafe.Pointer(dst2), unsafe.Sizeof(uint32(0))*uintptr(j*w+i))) = uint32(int32((int(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s2ystride+i0)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j0*_s2ystride+i1)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s2ystride+i0)))) >> int(shift)) + (int(*(*uint16)(unsafe.Add(unsafe.Pointer(src2s), unsafe.Sizeof(uint16(0))*uintptr(j1*_s2ystride+i1)))) >> int(shift))))
 			}
 		}
 	}
@@ -194,10 +194,7 @@ func fs_apply_luminance(_ctx *fs_ctx, _l int, bit_depth int) {
 		j          int
 		ssim_c1    float64 = (math.MaxUint8 * math.MaxUint8 * 0.01 * 0.01)
 	)
-	if bit_depth == 8 {
-	} else {
-		__assert_fail(libc.CString("bit_depth == 8"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(bit_depth == 8)
 	_ = bit_depth
 	w = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).W
 	h = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).H
@@ -206,10 +203,10 @@ func fs_apply_luminance(_ctx *fs_ctx, _l int, bit_depth int) {
 	im1 = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).Im1
 	im2 = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).Im2
 	for i = 0; i < w; i++ {
-		*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(*(*uint32)(unsafe.Add(unsafe.Pointer(im1), unsafe.Sizeof(uint32(0))*uintptr(i))) * 5)
+		*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(int(*(*uint32)(unsafe.Add(unsafe.Pointer(im1), unsafe.Sizeof(uint32(0))*uintptr(i)))) * 5)
 	}
 	for i = 0; i < w; i++ {
-		*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(*(*uint32)(unsafe.Add(unsafe.Pointer(im2), unsafe.Sizeof(uint32(0))*uintptr(i))) * 5)
+		*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(int(*(*uint32)(unsafe.Add(unsafe.Pointer(im2), unsafe.Sizeof(uint32(0))*uintptr(i)))) * 5)
 	}
 	for j = 1; j < 4; j++ {
 		j1offs = (func() int {
@@ -282,10 +279,10 @@ func fs_apply_luminance(_ctx *fs_ctx, _l int, bit_depth int) {
 				return h - 1
 			}()) * w
 			for i = 0; i < w; i++ {
-				*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(uint32(int64(*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(im1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i))))))
+				*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(uint32(int32(int64(*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_x), unsafe.Sizeof(uint(0))*uintptr(i)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(im1), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i)))))))
 			}
 			for i = 0; i < w; i++ {
-				*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(uint32(int64(*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(im2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i))))))
+				*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i))) = uint(uint32(int32(int64(*(*uint)(unsafe.Add(unsafe.Pointer(col_sums_y), unsafe.Sizeof(uint(0))*uintptr(i)))) + int64(*(*uint32)(unsafe.Add(unsafe.Pointer(im2), unsafe.Sizeof(uint32(0))*uintptr(j1offs+i)))))))
 			}
 		}
 	}
@@ -308,10 +305,7 @@ func fs_calc_structure(_ctx *fs_ctx, _l int, bit_depth int) {
 		j             int
 		ssim_c2       float64 = (math.MaxUint8 * math.MaxUint8 * 0.03 * 0.03)
 	)
-	if bit_depth == 8 {
-	} else {
-		__assert_fail(libc.CString("bit_depth == 8"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(bit_depth == 8)
 	_ = bit_depth
 	w = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).W
 	h = (*(*fs_level)(unsafe.Add(unsafe.Pointer(_ctx.Level), unsafe.Sizeof(fs_level{})*uintptr(_l)))).H
@@ -358,8 +352,8 @@ func fs_calc_structure(_ctx *fs_ctx, _l int, bit_depth int) {
 					}
 					return g2
 				}())
-				*(*uint)(unsafe.Add(unsafe.Pointer(gx_buf), unsafe.Sizeof(uint(0))*uintptr((j&7)*stride+i+4))) = uint(uint32(gx))
-				*(*uint)(unsafe.Add(unsafe.Pointer(gy_buf), unsafe.Sizeof(uint(0))*uintptr((j&7)*stride+i+4))) = uint(uint32(gy))
+				*(*uint)(unsafe.Add(unsafe.Pointer(gx_buf), unsafe.Sizeof(uint(0))*uintptr((j&7)*stride+i+4))) = uint(uint32(int32(gx)))
+				*(*uint)(unsafe.Add(unsafe.Pointer(gy_buf), unsafe.Sizeof(uint(0))*uintptr((j&7)*stride+i+4))) = uint(uint32(int32(gy)))
 			}
 		} else {
 			libc.MemSet(unsafe.Pointer((*uint)(unsafe.Add(unsafe.Pointer(gx_buf), unsafe.Sizeof(uint(0))*uintptr((j&7)*stride)))), 0, stride*int(unsafe.Sizeof(uint(0))))
@@ -800,17 +794,14 @@ func fs_average(_ctx *fs_ctx, _l int) float64 {
 			ret += *(*float64)(unsafe.Add(unsafe.Pointer(ssim), unsafe.Sizeof(float64(0))*uintptr(j*w+i)))
 		}
 	}
-	return pow(ret/float64(w*h), FS_WEIGHTS[_l])
+	return math.Pow(ret/float64(w*h), FS_WEIGHTS[_l])
 }
 func convert_ssim_db(_ssim float64, _weight float64) float64 {
-	if _weight >= _ssim {
-	} else {
-		__assert_fail(libc.CString("_weight >= _ssim"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(_weight >= _ssim)
 	if (_weight - _ssim) < 1e-10 {
 		return 100.0
 	}
-	return (log10(_weight) - log10(_weight-_ssim)) * 10
+	return (math.Log10(_weight) - math.Log10(_weight-_ssim)) * 10
 }
 func calc_ssim(_src *uint8, _systride int, _dst *uint8, _dystride int, _w int, _h int, _bd uint32, _shift uint32) float64 {
 	var (
@@ -838,11 +829,8 @@ func vpx_calc_fastssim(source *YV12_BUFFER_CONFIG, dest *YV12_BUFFER_CONFIG, ssi
 		bd_shift uint32 = 0
 	)
 	vpx_clear_system_state()
-	if bd >= in_bd {
-	} else {
-		__assert_fail(libc.CString("bd >= in_bd"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	bd_shift = bd - in_bd
+	libc.Assert(int(bd) >= int(in_bd))
+	bd_shift = uint32(int32(int(bd) - int(in_bd)))
 	*ssim_y = calc_ssim(source.Y_buffer, source.Y_stride, dest.Y_buffer, dest.Y_stride, source.Y_crop_width, source.Y_crop_height, in_bd, bd_shift)
 	*ssim_u = calc_ssim(source.U_buffer, source.Uv_stride, dest.U_buffer, dest.Uv_stride, source.Uv_crop_width, source.Uv_crop_height, in_bd, bd_shift)
 	*ssim_v = calc_ssim(source.V_buffer, source.Uv_stride, dest.V_buffer, dest.Uv_stride, source.Uv_crop_width, source.Uv_crop_height, in_bd, bd_shift)

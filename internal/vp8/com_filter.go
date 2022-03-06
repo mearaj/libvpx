@@ -1,7 +1,7 @@
 package vp8
 
 import (
-	"log"
+	"github.com/gotranspile/cxgo/runtime/libc"
 	"math"
 	"unsafe"
 )
@@ -10,8 +10,8 @@ const BLOCK_HEIGHT_WIDTH = 4
 const VP8_FILTER_WEIGHT = 128
 const VP8_FILTER_SHIFT = 7
 
-var vp8_bilinear_filters = [8][2]int16{{128, 0}, {112, 16}, {96, 32}, {80, 48}, {64, 64}, {48, 80}, {32, 96}, {16, 112}}
-var vp8_sub_pel_filters = [8][6]int16{{0, 0, 128, 0, 0, 0}, {0, -6, 123, 12, -1, 0}, {2, -11, 108, 36, -8, 1}, {0, -9, 93, 50, -6, 0}, {3, -16, 77, 77, -16, 3}, {0, -6, 50, 93, -9, 0}, {1, -8, 36, 108, -11, 2}, {0, -1, 12, 123, -6, 0}}
+var vp8_bilinear_filters [8][2]int16 = [8][2]int16{{128, 0}, {112, 16}, {96, 32}, {80, 48}, {64, 64}, {48, 80}, {32, 96}, {16, 112}}
+var vp8_sub_pel_filters [8][6]int16 = [8][6]int16{{0, 0, 128, 0, 0, 0}, {0, -6, 123, 12, -1, 0}, {2, -11, 108, 36, -8, 1}, {0, -9, 93, 50, -6, 0}, {3, -16, 77, 77, -16, 3}, {0, -6, 50, 93, -9, 0}, {1, -8, 36, 108, -11, 2}, {0, -1, 12, 123, -6, 0}}
 
 func filter_block2d_first_pass(src_ptr *uint8, output_ptr *int, src_pixels_per_line uint, pixel_step uint, output_height uint, output_width uint, vp8_filter *int16) {
 	var (
@@ -143,12 +143,7 @@ func Vp8BilinearPredict4x4C(src_ptr *uint8, src_pixels_per_line int, xoffset int
 		HFilter *int16
 		VFilter *int16
 	)
-	if (xoffset | yoffset) != 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert((xoffset | yoffset) != 0)
 	HFilter = &vp8_bilinear_filters[xoffset][0]
 	VFilter = &vp8_bilinear_filters[yoffset][0]
 	filter_block2d_bil(src_ptr, dst_ptr, uint(src_pixels_per_line), uint(dst_pitch), HFilter, VFilter, 4, 4)
@@ -158,12 +153,7 @@ func Vp8BilinearPredict8x8C(src_ptr *uint8, src_pixels_per_line int, xoffset int
 		HFilter *int16
 		VFilter *int16
 	)
-	if (xoffset | yoffset) != 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert((xoffset | yoffset) != 0)
 	HFilter = &vp8_bilinear_filters[xoffset][0]
 	VFilter = &vp8_bilinear_filters[yoffset][0]
 	filter_block2d_bil(src_ptr, dst_ptr, uint(src_pixels_per_line), uint(dst_pitch), HFilter, VFilter, 8, 8)
@@ -173,12 +163,7 @@ func Vp8BilinearPredict8x4C(src_ptr *uint8, src_pixels_per_line int, xoffset int
 		HFilter *int16
 		VFilter *int16
 	)
-	if (xoffset | yoffset) != 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert((xoffset | yoffset) != 0)
 	HFilter = &vp8_bilinear_filters[xoffset][0]
 	VFilter = &vp8_bilinear_filters[yoffset][0]
 	filter_block2d_bil(src_ptr, dst_ptr, uint(src_pixels_per_line), uint(dst_pitch), HFilter, VFilter, 8, 4)
@@ -188,12 +173,7 @@ func Vp8BilinearPredict16x16C(src_ptr *uint8, src_pixels_per_line int, xoffset i
 		HFilter *int16
 		VFilter *int16
 	)
-	if (xoffset | yoffset) != 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert((xoffset | yoffset) != 0)
 	HFilter = &vp8_bilinear_filters[xoffset][0]
 	VFilter = &vp8_bilinear_filters[yoffset][0]
 	filter_block2d_bil(src_ptr, dst_ptr, uint(src_pixels_per_line), uint(dst_pitch), HFilter, VFilter, 16, 16)

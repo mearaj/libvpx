@@ -34,7 +34,7 @@ func vpx_write(br *vpx_writer, bit int, probability int) {
 		var offset int = shift - count
 		if (lowvalue<<uint(offset-1))&0x80000000 != 0 {
 			var x int = int(br.Pos - 1)
-			for x >= 0 && *(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), x)) == math.MaxUint8 {
+			for x >= 0 && int(*(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), x))) == math.MaxUint8 {
 				*(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), x)) = 0
 				x--
 			}
@@ -78,7 +78,7 @@ func vpx_stop_encode(br *vpx_writer) {
 	for i = 0; i < 32; i++ {
 		vpx_write_bit(br, 0)
 	}
-	if (*(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), br.Pos-1)) & 224) == 192 {
+	if (int(*(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), br.Pos-1))) & 224) == 192 {
 		*(*uint8)(unsafe.Add(unsafe.Pointer(br.Buffer), func() uint {
 			p := &br.Pos
 			x := *p

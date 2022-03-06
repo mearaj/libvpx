@@ -111,7 +111,7 @@ func VpxReAllocFrameBuffer(ybf *Yv12BufferConfig, width int, height int, ss_x in
 		var uvplane_size uint64 = uint64((uv_height+uv_border_h*2)*int(uint64(uv_stride)) + byte_alignment)
 		var frame_size uint64 = yplane_size + uvplane_size*2
 		var buf *uint8 = nil
-		if frame_size > math.MaxUint32 {
+		if frame_size > math.MaxUint64 {
 			return -1
 		}
 		if cb != nil {
@@ -119,31 +119,26 @@ func VpxReAllocFrameBuffer(ybf *Yv12BufferConfig, width int, height int, ss_x in
 				align_addr_extra_size int    = 31
 				external_frame_size   uint64 = frame_size + uint64(align_addr_extra_size)
 			)
-			if fb != nil {
-			} else {
-				// Todo:
-				log.Fatal("error")
-
-			}
-			if external_frame_size != uint64(uint64(external_frame_size)) {
+			libc.Assert(fb != nil)
+			if external_frame_size != external_frame_size {
 				return -1
 			}
-			if cb(cb_priv, uint64(external_frame_size), fb) < 0 {
+			if cb(cb_priv, external_frame_size, fb) < 0 {
 				return -1
 			}
-			if fb.Data == nil || fb.Size < uint64(external_frame_size) {
+			if fb.Data == nil || fb.Size < external_frame_size {
 				return -1
 			}
 			ybf.Buffer_alloc = (*uint8)(unsafe.Pointer(uintptr((uint64(uintptr(unsafe.Pointer(fb.Data))) + (32 - 1)) & 0xFFFFFFFFFFFFFFE0)))
-		} else if frame_size > uint64(ybf.Buffer_alloc_sz) {
+		} else if frame_size > ybf.Buffer_alloc_sz {
 			mem.VpxFree(unsafe.Pointer(ybf.Buffer_alloc))
 			ybf.Buffer_alloc = nil
 			ybf.Buffer_alloc_sz = 0
-			ybf.Buffer_alloc = (*uint8)(mem.VpxMemAlign(32, uint64(frame_size)))
+			ybf.Buffer_alloc = (*uint8)(mem.VpxMemAlign(32, frame_size))
 			if ybf.Buffer_alloc == nil {
 				return -1
 			}
-			ybf.Buffer_alloc_sz = uint64(frame_size)
+			ybf.Buffer_alloc_sz = frame_size
 			libc.MemSet(unsafe.Pointer(ybf.Buffer_alloc), 0, int(ybf.Buffer_alloc_sz))
 		}
 		ybf.Y_crop_width = width
@@ -157,7 +152,7 @@ func VpxReAllocFrameBuffer(ybf *Yv12BufferConfig, width int, height int, ss_x in
 		ybf.Uv_height = uv_height
 		ybf.Uv_stride = uv_stride
 		ybf.Border = border
-		ybf.Frame_size = uint64(frame_size)
+		ybf.Frame_size = frame_size
 		ybf.Subsampling_x = ss_x
 		ybf.Subsampling_y = ss_y
 		buf = ybf.Buffer_alloc

@@ -15,7 +15,7 @@ func vp8_reset_mb_tokens_context(x *MacroBlockd) {
 	)
 	libc.MemSet(unsafe.Pointer(a_ctx), 0, int(unsafe.Sizeof(ENTROPY_CONTEXT_PLANES{})-1))
 	libc.MemSet(unsafe.Pointer(l_ctx), 0, int(unsafe.Sizeof(ENTROPY_CONTEXT_PLANES{})-1))
-	if x.Mode_info_context.Mbmi.Is_4x4 == 0 {
+	if int(x.Mode_info_context.Mbmi.Is_4x4) == 0 {
 		*(*byte)(unsafe.Add(unsafe.Pointer(a_ctx), 8)) = func() byte {
 			p := (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), 8))
 			*(*byte)(unsafe.Add(unsafe.Pointer(l_ctx), 8)) = 0
@@ -96,7 +96,7 @@ func GetCoeffs(br *BOOL_DECODER, prob ProbaArray, ctx int, n int, out *int16) in
 							cat  int = bit1*2 + bit0
 						)
 						v = 0
-						for tab = kCat3456[cat]; *tab != 0; tab = (*uint8)(unsafe.Add(unsafe.Pointer(tab), 1)) {
+						for tab = kCat3456[cat]; int(*tab) != 0; tab = (*uint8)(unsafe.Add(unsafe.Pointer(tab), 1)) {
 							v += v + vp8dx_decode_bool(br, int(*tab))
 						}
 						v += (8 << cat) + 3
@@ -132,11 +132,11 @@ func vp8_decode_mb_tokens(dx *VP8D_COMP, x *MacroBlockd) int {
 		skip_dc    int = 0
 	)
 	qcoeff_ptr = &x.Qcoeff[0]
-	if x.Mode_info_context.Mbmi.Is_4x4 == 0 {
+	if int(x.Mode_info_context.Mbmi.Is_4x4) == 0 {
 		a = (*byte)(unsafe.Add(unsafe.Pointer(a_ctx), 8))
 		l = (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), 8))
 		coef_probs = ProbaArray(unsafe.Pointer(&fc.Coef_probs[1][0][0][0]))
-		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), 0, (*int16)(unsafe.Pointer((*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*(24*16))))))
+		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), 0, (*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*(24*16))))
 		*a = func() byte {
 			p := l
 			*l = byte(int8(libc.BoolToInt(nonzeros > 0)))
@@ -153,7 +153,7 @@ func vp8_decode_mb_tokens(dx *VP8D_COMP, x *MacroBlockd) int {
 	for i = 0; i < 16; i++ {
 		a = (*byte)(unsafe.Add(unsafe.Pointer(a_ctx), i&3))
 		l = (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), (i&12)>>2))
-		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), skip_dc, (*int16)(unsafe.Pointer(qcoeff_ptr)))
+		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), skip_dc, qcoeff_ptr)
 		*a = func() byte {
 			p := l
 			*l = byte(int8(libc.BoolToInt(nonzeros > 0)))
@@ -170,7 +170,7 @@ func vp8_decode_mb_tokens(dx *VP8D_COMP, x *MacroBlockd) int {
 	for i = 16; i < 24; i++ {
 		a = (*byte)(unsafe.Add(unsafe.Pointer((*byte)(unsafe.Add(unsafe.Pointer(a_ctx), int(libc.BoolToInt(i > 19))<<1))), i&1))
 		l = (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), int(libc.BoolToInt(i > 19)<<1+libc.BoolToInt((i&3) > 1))))
-		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), 0, (*int16)(unsafe.Pointer(qcoeff_ptr)))
+		nonzeros = GetCoeffs(bc, coef_probs, int(*a+*l), 0, qcoeff_ptr)
 		*a = func() byte {
 			p := l
 			*l = byte(int8(libc.BoolToInt(nonzeros > 0)))

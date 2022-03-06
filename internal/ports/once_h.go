@@ -1,6 +1,8 @@
 package ports
 
+import "sync"
+
 func Once(func_ func()) {
-	var lock pthread_once_t = PTHREAD_ONCE_INIT
-	pthread_once(&lock, func_)
+	var lock sync.Once = sync.Once{}
+	(&lock).Do(func_)
 }

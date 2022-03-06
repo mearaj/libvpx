@@ -2,6 +2,7 @@ package util
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
+	"github.com/gotranspile/cxgo/runtime/pthread"
 	"unsafe"
 )
 
@@ -17,9 +18,9 @@ const (
 
 type VPxWorkerHook func(unsafe.Pointer, unsafe.Pointer) int
 type VPxWorkerImpl struct {
-	Mutex_     pthread_mutex_t
+	Mutex_     pthread.Mutex
 	Condition_ pthread_cond_t
-	Thread_    pthread_t
+	Thread_    *pthread.Thread
 }
 type VPxWorker struct {
 	Impl_     *VPxWorkerImpl
@@ -44,7 +45,7 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 		done   int        = 0
 	)
 	for done == 0 {
-		pthread_mutex_lock(&worker.Impl_.Mutex_)
+		(&worker.Impl_.Mutex_).Lock()
 		for worker.Status_ == VPxWorkerStatus(OK) {
 			pthread_cond_wait(&worker.Impl_.Condition_, &worker.Impl_.Mutex_)
 		}
@@ -55,7 +56,7 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 			done = 1
 		}
 		pthread_cond_signal(&worker.Impl_.Condition_)
-		pthread_mutex_unlock(&worker.Impl_.Mutex_)
+		(&worker.Impl_.Mutex_).Unlock()
 	}
 	return nil
 }
@@ -63,7 +64,7 @@ func change_state(worker *VPxWorker, new_status VPxWorkerStatus) {
 	if worker.Impl_ == nil {
 		return
 	}
-	pthread_mutex_lock(&worker.Impl_.Mutex_)
+	(&worker.Impl_.Mutex_).Lock()
 	if worker.Status_ >= VPxWorkerStatus(OK) {
 		for worker.Status_ != VPxWorkerStatus(OK) {
 			pthread_cond_wait(&worker.Impl_.Condition_, &worker.Impl_.Mutex_)
@@ -73,7 +74,7 @@ func change_state(worker *VPxWorker, new_status VPxWorkerStatus) {
 			pthread_cond_signal(&worker.Impl_.Condition_)
 		}
 	}
-	pthread_mutex_unlock(&worker.Impl_.Mutex_)
+	(&worker.Impl_.Mutex_).Unlock()
 }
 func init(worker *VPxWorker) {
 	*worker = VPxWorker{}
@@ -81,10 +82,7 @@ func init(worker *VPxWorker) {
 }
 func sync(worker *VPxWorker) int {
 	change_state(worker, VPxWorkerStatus(OK))
-	if worker.Status_ <= VPxWorkerStatus(OK) {
-	} else {
-		__assert_fail(libc.CString("worker->status_ <= OK"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(worker.Status_ <= VPxWorkerStatus(OK))
 	return int(libc.BoolToInt(worker.Had_error == 0))
 }
 func reset(worker *VPxWorker) int {
@@ -95,21 +93,21 @@ func reset(worker *VPxWorker) int {
 		if worker.Impl_ == nil {
 			return 0
 		}
-		if pthread_mutex_init(&worker.Impl_.Mutex_, nil) != 0 {
+		if int((&worker.Impl_.Mutex_).Init(nil)) != 0 {
 			goto Error
 		}
 		if pthread_cond_init(&worker.Impl_.Condition_, nil) != 0 {
-			pthread_mutex_destroy(&worker.Impl_.Mutex_)
+			(&worker.Impl_.Mutex_).Destroy()
 			goto Error
 		}
-		pthread_mutex_lock(&worker.Impl_.Mutex_)
-		ok = int(libc.BoolToInt(pthread_create(&worker.Impl_.Thread_, nil, thread_loop, unsafe.Pointer(worker)) == 0))
+		(&worker.Impl_.Mutex_).Lock()
+		ok = int(libc.BoolToInt(int(pthread.Create(&worker.Impl_.Thread_, nil, thread_loop, unsafe.Pointer(worker))) == 0))
 		if ok != 0 {
 			worker.Status_ = VPxWorkerStatus(OK)
 		}
-		pthread_mutex_unlock(&worker.Impl_.Mutex_)
+		(&worker.Impl_.Mutex_).Unlock()
 		if ok == 0 {
-			pthread_mutex_destroy(&worker.Impl_.Mutex_)
+			(&worker.Impl_.Mutex_).Destroy()
 			pthread_cond_destroy(&worker.Impl_.Condition_)
 		Error:
 			vpx_free(unsafe.Pointer(worker.Impl_))
@@ -119,10 +117,7 @@ func reset(worker *VPxWorker) int {
 	} else if worker.Status_ > VPxWorkerStatus(OK) {
 		ok = sync(worker)
 	}
-	if ok == 0 || worker.Status_ == VPxWorkerStatus(OK) {
-	} else {
-		__assert_fail(libc.CString("!ok || (worker->status_ == OK)"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(ok == 0 || worker.Status_ == VPxWorkerStatus(OK))
 	return ok
 }
 func execute(worker *VPxWorker) {
@@ -136,16 +131,13 @@ func launch(worker *VPxWorker) {
 func end(worker *VPxWorker) {
 	if worker.Impl_ != nil {
 		change_state(worker, VPxWorkerStatus(NOT_OK))
-		pthread_join(worker.Impl_.Thread_, nil)
-		pthread_mutex_destroy(&worker.Impl_.Mutex_)
+		worker.Impl_.Thread_.Join(nil)
+		(&worker.Impl_.Mutex_).Destroy()
 		pthread_cond_destroy(&worker.Impl_.Condition_)
 		vpx_free(unsafe.Pointer(worker.Impl_))
 		worker.Impl_ = nil
 	}
-	if worker.Status_ == VPxWorkerStatus(NOT_OK) {
-	} else {
-		__assert_fail(libc.CString("worker->status_ == NOT_OK"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(worker.Status_ == VPxWorkerStatus(NOT_OK))
 }
 
 var g_worker_interface VPxWorkerInterface = VPxWorkerInterface{Init: init, Reset: reset, Sync: sync, Launch: launch, Execute: execute, End: end}

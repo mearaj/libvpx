@@ -2,7 +2,6 @@ package vp8
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
-	"github.com/mearaj/libvpx/internal/scale"
 	"math"
 	"unsafe"
 )

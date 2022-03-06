@@ -2,7 +2,6 @@ package vp8
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
-	"github.com/mearaj/libvpx/internal/scale"
 	"unsafe"
 )
 
@@ -54,10 +53,10 @@ func copy_and_extend_plane(s *uint8, sp int, d *uint8, dp int, h int, w int, et 
 }
 func vp8_copy_and_extend_frame(src *scale.Yv12BufferConfig, dst *scale.Yv12BufferConfig) {
 	var (
-		et = dst.Border
-		el = dst.Border
-		eb     = dst.Border + dst.Y_height - src.Y_height
-		er     = dst.Border + dst.Y_width - src.Y_width
+		et          int = dst.Border
+		el          int = dst.Border
+		eb          int = dst.Border + dst.Y_height - src.Y_height
+		er          int = dst.Border + dst.Y_width - src.Y_width
 		chroma_step int
 	)
 	if int64(uintptr(unsafe.Pointer(src.V_buffer))-uintptr(unsafe.Pointer(src.U_buffer))) == 1 {
@@ -65,24 +64,24 @@ func vp8_copy_and_extend_frame(src *scale.Yv12BufferConfig, dst *scale.Yv12Buffe
 	} else {
 		chroma_step = 1
 	}
-	copy_and_extend_plane((*uint8)(unsafe.Pointer(src.Y_buffer)), src.Y_stride, (*uint8)(unsafe.Pointer(dst.Y_buffer)), dst.Y_stride, src.Y_height, src.Y_width, et, el, eb, er, 1)
+	copy_and_extend_plane(src.Y_buffer, src.Y_stride, dst.Y_buffer, dst.Y_stride, src.Y_height, src.Y_width, et, el, eb, er, 1)
 	et = dst.Border >> 1
 	el = dst.Border >> 1
 	eb = (dst.Border >> 1) + dst.Uv_height - src.Uv_height
 	er = (dst.Border >> 1) + dst.Uv_width - src.Uv_width
-	copy_and_extend_plane((*uint8)(unsafe.Pointer(src.U_buffer)), src.Uv_stride, (*uint8)(unsafe.Pointer(dst.U_buffer)), dst.Uv_stride, src.Uv_height, src.Uv_width, et, el, eb, er, chroma_step)
-	copy_and_extend_plane((*uint8)(unsafe.Pointer(src.V_buffer)), src.Uv_stride, (*uint8)(unsafe.Pointer(dst.V_buffer)), dst.Uv_stride, src.Uv_height, src.Uv_width, et, el, eb, er, chroma_step)
+	copy_and_extend_plane(src.U_buffer, src.Uv_stride, dst.U_buffer, dst.Uv_stride, src.Uv_height, src.Uv_width, et, el, eb, er, chroma_step)
+	copy_and_extend_plane(src.V_buffer, src.Uv_stride, dst.V_buffer, dst.Uv_stride, src.Uv_height, src.Uv_width, et, el, eb, er, chroma_step)
 }
 func vp8_copy_and_extend_frame_with_rect(src *scale.Yv12BufferConfig, dst *scale.Yv12BufferConfig, srcy int, srcx int, srch int, srcw int) {
 	var (
-		et = dst.Border
-		el = dst.Border
-		eb     = dst.Border + dst.Y_height - src.Y_height
-		er     = dst.Border + dst.Y_width - src.Y_width
-		src_y_offset     = srcy*src.Y_stride + srcx
-		dst_y_offset     = srcy*dst.Y_stride + srcx
-		src_uv_offset     = ((srcy * src.Uv_stride) >> 1) + (srcx >> 1)
-		dst_uv_offset     = ((srcy * dst.Uv_stride) >> 1) + (srcx >> 1)
+		et            int = dst.Border
+		el            int = dst.Border
+		eb            int = dst.Border + dst.Y_height - src.Y_height
+		er            int = dst.Border + dst.Y_width - src.Y_width
+		src_y_offset  int = srcy*src.Y_stride + srcx
+		dst_y_offset  int = srcy*dst.Y_stride + srcx
+		src_uv_offset int = ((srcy * src.Uv_stride) >> 1) + (srcx >> 1)
+		dst_uv_offset int = ((srcy * dst.Uv_stride) >> 1) + (srcx >> 1)
 		chroma_step   int
 	)
 	if int64(uintptr(unsafe.Pointer(src.V_buffer))-uintptr(unsafe.Pointer(src.U_buffer))) == 1 {

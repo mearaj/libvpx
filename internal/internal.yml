@@ -1,6 +1,7 @@
 root: ../libvpxsrc
 out: .
 package: internal
+subpackage: true
 int_size: 8
 ptr_size: 8
 define:
@@ -151,9 +152,9 @@ replace:
 
 # List of files to convert. Supports wildcards (*.c).
 files:
-  - name: vpx_version.h
+  - name: ../libvpxbuild/vpx_version.h
     go: version
-  - name: vpx_config.h
+  - name: ../libvpxbuild/vpx_config.h
     go: config
   - name: args.h
   - name: args.c
@@ -169,39 +170,12 @@ files:
   - name: md5_utils.c
   - name: y4menc.h
   - name: y4menc.c
-  - name: vp8_rtcd.h
-  - name: vpx_dsp_rtcd.h
+  - name: ../libvpxbuild/vp8_rtcd.h
+  - name: ../libvpxbuild/vpx_dsp_rtcd.h
     go: rtcd_h.go
-  - name: vpx_scale_rtcd.h
+  - name: ../libvpxbuild/vpx_scale_rtcd.h
     go: vpx_scale_rtcd_h.go
 include:
   - .
-  #  - third_party/libyuv/include
-  #  - third_party/googletest/src/include
-  - tools/
-  - vpx
-  - vp8/
-  - vp8/common
-  - vp8/decoder
-  - vp8/encoder
-  - vp9/
-  - vp9/common
-  - vp9/decoder
-  - vp9/encoder
-  - vpx/
-  - vpx/internal
-  - vpx/src
-  - vpx_dsp/
-  - vpx_mem/
-  - vpx_mem/include
-  - vpx_ports/
-  - vpx_scale/
-  - vpx_scale/generic
-  - vpx_scale/mips
-  - build/
-  - build_debug/
-  - vpx_util/
-  #  - docs/
-  #  - examples/
-  #  - test/
   - third_party/libyuv/include
+  - ../libvpxbuild

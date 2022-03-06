@@ -12,14 +12,14 @@ func D207Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) 
 	)
 	_ = above
 	for r = 0; r < bs-1; r++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+1))) + 1) >> 1
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+1))) + 1) >> 1))
 	}
 	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (bs-1)*int(stride))) = *(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1))
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), 1))
 	for r = 0; r < bs-2; r++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+2))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r+2))) + 2) >> 2))
 	}
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (bs-2)*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-2))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1))) + 2) >> 2
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (bs-2)*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-2))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1))) + 2) >> 2))
 	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (bs-1)*int(stride))) = *(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1))
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), 1))
 	for c = 0; c < bs-2; c++ {
@@ -39,8 +39,8 @@ func D63Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) {
 	)
 	_ = left
 	for c = 0; c < bs; c++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1))) + 1) >> 1
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), stride+int64(c))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+2))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1))) + 1) >> 1))
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), stride+int64(c))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+2))) + 2) >> 2))
 	}
 	for func() int {
 		r = 2
@@ -71,7 +71,7 @@ func D45Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) {
 	)
 	_ = left
 	for x = 0; x < bs-1; x++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), x))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), x+1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), x+2))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), x))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), x+1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), x+2))) + 2) >> 2))
 	}
 	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), bs-1)) = above_right
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), stride))
@@ -100,17 +100,17 @@ func D117Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) 
 		c int
 	)
 	for c = 0; c < bs; c++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + 1) >> 1
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + 1) >> 1))
 	}
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), stride))
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2))
 	for c = 1; c < bs; c++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-2))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-2))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) + 2) >> 2))
 	}
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), stride))
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2))
 	for r = 3; r < bs; r++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (r-2)*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-3))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-2)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), (r-2)*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-3))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-2)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1))) + 2) >> 2))
 	}
 	for r = 2; r < bs; r++ {
 		for c = 1; c < bs; c++ {
@@ -125,13 +125,13 @@ func D135Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) 
 		border [63]uint8
 	)
 	for i = 0; i < bs-2; i++ {
-		border[i] = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-3-i))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-2-i)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1-i))) + 2) >> 2
+		border[i] = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-3-i))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-2-i)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), bs-1-i))) + 2) >> 2))
 	}
-	border[bs-2] = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2
-	border[bs-1] = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2
-	border[bs-0] = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), 1))) + 2) >> 2
+	border[bs-2] = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2))
+	border[bs-1] = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2))
+	border[bs-0] = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), 1))) + 2) >> 2))
 	for i = 0; i < bs-2; i++ {
-		border[bs+1+i] = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), i))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), i+1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), i+2))) + 2) >> 2
+		border[bs+1+i] = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), i))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), i+1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), i+2))) + 2) >> 2))
 	}
 	for i = 0; i < bs; i++ {
 		libc.MemCpy(unsafe.Add(unsafe.Pointer(dst), i*int(stride)), unsafe.Add(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(&border[bs]), -1))), -i), bs)
@@ -142,19 +142,19 @@ func D153Predictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) 
 		r int
 		c int
 	)
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + 1) >> 1
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + 1) >> 1))
 	for r = 1; r < bs; r++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + 1) >> 1
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + 1) >> 1))
 	}
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), 1))
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2
-	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), stride)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), 0)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), 0))) + 2) >> 2))
+	*(*uint8)(unsafe.Add(unsafe.Pointer(dst), stride)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), -1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 0)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), 1))) + 2) >> 2))
 	for r = 2; r < bs; r++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-2))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), r*int(stride))) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-2))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r-1)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + 2) >> 2))
 	}
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), 1))
 	for c = 0; c < bs-2; c++ {
-		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1))) + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c)))*2 + (*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1))) + 2) >> 2
+		*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = uint8(int8((int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c-1))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c)))*2 + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c+1))) + 2) >> 2))
 	}
 	dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), stride))
 	for r = 1; r < bs; r++ {
@@ -188,7 +188,7 @@ func TmPredictor(dst *uint8, stride int64, bs int, above *uint8, left *uint8) {
 	)
 	for r = 0; r < bs; r++ {
 		for c = 0; c < bs; c++ {
-			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = clip_pixel(int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))+*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) - ytop_left)
+			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), c)) = clip_pixel(int(*(*uint8)(unsafe.Add(unsafe.Pointer(left), r))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(above), c))) - ytop_left)
 		}
 		dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), stride))
 	}

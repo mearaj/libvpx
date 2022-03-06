@@ -2,6 +2,7 @@ package dsp
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
+	"math"
 	"unsafe"
 )
 
@@ -16,7 +17,7 @@ type PSNR_STATS vpx_psnr_pkt
 
 func vpx_sse_to_psnr(samples float64, peak float64, sse float64) float64 {
 	if sse > 0.0 {
-		var psnr float64 = log10(samples*peak*peak/sse) * 10.0
+		var psnr float64 = math.Log10(samples*peak*peak/sse) * 10.0
 		if psnr > MAX_PSNR {
 			return MAX_PSNR
 		}
@@ -34,7 +35,7 @@ func encoder_variance(a *uint8, a_stride int, b *uint8, b_stride int, w int, h i
 	*sse = 0
 	for i = 0; i < h; i++ {
 		for j = 0; j < w; j++ {
-			var diff int = int(*(*uint8)(unsafe.Add(unsafe.Pointer(a), j)) - *(*uint8)(unsafe.Add(unsafe.Pointer(b), j)))
+			var diff int = int(*(*uint8)(unsafe.Add(unsafe.Pointer(a), j))) - int(*(*uint8)(unsafe.Add(unsafe.Pointer(b), j)))
 			*sum += diff
 			*sse += uint(diff * diff)
 		}
@@ -77,14 +78,8 @@ func get_sse(a *uint8, a_stride int, b *uint8, b_stride int, width int, height i
 	return total_sse
 }
 func vpx_get_y_sse(a *YV12_BUFFER_CONFIG, b *YV12_BUFFER_CONFIG) int64 {
-	if a.Y_crop_width == b.Y_crop_width {
-	} else {
-		__assert_fail(libc.CString("a->y_crop_width == b->y_crop_width"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if a.Y_crop_height == b.Y_crop_height {
-	} else {
-		__assert_fail(libc.CString("a->y_crop_height == b->y_crop_height"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(a.Y_crop_width == b.Y_crop_width)
+	libc.Assert(a.Y_crop_height == b.Y_crop_height)
 	return get_sse(a.Y_buffer, a.Y_stride, b.Y_buffer, b.Y_stride, a.Y_crop_width, a.Y_crop_height)
 }
 func vpx_calc_psnr(a *YV12_BUFFER_CONFIG, b *YV12_BUFFER_CONFIG, psnr *PSNR_STATS) {
@@ -104,7 +99,7 @@ func vpx_calc_psnr(a *YV12_BUFFER_CONFIG, b *YV12_BUFFER_CONFIG, psnr *PSNR_STAT
 		var (
 			w       int    = widths[i]
 			h       int    = heights[i]
-			samples uint32 = uint32(w * h)
+			samples uint32 = uint32(int32(w * h))
 			sse     uint64 = uint64(get_sse(a_planes[i], a_strides[i], b_planes[i], b_strides[i], w, h))
 		)
 		psnr.Sse[i+1] = sse

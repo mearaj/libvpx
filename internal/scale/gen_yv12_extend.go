@@ -37,36 +37,11 @@ func extend_plane(src *uint8, src_stride int, width int, height int, extend_top 
 }
 func Vp8Yv12ExtendFrameBorders(ybf *Yv12BufferConfig) {
 	var uv_border int = ybf.Border / 2
-	if ybf.Border%2 == 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_height-ybf.Y_crop_height < 16 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_width-ybf.Y_crop_width < 16 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_height-ybf.Y_crop_height >= 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_width-ybf.Y_crop_width >= 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert(ybf.Border%2 == 0)
+	libc.Assert(ybf.Y_height-ybf.Y_crop_height < 16)
+	libc.Assert(ybf.Y_width-ybf.Y_crop_width < 16)
+	libc.Assert(ybf.Y_height-ybf.Y_crop_height >= 0)
+	libc.Assert(ybf.Y_width-ybf.Y_crop_width >= 0)
 	extend_plane(ybf.Y_buffer, ybf.Y_stride, ybf.Y_crop_width, ybf.Y_crop_height, ybf.Border, ybf.Border, ybf.Border+ybf.Y_height-ybf.Y_crop_height, ybf.Border+ybf.Y_width-ybf.Y_crop_width)
 	extend_plane(ybf.U_buffer, ybf.Uv_stride, ybf.Uv_crop_width, ybf.Uv_crop_height, uv_border, uv_border, uv_border+ybf.Uv_height-ybf.Uv_crop_height, uv_border+ybf.Uv_width-ybf.Uv_crop_width)
 	extend_plane(ybf.V_buffer, ybf.Uv_stride, ybf.Uv_crop_width, ybf.Uv_crop_height, uv_border, uv_border, uv_border+ybf.Uv_height-ybf.Uv_crop_height, uv_border+ybf.Uv_width-ybf.Uv_crop_width)
@@ -82,30 +57,10 @@ func extend_frame(ybf *Yv12BufferConfig, ext_size int) {
 		c_eb int = c_et + ybf.Uv_height - ybf.Uv_crop_height
 		c_er int = c_el + ybf.Uv_width - ybf.Uv_crop_width
 	)
-	if ybf.Y_height-ybf.Y_crop_height < 16 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_width-ybf.Y_crop_width < 16 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_height-ybf.Y_crop_height >= 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
-	if ybf.Y_width-ybf.Y_crop_width >= 0 {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert(ybf.Y_height-ybf.Y_crop_height < 16)
+	libc.Assert(ybf.Y_width-ybf.Y_crop_width < 16)
+	libc.Assert(ybf.Y_height-ybf.Y_crop_height >= 0)
+	libc.Assert(ybf.Y_width-ybf.Y_crop_width >= 0)
 	extend_plane(ybf.Y_buffer, ybf.Y_stride, ybf.Y_crop_width, ybf.Y_crop_height, ext_size, ext_size, ext_size+ybf.Y_height-ybf.Y_crop_height, ext_size+ybf.Y_width-ybf.Y_crop_width)
 	extend_plane(ybf.U_buffer, ybf.Uv_stride, c_w, c_h, c_et, c_el, c_eb, c_er)
 	extend_plane(ybf.V_buffer, ybf.Uv_stride, c_w, c_h, c_et, c_el, c_eb, c_er)

@@ -138,26 +138,26 @@ func vp8_build_inter4x4_predictors_mbuv(x *MacroBlockd) {
 			x.Block[voffset].Bmi.Mv.As_int = x.Block[uoffset].Bmi.Mv.As_int
 		}
 	}
-	base_pre = (*uint8)(unsafe.Pointer(x.Pre.U_buffer))
+	base_pre = x.Pre.U_buffer
 	for i = 16; i < 20; i += 2 {
 		var (
 			d0 *Blockd = &x.Block[i]
 			d1 *Blockd = &x.Block[i+1]
 		)
-		if d0.Bmi.Mv.As_int == d1.Bmi.Mv.As_int {
+		if int(d0.Bmi.Mv.As_int) == int(d1.Bmi.Mv.As_int) {
 			build_inter_predictors2b(x, d0, d0.Predictor, 8, base_pre, pre_stride)
 		} else {
 			vp8_build_inter_predictors_b(d0, 8, base_pre, pre_stride, x.Subpixel_predict)
 			vp8_build_inter_predictors_b(d1, 8, base_pre, pre_stride, x.Subpixel_predict)
 		}
 	}
-	base_pre = (*uint8)(unsafe.Pointer(x.Pre.V_buffer))
+	base_pre = x.Pre.V_buffer
 	for i = 20; i < 24; i += 2 {
 		var (
 			d0 *Blockd = &x.Block[i]
 			d1 *Blockd = &x.Block[i+1]
 		)
-		if d0.Bmi.Mv.As_int == d1.Bmi.Mv.As_int {
+		if int(d0.Bmi.Mv.As_int) == int(d1.Bmi.Mv.As_int) {
 			build_inter_predictors2b(x, d0, d0.Predictor, 8, base_pre, pre_stride)
 		} else {
 			vp8_build_inter_predictors_b(d0, 8, base_pre, pre_stride, x.Subpixel_predict)
@@ -173,7 +173,7 @@ func vp8_build_inter16x16_predictors_mby(x *MacroBlockd, dst_y *uint8, dst_ystri
 		mv_col     int = int(x.Mode_info_context.Mbmi.Mv.As_mv.Col)
 		pre_stride int = x.Pre.Y_stride
 	)
-	ptr_base = (*uint8)(unsafe.Pointer(x.Pre.Y_buffer))
+	ptr_base = x.Pre.Y_buffer
 	ptr = (*uint8)(unsafe.Add(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(ptr_base), (mv_row>>3)*pre_stride))), mv_col>>3))
 	if (mv_row|mv_col)&7 != 0 {
 		x.Subpixel_predict16x16(ptr, pre_stride, mv_col&7, mv_row&7, dst_y, dst_ystride)
@@ -222,15 +222,15 @@ func vp8_build_inter16x16_predictors_mb(x *MacroBlockd, dst_y *uint8, dst_u *uin
 		uptr       *uint8
 		vptr       *uint8
 		_16x16mv   int_mv
-		ptr_base   *uint8 = (*uint8)(unsafe.Pointer(x.Pre.Y_buffer))
+		ptr_base   *uint8 = x.Pre.Y_buffer
 		pre_stride int    = x.Pre.Y_stride
 	)
 	_16x16mv.As_int = x.Mode_info_context.Mbmi.Mv.As_int
-	if x.Mode_info_context.Mbmi.Need_to_clamp_mvs != 0 {
+	if int(x.Mode_info_context.Mbmi.Need_to_clamp_mvs) != 0 {
 		clamp_mv_to_umv_border(&_16x16mv.As_mv, x)
 	}
 	ptr = (*uint8)(unsafe.Add(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(ptr_base), (int(_16x16mv.As_mv.Row)>>3)*pre_stride))), int(_16x16mv.As_mv.Col)>>3))
-	if _16x16mv.As_int&0x70007 != 0 {
+	if int(_16x16mv.As_int)&0x70007 != 0 {
 		x.Subpixel_predict16x16(ptr, pre_stride, int(_16x16mv.As_mv.Col)&7, int(_16x16mv.As_mv.Row)&7, dst_y, dst_ystride)
 	} else {
 		Vp8CopyMem16x16C(ptr, pre_stride, dst_y, dst_ystride)
@@ -248,7 +248,7 @@ func vp8_build_inter16x16_predictors_mb(x *MacroBlockd, dst_y *uint8, dst_u *uin
 	offset = (int(_16x16mv.As_mv.Row)>>3)*pre_stride + (int(_16x16mv.As_mv.Col) >> 3)
 	uptr = (*uint8)(unsafe.Add(unsafe.Pointer(x.Pre.U_buffer), offset))
 	vptr = (*uint8)(unsafe.Add(unsafe.Pointer(x.Pre.V_buffer), offset))
-	if _16x16mv.As_int&0x70007 != 0 {
+	if int(_16x16mv.As_int)&0x70007 != 0 {
 		x.Subpixel_predict8x8(uptr, pre_stride, int(_16x16mv.As_mv.Col)&7, int(_16x16mv.As_mv.Row)&7, dst_u, dst_uvstride)
 		x.Subpixel_predict8x8(vptr, pre_stride, int(_16x16mv.As_mv.Col)&7, int(_16x16mv.As_mv.Row)&7, dst_v, dst_uvstride)
 	} else {
@@ -259,10 +259,10 @@ func vp8_build_inter16x16_predictors_mb(x *MacroBlockd, dst_y *uint8, dst_u *uin
 func build_inter4x4_predictors_mb(x *MacroBlockd) {
 	var (
 		i        int
-		base_dst *uint8 = (*uint8)(unsafe.Pointer(x.Dst.Y_buffer))
-		base_pre *uint8 = (*uint8)(unsafe.Pointer(x.Pre.Y_buffer))
+		base_dst *uint8 = x.Dst.Y_buffer
+		base_pre *uint8 = x.Pre.Y_buffer
 	)
-	if x.Mode_info_context.Mbmi.Partitioning < 3 {
+	if int(x.Mode_info_context.Mbmi.Partitioning) < 3 {
 		var (
 			b          *Blockd
 			dst_stride int = x.Dst.Y_stride
@@ -271,7 +271,7 @@ func build_inter4x4_predictors_mb(x *MacroBlockd) {
 		x.Block[2].Bmi = x.Mode_info_context.Bmi[2]
 		x.Block[8].Bmi = x.Mode_info_context.Bmi[8]
 		x.Block[10].Bmi = x.Mode_info_context.Bmi[10]
-		if x.Mode_info_context.Mbmi.Need_to_clamp_mvs != 0 {
+		if int(x.Mode_info_context.Mbmi.Need_to_clamp_mvs) != 0 {
 			clamp_mv_to_umv_border(&x.Block[0].Bmi.Mv.As_mv, x)
 			clamp_mv_to_umv_border(&x.Block[2].Bmi.Mv.As_mv, x)
 			clamp_mv_to_umv_border(&x.Block[8].Bmi.Mv.As_mv, x)
@@ -294,11 +294,11 @@ func build_inter4x4_predictors_mb(x *MacroBlockd) {
 			)
 			x.Block[i+0].Bmi = x.Mode_info_context.Bmi[i+0]
 			x.Block[i+1].Bmi = x.Mode_info_context.Bmi[i+1]
-			if x.Mode_info_context.Mbmi.Need_to_clamp_mvs != 0 {
+			if int(x.Mode_info_context.Mbmi.Need_to_clamp_mvs) != 0 {
 				clamp_mv_to_umv_border(&x.Block[i+0].Bmi.Mv.As_mv, x)
 				clamp_mv_to_umv_border(&x.Block[i+1].Bmi.Mv.As_mv, x)
 			}
-			if d0.Bmi.Mv.As_int == d1.Bmi.Mv.As_int {
+			if int(d0.Bmi.Mv.As_int) == int(d1.Bmi.Mv.As_int) {
 				build_inter_predictors2b(x, d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride)
 			} else {
 				build_inter_predictors_b(d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride, x.Subpixel_predict)
@@ -306,30 +306,30 @@ func build_inter4x4_predictors_mb(x *MacroBlockd) {
 			}
 		}
 	}
-	base_dst = (*uint8)(unsafe.Pointer(x.Dst.U_buffer))
-	base_pre = (*uint8)(unsafe.Pointer(x.Pre.U_buffer))
+	base_dst = x.Dst.U_buffer
+	base_pre = x.Pre.U_buffer
 	for i = 16; i < 20; i += 2 {
 		var (
 			d0         *Blockd = &x.Block[i]
 			d1         *Blockd = &x.Block[i+1]
 			dst_stride int     = x.Dst.Uv_stride
 		)
-		if d0.Bmi.Mv.As_int == d1.Bmi.Mv.As_int {
+		if int(d0.Bmi.Mv.As_int) == int(d1.Bmi.Mv.As_int) {
 			build_inter_predictors2b(x, d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride)
 		} else {
 			build_inter_predictors_b(d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride, x.Subpixel_predict)
 			build_inter_predictors_b(d1, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d1.Offset)), dst_stride, base_pre, dst_stride, x.Subpixel_predict)
 		}
 	}
-	base_dst = (*uint8)(unsafe.Pointer(x.Dst.V_buffer))
-	base_pre = (*uint8)(unsafe.Pointer(x.Pre.V_buffer))
+	base_dst = x.Dst.V_buffer
+	base_pre = x.Pre.V_buffer
 	for i = 20; i < 24; i += 2 {
 		var (
 			d0         *Blockd = &x.Block[i]
 			d1         *Blockd = &x.Block[i+1]
 			dst_stride int     = x.Dst.Uv_stride
 		)
-		if d0.Bmi.Mv.As_int == d1.Bmi.Mv.As_int {
+		if int(d0.Bmi.Mv.As_int) == int(d1.Bmi.Mv.As_int) {
 			build_inter_predictors2b(x, d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride)
 		} else {
 			build_inter_predictors_b(d0, (*uint8)(unsafe.Add(unsafe.Pointer(base_dst), d0.Offset)), dst_stride, base_pre, dst_stride, x.Subpixel_predict)
@@ -356,7 +356,7 @@ func build_4x4uvmvs(x *MacroBlockd) {
 			temp = int(x.Mode_info_context.Bmi[yoffset+0].Mv.As_mv.Col) + int(x.Mode_info_context.Bmi[yoffset+1].Mv.As_mv.Col) + int(x.Mode_info_context.Bmi[yoffset+4].Mv.As_mv.Col) + int(x.Mode_info_context.Bmi[yoffset+5].Mv.As_mv.Col)
 			temp += ((temp >> int(CHAR_BIT*unsafe.Sizeof(int(0))-1)) * 8) + 4
 			x.Block[uoffset].Bmi.Mv.As_mv.Col = int16((temp / 8) & x.Fullpixel_mask)
-			if x.Mode_info_context.Mbmi.Need_to_clamp_mvs != 0 {
+			if int(x.Mode_info_context.Mbmi.Need_to_clamp_mvs) != 0 {
 				clamp_uvmv_to_umv_border(&x.Block[uoffset].Bmi.Mv.As_mv, x)
 			}
 			x.Block[voffset].Bmi.Mv.As_int = x.Block[uoffset].Bmi.Mv.As_int
@@ -365,7 +365,7 @@ func build_4x4uvmvs(x *MacroBlockd) {
 }
 func vp8_build_inter_predictors_mb(xd *MacroBlockd) {
 	if int(xd.Mode_info_context.Mbmi.Mode) != SPLITMV {
-		vp8_build_inter16x16_predictors_mb(xd, (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), xd.Dst.Y_stride, xd.Dst.Uv_stride)
+		vp8_build_inter16x16_predictors_mb(xd, xd.Dst.Y_buffer, xd.Dst.U_buffer, xd.Dst.V_buffer, xd.Dst.Y_stride, xd.Dst.Uv_stride)
 	} else {
 		build_4x4uvmvs(xd)
 		build_inter4x4_predictors_mb(xd)

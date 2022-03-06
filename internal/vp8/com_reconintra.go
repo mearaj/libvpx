@@ -98,14 +98,14 @@ func vp8_build_intra_predictors_mby_s(x *MacroBlockd, yabove_row *uint8, yleft *
 		fn        intra_pred_fn
 	)
 	for i = 0; i < 16; i++ {
-		yleft_col[i] = uint8(*(*uint8)(unsafe.Add(unsafe.Pointer(yleft), i*left_stride)))
+		yleft_col[i] = *(*uint8)(unsafe.Add(unsafe.Pointer(yleft), i*left_stride))
 	}
 	if mode == int(DC_PRED) {
 		fn = dc_pred[x.Left_available][x.Up_available][SIZE_16]
 	} else {
 		fn = pred[mode][SIZE_16]
 	}
-	fn((*uint8)(unsafe.Pointer(ypred_ptr)), int64(y_stride), (*uint8)(unsafe.Pointer(yabove_row)), &yleft_col[0])
+	fn(ypred_ptr, int64(y_stride), yabove_row, &yleft_col[0])
 }
 func vp8_build_intra_predictors_mbuv_s(x *MacroBlockd, uabove_row *uint8, vabove_row *uint8, uleft *uint8, vleft *uint8, left_stride int, upred_ptr *uint8, vpred_ptr *uint8, pred_stride int) {
 	var (
@@ -124,8 +124,8 @@ func vp8_build_intra_predictors_mbuv_s(x *MacroBlockd, uabove_row *uint8, vabove
 	} else {
 		fn = pred[uvmode][SIZE_8]
 	}
-	fn((*uint8)(unsafe.Pointer(upred_ptr)), int64(pred_stride), (*uint8)(unsafe.Pointer(uabove_row)), (*uint8)(unsafe.Pointer(&uleft_col[0])))
-	fn((*uint8)(unsafe.Pointer(vpred_ptr)), int64(pred_stride), (*uint8)(unsafe.Pointer(vabove_row)), (*uint8)(unsafe.Pointer(&vleft_col[0])))
+	fn(upred_ptr, int64(pred_stride), uabove_row, &uleft_col[0])
+	fn(vpred_ptr, int64(pred_stride), vabove_row, &vleft_col[0])
 }
 func vp8_init_intra_predictors() {
 	ports.Once(vp8_init_intra_predictors_internal)

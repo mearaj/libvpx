@@ -6,7 +6,6 @@ import (
 	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/util"
 	"github.com/mearaj/libvpx/internal/vpx"
-	"log"
 	"math"
 	"unsafe"
 )
@@ -14,7 +13,7 @@ import (
 func vp8cx_init_de_quantizer(pbi *VP8D_COMP) {
 	var (
 		Q  int
-		pc = &pbi.Common
+		pc *VP8Common = &pbi.Common
 	)
 	for Q = 0; Q < (int(MAXQ + 1)); Q++ {
 		pc.Y1dequant[Q][0] = int16(vp8_dc_quant(Q, pc.Y1dc_delta_q))
@@ -29,8 +28,8 @@ func vp8_mb_init_dequantizer(pbi *VP8D_COMP, xd *MacroBlockd) {
 	var (
 		i      int
 		QIndex int
-		mbmi   = &xd.Mode_info_context.Mbmi
-		pc     = &pbi.Common
+		mbmi   *MB_MODE_INFO = &xd.Mode_info_context.Mbmi
+		pc     *VP8Common    = &pbi.Common
 	)
 	if int(xd.Segmentation_enabled) != 0 {
 		if int(xd.Mb_segement_abs_delta) == SEGMENT_ABSDATA {
@@ -70,7 +69,7 @@ func decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 		i    int
 	)
 	_ = mb_idx
-	if xd.Mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+	if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 		vp8_reset_mb_tokens_context(xd)
 	} else if vp8dx_bool_error((*BOOL_DECODER)(xd.Current_bc)) == 0 {
 		var eobtotal int
@@ -82,27 +81,27 @@ func decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 		vp8_mb_init_dequantizer(pbi, xd)
 	}
 	if int(xd.Mode_info_context.Mbmi.Ref_frame) == INTRA_FRAME {
-		vp8_build_intra_predictors_mbuv_s(xd, xd.Recon_above[1], xd.Recon_above[2], xd.Recon_left[1], xd.Recon_left[2], xd.Recon_left_stride[1], (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), xd.Dst.Uv_stride)
+		vp8_build_intra_predictors_mbuv_s(xd, xd.Recon_above[1], xd.Recon_above[2], xd.Recon_left[1], xd.Recon_left[2], xd.Recon_left_stride[1], xd.Dst.U_buffer, xd.Dst.V_buffer, xd.Dst.Uv_stride)
 		if mode != int(B_PRED) {
-			vp8_build_intra_predictors_mby_s(xd, xd.Recon_above[0], xd.Recon_left[0], xd.Recon_left_stride[0], (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), xd.Dst.Y_stride)
+			vp8_build_intra_predictors_mby_s(xd, xd.Recon_above[0], xd.Recon_left[0], xd.Recon_left_stride[0], xd.Dst.Y_buffer, xd.Dst.Y_stride)
 		} else {
 			var (
-				DQC        = &xd.Dequant_y1[0]
-				dst_stride = xd.Dst.Y_stride
+				DQC        *int16 = &xd.Dequant_y1[0]
+				dst_stride int    = xd.Dst.Y_stride
 			)
-			if xd.Mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+			if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 				libc.MemSet(unsafe.Pointer(&xd.Eobs[0]), 0, 25)
 			}
 			intra_prediction_down_copy(xd, (*uint8)(unsafe.Add(unsafe.Pointer(xd.Recon_above[0]), 16)))
 			for i = 0; i < 16; i++ {
 				var (
-					b   = &xd.Block[i]
-					dst = (*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), b.Offset))
-					b_mode         = xd.Mode_info_context.Bmi[i].As_mode
-					Above         = (*uint8)(unsafe.Add(unsafe.Pointer(dst), -dst_stride))
-					yleft                    = (*uint8)(unsafe.Add(unsafe.Pointer(dst), -1))
-					left_stride        = dst_stride
-					top_left           = *(*uint8)(unsafe.Add(unsafe.Pointer(Above), -1))
+					b           *Blockd           = &xd.Block[i]
+					dst         *uint8            = (*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), b.Offset))
+					b_mode      B_PREDICTION_MODE = xd.Mode_info_context.Bmi[i].As_mode
+					Above       *uint8            = (*uint8)(unsafe.Add(unsafe.Pointer(dst), -dst_stride))
+					yleft       *uint8            = (*uint8)(unsafe.Add(unsafe.Pointer(dst), -1))
+					left_stride int               = dst_stride
+					top_left    uint8             = *(*uint8)(unsafe.Add(unsafe.Pointer(Above), -1))
 				)
 				vp8_intra4x4_predict(Above, yleft, left_stride, b_mode, dst, dst_stride, top_left)
 				if xd.Eobs[i] != 0 {
@@ -118,11 +117,11 @@ func decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 	} else {
 		vp8_build_inter_predictors_mb(xd)
 	}
-	if xd.Mode_info_context.Mbmi.Mb_skip_coeff == 0 {
+	if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) == 0 {
 		if mode != int(B_PRED) {
-			var DQC = &xd.Dequant_y1[0]
+			var DQC *int16 = &xd.Dequant_y1[0]
 			if mode != int(SPLITMV) {
-				var b = &xd.Block[24]
+				var b *Blockd = &xd.Block[24]
 				if xd.Eobs[24] > 1 {
 					vp8_dequantize_b_mmx(b, &xd.Dequant_y2[0])
 					Vp8ShortInvWalsh4x4C((*int16)(unsafe.Add(unsafe.Pointer(b.Dqcoeff), unsafe.Sizeof(int16(0))*0)), &xd.Qcoeff[0])
@@ -134,13 +133,13 @@ func decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 				}
 				DQC = &xd.Dequant_y1_dc[0]
 			}
-			vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), xd.Dst.Y_stride, &xd.Eobs[0])
+			vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, xd.Dst.Y_buffer, xd.Dst.Y_stride, &xd.Eobs[0])
 		}
-		vp8_dequant_idct_add_uv_block_sse2(&xd.Qcoeff[16*16], &xd.Dequant_uv[0], (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), xd.Dst.Uv_stride, &xd.Eobs[16])
+		vp8_dequant_idct_add_uv_block_sse2(&xd.Qcoeff[16*16], &xd.Dequant_uv[0], xd.Dst.U_buffer, xd.Dst.V_buffer, xd.Dst.Uv_stride, &xd.Eobs[16])
 	}
 }
 func get_delta_q(bc *vp8_reader, prev int, q_update *int) int {
-	var ret_val = 0
+	var ret_val int = 0
 	if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), 128) != 0 {
 		ret_val = vp8_decode_value((*BOOL_DECODER)(unsafe.Pointer(bc)), 4)
 		if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), 128) != 0 {
@@ -280,20 +279,20 @@ func yv12_extend_frame_left_right_c(ybf *scale.Yv12BufferConfig, y_src *uint8, u
 }
 func decode_mb_rows(pbi *VP8D_COMP) {
 	var (
-		pc = &pbi.Common
-		xd = &pbi.Mb
-		lf_mic            = xd.Mode_info_context
-		ibc                 = 0
-		num_part           = int(1 << pc.Multi_token_partition)
-		recon_yoffset int
+		pc               *VP8Common   = &pbi.Common
+		xd               *MacroBlockd = &pbi.Mb
+		lf_mic           *ModeInfo    = xd.Mode_info_context
+		ibc              int          = 0
+		num_part         int          = int(1 << pc.Multi_token_partition)
+		recon_yoffset    int
 		recon_uvoffset   int
 		mb_row           int
-		mb_col      int
-		mb_idx      = 0
-		yv12_fb_new = pbi.Dec_fb_ref[INTRA_FRAME]
-		recon_y_stride     = yv12_fb_new.Y_stride
-		recon_uv_stride                         = yv12_fb_new.Uv_stride
-		ref_buffer      [4][3]*uint8
+		mb_col           int
+		mb_idx           int                     = 0
+		yv12_fb_new      *scale.Yv12BufferConfig = pbi.Dec_fb_ref[INTRA_FRAME]
+		recon_y_stride   int                     = yv12_fb_new.Y_stride
+		recon_uv_stride  int                     = yv12_fb_new.Uv_stride
+		ref_buffer       [4][3]*uint8
 		dst_buffer       [3]*uint8
 		lf_dst           [3]*uint8
 		eb_dst           [3]*uint8
@@ -302,17 +301,17 @@ func decode_mb_rows(pbi *VP8D_COMP) {
 	)
 	ref_fb_corrupted[INTRA_FRAME] = 0
 	for i = 1; i < MAX_REF_FRAMES; i++ {
-		var this_fb = pbi.Dec_fb_ref[i]
-		ref_buffer[i][0] = (*uint8)(unsafe.Pointer(this_fb.Y_buffer))
-		ref_buffer[i][1] = (*uint8)(unsafe.Pointer(this_fb.U_buffer))
-		ref_buffer[i][2] = (*uint8)(unsafe.Pointer(this_fb.V_buffer))
+		var this_fb *scale.Yv12BufferConfig = pbi.Dec_fb_ref[i]
+		ref_buffer[i][0] = this_fb.Y_buffer
+		ref_buffer[i][1] = this_fb.U_buffer
+		ref_buffer[i][2] = this_fb.V_buffer
 		ref_fb_corrupted[i] = this_fb.Corrupted
 	}
 	eb_dst[0] = func() *uint8 {
 		p := &lf_dst[0]
 		lf_dst[0] = func() *uint8 {
 			p := &dst_buffer[0]
-			dst_buffer[0] = (*uint8)(unsafe.Pointer(yv12_fb_new.Y_buffer))
+			dst_buffer[0] = yv12_fb_new.Y_buffer
 			return *p
 		}()
 		return *p
@@ -321,7 +320,7 @@ func decode_mb_rows(pbi *VP8D_COMP) {
 		p := &lf_dst[1]
 		lf_dst[1] = func() *uint8 {
 			p := &dst_buffer[1]
-			dst_buffer[1] = (*uint8)(unsafe.Pointer(yv12_fb_new.U_buffer))
+			dst_buffer[1] = yv12_fb_new.U_buffer
 			return *p
 		}()
 		return *p
@@ -330,7 +329,7 @@ func decode_mb_rows(pbi *VP8D_COMP) {
 		p := &lf_dst[2]
 		lf_dst[2] = func() *uint8 {
 			p := &dst_buffer[2]
-			dst_buffer[2] = (*uint8)(unsafe.Pointer(yv12_fb_new.V_buffer))
+			dst_buffer[2] = yv12_fb_new.V_buffer
 			return *p
 		}()
 		return *p
@@ -374,7 +373,7 @@ func decode_mb_rows(pbi *VP8D_COMP) {
 			xd.Dst.U_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(dst_buffer[1]), recon_uvoffset))
 			xd.Dst.V_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(dst_buffer[2]), recon_uvoffset))
 			if int(xd.Mode_info_context.Mbmi.Ref_frame) >= LAST_FRAME {
-				var ref = int(xd.Mode_info_context.Mbmi.Ref_frame)
+				var ref int = int(xd.Mode_info_context.Mbmi.Ref_frame)
 				xd.Pre.Y_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][0]), recon_yoffset))
 				xd.Pre.U_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][1]), recon_uvoffset))
 				xd.Pre.V_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][2]), recon_uvoffset))
@@ -458,10 +457,10 @@ func read_is_valid(start *uint8, len_ uint64, end *uint8) int {
 }
 func read_available_partition_size(pbi *VP8D_COMP, token_part_sizes *uint8, fragment_start *uint8, first_fragment_end *uint8, fragment_end *uint8, i int, num_part int) uint {
 	var (
-		pc                 = &pbi.Common
-		partition_size_ptr = (*uint8)(unsafe.Add(unsafe.Pointer(token_part_sizes), i*3))
+		pc                 *VP8Common = &pbi.Common
+		partition_size_ptr *uint8     = (*uint8)(unsafe.Add(unsafe.Pointer(token_part_sizes), i*3))
 		partition_size     uint       = 0
-		bytes_left          = int64(uintptr(unsafe.Pointer(fragment_end)) - uintptr(unsafe.Pointer(fragment_start)))
+		bytes_left         int64      = int64(uintptr(unsafe.Pointer(fragment_end)) - uintptr(unsafe.Pointer(fragment_start)))
 	)
 	if bytes_left < 0 {
 		vpx.InternalError(&pc.Error, vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME), libc.CString("Truncated packet or corrupt partition. No bytes left %d."), int(bytes_left))
@@ -488,12 +487,12 @@ func read_available_partition_size(pbi *VP8D_COMP, token_part_sizes *uint8, frag
 }
 func setup_token_decoder(pbi *VP8D_COMP, token_part_sizes *uint8) {
 	var (
-		bool_decoder  = &pbi.Mbc[0]
-		partition_idx uint
+		bool_decoder          *vp8_reader = &pbi.Mbc[0]
+		partition_idx         uint
 		fragment_idx          uint
 		num_token_partitions  uint
-		first_fragment_end    = (*uint8)(unsafe.Add(unsafe.Pointer(pbi.Fragments.Ptrs[0]), pbi.Fragments.Sizes[0]))
-		multi_token_partition = TOKEN_PARTITION(vp8_decode_value((*BOOL_DECODER)(unsafe.Pointer(&pbi.Mbc[8])), 2))
+		first_fragment_end    *uint8          = (*uint8)(unsafe.Add(unsafe.Pointer(pbi.Fragments.Ptrs[0]), pbi.Fragments.Sizes[0]))
+		multi_token_partition TOKEN_PARTITION = TOKEN_PARTITION(vp8_decode_value((*BOOL_DECODER)(unsafe.Pointer(&pbi.Mbc[8])), 2))
 	)
 	if vp8dx_bool_error((*BOOL_DECODER)(unsafe.Pointer(&pbi.Mbc[8]))) == 0 {
 		pbi.Common.Multi_token_partition = multi_token_partition
@@ -501,11 +500,11 @@ func setup_token_decoder(pbi *VP8D_COMP, token_part_sizes *uint8) {
 	num_token_partitions = uint(1 << pbi.Common.Multi_token_partition)
 	for fragment_idx = 0; fragment_idx < pbi.Fragments.Count; fragment_idx++ {
 		var (
-			fragment_size = pbi.Fragments.Sizes[fragment_idx]
-			fragment_end  = (*uint8)(unsafe.Add(unsafe.Pointer(pbi.Fragments.Ptrs[fragment_idx]), fragment_size))
+			fragment_size uint   = pbi.Fragments.Sizes[fragment_idx]
+			fragment_end  *uint8 = (*uint8)(unsafe.Add(unsafe.Pointer(pbi.Fragments.Ptrs[fragment_idx]), fragment_size))
 		)
 		if fragment_idx == 0 {
-			var ext_first_part_size = int64(uintptr(unsafe.Pointer(token_part_sizes))-uintptr(unsafe.Pointer(pbi.Fragments.Ptrs[0]))) + int64((num_token_partitions-1)*3)
+			var ext_first_part_size int64 = int64(uintptr(unsafe.Pointer(token_part_sizes))-uintptr(unsafe.Pointer(pbi.Fragments.Ptrs[0]))) + int64((num_token_partitions-1)*3)
 			if fragment_size < uint(ext_first_part_size) {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME), libc.CString("Corrupted fragment size %d"), fragment_size)
 			}
@@ -517,18 +516,13 @@ func setup_token_decoder(pbi *VP8D_COMP, token_part_sizes *uint8) {
 			}
 		}
 		for fragment_size > 0 {
-			var partition_size = int64(read_available_partition_size(pbi, token_part_sizes, pbi.Fragments.Ptrs[fragment_idx], first_fragment_end, fragment_end, int(fragment_idx-1), int(num_token_partitions)))
+			var partition_size int64 = int64(read_available_partition_size(pbi, token_part_sizes, pbi.Fragments.Ptrs[fragment_idx], first_fragment_end, fragment_end, int(fragment_idx-1), int(num_token_partitions)))
 			pbi.Fragments.Sizes[fragment_idx] = uint(partition_size)
 			if fragment_size < uint(partition_size) {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME), libc.CString("Corrupted fragment size %d"), fragment_size)
 			}
 			fragment_size -= uint(partition_size)
-			if fragment_idx <= num_token_partitions {
-			} else {
-				// Todo:
-				log.Fatal("error")
-
-			}
+			libc.Assert(fragment_idx <= num_token_partitions)
 			if fragment_size > 0 {
 				fragment_idx++
 				pbi.Fragments.Ptrs[fragment_idx] = (*uint8)(unsafe.Add(unsafe.Pointer(pbi.Fragments.Ptrs[fragment_idx-1]), partition_size))
@@ -546,19 +540,14 @@ func setup_token_decoder(pbi *VP8D_COMP, token_part_sizes *uint8) {
 		pbi.Decoding_thread_count = num_token_partitions - 1
 	}
 	if int(pbi.Decoding_thread_count) > pbi.Common.Mb_rows-1 {
-		if pbi.Common.Mb_rows > 0 {
-		} else {
-			// Todo:
-			log.Fatal("error")
-
-		}
+		libc.Assert(pbi.Common.Mb_rows > 0)
 		pbi.Decoding_thread_count = uint(pbi.Common.Mb_rows - 1)
 	}
 }
 func init_frame(pbi *VP8D_COMP) {
 	var (
-		pc = &pbi.Common
-		xd = &pbi.Mb
+		pc *VP8Common   = &pbi.Common
+		xd *MacroBlockd = &pbi.Mb
 	)
 	if pc.Frame_type == int(KEY_FRAME) {
 		libc.MemCpy(unsafe.Pointer(&pc.Fc.Mvc[0]), unsafe.Pointer(&vp8_default_mv_context[0]), int(unsafe.Sizeof([2]MV_CONTEXT{})))
@@ -635,21 +624,21 @@ func init_frame(pbi *VP8D_COMP) {
 }
 func vp8_decode_frame(pbi *VP8D_COMP) int {
 	var (
-		bc = &pbi.Mbc[8]
-		pc = &pbi.Common
-		xd             = &pbi.Mb
-		data            = pbi.Fragments.Ptrs[0]
-		data_sz              = pbi.Fragments.Sizes[0]
-		data_end        = (*uint8)(unsafe.Add(unsafe.Pointer(data), data_sz))
+		bc                              *vp8_reader  = &pbi.Mbc[8]
+		pc                              *VP8Common   = &pbi.Common
+		xd                              *MacroBlockd = &pbi.Mb
+		data                            *uint8       = pbi.Fragments.Ptrs[0]
+		data_sz                         uint         = pbi.Fragments.Sizes[0]
+		data_end                        *uint8       = (*uint8)(unsafe.Add(unsafe.Pointer(data), data_sz))
 		first_partition_length_in_bytes int64
 		i                               int
 		j                               int
 		k                               int
-		l                    int
-		mb_feature_data_bits = &vp8_mb_feature_data_bits[0]
-		corrupt_tokens       = 0
-		prev_independent_partitions      = pbi.Independent_partitions
-		yv12_fb_new                     = pbi.Dec_fb_ref[INTRA_FRAME]
+		l                               int
+		mb_feature_data_bits            *int                    = &vp8_mb_feature_data_bits[0]
+		corrupt_tokens                  int                     = 0
+		prev_independent_partitions     int                     = pbi.Independent_partitions
+		yv12_fb_new                     *scale.Yv12BufferConfig = pbi.Dec_fb_ref[INTRA_FRAME]
 	)
 	xd.Corrupted = 0
 	yv12_fb_new.Corrupted = 0
@@ -664,10 +653,10 @@ func vp8_decode_frame(pbi *VP8D_COMP) int {
 	} else {
 		var (
 			clear_buffer [10]uint8
-			clear        = data
+			clear        *uint8 = data
 		)
 		if pbi.Decrypt_cb != nil {
-			var n = int(func() uintptr {
+			var n int = int(func() uintptr {
 				if (unsafe.Sizeof([10]uint8{})) < uintptr(data_sz) {
 					return unsafe.Sizeof([10]uint8{})
 				}
@@ -817,9 +806,9 @@ func vp8_decode_frame(pbi *VP8D_COMP) int {
 	}
 	pc.Refresh_last_frame = int(libc.BoolToInt(pc.Frame_type == int(KEY_FRAME) || vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), 128) != 0))
 	if false {
-		var z = (*stdio.File)(unsafe.Pointer(stdio.FOpen("decodestats.stt", "a")))
-		stdio.Fprintf((*stdio.File)(unsafe.Pointer(z)), "%6d F:%d,G:%d,A:%d,L:%d,Q:%d\n", pc.Current_video_frame, pc.Frame_type, pc.Refresh_golden_frame, pc.Refresh_alt_ref_frame, pc.Refresh_last_frame, pc.Base_qindex)
-		fclose(z)
+		var z *stdio.File = stdio.FOpen("decodestats.stt", "a")
+		stdio.Fprintf(z, "%6d F:%d,G:%d,A:%d,L:%d,Q:%d\n", pc.Current_video_frame, pc.Frame_type, pc.Refresh_golden_frame, pc.Refresh_alt_ref_frame, pc.Refresh_last_frame, pc.Base_qindex)
+		z.Close()
 	}
 	{
 		pbi.Independent_partitions = 1
@@ -827,7 +816,7 @@ func vp8_decode_frame(pbi *VP8D_COMP) int {
 			for j = 0; j < COEF_BANDS; j++ {
 				for k = 0; k < PREV_COEF_CONTEXTS; k++ {
 					for l = 0; l < ENTROPY_NODES; l++ {
-						var p = &pc.Fc.Coef_probs[i][j][k][l]
+						var p *uint8 = &pc.Fc.Coef_probs[i][j][k][l]
 						if vp8dx_decode_bool((*BOOL_DECODER)(unsafe.Pointer(bc)), int(vp8_coef_update_probs[i][j][k][l])) != 0 {
 							*p = uint8(int8(vp8_decode_value((*BOOL_DECODER)(unsafe.Pointer(bc)), 8)))
 						}

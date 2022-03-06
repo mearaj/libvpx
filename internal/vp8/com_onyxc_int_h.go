@@ -1,7 +1,6 @@
 package vp8
 
 import (
-	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/vpx"
 	"math"
 )

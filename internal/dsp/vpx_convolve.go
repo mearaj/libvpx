@@ -23,7 +23,7 @@ func convolve_horiz(src *uint8, src_stride int64, dst *uint8, dst_stride int64, 
 				sum      int = 0
 			)
 			for k = 0; k < SUBPEL_TAPS; k++ {
-				sum += int(int16(*(*uint8)(unsafe.Add(unsafe.Pointer(src_x), k))) * *(*int16)(unsafe.Add(unsafe.Pointer(x_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
+				sum += int(*(*uint8)(unsafe.Add(unsafe.Pointer(src_x), k))) * int(*(*int16)(unsafe.Add(unsafe.Pointer(x_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
 			}
 			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = clip_pixel((sum + (1 << (int(FILTER_BITS - 1)))) >> FILTER_BITS)
 			x_q4 += x_step_q4
@@ -48,9 +48,9 @@ func convolve_avg_horiz(src *uint8, src_stride int64, dst *uint8, dst_stride int
 				sum      int = 0
 			)
 			for k = 0; k < SUBPEL_TAPS; k++ {
-				sum += int(int16(*(*uint8)(unsafe.Add(unsafe.Pointer(src_x), k))) * *(*int16)(unsafe.Add(unsafe.Pointer(x_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
+				sum += int(*(*uint8)(unsafe.Add(unsafe.Pointer(src_x), k))) * int(*(*int16)(unsafe.Add(unsafe.Pointer(x_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
 			}
-			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) + clip_pixel((sum+(1<<(int(FILTER_BITS-1))))>>FILTER_BITS)) + (1 << (1 - 1))) >> 1
+			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = uint8(int8(((int(*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x))) + int(clip_pixel((sum+(1<<(int(FILTER_BITS-1))))>>FILTER_BITS))) + (1 << (1 - 1))) >> 1))
 			x_q4 += x_step_q4
 		}
 		src = (*uint8)(unsafe.Add(unsafe.Pointer(src), src_stride))
@@ -73,7 +73,7 @@ func convolve_vert(src *uint8, src_stride int64, dst *uint8, dst_stride int64, y
 				sum      int = 0
 			)
 			for k = 0; k < SUBPEL_TAPS; k++ {
-				sum += int(int16(*(*uint8)(unsafe.Add(unsafe.Pointer(src_y), k*int(src_stride)))) * *(*int16)(unsafe.Add(unsafe.Pointer(y_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
+				sum += int(*(*uint8)(unsafe.Add(unsafe.Pointer(src_y), k*int(src_stride)))) * int(*(*int16)(unsafe.Add(unsafe.Pointer(y_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
 			}
 			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), y*int(dst_stride))) = clip_pixel((sum + (1 << (int(FILTER_BITS - 1)))) >> FILTER_BITS)
 			y_q4 += y_step_q4
@@ -98,9 +98,9 @@ func convolve_avg_vert(src *uint8, src_stride int64, dst *uint8, dst_stride int6
 				sum      int = 0
 			)
 			for k = 0; k < SUBPEL_TAPS; k++ {
-				sum += int(int16(*(*uint8)(unsafe.Add(unsafe.Pointer(src_y), k*int(src_stride)))) * *(*int16)(unsafe.Add(unsafe.Pointer(y_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
+				sum += int(*(*uint8)(unsafe.Add(unsafe.Pointer(src_y), k*int(src_stride)))) * int(*(*int16)(unsafe.Add(unsafe.Pointer(y_filter), unsafe.Sizeof(int16(0))*uintptr(k))))
 			}
-			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), y*int(dst_stride))) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(dst), y*int(dst_stride))) + clip_pixel((sum+(1<<(int(FILTER_BITS-1))))>>FILTER_BITS)) + (1 << (1 - 1))) >> 1
+			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), y*int(dst_stride))) = uint8(int8(((int(*(*uint8)(unsafe.Add(unsafe.Pointer(dst), y*int(dst_stride)))) + int(clip_pixel((sum+(1<<(int(FILTER_BITS-1))))>>FILTER_BITS))) + (1 << (1 - 1))) >> 1))
 			y_q4 += y_step_q4
 		}
 		src = (*uint8)(unsafe.Add(unsafe.Pointer(src), 1))
@@ -132,35 +132,17 @@ func vpx_convolve8_c(src *uint8, src_stride int64, dst *uint8, dst_stride int64,
 		temp                [8640]uint8
 		intermediate_height int = (((h-1)*y_step_q4 + y0_q4) >> SUBPEL_BITS) + SUBPEL_TAPS
 	)
-	if w <= 64 {
-	} else {
-		__assert_fail(libc.CString("w <= 64"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if h <= 64 {
-	} else {
-		__assert_fail(libc.CString("h <= 64"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if y_step_q4 <= 32 || y_step_q4 <= 64 && h <= 32 {
-	} else {
-		__assert_fail(libc.CString("y_step_q4 <= 32 || (y_step_q4 <= 64 && h <= 32)"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if x_step_q4 <= 64 {
-	} else {
-		__assert_fail(libc.CString("x_step_q4 <= 64"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(w <= 64)
+	libc.Assert(h <= 64)
+	libc.Assert(y_step_q4 <= 32 || y_step_q4 <= 64 && h <= 32)
+	libc.Assert(x_step_q4 <= 64)
 	convolve_horiz((*uint8)(unsafe.Add(unsafe.Pointer(src), -(src_stride*int64(int(SUBPEL_TAPS/2)-1)))), src_stride, &temp[0], 64, filter, x0_q4, x_step_q4, w, intermediate_height)
 	convolve_vert(&temp[(int(SUBPEL_TAPS/2)-1)*64], 64, dst, dst_stride, filter, y0_q4, y_step_q4, w, h)
 }
 func vpx_convolve8_avg_c(src *uint8, src_stride int64, dst *uint8, dst_stride int64, filter *InterpKernel, x0_q4 int, x_step_q4 int, y0_q4 int, y_step_q4 int, w int, h int) {
 	var temp [4096]uint8
-	if w <= 64 {
-	} else {
-		__assert_fail(libc.CString("w <= 64"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if h <= 64 {
-	} else {
-		__assert_fail(libc.CString("h <= 64"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(w <= 64)
+	libc.Assert(h <= 64)
 	vpx_convolve8_c(src, src_stride, &temp[0], 64, filter, x0_q4, x_step_q4, y0_q4, y_step_q4, w, h)
 	vpx_convolve_avg_c(&temp[0], 64, dst, dst_stride, nil, 0, 0, 0, 0, w, h)
 }
@@ -189,7 +171,7 @@ func vpx_convolve_avg_c(src *uint8, src_stride int64, dst *uint8, dst_stride int
 	_ = y_step_q4
 	for y = 0; y < h; y++ {
 		for x = 0; x < w; x++ {
-			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = ((*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) + *(*uint8)(unsafe.Add(unsafe.Pointer(src), x))) + (1 << (1 - 1))) >> 1
+			*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x)) = uint8(int8(((int(*(*uint8)(unsafe.Add(unsafe.Pointer(dst), x))) + int(*(*uint8)(unsafe.Add(unsafe.Pointer(src), x)))) + (1 << (1 - 1))) >> 1))
 		}
 		src = (*uint8)(unsafe.Add(unsafe.Pointer(src), src_stride))
 		dst = (*uint8)(unsafe.Add(unsafe.Pointer(dst), dst_stride))

@@ -1,8 +1,8 @@
 package vp8
 
 import (
+	"github.com/gotranspile/cxgo/runtime/libc"
 	"github.com/mearaj/libvpx/internal/vpx"
-	"log"
 )
 
 const (
@@ -48,12 +48,7 @@ func Scale2Ratio(mode int, hr *int, hs *int) {
 	default:
 		*hr = 1
 		*hs = 1
-		if false {
-		} else {
-			// Todo:
-			log.Fatal("error")
-
-		}
+		libc.Assert(false)
 	}
 }
 

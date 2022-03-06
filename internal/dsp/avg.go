@@ -220,7 +220,7 @@ func vpx_minmax_8x8_c(s *uint8, p int, d *uint8, dp int, min *int, max *int) {
 		}()
 	}() {
 		for j = 0; j < 8; j++ {
-			var diff int = int(cmath.Abs(int64(*(*uint8)(unsafe.Add(unsafe.Pointer(s), j)) - *(*uint8)(unsafe.Add(unsafe.Pointer(d), j)))))
+			var diff int = int(cmath.Abs(int64(int(*(*uint8)(unsafe.Add(unsafe.Pointer(s), j))) - int(*(*uint8)(unsafe.Add(unsafe.Pointer(d), j))))))
 			if diff < *min {
 				*min = diff
 			} else {

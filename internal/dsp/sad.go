@@ -13,7 +13,7 @@ func sad(src_ptr *uint8, src_stride int, ref_ptr *uint8, ref_stride int, width i
 	)
 	for y = 0; y < height; y++ {
 		for x = 0; x < width; x++ {
-			sad += uint(cmath.Abs(int64(*(*uint8)(unsafe.Add(unsafe.Pointer(src_ptr), x)) - *(*uint8)(unsafe.Add(unsafe.Pointer(ref_ptr), x)))))
+			sad += uint(cmath.Abs(int64(int(*(*uint8)(unsafe.Add(unsafe.Pointer(src_ptr), x))) - int(*(*uint8)(unsafe.Add(unsafe.Pointer(ref_ptr), x))))))
 		}
 		src_ptr = (*uint8)(unsafe.Add(unsafe.Pointer(src_ptr), src_stride))
 		ref_ptr = (*uint8)(unsafe.Add(unsafe.Pointer(ref_ptr), ref_stride))

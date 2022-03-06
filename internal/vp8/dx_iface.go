@@ -8,7 +8,6 @@ import (
 	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/util"
 	"github.com/mearaj/libvpx/internal/vpx"
-	"log"
 	"unsafe"
 )
 
@@ -40,7 +39,7 @@ type CodecAlgPvt struct {
 }
 
 func vp8_init_ctx(ctx *vpx.CodecCtx) int {
-	var priv = (*CodecAlgPvt)(mem.VpxCalloc(1, uint64(unsafe.Sizeof(CodecAlgPvt{}))))
+	var priv *CodecAlgPvt = (*CodecAlgPvt)(mem.VpxCalloc(1, uint64(unsafe.Sizeof(CodecAlgPvt{}))))
 	if priv == nil {
 		return 1
 	}
@@ -56,7 +55,7 @@ func vp8_init_ctx(ctx *vpx.CodecCtx) int {
 	return 0
 }
 func vp8_init(ctx *vpx.CodecCtx, data *vpx.CodecPvtEncMrCfg) vpx.CodecErr {
-	var res = vpx.CodecErr(VPX_CODEC_OK)
+	var res vpx.CodecErr = vpx.CodecErr(VPX_CODEC_OK)
 	_ = data
 	Vp8Rtcd()
 	dsp.DspRtcd()
@@ -78,38 +77,33 @@ func vp8_destroy(ctx *CodecAlgPvt) vpx.CodecErr {
 	return vpx.CodecErr(VPX_CODEC_OK)
 }
 func vp8_peek_si_internal(data *uint8, data_sz uint, si *vpx.CodecStreamInfo, decrypt_cb vpx.DecryptCb, decrypt_state unsafe.Pointer) vpx.CodecErr {
-	var res = vpx.CodecErr(VPX_CODEC_OK)
-	if data != nil {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	var res vpx.CodecErr = vpx.CodecErr(VPX_CODEC_OK)
+	libc.Assert(data != nil)
 	if uintptr(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(data), data_sz)))) <= uintptr(unsafe.Pointer(data)) {
 		res = vpx.CodecErr(vpx.VPX_CODEC_INVALID_PARAM)
 	} else {
 		var (
 			clear_buffer [10]uint8
-			clear        = data
+			clear        *uint8 = data
 		)
 		if decrypt_cb != nil {
-			var n = int(func() uintptr {
+			var n int = int(func() uintptr {
 				if (unsafe.Sizeof([10]uint8{})) < uintptr(data_sz) {
 					return unsafe.Sizeof([10]uint8{})
 				}
 				return uintptr(data_sz)
 			}())
-			decrypt_cb(decrypt_state, (*uint8)(unsafe.Pointer(data)), (*uint8)(unsafe.Pointer(&clear_buffer[0])), n)
+			decrypt_cb(decrypt_state, data, &clear_buffer[0], n)
 			clear = &clear_buffer[0]
 		}
 		si.Is_kf = 0
-		if data_sz >= 10 && (*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 0))&1) == 0 {
+		if data_sz >= 10 && (int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 0)))&1) == 0 {
 			si.Is_kf = 1
-			if *(*uint8)(unsafe.Add(unsafe.Pointer(clear), 3)) != 157 || *(*uint8)(unsafe.Add(unsafe.Pointer(clear), 4)) != 1 || *(*uint8)(unsafe.Add(unsafe.Pointer(clear), 5)) != 42 {
+			if int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 3))) != 157 || int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 4))) != 1 || int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 5))) != 42 {
 				return vpx.CodecErr(vpx.VPX_CODEC_UNSUP_BITSTREAM)
 			}
-			si.W = uint((*(*uint16)(unsafe.Add(unsafe.Pointer(clear), 6)) | *(*uint16)(unsafe.Add(unsafe.Pointer(clear), 7))<<8) & uint16(0x3FFF))
-			si.H = uint((*(*uint16)(unsafe.Add(unsafe.Pointer(clear), 8)) | *(*uint16)(unsafe.Add(unsafe.Pointer(clear), 9))<<8) & uint16(0x3FFF))
+			si.W = uint((int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 6))) | int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 7)))<<8) & 0x3FFF)
+			si.H = uint((int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 8))) | int(*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 9)))<<8) & 0x3FFF)
 			if !(si.H != 0 && si.W != 0) {
 				res = vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME)
 			}
@@ -149,9 +143,9 @@ func yuvconfig2image(img *vpx.Image, yv12 *scale.Yv12BufferConfig, user_priv uns
 	}()
 	img.X_chroma_shift = 1
 	img.Y_chroma_shift = 1
-	img.Planes[vpx.VPX_PLANE_Y] = (*uint8)(unsafe.Pointer(yv12.Y_buffer))
-	img.Planes[vpx.VPX_PLANE_U] = (*uint8)(unsafe.Pointer(yv12.U_buffer))
-	img.Planes[vpx.VPX_PLANE_V] = (*uint8)(unsafe.Pointer(yv12.V_buffer))
+	img.Planes[vpx.VPX_PLANE_Y] = yv12.Y_buffer
+	img.Planes[vpx.VPX_PLANE_U] = yv12.U_buffer
+	img.Planes[vpx.VPX_PLANE_V] = yv12.V_buffer
 	img.Planes[vpx.VPX_PLANE_ALPHA] = nil
 	img.Stride[vpx.VPX_PLANE_Y] = yv12.Y_stride
 	img.Stride[vpx.VPX_PLANE_U] = yv12.Uv_stride
@@ -160,7 +154,7 @@ func yuvconfig2image(img *vpx.Image, yv12 *scale.Yv12BufferConfig, user_priv uns
 	img.Bit_depth = 8
 	img.Bps = 12
 	img.User_priv = user_priv
-	img.Img_data = (*uint8)(unsafe.Pointer(yv12.Buffer_alloc))
+	img.Img_data = yv12.Buffer_alloc
 	img.Img_data_owner = 0
 	img.Self_allocd = 0
 }
@@ -171,7 +165,7 @@ func update_fragments(ctx *CodecAlgPvt, data *uint8, data_sz uint, res *vpx.Code
 		*(*[9]uint)(unsafe.Pointer(&ctx.Fragments.Sizes[0])) = [9]uint{}
 	}
 	if ctx.Fragments.Enabled != 0 && !(data == nil && data_sz == 0) {
-		ctx.Fragments.Ptrs[ctx.Fragments.Count] = (*uint8)(unsafe.Pointer(data))
+		ctx.Fragments.Ptrs[ctx.Fragments.Count] = data
 		ctx.Fragments.Sizes[ctx.Fragments.Count] = data_sz
 		ctx.Fragments.Count++
 		if ctx.Fragments.Count > uint((1<<EIGHT_PARTITION)+1) {
@@ -185,7 +179,7 @@ func update_fragments(ctx *CodecAlgPvt, data *uint8, data_sz uint, res *vpx.Code
 		return 0
 	}
 	if ctx.Fragments.Enabled == 0 {
-		ctx.Fragments.Ptrs[0] = (*uint8)(unsafe.Pointer(data))
+		ctx.Fragments.Ptrs[0] = data
 		ctx.Fragments.Sizes[0] = data_sz
 		ctx.Fragments.Count = 1
 	}
@@ -206,7 +200,7 @@ func vp8_decode(ctx *CodecAlgPvt, data *uint8, data_sz uint, user_priv unsafe.Po
 	}
 	w = ctx.Si.W
 	h = ctx.Si.H
-	res = vp8_peek_si_internal((*uint8)(unsafe.Pointer(ctx.Fragments.Ptrs[0])), ctx.Fragments.Sizes[0], &ctx.Si, ctx.Decrypt_cb, ctx.Decrypt_state)
+	res = vp8_peek_si_internal(ctx.Fragments.Ptrs[0], ctx.Fragments.Sizes[0], &ctx.Si, ctx.Decrypt_cb, ctx.Decrypt_state)
 	if res == vpx.CodecErr(vpx.VPX_CODEC_UNSUP_BITSTREAM) && ctx.Si.Is_kf == 0 {
 		res = vpx.CodecErr(VPX_CODEC_OK)
 	}
@@ -218,11 +212,11 @@ func vp8_decode(ctx *CodecAlgPvt, data *uint8, data_sz uint, user_priv unsafe.Po
 	}
 	if res == 0 && ctx.Restart_threads != 0 {
 		var (
-			fb  = &ctx.Yv12_frame_buffers
-			pbi = ctx.Yv12_frame_buffers.Pbi[0]
-			pc                 = &pbi.Common
+			fb  *frame_buffers = &ctx.Yv12_frame_buffers
+			pbi *VP8D_COMP     = ctx.Yv12_frame_buffers.Pbi[0]
+			pc  *VP8Common     = &pbi.Common
 		)
-		if pbi.Common.Error.Setjmp != 0 {
+		if pbi.Common.Error.Jmp.SetJump() != 0 {
 			vp8_remove_decoder_instances(fb)
 			*(*[32]*VP8D_COMP)(unsafe.Pointer(&fb.Pbi[0])) = [32]*VP8D_COMP{}
 			ports.ClearSystemState()
@@ -261,19 +255,19 @@ func vp8_decode(ctx *CodecAlgPvt, data *uint8, data_sz uint, user_priv unsafe.Po
 	}
 	if res == 0 {
 		var (
-			pbi = ctx.Yv12_frame_buffers.Pbi[0]
-			pc  = &pbi.Common
+			pbi *VP8D_COMP = ctx.Yv12_frame_buffers.Pbi[0]
+			pc  *VP8Common = &pbi.Common
 		)
 		if resolution_change != 0 {
 			var (
-				xd = &pbi.Mb
+				xd *MacroBlockd = &pbi.Mb
 				i  int
 			)
 			pc.Width = int(ctx.Si.W)
 			pc.Height = int(ctx.Si.H)
 			{
-				var prev_mb_rows = pc.Mb_rows
-				if pbi.Common.Error.Setjmp != 0 {
+				var prev_mb_rows int = pc.Mb_rows
+				if pbi.Common.Error.Jmp.SetJump() != 0 {
 					pbi.Common.Error.Setjmp = 0
 					ctx.Si.W = 0
 					ctx.Si.H = 0
@@ -306,7 +300,7 @@ func vp8_decode(ctx *CodecAlgPvt, data *uint8, data_sz uint, user_priv unsafe.Po
 			pbi.Common.Error.Setjmp = 0
 			pbi.Common.Fb_idx_ref_cnt[0] = 0
 		}
-		if pbi.Common.Error.Setjmp != 0 {
+		if pbi.Common.Error.Jmp.SetJump() != 0 {
 			ports.ClearSystemState()
 			pc.Yv12_fb[pc.Lst_fb_idx].Corrupted = 1
 			if pc.Fb_idx_ref_cnt[pc.New_fb_idx] > 0 {
@@ -357,15 +351,15 @@ func vp8_get_frame(ctx *CodecAlgPvt, iter *vpx.CodecIter) *vpx.Image {
 }
 func image2yuvconfig(img *vpx.Image, yv12 *scale.Yv12BufferConfig) vpx.CodecErr {
 	var (
-		y_w = int(img.D_w)
-		y_h = int(img.D_h)
-		uv_w     = int((img.D_w + 1) / 2)
-		uv_h     = int((img.D_h + 1) / 2)
-		res      = vpx.CodecErr(VPX_CODEC_OK)
+		y_w  int          = int(img.D_w)
+		y_h  int          = int(img.D_h)
+		uv_w int          = int((img.D_w + 1) / 2)
+		uv_h int          = int((img.D_h + 1) / 2)
+		res  vpx.CodecErr = vpx.CodecErr(VPX_CODEC_OK)
 	)
-	yv12.Y_buffer = (*uint8)(unsafe.Pointer(img.Planes[vpx.VPX_PLANE_Y]))
-	yv12.U_buffer = (*uint8)(unsafe.Pointer(img.Planes[vpx.VPX_PLANE_U]))
-	yv12.V_buffer = (*uint8)(unsafe.Pointer(img.Planes[vpx.VPX_PLANE_V]))
+	yv12.Y_buffer = img.Planes[vpx.VPX_PLANE_Y]
+	yv12.U_buffer = img.Planes[vpx.VPX_PLANE_U]
+	yv12.V_buffer = img.Planes[vpx.VPX_PLANE_V]
 	yv12.Y_crop_width = y_w
 	yv12.Y_crop_height = y_h
 	yv12.Y_width = y_w
@@ -380,10 +374,10 @@ func image2yuvconfig(img *vpx.Image, yv12 *scale.Yv12BufferConfig) vpx.CodecErr 
 	return res
 }
 func vp8_set_reference(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var data = args.Arg().(*vpx.RefFrame)
+	var data *vpx.RefFrame = args.Arg().(*vpx.RefFrame)
 	if data != nil {
 		var (
-			frame = data
+			frame *vpx.RefFrame = data
 			sd    scale.Yv12BufferConfig
 		)
 		image2yuvconfig(&frame.Img, &sd)
@@ -393,10 +387,10 @@ func vp8_set_reference(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	}
 }
 func vp8_get_reference(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var data = args.Arg().(*vpx.RefFrame)
+	var data *vpx.RefFrame = args.Arg().(*vpx.RefFrame)
 	if data != nil {
 		var (
-			frame = data
+			frame *vpx.RefFrame = data
 			sd    scale.Yv12BufferConfig
 		)
 		image2yuvconfig(&frame.Img, &sd)
@@ -407,8 +401,8 @@ func vp8_get_reference(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 }
 func vp8_get_quantizer(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	var (
-		arg = args.Arg().(*int)
-		pbi = ctx.Yv12_frame_buffers.Pbi[0]
+		arg *int       = args.Arg().(*int)
+		pbi *VP8D_COMP = ctx.Yv12_frame_buffers.Pbi[0]
 	)
 	if arg == nil {
 		return vpx.CodecErr(vpx.VPX_CODEC_INVALID_PARAM)
@@ -420,7 +414,7 @@ func vp8_get_quantizer(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	return vpx.CodecErr(VPX_CODEC_OK)
 }
 func vp8_set_postproc(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var data = args.Arg().(*vpx.Vp8PostProcCfg)
+	var data *vpx.Vp8PostProcCfg = args.Arg().(*vpx.Vp8PostProcCfg)
 	if data != nil {
 		ctx.Postproc_cfg_set = 1
 		ctx.Postproc_cfg = *data
@@ -430,9 +424,9 @@ func vp8_set_postproc(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	}
 }
 func vp8_get_last_ref_updates(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var update_info = args.Arg().(*int)
+	var update_info *int = args.Arg().(*int)
 	if update_info != nil {
-		var pbi = ctx.Yv12_frame_buffers.Pbi[0]
+		var pbi *VP8D_COMP = ctx.Yv12_frame_buffers.Pbi[0]
 		if pbi == nil {
 			return vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME)
 		}
@@ -443,11 +437,11 @@ func vp8_get_last_ref_updates(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr 
 	}
 }
 func vp8_get_last_ref_frame(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var ref_info = args.Arg().(*int)
+	var ref_info *int = args.Arg().(*int)
 	if ref_info != nil {
-		var pbi = ctx.Yv12_frame_buffers.Pbi[0]
+		var pbi *VP8D_COMP = ctx.Yv12_frame_buffers.Pbi[0]
 		if pbi != nil {
-			var oci = &pbi.Common
+			var oci *VP8Common = &pbi.Common
 			*ref_info = (func() int {
 				if vp8dx_references_buffer(oci, int(ALTREF_FRAME)) != 0 {
 					return VP8_ALTR_FRAME
@@ -474,11 +468,11 @@ func vp8_get_last_ref_frame(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 }
 func vp8_get_frame_corrupted(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	var (
-		corrupted = args.Arg().(*int)
-		pbi       = ctx.Yv12_frame_buffers.Pbi[0]
+		corrupted *int       = args.Arg().(*int)
+		pbi       *VP8D_COMP = ctx.Yv12_frame_buffers.Pbi[0]
 	)
 	if corrupted != nil && pbi != nil {
-		var frame = pbi.Common.Frame_to_show
+		var frame *scale.Yv12BufferConfig = pbi.Common.Frame_to_show
 		if frame == nil {
 			return vpx.CodecErr(VPX_CODEC_ERROR)
 		}
@@ -489,7 +483,7 @@ func vp8_get_frame_corrupted(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
 	}
 }
 func vp8_set_decryptor(ctx *CodecAlgPvt, args libc.ArgList) vpx.CodecErr {
-	var init = args.Arg().(*vpx.DecryptInit)
+	var init *vpx.DecryptInit = args.Arg().(*vpx.DecryptInit)
 	if init != nil {
 		ctx.Decrypt_cb = init.Decrypt_cb
 		ctx.Decrypt_state = init.Decrypt_state

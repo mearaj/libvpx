@@ -2,8 +2,8 @@ package vp8
 
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
+	"github.com/gotranspile/cxgo/runtime/pthread"
 	"github.com/mearaj/libvpx/internal/mem"
-	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/util"
 	"github.com/mearaj/libvpx/internal/vpx"
 	"math"
@@ -12,11 +12,11 @@ import (
 
 func setup_decoding_thread_data(pbi *VP8D_COMP, xd *MacroBlockd, mbrd *MB_ROW_DEC, count int) {
 	var (
-		pc = &pbi.Common
+		pc *VP8Common = &pbi.Common
 		i  int
 	)
 	for i = 0; i < count; i++ {
-		var mbd = &(*(*MB_ROW_DEC)(unsafe.Add(unsafe.Pointer(mbrd), unsafe.Sizeof(MB_ROW_DEC{})*uintptr(i)))).Mbd
+		var mbd *MacroBlockd = &(*(*MB_ROW_DEC)(unsafe.Add(unsafe.Pointer(mbrd), unsafe.Sizeof(MB_ROW_DEC{})*uintptr(i)))).Mbd
 		mbd.Subpixel_predict = xd.Subpixel_predict
 		mbd.Subpixel_predict8x4 = xd.Subpixel_predict8x4
 		mbd.Subpixel_predict8x8 = xd.Subpixel_predict8x8
@@ -51,7 +51,7 @@ func mt_decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 		i    int
 	)
 	_ = mb_idx
-	if xd.Mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+	if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 		vp8_reset_mb_tokens_context(xd)
 	} else if vp8dx_bool_error((*BOOL_DECODER)(xd.Current_bc)) == 0 {
 		var eobtotal int
@@ -63,24 +63,24 @@ func mt_decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 		vp8_mb_init_dequantizer(pbi, xd)
 	}
 	if int(xd.Mode_info_context.Mbmi.Ref_frame) == INTRA_FRAME {
-		vp8_build_intra_predictors_mbuv_s(xd, xd.Recon_above[1], xd.Recon_above[2], xd.Recon_left[1], xd.Recon_left[2], xd.Recon_left_stride[1], (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), xd.Dst.Uv_stride)
+		vp8_build_intra_predictors_mbuv_s(xd, xd.Recon_above[1], xd.Recon_above[2], xd.Recon_left[1], xd.Recon_left[2], xd.Recon_left_stride[1], xd.Dst.U_buffer, xd.Dst.V_buffer, xd.Dst.Uv_stride)
 		if mode != int(B_PRED) {
-			vp8_build_intra_predictors_mby_s(xd, xd.Recon_above[0], xd.Recon_left[0], xd.Recon_left_stride[0], (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), xd.Dst.Y_stride)
+			vp8_build_intra_predictors_mby_s(xd, xd.Recon_above[0], xd.Recon_left[0], xd.Recon_left_stride[0], xd.Dst.Y_buffer, xd.Dst.Y_stride)
 		} else {
 			var (
-				DQC        = &xd.Dequant_y1[0]
-				dst_stride = xd.Dst.Y_stride
+				DQC        *int16 = &xd.Dequant_y1[0]
+				dst_stride int    = xd.Dst.Y_stride
 			)
-			if xd.Mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+			if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 				libc.MemSet(unsafe.Pointer(&xd.Eobs[0]), 0, 25)
 			}
 			intra_prediction_down_copy(xd, (*uint8)(unsafe.Add(unsafe.Pointer(xd.Recon_above[0]), 16)))
 			for i = 0; i < 16; i++ {
 				var (
-					b   = &xd.Block[i]
-					dst = (*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), b.Offset))
-					b_mode         = xd.Mode_info_context.Bmi[i].As_mode
-					Above  *uint8
+					b           *Blockd           = &xd.Block[i]
+					dst         *uint8            = (*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), b.Offset))
+					b_mode      B_PREDICTION_MODE = xd.Mode_info_context.Bmi[i].As_mode
+					Above       *uint8
 					yleft       *uint8
 					left_stride int
 					top_left    uint8
@@ -116,11 +116,11 @@ func mt_decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 	} else {
 		vp8_build_inter_predictors_mb(xd)
 	}
-	if xd.Mode_info_context.Mbmi.Mb_skip_coeff == 0 {
+	if int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) == 0 {
 		if mode != int(B_PRED) {
-			var DQC = &xd.Dequant_y1[0]
+			var DQC *int16 = &xd.Dequant_y1[0]
 			if mode != int(SPLITMV) {
-				var b = &xd.Block[24]
+				var b *Blockd = &xd.Block[24]
 				if xd.Eobs[24] > 1 {
 					vp8_dequantize_b_mmx(b, &xd.Dequant_y2[0])
 					Vp8ShortInvWalsh4x4C((*int16)(unsafe.Add(unsafe.Pointer(b.Dqcoeff), unsafe.Sizeof(int16(0))*0)), &xd.Qcoeff[0])
@@ -132,41 +132,41 @@ func mt_decode_macroblock(pbi *VP8D_COMP, xd *MacroBlockd, mb_idx uint) {
 				}
 				DQC = &xd.Dequant_y1_dc[0]
 			}
-			vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, (*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), xd.Dst.Y_stride, &xd.Eobs[0])
+			vp8_dequant_idct_add_y_block_sse2(&xd.Qcoeff[0], DQC, xd.Dst.Y_buffer, xd.Dst.Y_stride, &xd.Eobs[0])
 		}
-		vp8_dequant_idct_add_uv_block_sse2(&xd.Qcoeff[16*16], &xd.Dequant_uv[0], (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), xd.Dst.Uv_stride, &xd.Eobs[16])
+		vp8_dequant_idct_add_uv_block_sse2(&xd.Qcoeff[16*16], &xd.Dequant_uv[0], xd.Dst.U_buffer, xd.Dst.V_buffer, xd.Dst.Uv_stride, &xd.Eobs[16])
 	}
 }
 func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 	var (
 		last_row_current_mb_col *util.VpxAtomicInt
 		current_mb_col          *util.VpxAtomicInt
-		mb_row int
-		pc     = &pbi.Common
-		nsync  = pbi.Sync_range
-		first_row_no_sync_above            = util.VpxAtomicInt{Value: pc.Mb_cols + nsync}
-		num_part                    = int(1 << pbi.Common.Multi_token_partition)
-		last_mb_row                               = start_mb_row
-		yv12_fb_new     = pbi.Dec_fb_ref[INTRA_FRAME]
-		yv12_fb_lst     = pbi.Dec_fb_ref[LAST_FRAME]
-		recon_y_stride                         = yv12_fb_new.Y_stride
-		recon_uv_stride                         = yv12_fb_new.Uv_stride
-		ref_buffer      [4][3]*uint8
+		mb_row                  int
+		pc                      *VP8Common              = &pbi.Common
+		nsync                   int                     = pbi.Sync_range
+		first_row_no_sync_above util.VpxAtomicInt       = util.VpxAtomicInt{Value: pc.Mb_cols + nsync}
+		num_part                int                     = int(1 << pbi.Common.Multi_token_partition)
+		last_mb_row             int                     = start_mb_row
+		yv12_fb_new             *scale.Yv12BufferConfig = pbi.Dec_fb_ref[INTRA_FRAME]
+		yv12_fb_lst             *scale.Yv12BufferConfig = pbi.Dec_fb_ref[LAST_FRAME]
+		recon_y_stride          int                     = yv12_fb_new.Y_stride
+		recon_uv_stride         int                     = yv12_fb_new.Uv_stride
+		ref_buffer              [4][3]*uint8
 		dst_buffer              [3]*uint8
 		i                       int
 		ref_fb_corrupted        [4]int
 	)
 	ref_fb_corrupted[INTRA_FRAME] = 0
 	for i = 1; i < MAX_REF_FRAMES; i++ {
-		var this_fb = pbi.Dec_fb_ref[i]
-		ref_buffer[i][0] = (*uint8)(unsafe.Pointer(this_fb.Y_buffer))
-		ref_buffer[i][1] = (*uint8)(unsafe.Pointer(this_fb.U_buffer))
-		ref_buffer[i][2] = (*uint8)(unsafe.Pointer(this_fb.V_buffer))
+		var this_fb *scale.Yv12BufferConfig = pbi.Dec_fb_ref[i]
+		ref_buffer[i][0] = this_fb.Y_buffer
+		ref_buffer[i][1] = this_fb.U_buffer
+		ref_buffer[i][2] = this_fb.V_buffer
 		ref_fb_corrupted[i] = this_fb.Corrupted
 	}
-	dst_buffer[0] = (*uint8)(unsafe.Pointer(yv12_fb_new.Y_buffer))
-	dst_buffer[1] = (*uint8)(unsafe.Pointer(yv12_fb_new.U_buffer))
-	dst_buffer[2] = (*uint8)(unsafe.Pointer(yv12_fb_new.V_buffer))
+	dst_buffer[0] = yv12_fb_new.Y_buffer
+	dst_buffer[1] = yv12_fb_new.U_buffer
+	dst_buffer[2] = yv12_fb_new.V_buffer
 	xd.Up_available = int(libc.BoolToInt(start_mb_row != 0))
 	xd.Mode_info_context = (*ModeInfo)(unsafe.Add(unsafe.Pointer(pc.Mi), unsafe.Sizeof(ModeInfo{})*uintptr(pc.Mode_info_stride*start_mb_row)))
 	xd.Mode_info_stride = pc.Mode_info_stride
@@ -175,8 +175,8 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 			recon_yoffset  int
 			recon_uvoffset int
 			mb_col         int
-			filter_level int
-			lfi_n        = &pc.Lf_info
+			filter_level   int
+			lfi_n          *loop_filter_info_n = &pc.Lf_info
 		)
 		last_mb_row = mb_row
 		xd.Current_bc = unsafe.Pointer(&pbi.Mbc[mb_row%num_part])
@@ -237,7 +237,7 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 				vpx.InternalError(&xd.Error_info, vpx.CodecErr(vpx.VPX_CODEC_CORRUPT_FRAME), libc.CString("Corrupted reference frame"))
 			}
 			if int(xd.Mode_info_context.Mbmi.Ref_frame) >= LAST_FRAME {
-				var ref = int(xd.Mode_info_context.Mbmi.Ref_frame)
+				var ref int = int(xd.Mode_info_context.Mbmi.Ref_frame)
 				xd.Pre.Y_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][0]), recon_yoffset))
 				xd.Pre.U_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][1]), recon_uvoffset))
 				xd.Pre.V_buffer = (*uint8)(unsafe.Add(unsafe.Pointer(ref_buffer[ref][2]), recon_uvoffset))
@@ -259,10 +259,10 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 			}
 			if pbi.Common.Filter_level != 0 {
 				var (
-					skip_lf    = int(libc.BoolToInt(int(xd.Mode_info_context.Mbmi.Mode) != B_PRED && int(xd.Mode_info_context.Mbmi.Mode) != SPLITMV && xd.Mode_info_context.Mbmi.Mb_skip_coeff != 0))
-					mode_index = int(lfi_n.Mode_lf_lut[xd.Mode_info_context.Mbmi.Mode])
-					seg            = int(xd.Mode_info_context.Mbmi.Segment_id)
-					ref_frame      = int(xd.Mode_info_context.Mbmi.Ref_frame)
+					skip_lf    int = int(libc.BoolToInt(int(xd.Mode_info_context.Mbmi.Mode) != B_PRED && int(xd.Mode_info_context.Mbmi.Mode) != SPLITMV && int(xd.Mode_info_context.Mbmi.Mb_skip_coeff) != 0))
+					mode_index int = int(lfi_n.Mode_lf_lut[xd.Mode_info_context.Mbmi.Mode])
+					seg        int = int(xd.Mode_info_context.Mbmi.Segment_id)
+					ref_frame  int = int(xd.Mode_info_context.Mbmi.Ref_frame)
 				)
 				filter_level = int(lfi_n.Lvl[seg][ref_frame][mode_index])
 				if mb_row != pc.Mb_rows-1 {
@@ -271,14 +271,14 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 					libc.MemCpy(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row+1)))), 16))), mb_col*8))), unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.V_buffer), recon_uv_stride*7))), 8)
 				}
 				if mb_col != pc.Mb_cols-1 {
-					var next = (*ModeInfo)(unsafe.Add(unsafe.Pointer(xd.Mode_info_context), unsafe.Sizeof(ModeInfo{})*1))
+					var next *ModeInfo = (*ModeInfo)(unsafe.Add(unsafe.Pointer(xd.Mode_info_context), unsafe.Sizeof(ModeInfo{})*1))
 					if int(next.Mbmi.Ref_frame) == INTRA_FRAME {
 						for i = 0; i < 16; i++ {
-							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = uint8(*(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), i*recon_y_stride+15)))
+							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = *(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.Y_buffer), i*recon_y_stride+15))
 						}
 						for i = 0; i < 8; i++ {
-							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = uint8(*(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.U_buffer), i*recon_uv_stride+7)))
-							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = uint8(*(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.V_buffer), i*recon_uv_stride+7)))
+							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = *(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.U_buffer), i*recon_uv_stride+7))
+							*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row)))), i)) = *(*uint8)(unsafe.Add(unsafe.Pointer(xd.Dst.V_buffer), i*recon_uv_stride+7))
 						}
 					}
 				}
@@ -286,37 +286,37 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 					if pc.Filter_type == LOOPFILTERTYPE(NORMAL_LOOPFILTER) {
 						var (
 							lfi        loop_filter_info
-							frame_type = pc.Frame_type
-							hev_index  = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
+							frame_type int = pc.Frame_type
+							hev_index  int = int(lfi_n.Hev_thr_lut[frame_type][filter_level])
 						)
 						lfi.Mblim = &lfi_n.Mblim[filter_level][0]
 						lfi.Blim = &lfi_n.Blim[filter_level][0]
 						lfi.Lim = &lfi_n.Lim[filter_level][0]
 						lfi.Hev_thr = &lfi_n.Hev_thr[hev_index][0]
 						if mb_col > 0 {
-							vp8_loop_filter_mbv_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), recon_y_stride, recon_uv_stride, &lfi)
+							vp8_loop_filter_mbv_sse2(xd.Dst.Y_buffer, xd.Dst.U_buffer, xd.Dst.V_buffer, recon_y_stride, recon_uv_stride, &lfi)
 						}
 						if skip_lf == 0 {
-							vp8_loop_filter_bv_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), recon_y_stride, recon_uv_stride, &lfi)
+							vp8_loop_filter_bv_sse2(xd.Dst.Y_buffer, xd.Dst.U_buffer, xd.Dst.V_buffer, recon_y_stride, recon_uv_stride, &lfi)
 						}
 						if mb_row > 0 {
-							vp8_loop_filter_mbh_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), recon_y_stride, recon_uv_stride, &lfi)
+							vp8_loop_filter_mbh_sse2(xd.Dst.Y_buffer, xd.Dst.U_buffer, xd.Dst.V_buffer, recon_y_stride, recon_uv_stride, &lfi)
 						}
 						if skip_lf == 0 {
-							vp8_loop_filter_bh_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.U_buffer)), (*uint8)(unsafe.Pointer(xd.Dst.V_buffer)), recon_y_stride, recon_uv_stride, &lfi)
+							vp8_loop_filter_bh_sse2(xd.Dst.Y_buffer, xd.Dst.U_buffer, xd.Dst.V_buffer, recon_y_stride, recon_uv_stride, &lfi)
 						}
 					} else {
 						if mb_col > 0 {
-							Vp8LoopFilterSimpleVerticalEdgeC((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), recon_y_stride, &lfi_n.Mblim[filter_level][0])
+							Vp8LoopFilterSimpleVerticalEdgeC(xd.Dst.Y_buffer, recon_y_stride, &lfi_n.Mblim[filter_level][0])
 						}
 						if skip_lf == 0 {
-							vp8_loop_filter_bvs_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), recon_y_stride, &lfi_n.Blim[filter_level][0])
+							vp8_loop_filter_bvs_sse2(xd.Dst.Y_buffer, recon_y_stride, &lfi_n.Blim[filter_level][0])
 						}
 						if mb_row > 0 {
-							Vp8LoopFilterSimpleHorizontalEdgeC((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), recon_y_stride, &lfi_n.Mblim[filter_level][0])
+							Vp8LoopFilterSimpleHorizontalEdgeC(xd.Dst.Y_buffer, recon_y_stride, &lfi_n.Mblim[filter_level][0])
 						}
 						if skip_lf == 0 {
-							vp8_loop_filter_bhs_sse2((*uint8)(unsafe.Pointer(xd.Dst.Y_buffer)), recon_y_stride, &lfi_n.Blim[filter_level][0])
+							vp8_loop_filter_bhs_sse2(xd.Dst.Y_buffer, recon_y_stride, &lfi_n.Blim[filter_level][0])
 						}
 					}
 				}
@@ -329,8 +329,8 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 		if pbi.Common.Filter_level != 0 {
 			if mb_row != pc.Mb_rows-1 {
 				var (
-					lasty  = yv12_fb_lst.Y_width + scale.VP8BORDERINPIXELS
-					lastuv = (yv12_fb_lst.Y_width >> 1) + (int(scale.VP8BORDERINPIXELS >> 1))
+					lasty  int = yv12_fb_lst.Y_width + scale.VP8BORDERINPIXELS
+					lastuv int = (yv12_fb_lst.Y_width >> 1) + (int(scale.VP8BORDERINPIXELS >> 1))
 				)
 				for i = 0; i < 4; i++ {
 					*(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row+1)))), lasty+i)) = *(*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(mb_row+1)))), lasty-1))
@@ -352,22 +352,22 @@ func mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd, start_mb_row int) {
 }
 func thread_decoding_proc(p_data unsafe.Pointer) unsafe.Pointer {
 	var (
-		ithread = ((*DECODETHREAD_DATA)(p_data)).Ithread
-		pbi     = (*VP8D_COMP)(((*DECODETHREAD_DATA)(p_data)).Ptr1)
-		mbrd        = (*MB_ROW_DEC)(((*DECODETHREAD_DATA)(p_data)).Ptr2)
+		ithread             int         = ((*DECODETHREAD_DATA)(p_data)).Ithread
+		pbi                 *VP8D_COMP  = (*VP8D_COMP)(((*DECODETHREAD_DATA)(p_data)).Ptr1)
+		mbrd                *MB_ROW_DEC = (*MB_ROW_DEC)(((*DECODETHREAD_DATA)(p_data)).Ptr2)
 		mb_row_left_context ENTROPY_CONTEXT_PLANES
 	)
 	for {
 		if util.AtomicLoadAcquire(&pbi.B_multithreaded_rd) == 0 {
 			break
 		}
-		if sem_wait((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(ithread)))) == 0 {
+		if sem_wait((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), ithread))) == 0 {
 			if util.AtomicLoadAcquire(&pbi.B_multithreaded_rd) == 0 {
 				break
 			} else {
-				var xd = &mbrd.Mbd
+				var xd *MacroBlockd = &mbrd.Mbd
 				xd.Left_context = &mb_row_left_context
-				if _setjmp(([1]__jmp_buf_tag)(xd.Error_info.Jmp)) != 0 {
+				if xd.Error_info.Jmp.SetJump() != 0 {
 					xd.Error_info.Setjmp = 0
 					sem_post(&pbi.H_event_end_decoding)
 					continue
@@ -381,7 +381,7 @@ func thread_decoding_proc(p_data unsafe.Pointer) unsafe.Pointer {
 }
 func DecoderCreateThreads(pbi *VP8D_COMP) {
 	var (
-		core_count = 0
+		core_count int = 0
 		ithread    uint
 	)
 	vpx_atomic_init(&pbi.B_multithreaded_rd, 0)
@@ -398,7 +398,7 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 		vpx_atomic_init(&pbi.B_multithreaded_rd, 1)
 		pbi.Decoding_thread_count = uint(core_count - 1)
 		for {
-			pbi.H_decoding_thread = (*pthread_t)(mem.VpxCalloc(uint64(unsafe.Sizeof(pthread_t(0))), uint64(pbi.Decoding_thread_count)))
+			pbi.H_decoding_thread = (**pthread.Thread)(mem.VpxCalloc(uint64(unsafe.Sizeof((*pthread.Thread)(nil))), uint64(pbi.Decoding_thread_count)))
 			if pbi.H_decoding_thread == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->h_decoding_thread)"))
 			}
@@ -443,15 +443,15 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 			vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to initialize semaphore"))
 		}
 		for ithread = 0; ithread < pbi.Decoding_thread_count; ithread++ {
-			if sem_init((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(ithread))), 0, 0) != 0 {
+			if sem_init((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), ithread)), 0, 0) != 0 {
 				break
 			}
 			vp8_setup_block_dptrs(&(*(*MB_ROW_DEC)(unsafe.Add(unsafe.Pointer(pbi.Mb_row_di), unsafe.Sizeof(MB_ROW_DEC{})*uintptr(ithread)))).Mbd)
 			(*(*DECODETHREAD_DATA)(unsafe.Add(unsafe.Pointer(pbi.De_thread_data), unsafe.Sizeof(DECODETHREAD_DATA{})*uintptr(ithread)))).Ithread = int(ithread)
 			(*(*DECODETHREAD_DATA)(unsafe.Add(unsafe.Pointer(pbi.De_thread_data), unsafe.Sizeof(DECODETHREAD_DATA{})*uintptr(ithread)))).Ptr1 = unsafe.Pointer(pbi)
 			(*(*DECODETHREAD_DATA)(unsafe.Add(unsafe.Pointer(pbi.De_thread_data), unsafe.Sizeof(DECODETHREAD_DATA{})*uintptr(ithread)))).Ptr2 = unsafe.Pointer((*MB_ROW_DEC)(unsafe.Add(unsafe.Pointer(pbi.Mb_row_di), unsafe.Sizeof(MB_ROW_DEC{})*uintptr(ithread))))
-			if pthread_create((*pthread_t)(unsafe.Add(unsafe.Pointer(pbi.H_decoding_thread), unsafe.Sizeof(pthread_t(0))*uintptr(ithread))), nil, thread_decoding_proc, unsafe.Pointer((*DECODETHREAD_DATA)(unsafe.Add(unsafe.Pointer(pbi.De_thread_data), unsafe.Sizeof(DECODETHREAD_DATA{})*uintptr(ithread))))) != 0 {
-				sem_destroy((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(ithread))))
+			if int(pthread.Create((**pthread.Thread)(unsafe.Add(unsafe.Pointer(pbi.H_decoding_thread), unsafe.Sizeof((*pthread.Thread)(nil))*uintptr(ithread))), nil, thread_decoding_proc, unsafe.Pointer((*DECODETHREAD_DATA)(unsafe.Add(unsafe.Pointer(pbi.De_thread_data), unsafe.Sizeof(DECODETHREAD_DATA{})*uintptr(ithread)))))) != 0 {
+				sem_destroy((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), ithread)))
 				break
 			}
 		}
@@ -519,8 +519,8 @@ func vp8mt_de_alloc_temp_buffers(pbi *VP8D_COMP, mb_rows int) {
 }
 func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 	var (
-		pc = &pbi.Common
-		i  int
+		pc       *VP8Common = &pbi.Common
+		i        int
 		uv_width int
 	)
 	if util.AtomicLoadAcquire(&pbi.B_multithreaded_rd) != 0 {
@@ -680,11 +680,11 @@ func vp8_decoder_remove_threads(pbi *VP8D_COMP) {
 		var i int
 		util.VpxAtomicStoreRelease(&pbi.B_multithreaded_rd, 0)
 		for i = 0; i < pbi.Allocated_decoding_thread_count; i++ {
-			sem_post((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(i))))
-			pthread_join(*(*pthread_t)(unsafe.Add(unsafe.Pointer(pbi.H_decoding_thread), unsafe.Sizeof(pthread_t(0))*uintptr(i))), nil)
+			sem_post((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), i)))
+			(*(**pthread.Thread)(unsafe.Add(unsafe.Pointer(pbi.H_decoding_thread), unsafe.Sizeof((*pthread.Thread)(nil))*uintptr(i)))).Join(nil)
 		}
 		for i = 0; i < pbi.Allocated_decoding_thread_count; i++ {
-			sem_destroy((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(i))))
+			sem_destroy((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), i)))
 		}
 		if pbi.Allocated_decoding_thread_count != 0 {
 			sem_destroy(&pbi.H_event_end_decoding)
@@ -702,11 +702,11 @@ func vp8_decoder_remove_threads(pbi *VP8D_COMP) {
 }
 func vp8mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd) int {
 	var (
-		pc = &pbi.Common
-		i  uint
+		pc           *VP8Common = &pbi.Common
+		i            uint
 		j            int
-		filter_level = pc.Filter_level
-		yv12_fb_new  = pbi.Dec_fb_ref[INTRA_FRAME]
+		filter_level int                     = pc.Filter_level
+		yv12_fb_new  *scale.Yv12BufferConfig = pbi.Dec_fb_ref[INTRA_FRAME]
 	)
 	if filter_level != 0 {
 		libc.MemSet(unsafe.Add(unsafe.Pointer((*uint8)(unsafe.Add(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*0))), scale.VP8BORDERINPIXELS))), -1), math.MaxInt8, yv12_fb_new.Y_width+5)
@@ -728,9 +728,9 @@ func vp8mt_decode_mb_rows(pbi *VP8D_COMP, xd *MacroBlockd) int {
 	}
 	setup_decoding_thread_data(pbi, xd, pbi.Mb_row_di, int(pbi.Decoding_thread_count))
 	for i = 0; i < pbi.Decoding_thread_count; i++ {
-		sem_post((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), unsafe.Sizeof(sem_t{})*uintptr(i))))
+		sem_post((*sem_t)(unsafe.Add(unsafe.Pointer(pbi.H_event_start_decoding), i)))
 	}
-	if _setjmp(([1]__jmp_buf_tag)(xd.Error_info.Jmp)) != 0 {
+	if xd.Error_info.Jmp.SetJump() != 0 {
 		xd.Error_info.Setjmp = 0
 		xd.Corrupted = 1
 		for i = 0; i < pbi.Decoding_thread_count; i++ {

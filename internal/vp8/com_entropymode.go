@@ -19,9 +19,9 @@ type vp8_mbsplit [16]int
 
 func vp8_mv_cont(l *int_mv, a *int_mv) int {
 	var (
-		lez int = int(libc.BoolToInt(l.As_int == 0))
-		aez int = int(libc.BoolToInt(a.As_int == 0))
-		lea int = int(libc.BoolToInt(l.As_int == a.As_int))
+		lez int = int(libc.BoolToInt(int(l.As_int) == 0))
+		aez int = int(libc.BoolToInt(int(a.As_int) == 0))
+		lea int = int(libc.BoolToInt(int(l.As_int) == int(a.As_int)))
 	)
 	if lea != 0 && lez != 0 {
 		return SUBMVREF_LEFT_ABOVE_ZED

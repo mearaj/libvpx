@@ -12,10 +12,7 @@ const MODE_MV_COUNT_SAT = 20
 type vpx_tree [0]int8
 
 func get_prob(num uint, den uint) uint8 {
-	if den != 0 {
-	} else {
-		__assert_fail(libc.CString("den != 0"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(den != 0)
 	{
 		var (
 			p            int = int((uint64(num)*256 + uint64(den>>1)) / uint64(den))

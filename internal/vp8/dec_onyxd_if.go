@@ -7,12 +7,11 @@ import (
 	"github.com/mearaj/libvpx/internal/ports"
 	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/vpx"
-	"log"
 	"unsafe"
 )
 
 func initialize_dec() {
-	var init_done = 0
+	var init_done int = 0
 	if init_done == 0 {
 		dsp.DspRtcd()
 		vp8_init_intra_predictors()
@@ -24,12 +23,12 @@ func remove_decompressor(pbi *VP8D_COMP) {
 	mem.VpxFree(unsafe.Pointer(pbi))
 }
 func create_decompressor(oxcf *VP8D_CONFIG) *VP8D_COMP {
-	var pbi = (*VP8D_COMP)(mem.VpxMemAlign(32, uint64(unsafe.Sizeof(VP8D_COMP{}))))
+	var pbi *VP8D_COMP = (*VP8D_COMP)(mem.VpxMemAlign(32, uint64(unsafe.Sizeof(VP8D_COMP{}))))
 	if pbi == nil {
 		return nil
 	}
 	*pbi = VP8D_COMP{}
-	if pbi.Common.Error.Setjmp != 0 {
+	if pbi.Common.Error.Jmp.SetJump() != 0 {
 		pbi.Common.Error.Setjmp = 0
 		remove_decompressor(pbi)
 		return nil
@@ -52,7 +51,7 @@ func create_decompressor(oxcf *VP8D_CONFIG) *VP8D_COMP {
 }
 func vp8dx_get_reference(pbi *VP8D_COMP, ref_frame_flag vpx.VpxRefFrameType, sd *scale.Yv12BufferConfig) vpx.CodecErr {
 	var (
-		cm         = &pbi.Common
+		cm         *VP8Common = &pbi.Common
 		ref_fb_idx int
 	)
 	if ref_frame_flag == vpx.VpxRefFrameType(VP8_LAST_FRAME) {
@@ -74,8 +73,8 @@ func vp8dx_get_reference(pbi *VP8D_COMP, ref_frame_flag vpx.VpxRefFrameType, sd 
 }
 func vp8dx_set_reference(pbi *VP8D_COMP, ref_frame_flag vpx.VpxRefFrameType, sd *scale.Yv12BufferConfig) vpx.CodecErr {
 	var (
-		cm              = &pbi.Common
-		ref_fb_ptr *int = nil
+		cm         *VP8Common = &pbi.Common
+		ref_fb_ptr *int       = nil
 		free_fb    int
 	)
 	if ref_frame_flag == vpx.VpxRefFrameType(VP8_LAST_FRAME) {
@@ -105,12 +104,7 @@ func get_free_fb(cm *VP8Common) int {
 			break
 		}
 	}
-	if i < NUM_YV12_BUFFERS {
-	} else {
-		// Todo:
-		log.Fatal("error")
-
-	}
+	libc.Assert(i < NUM_YV12_BUFFERS)
 	cm.Fb_idx_ref_cnt[i] = 1
 	return i
 }
@@ -122,9 +116,9 @@ func ref_cnt_fb(buf *int, idx *int, new_idx int) {
 	*(*int)(unsafe.Add(unsafe.Pointer(buf), unsafe.Sizeof(int(0))*uintptr(new_idx)))++
 }
 func swap_frame_buffers(cm *VP8Common) int {
-	var err = 0
+	var err int = 0
 	if cm.Copy_buffer_to_arf != 0 {
-		var new_fb = 0
+		var new_fb int = 0
 		if cm.Copy_buffer_to_arf == 1 {
 			new_fb = cm.Lst_fb_idx
 		} else if cm.Copy_buffer_to_arf == 2 {
@@ -135,7 +129,7 @@ func swap_frame_buffers(cm *VP8Common) int {
 		ref_cnt_fb(&cm.Fb_idx_ref_cnt[0], &cm.Alt_fb_idx, new_fb)
 	}
 	if cm.Copy_buffer_to_gf != 0 {
-		var new_fb = 0
+		var new_fb int = 0
 		if cm.Copy_buffer_to_gf == 1 {
 			new_fb = cm.Lst_fb_idx
 		} else if cm.Copy_buffer_to_gf == 2 {
@@ -162,9 +156,9 @@ func swap_frame_buffers(cm *VP8Common) int {
 }
 func check_fragments_for_errors(pbi *VP8D_COMP) int {
 	if pbi.Ec_active == 0 && pbi.Fragments.Count <= 1 && pbi.Fragments.Sizes[0] == 0 {
-		var cm = &pbi.Common
+		var cm *VP8Common = &pbi.Common
 		if cm.Fb_idx_ref_cnt[cm.Lst_fb_idx] > 1 {
-			var prev_idx = cm.Lst_fb_idx
+			var prev_idx int = cm.Lst_fb_idx
 			cm.Fb_idx_ref_cnt[prev_idx]--
 			cm.Lst_fb_idx = get_free_fb(cm)
 			scale.Vp8Yv12CopyFrameC((*scale.Yv12BufferConfig)(unsafe.Pointer(&cm.Yv12_fb[prev_idx])), (*scale.Yv12BufferConfig)(unsafe.Pointer(&cm.Yv12_fb[cm.Lst_fb_idx])))
@@ -177,8 +171,8 @@ func check_fragments_for_errors(pbi *VP8D_COMP) int {
 }
 func vp8dx_receive_compressed_data(pbi *VP8D_COMP, time_stamp int64) int {
 	var (
-		cm      = &pbi.Common
-		retcode = -1
+		cm      *VP8Common = &pbi.Common
+		retcode int        = -1
 	)
 	pbi.Common.Error.Error_code = vpx.CodecErr(VPX_CODEC_OK)
 	retcode = check_fragments_for_errors(pbi)
@@ -218,7 +212,7 @@ decode_exit:
 	return retcode
 }
 func vp8dx_get_raw_frame(pbi *VP8D_COMP, sd *scale.Yv12BufferConfig, time_stamp *int64, time_end_stamp *int64, flags *Vp8PpFlags) int {
-	var ret = -1
+	var ret int = -1
 	if pbi.Ready_for_new_data == 1 {
 		return ret
 	}
@@ -234,7 +228,7 @@ func vp8dx_get_raw_frame(pbi *VP8D_COMP, sd *scale.Yv12BufferConfig, time_stamp 
 }
 func vp8dx_references_buffer(oci *VP8Common, ref_frame int) int {
 	var (
-		mi     = oci.Mi
+		mi     *ModeInfo = oci.Mi
 		mb_row int
 		mb_col int
 	)
@@ -261,7 +255,7 @@ func vp8_create_decoder_instances(fb *frame_buffers, oxcf *VP8D_CONFIG) int {
 	if fb.Pbi[0] == nil {
 		return VPX_CODEC_ERROR
 	}
-	if fb.Pbi[0].Common.Error.Setjmp != 0 {
+	if fb.Pbi[0].Common.Error.Jmp.SetJump() != 0 {
 		vp8_remove_decoder_instances(fb)
 		*(*[32]*VP8D_COMP)(unsafe.Pointer(&fb.Pbi[0])) = [32]*VP8D_COMP{}
 		ports.ClearSystemState()
@@ -274,7 +268,7 @@ func vp8_create_decoder_instances(fb *frame_buffers, oxcf *VP8D_CONFIG) int {
 	return VPX_CODEC_OK
 }
 func vp8_remove_decoder_instances(fb *frame_buffers) int {
-	var pbi = fb.Pbi[0]
+	var pbi *VP8D_COMP = fb.Pbi[0]
 	if pbi == nil {
 		return VPX_CODEC_ERROR
 	}

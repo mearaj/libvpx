@@ -28,27 +28,23 @@ cp -rf  ./include ./libvpxsrc
 cd ./internal  || exit
 safeDelete
 cxgo -c internal.yml
-rm go.mod
 
 # compile vpx package
 cd ./vpx  || exit
 safeDelete
 cxgo -c vpx.yml
-rm go.mod
 cd ../
 
 # compile scale package
 cd ./scale  || exit
 safeDelete
 cxgo -c scale.yml
-rm go.mod
 cd ../
 
 # compile ports package
 cd ./ports  || exit
 safeDelete
 cxgo -c ports.yml
-rm go.mod
 cd ../
 
 
@@ -56,21 +52,18 @@ cd ../
 cd ./mem  || exit
 safeDelete
 cxgo -c mem.yml
-rm go.mod
 cd ../
 
 # compile dsp package
 cd ./dsp  || exit
 safeDelete
 cxgo -c dsp.yml
-rm go.mod
 cd ../
 
 # compile util package
 cd ./util  || exit
 safeDelete
 cxgo -c util.yml
-rm go.mod
 cd ../
 
 
@@ -78,19 +71,16 @@ cd ../
 cd ./vp8  || exit
 safeDelete
 cxgo -c vp8.yml
-rm go.mod
 cd ../
 
 # compile vp9 package
 cd ./vp9  || exit
 safeDelete
 cxgo -c vp9.yml
-rm go.mod
 cd ../
 
 # compile vpxdecgo package
 cd ../
 cxgo -c vpxdecgo.yml
-rm ./cmd/vpxdecgo/go.mod
 go mod tidy
 go fmt ./...

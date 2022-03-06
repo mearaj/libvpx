@@ -89,5 +89,5 @@ func vp8_intra4x4_predict(above *uint8, yleft *uint8, left_stride int, b_mode B_
 	Left[3] = *(*uint8)(unsafe.Add(unsafe.Pointer(yleft), left_stride*3))
 	libc.MemCpy(unsafe.Pointer(Above), unsafe.Pointer(above), 8)
 	*(*uint8)(unsafe.Add(unsafe.Pointer(Above), -1)) = top_left
-	predalt[b_mode]((*uint8)(unsafe.Pointer(dst)), int64(dst_stride), (*uint8)(unsafe.Pointer(Above)), (*uint8)(unsafe.Pointer(&Left[0])))
+	predalt[b_mode](dst, int64(dst_stride), Above, &Left[0])
 }

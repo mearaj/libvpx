@@ -18,7 +18,7 @@ func vpx_quantize_dc(coeff_ptr *int16, n_coeffs int, skip_block int, round_ptr *
 	libc.MemSet(unsafe.Pointer(qcoeff_ptr), 0, n_coeffs*int(unsafe.Sizeof(int16(0))))
 	libc.MemSet(unsafe.Pointer(dqcoeff_ptr), 0, n_coeffs*int(unsafe.Sizeof(int16(0))))
 	if skip_block == 0 {
-		tmp = clamp(abs_coeff+int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))), int(-32767-1), math.MaxInt16)
+		tmp = clamp(abs_coeff+int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))), math.MinInt16, math.MaxInt16)
 		tmp = (tmp * int(quant)) >> 16
 		*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16((tmp ^ coeff_sign) - coeff_sign)
 		*(*int16)(unsafe.Add(unsafe.Pointer(dqcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16(int(*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc)))) * int(dequant))
@@ -41,7 +41,7 @@ func vpx_quantize_dc_32x32(coeff_ptr *int16, skip_block int, round_ptr *int16, q
 	libc.MemSet(unsafe.Pointer(qcoeff_ptr), 0, n_coeffs*int(unsafe.Sizeof(int16(0))))
 	libc.MemSet(unsafe.Pointer(dqcoeff_ptr), 0, n_coeffs*int(unsafe.Sizeof(int16(0))))
 	if skip_block == 0 {
-		tmp = clamp(abs_coeff+((int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))+(1<<(1-1)))>>1), int(-32767-1), math.MaxInt16)
+		tmp = clamp(abs_coeff+((int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))+(1<<(1-1)))>>1), math.MinInt16, math.MaxInt16)
 		tmp = (tmp * int(quant)) >> 15
 		*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16((tmp ^ coeff_sign) - coeff_sign)
 		*(*int16)(unsafe.Add(unsafe.Pointer(dqcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16(int(*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc)))) * int(dequant) / 2)
@@ -61,10 +61,7 @@ func vpx_quantize_b_c(coeff_ptr *int16, n_coeffs int64, skip_block int, zbin_ptr
 	)
 	_ = iscan
 	_ = skip_block
-	if skip_block == 0 {
-	} else {
-		__assert_fail(libc.CString("!skip_block"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(skip_block == 0)
 	libc.MemSet(unsafe.Pointer(qcoeff_ptr), 0, int(n_coeffs*int64(unsafe.Sizeof(int16(0)))))
 	libc.MemSet(unsafe.Pointer(dqcoeff_ptr), 0, int(n_coeffs*int64(unsafe.Sizeof(int16(0)))))
 	for i = int(n_coeffs) - 1; i >= 0; i-- {
@@ -86,7 +83,7 @@ func vpx_quantize_b_c(coeff_ptr *int16, n_coeffs int64, skip_block int, zbin_ptr
 			abs_coeff  int = (coeff ^ coeff_sign) - coeff_sign
 		)
 		if abs_coeff >= zbins[rc != 0] {
-			var tmp int = clamp(abs_coeff+int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))), int(-32767-1), math.MaxInt16)
+			var tmp int = clamp(abs_coeff+int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))), math.MinInt16, math.MaxInt16)
 			tmp = ((((tmp * int(*(*int16)(unsafe.Add(unsafe.Pointer(quant_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))) >> 16) + tmp) * int(*(*int16)(unsafe.Add(unsafe.Pointer(quant_shift_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))) >> 16
 			*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16((tmp ^ coeff_sign) - coeff_sign)
 			*(*int16)(unsafe.Add(unsafe.Pointer(dqcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16(int(*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc)))) * int(*(*int16)(unsafe.Add(unsafe.Pointer(dequant_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))))
@@ -108,10 +105,7 @@ func vpx_quantize_b_32x32_c(coeff_ptr *int16, n_coeffs int64, skip_block int, zb
 	)
 	_ = iscan
 	_ = skip_block
-	if skip_block == 0 {
-	} else {
-		__assert_fail(libc.CString("!skip_block"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(skip_block == 0)
 	libc.MemSet(unsafe.Pointer(qcoeff_ptr), 0, int(n_coeffs*int64(unsafe.Sizeof(int16(0)))))
 	libc.MemSet(unsafe.Pointer(dqcoeff_ptr), 0, int(n_coeffs*int64(unsafe.Sizeof(int16(0)))))
 	for i = 0; i < int(n_coeffs); i++ {
@@ -137,10 +131,10 @@ func vpx_quantize_b_32x32_c(coeff_ptr *int16, n_coeffs int64, skip_block int, zb
 			abs_coeff  int = (coeff ^ coeff_sign) - coeff_sign
 		)
 		abs_coeff += (int(*(*int16)(unsafe.Add(unsafe.Pointer(round_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0)))) + (1 << (1 - 1))) >> 1
-		abs_coeff = clamp(abs_coeff, int(-32767-1), math.MaxInt16)
+		abs_coeff = clamp(abs_coeff, math.MinInt16, math.MaxInt16)
 		tmp = ((((abs_coeff * int(*(*int16)(unsafe.Add(unsafe.Pointer(quant_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))) >> 16) + abs_coeff) * int(*(*int16)(unsafe.Add(unsafe.Pointer(quant_shift_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))) >> 15
 		*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16((tmp ^ coeff_sign) - coeff_sign)
-		*(*int16)(unsafe.Add(unsafe.Pointer(dqcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16(clamp(int(*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))))*int(*(*int16)(unsafe.Add(unsafe.Pointer(dequant_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))/2, int(-32767-1), math.MaxInt16))
+		*(*int16)(unsafe.Add(unsafe.Pointer(dqcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))) = int16(clamp(int(*(*int16)(unsafe.Add(unsafe.Pointer(qcoeff_ptr), unsafe.Sizeof(int16(0))*uintptr(rc))))*int(*(*int16)(unsafe.Add(unsafe.Pointer(dequant_ptr), unsafe.Sizeof(int16(0))*uintptr(rc != 0))))/2, math.MinInt16, math.MaxInt16))
 		if tmp != 0 {
 			eob = idx_arr[i]
 		}

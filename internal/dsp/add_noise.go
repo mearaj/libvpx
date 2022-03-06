@@ -1,9 +1,10 @@
 package dsp
 
 import (
-	"github.com/gotranspile/cxgo/runtime/libc"
 	"math"
 	"unsafe"
+
+	"github.com/gotranspile/cxgo/runtime/libc"
 )
 
 func VpxPlaneAddNoiseC(start *uint8, noise *int8, blackclamp int, whiteclamp int, width int, height int, pitch int) {
@@ -27,7 +28,7 @@ func VpxPlaneAddNoiseC(start *uint8, noise *int8, blackclamp int, whiteclamp int
 	}
 }
 func gaussian(sigma float64, mu float64, x float64) float64 {
-	return 1 / (sigma * sqrt(2.0*3.14159265)) * exp(-(x-mu)*(x-mu)/(sigma*2*sigma))
+	return 1 / (sigma * math.Sqrt(2.0*3.14159265)) * math.Exp(-(x-mu)*(x-mu)/(sigma*2*sigma))
 }
 func VpxSetupNoise(sigma float64, noise *int8, size int) int {
 	var (

@@ -45,7 +45,7 @@ func vpx_read(r *vpx_reader, prob int) int {
 		bit = 1
 	}
 	{
-		var shift uint8 = uint8(vpx_norm[uint8(range_)])
+		var shift uint8 = vpx_norm[uint8(range_)]
 		range_ <<= uint(shift)
 		value <<= BD_VALUE(shift)
 		count -= int(shift)
@@ -70,8 +70,8 @@ func vpx_read_literal(r *vpx_reader, bits int) int {
 }
 func vpx_read_tree(r *vpx_reader, tree *int8, probs *uint8) int {
 	var i int8 = 0
-	for (func() int8 {
-		i = *(*int8)(unsafe.Add(unsafe.Pointer(tree), int(i)+vpx_read(r, int(*(*uint8)(unsafe.Add(unsafe.Pointer(probs), i>>1))))))
+	for int(func() int8 {
+		i = *(*int8)(unsafe.Add(unsafe.Pointer(tree), int(i)+vpx_read(r, int(*(*uint8)(unsafe.Add(unsafe.Pointer(probs), int(i)>>1))))))
 		return i
 	}()) > 0 {
 		continue
@@ -111,7 +111,7 @@ func vpx_reader_fill(r *vpx_reader) {
 			}
 			return uintptr(bytes_left)
 		}())
-		r.Decrypt_cb(r.Decrypt_state, (*uint8)(unsafe.Pointer(buffer)), (*uint8)(unsafe.Pointer(&r.Clear_buffer[0])), int(n))
+		r.Decrypt_cb(r.Decrypt_state, buffer, &r.Clear_buffer[0], int(n))
 		buffer = &r.Clear_buffer[0]
 		buffer_start = &r.Clear_buffer[0]
 	}
@@ -122,7 +122,7 @@ func vpx_reader_fill(r *vpx_reader) {
 			big_endian_values BD_VALUE
 		)
 		libc.MemCpy(unsafe.Pointer(&big_endian_values), unsafe.Pointer(buffer), int(unsafe.Sizeof(BD_VALUE(0))))
-		big_endian_values = BD_VALUE(BSwap32(uint32(big_endian_values)))
+		big_endian_values = BD_VALUE(BSwap64(uint64(big_endian_values)))
 		nv = big_endian_values >> BD_VALUE((CHAR_BIT*int(unsafe.Sizeof(BD_VALUE(0))))-bits)
 		count += bits
 		buffer = (*uint8)(unsafe.Add(unsafe.Pointer(buffer), bits>>3))

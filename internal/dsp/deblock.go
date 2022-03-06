@@ -18,14 +18,8 @@ func VpxPostProcDownAndAcrossMbRowC(src *uint8, dst *uint8, src_pitch int, dst_p
 		v     uint8
 		d     [4]uint8
 	)
-	if size >= 8 {
-	} else {
-		__assert_fail(libc.CString("size >= 8"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
-	if cols >= 8 {
-	} else {
-		__assert_fail(libc.CString("cols >= 8"), libc.CString(__FILE__), __LINE__, (*byte)(nil))
-	}
+	libc.Assert(size >= 8)
+	libc.Assert(cols >= 8)
 	for row = 0; row < size; row++ {
 		p_src = src
 		p_dst = dst

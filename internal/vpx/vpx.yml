@@ -1,6 +1,7 @@
 root: ../../libvpxsrc
 out: .
 package: vpx
+subpackage: true
 int_size: 8
 ptr_size: 8
 define:
@@ -515,9 +516,9 @@ idents:
 
 # List of files to convert. Supports wildcards (*.c).
 files:
-  - name: vpx_version.h
+  - name: ../libvpxbuild/vpx_version.h
     go: version
-  - name: vpx_config.h
+  - name: ../libvpxbuild/vpx_config.h
     go: config
   - name: vpx/vp8.h
     go: vp8.go
@@ -599,33 +600,5 @@ files:
       }
 
 include:
-  - .
-  #  - third_party/libyuv/include
-  #  - third_party/googletest/src/include
-  - tools/
-  - vpx
-  - vp8/
-  - vp8/common
-  - vp8/decoder
-  - vp8/encoder
-  - vp9/
-  - vp9/common
-  - vp9/decoder
-  - vp9/encoder
-  - vpx/
-  - vpx/internal
-  - vpx/src
-  - vpx_dsp/
-  - vpx_mem/
-  - vpx_mem/include
-  - vpx_ports/
-  - vpx_scale/
-  - vpx_scale/generic
-  - vpx_scale/mips
-  - build/
-  - build_debug/
-  - vpx_util/
-  #  - docs/
-  #  - examples/
-  #  - test/
-  - third_party/libyuv/include
+  - ../libvpxsrc
+  - ../libvpxbuild

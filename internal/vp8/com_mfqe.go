@@ -4,13 +4,12 @@ import (
 	"github.com/gotranspile/cxgo/runtime/cmath"
 	"github.com/gotranspile/cxgo/runtime/libc"
 	"github.com/mearaj/libvpx/internal/dsp"
-	"github.com/mearaj/libvpx/internal/scale"
 	"unsafe"
 )
 
 func FilterByWeight(src *uint8, src_stride int, dst *uint8, dst_stride int, block_size int, src_weight int) {
 	var (
-		dst_weight       = (int(1 << MFQE_PRECISION)) - src_weight
+		dst_weight   int = (int(1 << MFQE_PRECISION)) - src_weight
 		rounding_bit int = 1 << (int(MFQE_PRECISION - 1))
 		r            int
 		c            int
@@ -45,9 +44,9 @@ func apply_ifactor(y_src *uint8, y_src_stride int, y_dst *uint8, y_dst_stride in
 }
 func int_sqrt(x uint) uint {
 	var (
-		y     = x
+		y     uint = x
 		guess uint
-		p     = 1
+		p     int = 1
 	)
 	for func() uint {
 		y >>= 1
@@ -68,9 +67,9 @@ func int_sqrt(x uint) uint {
 }
 func multiframe_quality_enhance_block(blksize int, qcurr int, qprev int, y *uint8, u *uint8, v *uint8, y_stride int, uv_stride int, yd *uint8, ud *uint8, vd *uint8, yd_stride int, uvd_stride int) {
 	var (
-		VP8_ZEROS = [16]uint8{}
-		uvblksize = blksize >> 1
-		qdiff               = qcurr - qprev
+		VP8_ZEROS [16]uint8 = [16]uint8{}
+		uvblksize int       = blksize >> 1
+		qdiff     int       = qcurr - qprev
 		i         int
 		up        *uint8
 		udp       *uint8
@@ -87,22 +86,22 @@ func multiframe_quality_enhance_block(blksize int, qcurr int, qprev int, y *uint
 		actrisk   uint32
 	)
 	if blksize == 16 {
-		actd = (dsp.VpxVariance16x16C((*uint8)(unsafe.Pointer(yd)), yd_stride, (*uint8)(unsafe.Pointer(&VP8_ZEROS[0])), 0, &sse) + 128) >> 8
-		act = (dsp.VpxVariance16x16C((*uint8)(unsafe.Pointer(y)), y_stride, (*uint8)(unsafe.Pointer(&VP8_ZEROS[0])), 0, &sse) + 128) >> 8
-		dsp.VpxVariance16x16C((*uint8)(unsafe.Pointer(y)), y_stride, (*uint8)(unsafe.Pointer(yd)), yd_stride, &sse)
+		actd = (dsp.VpxVariance16x16C(yd, yd_stride, &VP8_ZEROS[0], 0, &sse) + 128) >> 8
+		act = (dsp.VpxVariance16x16C(y, y_stride, &VP8_ZEROS[0], 0, &sse) + 128) >> 8
+		dsp.VpxVariance16x16C(y, y_stride, yd, yd_stride, &sse)
 		sad = (sse + 128) >> 8
-		dsp.VpxVariance8x8C((*uint8)(unsafe.Pointer(u)), uv_stride, (*uint8)(unsafe.Pointer(ud)), uvd_stride, &sse)
+		dsp.VpxVariance8x8C(u, uv_stride, ud, uvd_stride, &sse)
 		usad = (sse + 32) >> 6
-		dsp.VpxVariance8x8C((*uint8)(unsafe.Pointer(v)), uv_stride, (*uint8)(unsafe.Pointer(vd)), uvd_stride, &sse)
+		dsp.VpxVariance8x8C(v, uv_stride, vd, uvd_stride, &sse)
 		vsad = (sse + 32) >> 6
 	} else {
-		actd = (dsp.VpxVariance8x8C((*uint8)(unsafe.Pointer(yd)), yd_stride, (*uint8)(unsafe.Pointer(&VP8_ZEROS[0])), 0, &sse) + 32) >> 6
-		act = (dsp.VpxVariance8x8C((*uint8)(unsafe.Pointer(y)), y_stride, (*uint8)(unsafe.Pointer(&VP8_ZEROS[0])), 0, &sse) + 32) >> 6
-		dsp.VpxVariance8x8C((*uint8)(unsafe.Pointer(y)), y_stride, (*uint8)(unsafe.Pointer(yd)), yd_stride, &sse)
+		actd = (dsp.VpxVariance8x8C(yd, yd_stride, &VP8_ZEROS[0], 0, &sse) + 32) >> 6
+		act = (dsp.VpxVariance8x8C(y, y_stride, &VP8_ZEROS[0], 0, &sse) + 32) >> 6
+		dsp.VpxVariance8x8C(y, y_stride, yd, yd_stride, &sse)
 		sad = (sse + 32) >> 6
-		dsp.VpxVariance4x4C((*uint8)(unsafe.Pointer(u)), uv_stride, (*uint8)(unsafe.Pointer(ud)), uvd_stride, &sse)
+		dsp.VpxVariance4x4C(u, uv_stride, ud, uvd_stride, &sse)
 		usad = (sse + 8) >> 4
-		dsp.VpxVariance4x4C((*uint8)(unsafe.Pointer(v)), uv_stride, (*uint8)(unsafe.Pointer(vd)), uvd_stride, &sse)
+		dsp.VpxVariance4x4C(v, uv_stride, vd, uvd_stride, &sse)
 		vsad = (sse + 8) >> 4
 	}
 	actrisk = uint32(libc.BoolToInt(actd > act*5))
@@ -173,7 +172,7 @@ func multiframe_quality_enhance_block(blksize int, qcurr int, qprev int, y *uint
 	}
 }
 func qualify_inter_mb(mode_info_context *ModeInfo, map_ *int) int {
-	if mode_info_context.Mbmi.Mb_skip_coeff != 0 {
+	if int(mode_info_context.Mbmi.Mb_skip_coeff) != 0 {
 		*(*int)(unsafe.Add(unsafe.Pointer(map_), unsafe.Sizeof(int(0))*0)) = func() int {
 			p := (*int)(unsafe.Add(unsafe.Pointer(map_), unsafe.Sizeof(int(0))*1))
 			*(*int)(unsafe.Add(unsafe.Pointer(map_), unsafe.Sizeof(int(0))*1)) = func() int {
@@ -189,7 +188,7 @@ func qualify_inter_mb(mode_info_context *ModeInfo, map_ *int) int {
 		}()
 	} else if int(mode_info_context.Mbmi.Mode) == SPLITMV {
 		var (
-			ndx = [4][4]int{{0, 1, 4, 5}, {2, 3, 6, 7}, {8, 9, 12, 13}, {10, 11, 14, 15}}
+			ndx [4][4]int = [4][4]int{{0, 1, 4, 5}, {2, 3, 6, 7}, {8, 9, 12, 13}, {10, 11, 14, 15}}
 			i   int
 			j   int
 		)
@@ -219,29 +218,29 @@ func qualify_inter_mb(mode_info_context *ModeInfo, map_ *int) int {
 }
 func vp8_multiframe_quality_enhance(cm *VP8Common) {
 	var (
-		show = cm.Frame_to_show
-		dest = &cm.Post_proc_buffer
-		frame_type                         = cm.Frame_type
-		mode_info_context                         = cm.Mi
+		show              *scale.Yv12BufferConfig = cm.Frame_to_show
+		dest              *scale.Yv12BufferConfig = &cm.Post_proc_buffer
+		frame_type        int                     = cm.Frame_type
+		mode_info_context *ModeInfo               = cm.Mi
 		mb_row            int
 		mb_col            int
 		totmap            int
-		map_  [4]int
-		qcurr = cm.Base_qindex
-		qprev = cm.Postproc_state.Last_base_qindex
-		y_ptr *uint8
+		map_              [4]int
+		qcurr             int = cm.Base_qindex
+		qprev             int = cm.Postproc_state.Last_base_qindex
+		y_ptr             *uint8
 		u_ptr             *uint8
 		v_ptr             *uint8
 		yd_ptr            *uint8
 		ud_ptr            *uint8
 		vd_ptr            *uint8
 	)
-	y_ptr = (*uint8)(unsafe.Pointer(show.Y_buffer))
-	u_ptr = (*uint8)(unsafe.Pointer(show.U_buffer))
-	v_ptr = (*uint8)(unsafe.Pointer(show.V_buffer))
-	yd_ptr = (*uint8)(unsafe.Pointer(dest.Y_buffer))
-	ud_ptr = (*uint8)(unsafe.Pointer(dest.U_buffer))
-	vd_ptr = (*uint8)(unsafe.Pointer(dest.V_buffer))
+	y_ptr = show.Y_buffer
+	u_ptr = show.U_buffer
+	v_ptr = show.V_buffer
+	yd_ptr = dest.Y_buffer
+	ud_ptr = dest.U_buffer
+	vd_ptr = dest.V_buffer
 	for mb_row = 0; mb_row < cm.Mb_rows; mb_row++ {
 		for mb_col = 0; mb_col < cm.Mb_cols; mb_col++ {
 			if frame_type == int(INTER_FRAME) {
@@ -266,10 +265,10 @@ func vp8_multiframe_quality_enhance(cm *VP8Common) {
 							} else {
 								var (
 									k   int
-									up  = (*uint8)(unsafe.Add(unsafe.Pointer(u_ptr), (i*show.Uv_stride+j)*4))
-									udp = (*uint8)(unsafe.Add(unsafe.Pointer(ud_ptr), (i*dest.Uv_stride+j)*4))
-									vp         = (*uint8)(unsafe.Add(unsafe.Pointer(v_ptr), (i*show.Uv_stride+j)*4))
-									vdp        = (*uint8)(unsafe.Add(unsafe.Pointer(vd_ptr), (i*dest.Uv_stride+j)*4))
+									up  *uint8 = (*uint8)(unsafe.Add(unsafe.Pointer(u_ptr), (i*show.Uv_stride+j)*4))
+									udp *uint8 = (*uint8)(unsafe.Add(unsafe.Pointer(ud_ptr), (i*dest.Uv_stride+j)*4))
+									vp  *uint8 = (*uint8)(unsafe.Add(unsafe.Pointer(v_ptr), (i*show.Uv_stride+j)*4))
+									vdp *uint8 = (*uint8)(unsafe.Add(unsafe.Pointer(vd_ptr), (i*dest.Uv_stride+j)*4))
 								)
 								Vp8CopyMem8x8C((*uint8)(unsafe.Add(unsafe.Pointer(y_ptr), (i*show.Y_stride+j)*8)), show.Y_stride, (*uint8)(unsafe.Add(unsafe.Pointer(yd_ptr), (i*dest.Y_stride+j)*8)), dest.Y_stride)
 								for k = 0; k < 4; func() *uint8 {

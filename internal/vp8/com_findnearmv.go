@@ -157,7 +157,7 @@ func vp8_find_near_mvs(xd *MacroBlockd, here *ModeInfo, nearest *int_mv, nearby 
 		return *p
 	}()
 	if int(above.Mbmi.Ref_frame) != INTRA_FRAME {
-		if above.Mbmi.Mv.As_int != 0 {
+		if int(above.Mbmi.Mv.As_int) != 0 {
 			(func() *int_mv {
 				p := &mv
 				*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -169,11 +169,11 @@ func vp8_find_near_mvs(xd *MacroBlockd, here *ModeInfo, nearest *int_mv, nearby 
 		*cntx += 2
 	}
 	if int(left.Mbmi.Ref_frame) != INTRA_FRAME {
-		if left.Mbmi.Mv.As_int != 0 {
+		if int(left.Mbmi.Mv.As_int) != 0 {
 			var this_mv int_mv
 			this_mv.As_int = left.Mbmi.Mv.As_int
 			mv_bias(*(*int)(unsafe.Add(unsafe.Pointer(ref_frame_sign_bias), unsafe.Sizeof(int(0))*uintptr(left.Mbmi.Ref_frame))), refframe, &this_mv, ref_frame_sign_bias)
-			if this_mv.As_int != mv.As_int {
+			if int(this_mv.As_int) != int(mv.As_int) {
 				(func() *int_mv {
 					p := &mv
 					*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -187,11 +187,11 @@ func vp8_find_near_mvs(xd *MacroBlockd, here *ModeInfo, nearest *int_mv, nearby 
 		}
 	}
 	if int(aboveleft.Mbmi.Ref_frame) != INTRA_FRAME {
-		if aboveleft.Mbmi.Mv.As_int != 0 {
+		if int(aboveleft.Mbmi.Mv.As_int) != 0 {
 			var this_mv int_mv
 			this_mv.As_int = aboveleft.Mbmi.Mv.As_int
 			mv_bias(*(*int)(unsafe.Add(unsafe.Pointer(ref_frame_sign_bias), unsafe.Sizeof(int(0))*uintptr(aboveleft.Mbmi.Ref_frame))), refframe, &this_mv, ref_frame_sign_bias)
-			if this_mv.As_int != mv.As_int {
+			if int(this_mv.As_int) != int(mv.As_int) {
 				(func() *int_mv {
 					p := &mv
 					*p = (*int_mv)(unsafe.Add(unsafe.Pointer(*p), unsafe.Sizeof(int_mv{})*1))
@@ -205,7 +205,7 @@ func vp8_find_near_mvs(xd *MacroBlockd, here *ModeInfo, nearest *int_mv, nearby 
 		}
 	}
 	if near_mv_ref_cnts[CNT_SPLITMV] != 0 {
-		if mv.As_int == near_mvs[CNT_NEAREST].As_int {
+		if int(mv.As_int) == int(near_mvs[CNT_NEAREST].As_int) {
 			near_mv_ref_cnts[CNT_NEAREST] += 1
 		}
 	}
@@ -217,7 +217,7 @@ func vp8_find_near_mvs(xd *MacroBlockd, here *ModeInfo, nearest *int_mv, nearby 
 		near_mv_ref_cnts[CNT_NEAR] = tmp
 		tmp = int(near_mvs[CNT_NEAREST].As_int)
 		near_mvs[CNT_NEAREST].As_int = near_mvs[CNT_NEAR].As_int
-		near_mvs[CNT_NEAR].As_int = uint32(tmp)
+		near_mvs[CNT_NEAR].As_int = uint32(int32(tmp))
 	}
 	if near_mv_ref_cnts[CNT_NEAREST] >= near_mv_ref_cnts[CNT_INTRA] {
 		near_mvs[CNT_INTRA] = near_mvs[CNT_NEAREST]
