@@ -25,8 +25,6 @@ files:
     go: endian_inl_h.go
   - name: vpx_util/loongson_intrinsics.h
     go: loongson_intrinsics_h.go
-  - name: vpx_util/vpx_atomics.h
-    go: atomics_h.go
   - name: vpx_util/vpx_debug_util.h
     go: vpx_debug_util_h.go
   - name: vpx_util/vpx_debug_util.c

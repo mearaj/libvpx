@@ -614,6 +614,9 @@ files:
     go: dec_onyxd_int_h.go
   - name: vp8/decoder/threading.c
     go: dec_threading.go
+    replace:
+      - old: 'util.VpxAtomicInt{Value: pc.Mb_cols + nsync}'
+        new: 'util.VpxAtomicInt{Value: int64(pc.Mb_cols + nsync)}'
   - name: vp8/decoder/treereader.h
     go: dec_treereader_h.go
   - name: vp8/vp8_dx_iface.c
