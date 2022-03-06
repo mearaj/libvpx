@@ -1,0 +1,108 @@
+\hypertarget{vp8dx_8h_source}{}\doxysubsection{vp8dx.\+h}
+\label{vp8dx_8h_source}\index{vpx/vp8dx.h@{vpx/vp8dx.h}}
+\mbox{\hyperlink{vp8dx_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2010 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VP8DX\_H\_}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define VPX\_VPX\_VP8DX\_H\_}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{24 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{comment}{/* Include controls common to both the encoder and decoder */}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{vp8_8h}{./vp8.h}}"{}}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{35 \textcolor{keyword}{extern} \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} vpx\_codec\_vp8\_dx\_algo;}
+\DoxyCodeLine{36 \textcolor{keyword}{extern} \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *vpx\_codec\_vp8\_dx(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{44 \textcolor{keyword}{extern} \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} vpx\_codec\_vp9\_dx\_algo;}
+\DoxyCodeLine{45 \textcolor{keyword}{extern} \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *vpx\_codec\_vp9\_dx(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{56 \textcolor{keyword}{enum} \mbox{\hyperlink{group__vp8__decoder_gaf9dd3f2e6d1412106ee791af768e57c1}{vp8\_dec\_control\_id}} \{}
+\DoxyCodeLine{60   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0b6055c47120f28e3de959960ee0a02b}{VP8D\_GET\_LAST\_REF\_UPDATES}} = VP8\_DECODER\_CTRL\_ID\_START,}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{63   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1af9f82d9e7930e6a2244b30b031b79599}{VP8D\_GET\_FRAME\_CORRUPTED}},}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{68   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aa57d870ac8cf395fdc86da4a8939b10b}{VP8D\_GET\_LAST\_REF\_USED}},}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7fbdffa6018163d0ecf12b50276beba0}{VPXD\_SET\_DECRYPTOR}},}
+\DoxyCodeLine{75   VP8D\_SET\_DECRYPTOR = \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7fbdffa6018163d0ecf12b50276beba0}{VPXD\_SET\_DECRYPTOR}},}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{80   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7a8d537472fc7561bd86c7395994ba37}{VP9D\_GET\_FRAME\_SIZE}},}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{85   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aec6eaaa866488cfe1d0cb83cab302ebd}{VP9D\_GET\_DISPLAY\_SIZE}},}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{88   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0c0d6174e3dd0ae615913d940a2bbdeb}{VP9D\_GET\_BIT\_DEPTH}},}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{95   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5a045a5e858c7641aea8987fed5e24b4}{VP9\_SET\_BYTE\_ALIGNMENT}},}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{105   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a1c4fc468749a2ef88e148f09210ce73c}{VP9\_INVERT\_TILE\_DECODE\_ORDER}},}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{112   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a999ed127a9ddb4be322a5a93eaed1233}{VP9\_SET\_SKIP\_LOOP\_FILTER}},}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{117   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1ab1998be4a82605b6ce2a931210878916}{VP9\_DECODE\_SVC\_SPATIAL\_LAYER}},}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{125   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a96ef4253540f901d6bd46afeef3d41c3}{VPXD\_GET\_LAST\_QUANTIZER}},}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{133   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a387b0251963942c5589c830a77dfa46b}{VP9D\_SET\_ROW\_MT}},}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{143   \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5d6eacaeb7072d962bdb16acb1eeca61}{VP9D\_SET\_LOOP\_FILTER\_OPT}},}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145   VP8\_DECODER\_CTRL\_ID\_MAX}
+\DoxyCodeLine{146 \};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{151 \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{group__vp8__decoder_ga10cdcbbc04aa831558688f4a4149fcbd}{vpx\_decrypt\_cb}})(\textcolor{keywordtype}{void} *decrypt\_state, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *input,}
+\DoxyCodeLine{152                                \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *output, \textcolor{keywordtype}{int} count);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{158 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__decrypt__init}{vpx\_decrypt\_init}} \{}
+\DoxyCodeLine{160   \mbox{\hyperlink{group__vp8__decoder_ga10cdcbbc04aa831558688f4a4149fcbd}{vpx\_decrypt\_cb}} \mbox{\hyperlink{structvpx__decrypt__init_a493c968f9028314ab105441dc7134e2c}{decrypt\_cb}};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{163   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__decrypt__init_a0a5b356c8cf98a547300abb872092714}{decrypt\_state}};}
+\DoxyCodeLine{164 \} \mbox{\hyperlink{group__vp8__decoder_gabd2a3fe4fc3cfe2afa78f0aaf9c9c6a0}{vpx\_decrypt\_init}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{174 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0b6055c47120f28e3de959960ee0a02b}{VP8D\_GET\_LAST\_REF\_UPDATES}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{175 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8D\_GET\_LAST\_REF\_UPDATES}}
+\DoxyCodeLine{176 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1af9f82d9e7930e6a2244b30b031b79599}{VP8D\_GET\_FRAME\_CORRUPTED}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{177 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8D\_GET\_FRAME\_CORRUPTED}}
+\DoxyCodeLine{178 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aa57d870ac8cf395fdc86da4a8939b10b}{VP8D\_GET\_LAST\_REF\_USED}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8D\_GET\_LAST\_REF\_USED}}
+\DoxyCodeLine{180 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7fbdffa6018163d0ecf12b50276beba0}{VPXD\_SET\_DECRYPTOR}}, \mbox{\hyperlink{structvpx__decrypt__init}{vpx\_decrypt\_init}} *)}
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#define VPX\_CTRL\_VPXD\_SET\_DECRYPTOR}}
+\DoxyCodeLine{182 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(VP8D\_SET\_DECRYPTOR, \mbox{\hyperlink{structvpx__decrypt__init}{vpx\_decrypt\_init}} *)}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8D\_SET\_DECRYPTOR}}
+\DoxyCodeLine{184 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7a8d537472fc7561bd86c7395994ba37}{VP9D\_GET\_FRAME\_SIZE}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9D\_GET\_FRAME\_SIZE}}
+\DoxyCodeLine{186 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aec6eaaa866488cfe1d0cb83cab302ebd}{VP9D\_GET\_DISPLAY\_SIZE}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{187 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9D\_GET\_DISPLAY\_SIZE}}
+\DoxyCodeLine{188 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0c0d6174e3dd0ae615913d940a2bbdeb}{VP9D\_GET\_BIT\_DEPTH}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{189 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9D\_GET\_BIT\_DEPTH}}
+\DoxyCodeLine{190 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5a045a5e858c7641aea8987fed5e24b4}{VP9\_SET\_BYTE\_ALIGNMENT}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{191 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_SET\_BYTE\_ALIGNMENT}}
+\DoxyCodeLine{192 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a1c4fc468749a2ef88e148f09210ce73c}{VP9\_INVERT\_TILE\_DECODE\_ORDER}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_INVERT\_TILE\_DECODE\_ORDER}}
+\DoxyCodeLine{194 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a999ed127a9ddb4be322a5a93eaed1233}{VP9\_SET\_SKIP\_LOOP\_FILTER}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_SET\_SKIP\_LOOP\_FILTER}}
+\DoxyCodeLine{196 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1ab1998be4a82605b6ce2a931210878916}{VP9\_DECODE\_SVC\_SPATIAL\_LAYER}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_DECODE\_SVC\_SPATIAL\_LAYER}}
+\DoxyCodeLine{198 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a96ef4253540f901d6bd46afeef3d41c3}{VPXD\_GET\_LAST\_QUANTIZER}}, \textcolor{keywordtype}{int} *)}
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#define VPX\_CTRL\_VPXD\_GET\_LAST\_QUANTIZER}}
+\DoxyCodeLine{200 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a387b0251963942c5589c830a77dfa46b}{VP9D\_SET\_ROW\_MT}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{201 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_DECODE\_SET\_ROW\_MT}}
+\DoxyCodeLine{202 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5d6eacaeb7072d962bdb16acb1eeca61}{VP9D\_SET\_LOOP\_FILTER\_OPT}}, \textcolor{keywordtype}{int})}
+\DoxyCodeLine{203 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_SET\_LOOP\_FILTER\_OPT}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{208 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{209 \}  \textcolor{comment}{// extern "{}C"{}}}
+\DoxyCodeLine{210 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VP8DX\_H\_}}
+
+\end{DoxyCode}

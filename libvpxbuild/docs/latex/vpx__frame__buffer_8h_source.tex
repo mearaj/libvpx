@@ -1,0 +1,46 @@
+\hypertarget{vpx__frame__buffer_8h_source}{}\doxysubsection{vpx\+\_\+frame\+\_\+buffer.\+h}
+\label{vpx__frame__buffer_8h_source}\index{vpx/vpx\_frame\_buffer.h@{vpx/vpx\_frame\_buffer.h}}
+\mbox{\hyperlink{vpx__frame__buffer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2014 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VPX\_FRAME\_BUFFER\_H\_}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define VPX\_VPX\_VPX\_FRAME\_BUFFER\_H\_}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{19 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}./vpx\_integer.h"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#define VPX\_MAXIMUM\_WORK\_BUFFERS 8}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define VP9\_MAXIMUM\_REF\_BUFFERS 8}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{39 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\_codec\_frame\_buffer}} \{}
+\DoxyCodeLine{40   uint8\_t *\mbox{\hyperlink{structvpx__codec__frame__buffer_adcfd9dc0e57e1dad453c4496d8bbce30}{data}}; }
+\DoxyCodeLine{41   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structvpx__codec__frame__buffer_aa36d70c1f42be1cd31287b8ecf7b53a5}{size}};   }
+\DoxyCodeLine{42   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__codec__frame__buffer_a7037d613f7b54f9cdad629cf17cb5e18}{priv}};    }
+\DoxyCodeLine{43 \} \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\_codec\_frame\_buffer\_t}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{63 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}{vpx\_get\_frame\_buffer\_cb\_fn\_t}})(\textcolor{keywordtype}{void} *priv, \textcolor{keywordtype}{size\_t} min\_size,}
+\DoxyCodeLine{64                                             \mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\_codec\_frame\_buffer\_t}} *fb);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{76 \textcolor{keyword}{typedef} int (*\mbox{\hyperlink{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}{vpx\_release\_frame\_buffer\_cb\_fn\_t}})(\textcolor{keywordtype}{void} *priv,}
+\DoxyCodeLine{77                                                 \mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\_codec\_frame\_buffer\_t}} *fb);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{80 \}  \textcolor{comment}{// extern "{}C"{}}}
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VPX\_FRAME\_BUFFER\_H\_}}
+
+\end{DoxyCode}

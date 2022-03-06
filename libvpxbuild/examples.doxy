@@ -1,0 +1,2 @@
+INPUT += samples.dox vpxdec.dox vpxenc.dox examples/vp9_spatial_svc_encoder.dox examples/resize_util.dox examples/vpx_temporal_svc_encoder.dox examples/simple_decoder.dox examples/postproc.dox examples/decode_to_md5.dox examples/simple_encoder.dox examples/vp9_lossless_encoder.dox examples/twopass_encoder.dox examples/decode_with_drops.dox examples/set_maps.dox examples/vp8cx_set_ref.dox examples/vp9cx_set_ref.dox
+ENABLED_SECTIONS += samples

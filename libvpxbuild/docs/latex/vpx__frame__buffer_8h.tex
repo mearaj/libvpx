@@ -1,0 +1,89 @@
+\hypertarget{vpx__frame__buffer_8h}{}\doxysubsection{vpx/vpx\+\_\+frame\+\_\+buffer.h File Reference}
+\label{vpx__frame__buffer_8h}\index{vpx/vpx\_frame\_buffer.h@{vpx/vpx\_frame\_buffer.h}}
+
+
+Describes the decoder external frame buffer interface.  
+
+
+{\ttfamily \#include \char`\"{}./vpx\+\_\+integer.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em External frame buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vpx__frame__buffer_8h_a92d4c1a691bffa03789df35386788295}\label{vpx__frame__buffer_8h_a92d4c1a691bffa03789df35386788295}} 
+\#define {\bfseries VPX\+\_\+\+MAXIMUM\+\_\+\+WORK\+\_\+\+BUFFERS}~8
+\begin{DoxyCompactList}\small\item\em The maximum number of work buffers used by libvpx. Support maximum 4 threads to decode video in parallel. Each thread will use one work buffer. TODO(hkuang)\+: Add support to set number of worker threads dynamically. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{vpx__frame__buffer_8h_abf69f005955646519b1379d5ed67b002}\label{vpx__frame__buffer_8h_abf69f005955646519b1379d5ed67b002}} 
+\#define {\bfseries VP9\+\_\+\+MAXIMUM\+\_\+\+REF\+\_\+\+BUFFERS}~8
+\begin{DoxyCompactList}\small\item\em The maximum number of reference buffers that a VP9 encoder may use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer}} \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em External frame buffer. \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}{vpx\+\_\+get\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}}) (void $\ast$priv, size\+\_\+t min\+\_\+size, \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}} $\ast$fb)
+\begin{DoxyCompactList}\small\item\em get frame buffer callback prototype \end{DoxyCompactList}\item 
+typedef int($\ast$ \mbox{\hyperlink{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}{vpx\+\_\+release\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}}) (void $\ast$priv, \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}} $\ast$fb)
+\begin{DoxyCompactList}\small\item\em release frame buffer callback prototype \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Describes the decoder external frame buffer interface. 
+
+
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}\label{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}} 
+\index{vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}!vpx\_codec\_frame\_buffer\_t@{vpx\_codec\_frame\_buffer\_t}}
+\index{vpx\_codec\_frame\_buffer\_t@{vpx\_codec\_frame\_buffer\_t}!vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_frame\_buffer\_t}{vpx\_codec\_frame\_buffer\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__codec__frame__buffer}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer}} \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}}}
+
+
+
+External frame buffer. 
+
+This structure holds allocated frame buffers used by the decoder. \mbox{\Hypertarget{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}\label{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}} 
+\index{vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}!vpx\_get\_frame\_buffer\_cb\_fn\_t@{vpx\_get\_frame\_buffer\_cb\_fn\_t}}
+\index{vpx\_get\_frame\_buffer\_cb\_fn\_t@{vpx\_get\_frame\_buffer\_cb\_fn\_t}!vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}}
+\doxyparagraph{\texorpdfstring{vpx\_get\_frame\_buffer\_cb\_fn\_t}{vpx\_get\_frame\_buffer\_cb\_fn\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ vpx\+\_\+get\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t) (void $\ast$priv, size\+\_\+t min\+\_\+size, \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}} $\ast$fb)}
+
+
+
+get frame buffer callback prototype 
+
+This callback is invoked by the decoder to retrieve data for the frame buffer in order for the decode call to complete. The callback must allocate at least min\+\_\+size in bytes and assign it to fb-\/\texorpdfstring{$>$}{>}data. The callback must zero out all the data allocated. Then the callback must set fb-\/\texorpdfstring{$>$}{>}size to the allocated size. The application does not need to align the allocated data. The callback is triggered when the decoder needs a frame buffer to decode a compressed image into. This function may be called more than once for every call to vpx\+\_\+codec\+\_\+decode. The application may set fb-\/\texorpdfstring{$>$}{>}priv to some data which will be passed back in the vpx\+\_\+image\+\_\+t and the release function call. $\vert$fb$\vert$ is guaranteed to not be NULL. On success the callback must return 0. Any failure the callback must return a value less than 0.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em priv} & Callback\textquotesingle{}s private data \\
+\hline
+\mbox{\texttt{ in}}  & {\em min\+\_\+size} & Size in bytes needed by the buffer \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em fb} & Pointer to vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}\label{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}} 
+\index{vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}!vpx\_release\_frame\_buffer\_cb\_fn\_t@{vpx\_release\_frame\_buffer\_cb\_fn\_t}}
+\index{vpx\_release\_frame\_buffer\_cb\_fn\_t@{vpx\_release\_frame\_buffer\_cb\_fn\_t}!vpx\_frame\_buffer.h@{vpx\_frame\_buffer.h}}
+\doxyparagraph{\texorpdfstring{vpx\_release\_frame\_buffer\_cb\_fn\_t}{vpx\_release\_frame\_buffer\_cb\_fn\_t}}
+{\footnotesize\ttfamily typedef int($\ast$ vpx\+\_\+release\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t) (void $\ast$priv, \mbox{\hyperlink{vpx__frame__buffer_8h_aa8526e856e03d567423ef4bba47565d8}{vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t}} $\ast$fb)}
+
+
+
+release frame buffer callback prototype 
+
+This callback is invoked by the decoder when the frame buffer is not referenced by any other buffers. $\vert$fb$\vert$ is guaranteed to not be NULL. On success the callback must return 0. Any failure the callback must return a value less than 0.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em priv} & Callback\textquotesingle{}s private data \\
+\hline
+\mbox{\texttt{ in}}  & {\em fb} & Pointer to vpx\+\_\+codec\+\_\+frame\+\_\+buffer\+\_\+t \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,20 @@
+/*!\page samples Sample Code
+    This SDK includes a number of sample applications. Each sample documents a feature of the SDK in both prose and the associated C code. The following samples are included: 
+     - \subpage example_decode_to_md5 Frame by frame MD5 checksum
+     - \subpage example_decode_with_drops Drops frames while decoding
+     - \subpage example_postproc Decoder postprocessor control
+     - \subpage example_resize_util 
+     - \subpage example_set_maps Set active and ROI maps
+     - \subpage example_simple_decoder Simplified decoder loop
+     - \subpage example_simple_encoder Simplified encoder loop
+     - \subpage example_twopass_encoder Two-pass encoder loop
+     - \subpage example_vp8cx_set_ref VP8 set encoder reference frame
+     - \subpage example_vp9_lossless_encoder Simplified lossless VP9 encoder
+     - \subpage example_vp9_spatial_svc_encoder VP9 Spatial SVC Encoder
+     - \subpage example_vp9cx_set_ref VP9 set encoder reference frame
+     - \subpage example_vpx_temporal_svc_encoder Temporal SVC Encoder
+
+    In addition, the SDK contains a number of utilities. Since these utilities are built upon the concepts described in the sample code listed above, they are not documented in pieces like the samples are. Their source is included here for reference. The following utilities are included:
+     - \subpage example_vpxdec Full featured decoder
+     - \subpage example_vpxenc Full featured encoder
+*/

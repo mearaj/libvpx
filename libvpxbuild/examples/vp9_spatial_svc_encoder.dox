@@ -1,0 +1,3 @@
+/*!\page example_vp9_spatial_svc_encoder vp9_spatial_svc_encoder
+   \includelineno vp9_spatial_svc_encoder.c
+*/

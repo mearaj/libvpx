@@ -1,0 +1,89 @@
+root: ../../libvpxsrc
+out: .
+package: util
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+use_go_int: true
+replace:
+  - old: int64_t
+    new: int64
+idents:
+  - name: vpx_atomic_load_acquire
+    rename: AtomicLoadAcquire
+  - name: vpx_atomic_int
+    rename: VpxAtomicInt
+  - name: vpx_atomic_init
+    rename: VpxAtomicInit
+  - name: vpx_atomic_store_release
+    rename: VpxAtomicStoreRelease
+files:
+  - name: vpx_util/endian_inl.h
+    go: endian_inl_h.go
+  - name: vpx_util/loongson_intrinsics.h
+    go: loongson_intrinsics_h.go
+  - name: vpx_util/vpx_atomics.h
+    go: atomics_h.go
+  - name: vpx_util/vpx_debug_util.h
+    go: vpx_debug_util_h.go
+  - name: vpx_util/vpx_debug_util.c
+    go: vpx_debug_util.go
+  #  - name: vpx_util/vpx_thread.h
+  #    go: vpx_thread_h.go
+  - name: vpx_util/vpx_thread.c
+    go: vpx_thread.go
+  #  - name: vpx_util/vpx_timestamp.h
+  #    go: vpx_timestamp_h.go
+  #    skip:
+  #      - int64_t
+  - name: vpx_util/vpx_write_yuv_frame.h
+    go: vpx_write_yuv_frame_h.go
+  - name: vpx_util/vpx_write_yuv_frame.c
+    go: vpx_write_yuv_frame.go
+  - name: util_test.go
+    content: |
+      package util
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include
+
+sys_include:
+  - ./includes
+  - /usr/include

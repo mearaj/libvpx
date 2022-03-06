@@ -1,0 +1,207 @@
+root: ../libvpxsrc
+out: .
+package: internal
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+use_go_int: true
+idents:
+  - name: vpx_img_fmt
+    rename: vpx.ImgFmt
+  - name: vpx_img_fmt_t
+    rename: vpx.ImgFmt
+  - name: vpx_image_t
+    rename: vpx.Image
+  - name: vpx_bit_depth_t
+    rename: vpx.BitDepth
+  - name: y4m_input
+    rename: Y4mInput
+  - name: vpx_codec_iface_t
+    rename: vpx.CodecIFace
+  - name: vpx_codec_ctx_t
+    rename: vpx.CodecCtx
+  - name: usage_exit
+    rename: UsageExit
+  - name: show_help
+    rename: ShowHelp
+  - name: vpx_codec_error_detail
+    rename: vpx.CodecErrorDetail
+  - name: vpx_codec_error
+    rename: vpx.CodecError
+  - name: arg
+    rename: Arg
+  - name: arg_def
+    rename: ArgDef
+  - name: arg_def_t
+    rename: ArgDefT
+  - name: argv_dup
+    rename: ArgvDup
+  - name: arg_match
+    rename: ArgMatch
+  - name: arg_show_usage
+    rename: ArgShowUsage
+  - name: arg_parse_uint
+    rename: ArgParseUint
+  - name: wrap_fread
+    rename: WrapFRead
+  - name: set_binary_mode
+    rename: SetBinaryMode
+  - name: vpx_codec_dec_cfg_t
+    rename: vpx.CodecDecCfgT
+  - name: die_codec
+    rename: DieCodec
+  - name: read_yuv_frame
+    rename: ReadYuvFrame
+  - name: vpx_encoders
+    rename: VpxEncoders
+  - name: get_vpx_encoder_count
+    rename: GetVpxEncoderCount
+  - name: get_vpx_encoder_by_index
+    rename: GetVpxEncoderByIndex
+  - name: get_vpx_encoder_by_name
+    rename: GetVpxEncoderByName
+  - name: vpx_decoders
+    rename: VpxDecoders
+  - name: get_vpx_decoder_count
+    rename: GetVpxDecoderCount
+  - name: get_vpx_decoder_by_index
+    rename: GetVpxDecoderByIndex
+  - name: get_vpx_decoder_by_name
+    rename: GetVpxDecoderByName
+  - name: get_vpx_decoder_by_fourcc
+    rename: GetVpxDecoderByFourcc
+  - name: vpx_img_plane_width
+    rename: ImgPlaneWidth
+  - name: vpx_img_plane_height
+    rename: ImgPlaneHeight
+  - name: vpx_img_write
+    rename: VpxImgWrite
+  - name: vpx_img_read
+    rename: VpxImgRead
+  - name: sse_to_psnr
+    rename: SseToPsnr
+  - name: read_frame
+    rename: ReadFrame
+  - name: file_is_y4m
+    rename: FileIsY4m
+  - name: fourcc_is_ivf
+    rename: FourccIsIvf
+  - name: open_input_file
+    rename: OpenInputFile
+  - name: close_input_file
+    rename: CloseInputFile
+  - name: compare_img
+    rename: CompareImg
+  - name: find_mismatch
+    rename: FindMismatch
+  - name: die
+    rename: Die
+  - name: fatal
+    rename: Fatal
+  - name: warn
+    rename: Warn
+  - name: ivf_read_frame
+    rename: IvfReadFrame
+  - name: mem_get_le32_as_int
+    rename: MemGetLe32AsInt
+  - name: file_is_ivf
+    rename: FileIsIvf
+  - name: file_is_webm
+    rename: FileIsWebm
+  - name: rewind
+    rename: Rewind
+  - name: isatty
+    rename: IsAtty
+  - name: y4m_write_file_header
+    rename: Y4mWriteFileHeader
+  - name: y4m_write_frame_header
+    rename: Y4mWriteFrameHeader
+  - name: vpx_codec_vp8_dx
+    rename: vp8.CodecDxFn
+  - name: mem_get_le16_as_int
+    rename: ports.GetLe16AsInt
+  - name: mem_get_le32_as_int
+    rename: ports.GetLe32AsInt
+  - name: vpx_lpf_vertical_8_dual_c
+    rename: VpxLpfVertical8DualC
+  - name: vpx_lpf_vertical_8_dual_sse2
+    rename: VpxLpfVertical8DualC
+replace:
+  - old: EXIT_SUCCESS
+    new: 1
+  - old: EXIT_FAILURE
+    new: 0
+  - old: EINTR
+    new: 4
+  - old: EAGAIN
+    new: 11
+  - regexp: '"vpx"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/vpx"
+
+  - regexp: '"vp8"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/vp8"
+
+  - regexp: '"ports"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/ports"
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  - name: vpx_version.h
+    go: version
+  - name: vpx_config.h
+    go: config
+  - name: args.h
+  - name: args.c
+  - name: tools_common.c
+  - name: y4minput.h
+  - name: y4minput.c
+  - name: webmdec.h
+  - name: third_party/libyuv/include/libyuv/scale.h
+    go: libyuv_scale.go
+  - name: ivfdec.h
+  - name: ivfdec.c
+  - name: md5_utils.h
+  - name: md5_utils.c
+  - name: y4menc.h
+  - name: y4menc.c
+  - name: vp8_rtcd.h
+  - name: vpx_dsp_rtcd.h
+    go: rtcd_h.go
+  - name: vpx_scale_rtcd.h
+    go: vpx_scale_rtcd_h.go
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include

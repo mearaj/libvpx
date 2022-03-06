@@ -1,0 +1,342 @@
+\hypertarget{vpx__encoder_8h_source}{}\doxysubsection{vpx\+\_\+encoder.\+h}
+\label{vpx__encoder_8h_source}\index{vpx/vpx\_encoder.h@{vpx/vpx\_encoder.h}}
+\mbox{\hyperlink{vpx__encoder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2010 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VPX\_ENCODER\_H\_}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define VPX\_VPX\_VPX\_ENCODER\_H\_}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{29 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{vpx__codec_8h}{./vpx\_codec.h}}"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}./vpx\_ext\_ratectrl.h"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#define VPX\_TS\_MAX\_PERIODICITY 16}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#define VPX\_TS\_MAX\_LAYERS 5}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#define VPX\_MAX\_LAYERS 12  }\textcolor{comment}{// 3 temporal + 4 spatial layers are allowed.}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{47 \textcolor{preprocessor}{\#define VPX\_SS\_MAX\_LAYERS 5}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#define VPX\_SS\_DEFAULT\_LAYERS 1}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#define VPX\_ENCODER\_ABI\_VERSION \(\backslash\)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{  (15 + VPX\_CODEC\_ABI\_VERSION + \(\backslash\)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{   VPX\_EXT\_RATECTRL\_ABI\_VERSION) }}
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#define VPX\_CODEC\_CAP\_PSNR 0x10000 }}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#define VPX\_CODEC\_CAP\_OUTPUT\_PARTITION 0x20000}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#define VPX\_CODEC\_USE\_PSNR 0x10000 }}
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define VPX\_CODEC\_USE\_OUTPUT\_PARTITION 0x20000}}
+\DoxyCodeLine{92 \textcolor{preprocessor}{\#define VPX\_CODEC\_USE\_HIGHBITDEPTH 0x40000 }}
+\DoxyCodeLine{98 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf}} \{}
+\DoxyCodeLine{99   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__fixed__buf_ac93e43ae3fcc1023dca86d37016ae3f0}{buf}};       }
+\DoxyCodeLine{100   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structvpx__fixed__buf_a43d7f8247ed9752f65f0a7639817ae84}{sz}};       }
+\DoxyCodeLine{101 \} \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\_fixed\_buf\_t}}; }
+\DoxyCodeLine{108 \textcolor{keyword}{typedef} int64\_t \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\_codec\_pts\_t}};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{117 \textcolor{keyword}{typedef} uint32\_t \mbox{\hyperlink{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}{vpx\_codec\_frame\_flags\_t}};}
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define VPX\_FRAME\_IS\_KEY 0x1 }}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define VPX\_FRAME\_IS\_DROPPABLE 0x2}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define VPX\_FRAME\_IS\_INVISIBLE 0x4}}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define VPX\_FRAME\_IS\_FRAGMENT 0x8}}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{133 \textcolor{keyword}{typedef} uint32\_t \mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\_codec\_er\_flags\_t}};}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#define VPX\_ERROR\_RESILIENT\_DEFAULT 0x1}}
+\DoxyCodeLine{140 \textcolor{preprocessor}{\#define VPX\_ERROR\_RESILIENT\_PARTITIONS 0x2}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{148 \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\_codec\_cx\_pkt\_kind}} \{}
+\DoxyCodeLine{149   \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a2261aae5594289400e812fb1e6b6b0cc}{VPX\_CODEC\_CX\_FRAME\_PKT}},    }
+\DoxyCodeLine{150   \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a77cd8b95d9891bcce36117f5f31994fd}{VPX\_CODEC\_STATS\_PKT}},       }
+\DoxyCodeLine{151   \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a9953278e8a3abc9764981352b1c36d9d}{VPX\_CODEC\_FPMB\_STATS\_PKT}},  }
+\DoxyCodeLine{152   \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a11eefa1328e6d22eb7c844645a260628}{VPX\_CODEC\_PSNR\_PKT}},        }
+\DoxyCodeLine{153   \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a7b54c122969397b1926de853d28b3c80}{VPX\_CODEC\_CUSTOM\_PKT}} = 256 }
+\DoxyCodeLine{154 \};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{161 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\_codec\_cx\_pkt}} \{}
+\DoxyCodeLine{162   \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\_codec\_cx\_pkt\_kind}} \mbox{\hyperlink{structvpx__codec__cx__pkt_a41f395b39516343c1329a4a85a0084f2}{kind}}; }
+\DoxyCodeLine{163   \textcolor{keyword}{union }\{}
+\DoxyCodeLine{164     \textcolor{keyword}{struct }\{}
+\DoxyCodeLine{165       \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__codec__cx__pkt_a9e1db068593b6037e70b05b5239784d2}{buf}}; }
+\DoxyCodeLine{166       \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{structvpx__codec__cx__pkt_a857321ba2dc65e81c430d14c36a542d9}{sz}}; }
+\DoxyCodeLine{168       \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\_codec\_pts\_t}} \mbox{\hyperlink{structvpx__codec__cx__pkt_aa75fe039fe6b47fb25d20684864bef12}{pts}};}
+\DoxyCodeLine{170       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{structvpx__codec__cx__pkt_afb8d9069980e759d97d2eb9fae7e5e06}{duration}};}
+\DoxyCodeLine{171       \mbox{\hyperlink{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}{vpx\_codec\_frame\_flags\_t}} \mbox{\hyperlink{structvpx__codec__cx__pkt_a3876fe0306342611465e9c15c6c4ae2f}{flags}}; }
+\DoxyCodeLine{175       \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__cx__pkt_aaffee6af93af238ca7a145fb56c6d6f7}{partition\_id}};}
+\DoxyCodeLine{178       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__cx__pkt_a6f30c2d1c2c32a319ead6e9cb4e81665}{width}}[\mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\_SS\_MAX\_LAYERS}}];  }
+\DoxyCodeLine{179       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__cx__pkt_aadd847e4464f758b7cd73179245f0028}{height}}[\mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\_SS\_MAX\_LAYERS}}]; }
+\DoxyCodeLine{182       uint8\_t \mbox{\hyperlink{structvpx__codec__cx__pkt_a7b157182695b6c882bee7c0b290582fa}{spatial\_layer\_encoded}}[\mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\_SS\_MAX\_LAYERS}}];}
+\DoxyCodeLine{183     \} \mbox{\hyperlink{structvpx__codec__cx__pkt_a7928a49d271fa3d34c9f41160c66e015}{frame}};                            }
+\DoxyCodeLine{184     \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} \mbox{\hyperlink{structvpx__codec__cx__pkt_a4018900fa26ecc55abc4703cc7d7c7fc}{twopass\_stats}};      }
+\DoxyCodeLine{185     \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} \mbox{\hyperlink{structvpx__codec__cx__pkt_a81574398a8834c03d8d6911a682429fb}{firstpass\_mb\_stats}}; }
+\DoxyCodeLine{186     \textcolor{keyword}{struct }vpx\_psnr\_pkt \{}
+\DoxyCodeLine{187       \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__cx__pkt_a4d3fc7eb2d19c5913c6f3f474e5cf77b}{samples}}[4]; }
+\DoxyCodeLine{188       uint64\_t \mbox{\hyperlink{structvpx__codec__cx__pkt_ad65e918d3f26743cc7a8898b88bcb397}{sse}}[4];         }
+\DoxyCodeLine{189       \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__codec__cx__pkt_a63744aeceb50355d6402d55309c151b6}{psnr}}[4];          }
+\DoxyCodeLine{190     \} \mbox{\hyperlink{structvpx__codec__cx__pkt_a63744aeceb50355d6402d55309c151b6}{psnr}};                    }
+\DoxyCodeLine{191     \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} \mbox{\hyperlink{structvpx__codec__cx__pkt_aaa868193733b055ea9fec923c64fbd19}{raw}};       }
+\DoxyCodeLine{193     \textcolor{comment}{/* This packet size is fixed to allow codecs to extend this}}
+\DoxyCodeLine{194 \textcolor{comment}{     * interface without having to manage storage for raw packets,}}
+\DoxyCodeLine{195 \textcolor{comment}{     * i.e., if it's smaller than 128 bytes, you can store in the}}
+\DoxyCodeLine{196 \textcolor{comment}{     * packet list directly.}}
+\DoxyCodeLine{197 \textcolor{comment}{     */}}
+\DoxyCodeLine{198     \textcolor{keywordtype}{char} \mbox{\hyperlink{structvpx__codec__cx__pkt_a245e5c1c43c58563b5ad64dab4cd2bbc}{pad}}[128 -\/ \textcolor{keyword}{sizeof}(\textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\_codec\_cx\_pkt\_kind}})]; }
+\DoxyCodeLine{199   \} \mbox{\hyperlink{structvpx__codec__cx__pkt_afd9885d1a95a351c96eee6c45a184e1a}{data}};                                               }
+\DoxyCodeLine{200 \} \mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\_codec\_cx\_pkt\_t}}; }
+\DoxyCodeLine{207 \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{group__encoder_ga2ced5dac1f5d963a38bd4d2a05ec8bd9}{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}})(\mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\_codec\_cx\_pkt\_t}} *pkt,}
+\DoxyCodeLine{208                                                     \textcolor{keywordtype}{void} *user\_data);}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{211 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__enc__output__cx__cb__pair}{vpx\_codec\_enc\_output\_cx\_cb\_pair}} \{}
+\DoxyCodeLine{212   \mbox{\hyperlink{group__encoder_ga2ced5dac1f5d963a38bd4d2a05ec8bd9}{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}} \mbox{\hyperlink{structvpx__codec__enc__output__cx__cb__pair_acd1d60f7b6f9f483c2092c69afe824a5}{output\_cx\_pkt}}; }
+\DoxyCodeLine{213   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__codec__enc__output__cx__cb__pair_abdb90f4a657b70be286327b091c8f70c}{user\_priv}}; }
+\DoxyCodeLine{214 \} \mbox{\hyperlink{group__encoder_ga6dbae227a256ab95e73f8b80db1ab66f}{vpx\_codec\_priv\_output\_cx\_pkt\_cb\_pair\_t}};}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{220 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rational}{vpx\_rational}} \{}
+\DoxyCodeLine{221   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rational_ae7774f21a22c9bef3aa73156c79f4731}{num}};        }
+\DoxyCodeLine{222   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rational_a29dd2ab4001377b3aa21885ef969759f}{den}};        }
+\DoxyCodeLine{223 \} \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\_rational\_t}}; }
+\DoxyCodeLine{226 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\_enc\_pass}} \{}
+\DoxyCodeLine{227   \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa7b6943a41868e8e26a77e9500f139ca1}{VPX\_RC\_ONE\_PASS}},   }
+\DoxyCodeLine{228   \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493faa0765945345b160905f3b762986dae3b}{VPX\_RC\_FIRST\_PASS}}, }
+\DoxyCodeLine{229   \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa65da543b956d6a9b1f301ab8cc90d3a7}{VPX\_RC\_LAST\_PASS}}   }
+\DoxyCodeLine{230 \} \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\_enc\_pass}};}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{233 \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\_rc\_mode}} \{}
+\DoxyCodeLine{234   \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2ab8fbe4441ed3f31a167c8194e8a64f87}{VPX\_VBR}}, }
+\DoxyCodeLine{235   \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a8b02853cb35790d60cc171a11f6c268a}{VPX\_CBR}}, }
+\DoxyCodeLine{236   \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5f2fd02b55c67d62bfd79380bcb03f63}{VPX\_CQ}},  }
+\DoxyCodeLine{237   \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5ebb5564dc5e8ec99d3c6221d89b8858}{VPX\_Q}},   }
+\DoxyCodeLine{238 \};}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{248 \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\_kf\_mode}} \{}
+\DoxyCodeLine{249   \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40a6bd87eea515c65661a5241a0f01e44a6}{VPX\_KF\_FIXED}},       }
+\DoxyCodeLine{250   \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40ab1b423e78f72e77d2dce755d6c9652f8}{VPX\_KF\_AUTO}},        }
+\DoxyCodeLine{251   \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40a56513f60cbf3434ca0092173005d0ab2}{VPX\_KF\_DISABLED}} = 0 }
+\DoxyCodeLine{252 \};}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{261 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\_enc\_frame\_flags\_t}};}
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#define VPX\_EFLAG\_FORCE\_KF (1 << 0) }}
+\DoxyCodeLine{270 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg}} \{}
+\DoxyCodeLine{271   \textcolor{comment}{/*}}
+\DoxyCodeLine{272 \textcolor{comment}{   * generic settings (g)}}
+\DoxyCodeLine{273 \textcolor{comment}{   */}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{279   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a5bcf7fc1efc4890de351e3c6fe252355}{g\_usage}};}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{287   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_aff9d8d458c45c95dd542603210ba2b8b}{g\_threads}};}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{297   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a3d7fe3a8b237338c094d5a956a41804d}{g\_profile}}; }
+\DoxyCodeLine{306   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a5c165f5b41ca1158f2883983a2b7709c}{g\_w}};}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{315   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4132bd89ce85bce7c08f2cc3b6f2b82e}{g\_h}};}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{323   \mbox{\hyperlink{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}{vpx\_bit\_depth\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aaaa7bca27fd42f24a2c215b247ba9190}{g\_bit\_depth}};}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{331   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_abebad3c575d7a5ba6c09a52fedb7d762}{g\_input\_bit\_depth}};}
+\DoxyCodeLine{332 }
+\DoxyCodeLine{345   \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rational}{vpx\_rational}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a6498d378e4c29ef3e22258289e481087}{g\_timebase}};}
+\DoxyCodeLine{346 }
+\DoxyCodeLine{353   \mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\_codec\_er\_flags\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4e17173b66ca0d7dfba9978625d7ba76}{g\_error\_resilient}};}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{360   \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\_enc\_pass}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a70d62d87aae7d1168746577f14a6dccf}{g\_pass}};}
+\DoxyCodeLine{361 }
+\DoxyCodeLine{374   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a992668d9e30305f3f7ab2672ea31a890}{g\_lag\_in\_frames}};}
+\DoxyCodeLine{375 }
+\DoxyCodeLine{376   \textcolor{comment}{/*}}
+\DoxyCodeLine{377 \textcolor{comment}{   * rate control settings (rc)}}
+\DoxyCodeLine{378 \textcolor{comment}{   */}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{393   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a619269f9a6904de58c4790e6806a3905}{rc\_dropframe\_thresh}};}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{402   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a02a4e2f18fb0fdfff44df8b0d9a99d6c}{rc\_resize\_allowed}};}
+\DoxyCodeLine{403 }
+\DoxyCodeLine{409   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a2edc2097b6c74f837f129d3cc8901fca}{rc\_scaled\_width}};}
+\DoxyCodeLine{410 }
+\DoxyCodeLine{416   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a5586418c28a5f7f327c4ba7567467243}{rc\_scaled\_height}};}
+\DoxyCodeLine{417 }
+\DoxyCodeLine{424   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a855599c0660f31dfcab4a64996b4f6ad}{rc\_resize\_up\_thresh}};}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{432   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a1be7bd7b0eaf1e99b5e4028c37c65488}{rc\_resize\_down\_thresh}};}
+\DoxyCodeLine{433 }
+\DoxyCodeLine{442   \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\_rc\_mode}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a99c415edb6c6f909a095a57c3430a116}{rc\_end\_usage}};}
+\DoxyCodeLine{443 }
+\DoxyCodeLine{449   \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a1bd769247042e5806295f6e06d20f008}{rc\_twopass\_stats\_in}};}
+\DoxyCodeLine{450 }
+\DoxyCodeLine{456   \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a52dbc21bc28d6a2c7c70a43ad18461d8}{rc\_firstpass\_mb\_stats\_in}};}
+\DoxyCodeLine{457 }
+\DoxyCodeLine{462   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}{rc\_target\_bitrate}};}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464   \textcolor{comment}{/*}}
+\DoxyCodeLine{465 \textcolor{comment}{   * quantizer settings}}
+\DoxyCodeLine{466 \textcolor{comment}{   */}}
+\DoxyCodeLine{467 }
+\DoxyCodeLine{475   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a1324600e3c63faaa7717e85cf6509dd9}{rc\_min\_quantizer}};}
+\DoxyCodeLine{476 }
+\DoxyCodeLine{484   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a8abdd985d317b720e142335887d737df}{rc\_max\_quantizer}};}
+\DoxyCodeLine{485 }
+\DoxyCodeLine{486   \textcolor{comment}{/*}}
+\DoxyCodeLine{487 \textcolor{comment}{   * bitrate tolerance}}
+\DoxyCodeLine{488 \textcolor{comment}{   */}}
+\DoxyCodeLine{489 }
+\DoxyCodeLine{503   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ad279fbb0a9fe9395340913161e28651a}{rc\_undershoot\_pct}};}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{518   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4f2fbd015c1b1f395cc4a4b03d4ead5f}{rc\_overshoot\_pct}};}
+\DoxyCodeLine{519 }
+\DoxyCodeLine{520   \textcolor{comment}{/*}}
+\DoxyCodeLine{521 \textcolor{comment}{   * decoder buffer model parameters}}
+\DoxyCodeLine{522 \textcolor{comment}{   */}}
+\DoxyCodeLine{523 }
+\DoxyCodeLine{533   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a61866272bb588cd86d28834f420430f0}{rc\_buf\_sz}};}
+\DoxyCodeLine{534 }
+\DoxyCodeLine{542   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_aa9e4d6405994ef42d61d478cf6e0d5e0}{rc\_buf\_initial\_sz}};}
+\DoxyCodeLine{543 }
+\DoxyCodeLine{551   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_aafde485867e040a58504ad796e79e47f}{rc\_buf\_optimal\_sz}};}
+\DoxyCodeLine{552 }
+\DoxyCodeLine{553   \textcolor{comment}{/*}}
+\DoxyCodeLine{554 \textcolor{comment}{   * 2 pass rate control parameters}}
+\DoxyCodeLine{555 \textcolor{comment}{   */}}
+\DoxyCodeLine{556 }
+\DoxyCodeLine{565   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a21c21ff097890dc3a450731c9b504cf4}{rc\_2pass\_vbr\_bias\_pct}};}
+\DoxyCodeLine{566 }
+\DoxyCodeLine{572   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a21eb9fce0844ae07b617bf3f0a25f5a5}{rc\_2pass\_vbr\_minsection\_pct}};}
+\DoxyCodeLine{573 }
+\DoxyCodeLine{579   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ab5212050b71b2d9f4dc663caa496949e}{rc\_2pass\_vbr\_maxsection\_pct}};}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{586   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a8c205a9616aaa16b17dbd47e90d3b5b1}{rc\_2pass\_vbr\_corpus\_complexity}};}
+\DoxyCodeLine{587 }
+\DoxyCodeLine{588   \textcolor{comment}{/*}}
+\DoxyCodeLine{589 \textcolor{comment}{   * keyframing settings (kf)}}
+\DoxyCodeLine{590 \textcolor{comment}{   */}}
+\DoxyCodeLine{591 }
+\DoxyCodeLine{598   \textcolor{keyword}{enum} \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\_kf\_mode}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a491d67f061dcdb13f60c017563e9d788}{kf\_mode}};}
+\DoxyCodeLine{599 }
+\DoxyCodeLine{607   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a0a7b5444ecb09745cbe8d5af17553846}{kf\_min\_dist}};}
+\DoxyCodeLine{608 }
+\DoxyCodeLine{616   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ae018440136e271743376730413d25a9b}{kf\_max\_dist}};}
+\DoxyCodeLine{617 }
+\DoxyCodeLine{618   \textcolor{comment}{/*}}
+\DoxyCodeLine{619 \textcolor{comment}{   * Spatial scalability settings (ss)}}
+\DoxyCodeLine{620 \textcolor{comment}{   */}}
+\DoxyCodeLine{621 }
+\DoxyCodeLine{626   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a1e5e1d00b22f2ba8c5c7230f31900f95}{ss\_number\_layers}};}
+\DoxyCodeLine{627 }
+\DoxyCodeLine{633   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a26e33bbfa43485c21ea58da6cee23c36}{ss\_enable\_auto\_alt\_ref}}[\mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\_SS\_MAX\_LAYERS}}];}
+\DoxyCodeLine{634 }
+\DoxyCodeLine{640   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a5ff2f5884109736d0c2464bc156fda1f}{ss\_target\_bitrate}}[\mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\_SS\_MAX\_LAYERS}}];}
+\DoxyCodeLine{641 }
+\DoxyCodeLine{646   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a16d4549a30cbd585e3c3056ef873d8c7}{ts\_number\_layers}};}
+\DoxyCodeLine{647 }
+\DoxyCodeLine{653   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_aba7ceb7a90500a8f76aff89575737f3a}{ts\_target\_bitrate}}[\mbox{\hyperlink{group__encoder_ga2715ac3dd8bf2f5438c4bbfc82788eb2}{VPX\_TS\_MAX\_LAYERS}}];}
+\DoxyCodeLine{654 }
+\DoxyCodeLine{660   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ad40c30846ef8ef1d8684f10a491ec535}{ts\_rate\_decimator}}[\mbox{\hyperlink{group__encoder_ga2715ac3dd8bf2f5438c4bbfc82788eb2}{VPX\_TS\_MAX\_LAYERS}}];}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{669   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4ec338780115dd270acf0dac24193474}{ts\_periodicity}};}
+\DoxyCodeLine{670 }
+\DoxyCodeLine{678   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4d105d2470dbfb7210b33d298f1cf1f6}{ts\_layer\_id}}[\mbox{\hyperlink{group__encoder_ga684b48cb6e47a258247637186557eb19}{VPX\_TS\_MAX\_PERIODICITY}}];}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{686   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a3f6b4c8aea7a713c51ad5d44e3552b1f}{layer\_target\_bitrate}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}];}
+\DoxyCodeLine{687 }
+\DoxyCodeLine{695   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_a07c78dd29423d5ab475b9d77a0107d16}{temporal\_layering\_mode}};}
+\DoxyCodeLine{696 }
+\DoxyCodeLine{701   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__codec__enc__cfg_ab1c9d7319d8a87dd17ccc2b555634686}{use\_vizier\_rc\_params}};}
+\DoxyCodeLine{702 }
+\DoxyCodeLine{710   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a9bb3db547c03143d4dc648f333781703}{active\_wq\_factor}};}
+\DoxyCodeLine{711 }
+\DoxyCodeLine{719   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_abab974caea6e3f792628862e6842f79f}{err\_per\_mb\_factor}};}
+\DoxyCodeLine{720 }
+\DoxyCodeLine{728   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a0f9a1db193023e7845d91ea6f620158f}{sr\_default\_decay\_limit}};}
+\DoxyCodeLine{729 }
+\DoxyCodeLine{737   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac079d4de770df17fa5cae5d4b4538f35}{sr\_diff\_factor}};}
+\DoxyCodeLine{738 }
+\DoxyCodeLine{746   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac203b189d3eeb77c2cc1fae906af6044}{kf\_err\_per\_mb\_factor}};}
+\DoxyCodeLine{747 }
+\DoxyCodeLine{755   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac02848debdf9e48e1e38feddad8a52d7}{kf\_frame\_min\_boost\_factor}};}
+\DoxyCodeLine{756 }
+\DoxyCodeLine{765   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a83402e1fe64b99834ae18c7cd08963d1}{kf\_frame\_max\_boost\_first\_factor}};}
+\DoxyCodeLine{766 }
+\DoxyCodeLine{774   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ae6fbc825378fb79f738bd00cc9feaf50}{kf\_frame\_max\_boost\_subs\_factor}};}
+\DoxyCodeLine{775 }
+\DoxyCodeLine{783   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a18ef715918dff63b457ec4b6ddd4ae84}{kf\_max\_total\_boost\_factor}};}
+\DoxyCodeLine{784 }
+\DoxyCodeLine{792   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aa897f623221b5fe976a2be0ed2377fa4}{gf\_max\_total\_boost\_factor}};}
+\DoxyCodeLine{793 }
+\DoxyCodeLine{801   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aae24f58760d0eae8806a2ed9bad9751e}{gf\_frame\_max\_boost\_factor}};}
+\DoxyCodeLine{802 }
+\DoxyCodeLine{810   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a962618e5fc695f384f4d1658df65936e}{zm\_factor}};}
+\DoxyCodeLine{811 }
+\DoxyCodeLine{820   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ae280f6e2cf1c137fbaf4b090e3833a41}{rd\_mult\_inter\_qp\_fac}};}
+\DoxyCodeLine{821 }
+\DoxyCodeLine{830   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a0159398aa8030f8c7f145f89c0c6392c}{rd\_mult\_arf\_qp\_fac}};}
+\DoxyCodeLine{831 }
+\DoxyCodeLine{840   \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a371b2c46238dfa8d44f0fa8a4f731591}{rd\_mult\_key\_qp\_fac}};}
+\DoxyCodeLine{841 \} \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\_codec\_enc\_cfg\_t}}; }
+\DoxyCodeLine{848 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__svc__parameters}{vpx\_svc\_parameters}} \{}
+\DoxyCodeLine{849   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_aae494f231727fd9f5feb47b465452509}{max\_quantizers}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}];     }
+\DoxyCodeLine{850   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_a4b32be6e2e6f0c808c4ed3044f3c7ddf}{min\_quantizers}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}];     }
+\DoxyCodeLine{851   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_a79544d65e1b3bb0b71f85b3f2b7167bf}{scaling\_factor\_num}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}]; }
+\DoxyCodeLine{852   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_aaf33b6a09e97e04763b6d10de3899ee4}{scaling\_factor\_den}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}]; }
+\DoxyCodeLine{853   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_a964f63808fb21ead3773d01184ee010c}{speed\_per\_layer}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}];    }
+\DoxyCodeLine{854   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_adf8ca5b4011bf6c0d6248bafc4177190}{temporal\_layering\_mode}};             }
+\DoxyCodeLine{855   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__svc__parameters_ac1653d54efe9b88346fdc0acaacb39b0}{loopfilter\_ctrl}}[\mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\_MAX\_LAYERS}}];    }
+\DoxyCodeLine{856 \} \mbox{\hyperlink{group__encoder_ga525a602e500de9d845c6f55ccc805a6f}{vpx\_svc\_extra\_cfg\_t}};}
+\DoxyCodeLine{857 }
+\DoxyCodeLine{880 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\_codec\_enc\_init\_ver}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx,}
+\DoxyCodeLine{881                                        \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *iface,}
+\DoxyCodeLine{882                                        \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg\_t}} *cfg,}
+\DoxyCodeLine{883                                        \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\_codec\_flags\_t}} flags, \textcolor{keywordtype}{int} ver);}
+\DoxyCodeLine{884 }
+\DoxyCodeLine{889 \textcolor{preprocessor}{\#define vpx\_codec\_enc\_init(ctx, iface, cfg, flags) \(\backslash\)}}
+\DoxyCodeLine{890 \textcolor{preprocessor}{  vpx\_codec\_enc\_init\_ver(ctx, iface, cfg, flags, VPX\_ENCODER\_ABI\_VERSION)}}
+\DoxyCodeLine{891 }
+\DoxyCodeLine{912 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_ga1c0415984a5469687f53613a5471f53d}{vpx\_codec\_enc\_init\_multi\_ver}}(}
+\DoxyCodeLine{913     \mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx, \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *iface, \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg\_t}} *cfg,}
+\DoxyCodeLine{914     \textcolor{keywordtype}{int} num\_enc, \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\_codec\_flags\_t}} flags, \mbox{\hyperlink{structvpx__rational}{vpx\_rational\_t}} *dsf, \textcolor{keywordtype}{int} ver);}
+\DoxyCodeLine{915 }
+\DoxyCodeLine{920 \textcolor{preprocessor}{\#define vpx\_codec\_enc\_init\_multi(ctx, iface, cfg, num\_enc, flags, dsf) \(\backslash\)}}
+\DoxyCodeLine{921 \textcolor{preprocessor}{  vpx\_codec\_enc\_init\_multi\_ver(ctx, iface, cfg, num\_enc, flags, dsf,   \(\backslash\)}}
+\DoxyCodeLine{922 \textcolor{preprocessor}{                               VPX\_ENCODER\_ABI\_VERSION)}}
+\DoxyCodeLine{923 }
+\DoxyCodeLine{943 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_ga9ab8c79623312e9c5d5405d66a788f59}{vpx\_codec\_enc\_config\_default}}(\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *iface,}
+\DoxyCodeLine{944                                              \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg\_t}} *cfg,}
+\DoxyCodeLine{945                                              \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} usage);}
+\DoxyCodeLine{946 }
+\DoxyCodeLine{961 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_gabbc036b1fbc1288485df5562a989da9b}{vpx\_codec\_enc\_config\_set}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx,}
+\DoxyCodeLine{962                                          \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg\_t}} *cfg);}
+\DoxyCodeLine{963 }
+\DoxyCodeLine{975 \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} *\mbox{\hyperlink{group__encoder_gac6f384a63106c702fda0c7caa6a705cb}{vpx\_codec\_get\_global\_headers}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx);}
+\DoxyCodeLine{976 }
+\DoxyCodeLine{978 \textcolor{preprocessor}{\#define VPX\_DL\_REALTIME (1)}}
+\DoxyCodeLine{980 \textcolor{preprocessor}{\#define VPX\_DL\_GOOD\_QUALITY (1000000)}}
+\DoxyCodeLine{982 \textcolor{preprocessor}{\#define VPX\_DL\_BEST\_QUALITY (0)}}
+\DoxyCodeLine{1019 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}{vpx\_codec\_encode}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx, \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img,}
+\DoxyCodeLine{1020                                  \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\_codec\_pts\_t}} pts, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} duration,}
+\DoxyCodeLine{1021                                  \mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\_enc\_frame\_flags\_t}} flags,}
+\DoxyCodeLine{1022                                  \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} deadline);}
+\DoxyCodeLine{1023 }
+\DoxyCodeLine{1067 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__encoder_gae9f8f75978a1ebcf1f358964b55ecb9e}{vpx\_codec\_set\_cx\_data\_buf}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx,}
+\DoxyCodeLine{1068                                           \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__fixed__buf}{vpx\_fixed\_buf\_t}} *buf,}
+\DoxyCodeLine{1069                                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} pad\_before,}
+\DoxyCodeLine{1070                                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} pad\_after);}
+\DoxyCodeLine{1071 }
+\DoxyCodeLine{1095 \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\_codec\_cx\_pkt\_t}} *\mbox{\hyperlink{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}{vpx\_codec\_get\_cx\_data}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx,}
+\DoxyCodeLine{1096                                                 \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\_codec\_iter\_t}} *iter);}
+\DoxyCodeLine{1097 }
+\DoxyCodeLine{1110 \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *\mbox{\hyperlink{group__encoder_ga4a028491afe4e2cfaa7cb772173c7d36}{vpx\_codec\_get\_preview\_frame}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx);}
+\DoxyCodeLine{1111 }
+\DoxyCodeLine{1113 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{1114 \}}
+\DoxyCodeLine{1115 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{1116 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VPX\_ENCODER\_H\_}}
+
+\end{DoxyCode}

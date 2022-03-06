@@ -1,0 +1,169 @@
+\hypertarget{group__vp8}{}\doxysubsection{VP8}
+\label{group__vp8}\index{VP8@{VP8}}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__vp8__encoder}{Web\+M VP8/\+VP9 Encoder}}
+\item 
+\mbox{\hyperlink{group__vp8__decoder}{Web\+M VP8/\+VP9 Decoder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{vp8_8h}{vp8.\+h}}
+\begin{DoxyCompactList}\small\item\em Provides controls common to both the VP8 encoder and decoder. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\+\_\+postproc\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__ref__frame}{vpx\+\_\+ref\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em reference frame data struct \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvp9__ref__frame}{vp9\+\_\+ref\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em VP9 specific reference frame data struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\+\_\+postproc\+\_\+cfg}} \mbox{\hyperlink{group__vp8_ga63451227ec446b9f19a01295df0149ed}{vp8\+\_\+postproc\+\_\+cfg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}} \mbox{\hyperlink{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}{vpx\+\_\+ref\+\_\+frame\+\_\+type\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em reference frame type \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__ref__frame}{vpx\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}{vpx\+\_\+ref\+\_\+frame\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em reference frame data struct \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvp9__ref__frame}{vp9\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}{vp9\+\_\+ref\+\_\+frame\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em VP9 specific reference frame data struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}{vp8\+\_\+com\+\_\+control\+\_\+id}} \{ \newline
+\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}{VP8\+\_\+\+SET\+\_\+\+REFERENCE}} = 1
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}{VP8\+\_\+\+COPY\+\_\+\+REFERENCE}} = 2
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}{VP8\+\_\+\+SET\+\_\+\+POSTPROC}} = 3
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}{VP9\+\_\+\+GET\+\_\+\+REFERENCE}} = 128
+, \newline
+{\bfseries VP8\+\_\+\+COMMON\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+MAX}
+, {\bfseries VP8\+\_\+\+DECODER\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+START} = 256
+ \}
+\begin{DoxyCompactList}\small\item\em Control functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8_ga99557e20eb37826e6792cd8819121770}{vp8\+\_\+postproc\+\_\+level}} \{ \newline
+{\bfseries VP8\+\_\+\+NOFILTERING} = 0
+, {\bfseries VP8\+\_\+\+DEBLOCK} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, {\bfseries VP8\+\_\+\+DEMACROBLOCK} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries VP8\+\_\+\+ADDNOISE} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+, \newline
+{\bfseries VP8\+\_\+\+MFQE} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+ \}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}} \{ {\bfseries VP8\+\_\+\+LAST\+\_\+\+FRAME} = 1
+, {\bfseries VP8\+\_\+\+GOLD\+\_\+\+FRAME} = 2
+, {\bfseries VP8\+\_\+\+ALTR\+\_\+\+FRAME} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em reference frame type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+VP8 is a video compression algorithm that uses motion compensated prediction, Discrete Cosine Transform (DCT) coding of the prediction error signal and context dependent entropy coding techniques based on arithmetic principles. It features\+:
+\begin{DoxyItemize}
+\item YUV 4\+:2\+:0 image format
+\item Macro-\/block based coding (16x16 luma plus two 8x8 chroma)
+\item 1/4 (1/8) pixel accuracy motion compensated prediction
+\item 4x4 DCT transform
+\item 128 level linear quantizer
+\item In loop deblocking filter
+\item Context-\/based entropy coding 
+\end{DoxyItemize}
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__vp8_ga63451227ec446b9f19a01295df0149ed}\label{group__vp8_ga63451227ec446b9f19a01295df0149ed}} 
+\index{VP8@{VP8}!vp8\_postproc\_cfg\_t@{vp8\_postproc\_cfg\_t}}
+\index{vp8\_postproc\_cfg\_t@{vp8\_postproc\_cfg\_t}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vp8\_postproc\_cfg\_t}{vp8\_postproc\_cfg\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\+\_\+postproc\+\_\+cfg}} \mbox{\hyperlink{group__vp8_ga63451227ec446b9f19a01295df0149ed}{vp8\+\_\+postproc\+\_\+cfg\+\_\+t}}}
+
+
+
+post process flags 
+
+This define a structure that describe the post processing settings. For the best objective measure (using the PSNR metric) set post\+\_\+proc\+\_\+flag to VP8\+\_\+\+DEBLOCK and deblocking\+\_\+level to 1. \mbox{\Hypertarget{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}\label{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}} 
+\index{VP8@{VP8}!vpx\_ref\_frame\_type\_t@{vpx\_ref\_frame\_type\_t}}
+\index{vpx\_ref\_frame\_type\_t@{vpx\_ref\_frame\_type\_t}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vpx\_ref\_frame\_type\_t}{vpx\_ref\_frame\_type\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}} \mbox{\hyperlink{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}{vpx\+\_\+ref\+\_\+frame\+\_\+type\+\_\+t}}}
+
+
+
+reference frame type 
+
+The set of macros define the type of VP8 reference frames \mbox{\Hypertarget{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}\label{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}} 
+\index{VP8@{VP8}!vpx\_ref\_frame\_t@{vpx\_ref\_frame\_t}}
+\index{vpx\_ref\_frame\_t@{vpx\_ref\_frame\_t}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vpx\_ref\_frame\_t}{vpx\_ref\_frame\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__ref__frame}{vpx\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}{vpx\+\_\+ref\+\_\+frame\+\_\+t}}}
+
+
+
+reference frame data struct 
+
+Define the data struct to access vp8 reference frames. \mbox{\Hypertarget{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}\label{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}} 
+\index{VP8@{VP8}!vp9\_ref\_frame\_t@{vp9\_ref\_frame\_t}}
+\index{vp9\_ref\_frame\_t@{vp9\_ref\_frame\_t}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vp9\_ref\_frame\_t}{vp9\_ref\_frame\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvp9__ref__frame}{vp9\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}{vp9\+\_\+ref\+\_\+frame\+\_\+t}}}
+
+
+
+VP9 specific reference frame data struct. 
+
+Define the data struct to access vp9 reference frames. 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}\label{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}} 
+\index{VP8@{VP8}!vp8\_com\_control\_id@{vp8\_com\_control\_id}}
+\index{vp8\_com\_control\_id@{vp8\_com\_control\_id}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vp8\_com\_control\_id}{vp8\_com\_control\_id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}{vp8\+\_\+com\+\_\+control\+\_\+id}}}
+
+
+
+Control functions. 
+
+The set of macros define the control functions of VP8 interface \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8\_SET\_REFERENCE@{VP8\_SET\_REFERENCE}!VP8@{VP8}}\index{VP8@{VP8}!VP8\_SET\_REFERENCE@{VP8\_SET\_REFERENCE}}}\mbox{\Hypertarget{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}\label{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}} 
+VP8\+\_\+\+SET\+\_\+\+REFERENCE&pass in an external frame into decoder to be used as reference frame \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8\_COPY\_REFERENCE@{VP8\_COPY\_REFERENCE}!VP8@{VP8}}\index{VP8@{VP8}!VP8\_COPY\_REFERENCE@{VP8\_COPY\_REFERENCE}}}\mbox{\Hypertarget{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}\label{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}} 
+VP8\+\_\+\+COPY\+\_\+\+REFERENCE&get a copy of reference frame from the decoder \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8\_SET\_POSTPROC@{VP8\_SET\_POSTPROC}!VP8@{VP8}}\index{VP8@{VP8}!VP8\_SET\_POSTPROC@{VP8\_SET\_POSTPROC}}}\mbox{\Hypertarget{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}\label{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}} 
+VP8\+\_\+\+SET\+\_\+\+POSTPROC&set the decoder\textquotesingle{}s post processing settings ~\newline
+ \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9\_GET\_REFERENCE@{VP9\_GET\_REFERENCE}!VP8@{VP8}}\index{VP8@{VP8}!VP9\_GET\_REFERENCE@{VP9\_GET\_REFERENCE}}}\mbox{\Hypertarget{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}\label{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}} 
+VP9\+\_\+\+GET\+\_\+\+REFERENCE&get a pointer to a reference frame \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__vp8_ga99557e20eb37826e6792cd8819121770}\label{group__vp8_ga99557e20eb37826e6792cd8819121770}} 
+\index{VP8@{VP8}!vp8\_postproc\_level@{vp8\_postproc\_level}}
+\index{vp8\_postproc\_level@{vp8\_postproc\_level}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vp8\_postproc\_level}{vp8\_postproc\_level}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8_ga99557e20eb37826e6792cd8819121770}{vp8\+\_\+postproc\+\_\+level}}}
+
+
+
+post process flags 
+
+The set of macros define VP8 decoder post processing flags \mbox{\Hypertarget{group__vp8_gad8ab72d8a178a68339dad2987358c331}\label{group__vp8_gad8ab72d8a178a68339dad2987358c331}} 
+\index{VP8@{VP8}!vpx\_ref\_frame\_type@{vpx\_ref\_frame\_type}}
+\index{vpx\_ref\_frame\_type@{vpx\_ref\_frame\_type}!VP8@{VP8}}
+\doxyparagraph{\texorpdfstring{vpx\_ref\_frame\_type}{vpx\_ref\_frame\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}}}
+
+
+
+reference frame type 
+
+The set of macros define the type of VP8 reference frames 

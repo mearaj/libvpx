@@ -1,0 +1,765 @@
+\hypertarget{group__encoder}{}\doxysubsection{Encoder Algorithm Interface}
+\label{group__encoder}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{vpx__encoder_8h}{vpx\+\_\+encoder.\+h}}
+\begin{DoxyCompactList}\small\item\em Describes the encoder algorithm interface to applications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__fixed__buf}{vpx\+\_\+fixed\+\_\+buf}}
+\begin{DoxyCompactList}\small\item\em Generic fixed size buffer structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt}}
+\begin{DoxyCompactList}\small\item\em Encoder output packet. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__codec__enc__output__cx__cb__pair}{vpx\+\_\+codec\+\_\+enc\+\_\+output\+\_\+cx\+\_\+cb\+\_\+pair}}
+\begin{DoxyCompactList}\small\item\em Callback function pointer / user data pair storage. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}}
+\begin{DoxyCompactList}\small\item\em Rational Number. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em Encoder configuration structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__parameters}{vpx\+\_\+svc\+\_\+parameters}}
+\begin{DoxyCompactList}\small\item\em vp9 svc extra configure parameters \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga684b48cb6e47a258247637186557eb19}{VPX\+\_\+\+TS\+\_\+\+MAX\+\_\+\+PERIODICITY}}~16
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga2715ac3dd8bf2f5438c4bbfc82788eb2}{VPX\+\_\+\+TS\+\_\+\+MAX\+\_\+\+LAYERS}}~5
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}{VPX\+\_\+\+MAX\+\_\+\+LAYERS}}~12
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\+\_\+\+SS\+\_\+\+MAX\+\_\+\+LAYERS}}~5
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga8324b8c1ebf8a80253d544584f9439eb}{VPX\+\_\+\+SS\+\_\+\+DEFAULT\+\_\+\+LAYERS}}~1
+\item 
+\mbox{\Hypertarget{group__encoder_gaa4f0b52293c08ba672429c3a03648b9d}\label{group__encoder_gaa4f0b52293c08ba672429c3a03648b9d}} 
+\#define {\bfseries VPX\+\_\+\+ENCODER\+\_\+\+ABI\+\_\+\+VERSION}
+\begin{DoxyCompactList}\small\item\em Current ABI version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__encoder_ga398803f408d6f71aae730b5ee7793e1c}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+PSNR}}~0x10000
+\begin{DoxyCompactList}\small\item\em Encoder capabilities bitfield. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__encoder_ga69768adb51faa28d98870cbc77e9ea93}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+OUTPUT\+\_\+\+PARTITION}}~0x20000
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga57bb9eb1881c7e4bf86580660a5e40a0}{VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+PSNR}}~0x10000
+\begin{DoxyCompactList}\small\item\em Initialization-\/time Feature Enabling. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_gac26cd92b3719953aa0fbb0ff8c1d9c8d}\label{group__encoder_gac26cd92b3719953aa0fbb0ff8c1d9c8d}} 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+OUTPUT\+\_\+\+PARTITION}~0x20000
+\begin{DoxyCompactList}\small\item\em Make the encoder output one partition at a time. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__encoder_ga69576ef94099286853e64aee29661608}{VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+HIGHBITDEPTH}}~0x40000
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga7a896eb3bc74f33419e6a9812c60e4c9}{VPX\+\_\+\+FRAME\+\_\+\+IS\+\_\+\+KEY}}~0x1
+\item 
+\mbox{\Hypertarget{group__encoder_gab899503032065a30ac6864b4c89626a9}\label{group__encoder_gab899503032065a30ac6864b4c89626a9}} 
+\#define {\bfseries VPX\+\_\+\+FRAME\+\_\+\+IS\+\_\+\+DROPPABLE}~0x2
+\begin{DoxyCompactList}\small\item\em frame can be dropped without affecting the stream (no future frame depends on this one) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga060d7e881d249bdb6e1a29b42e559685}\label{group__encoder_ga060d7e881d249bdb6e1a29b42e559685}} 
+\#define {\bfseries VPX\+\_\+\+FRAME\+\_\+\+IS\+\_\+\+INVISIBLE}~0x4
+\begin{DoxyCompactList}\small\item\em frame should be decoded but will not be shown \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_gafb9f7dbf9b8a764c521d8b12c0e6959d}\label{group__encoder_gafb9f7dbf9b8a764c521d8b12c0e6959d}} 
+\#define {\bfseries VPX\+\_\+\+FRAME\+\_\+\+IS\+\_\+\+FRAGMENT}~0x8
+\begin{DoxyCompactList}\small\item\em this is a fragment of the encoded frame \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga651e80c00662995ac9151bb7433db3e5}\label{group__encoder_ga651e80c00662995ac9151bb7433db3e5}} 
+\#define {\bfseries VPX\+\_\+\+ERROR\+\_\+\+RESILIENT\+\_\+\+DEFAULT}~0x1
+\begin{DoxyCompactList}\small\item\em Improve resiliency against losses of whole frames. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_gac9b4ca99f12504d951589fac6854fc09}\label{group__encoder_gac9b4ca99f12504d951589fac6854fc09}} 
+\#define {\bfseries VPX\+\_\+\+ERROR\+\_\+\+RESILIENT\+\_\+\+PARTITIONS}~0x2
+\begin{DoxyCompactList}\small\item\em The frame partitions are independently decodable by the bool decoder, meaning that partitions can be decoded even though earlier partitions have been lost. Note that intra prediction is still done over the partition boundary. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__encoder_ga4c4f4e3cbb5225d2c6c050e2d1e948fa}{VPX\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+KF}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{group__encoder_ga3d490a2a9a6acd7c9ef82a603155f3cf}{vpx\+\_\+codec\+\_\+enc\+\_\+init}}(ctx,  iface,  cfg,  flags)~  \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver}}(ctx, iface, cfg, flags, \mbox{\hyperlink{group__encoder_gaa4f0b52293c08ba672429c3a03648b9d}{VPX\+\_\+\+ENCODER\+\_\+\+ABI\+\_\+\+VERSION}})
+\begin{DoxyCompactList}\small\item\em Convenience macro for \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver()}} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__encoder_gad7ae1d930cf110d6fe70beafeacfd9c7}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi}}(ctx,  iface,  cfg,  num\+\_\+enc,  flags,  dsf)
+\begin{DoxyCompactList}\small\item\em Convenience macro for \mbox{\hyperlink{group__encoder_ga1c0415984a5469687f53613a5471f53d}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi\+\_\+ver()}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga04253cc9ec1146d72fa8bb86bcf32144}\label{group__encoder_ga04253cc9ec1146d72fa8bb86bcf32144}} 
+\#define {\bfseries VPX\+\_\+\+DL\+\_\+\+REALTIME}~(1)
+\begin{DoxyCompactList}\small\item\em deadline parameter analogous to VPx REALTIME mode. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga5d00a9f9e10b9f49ca91e72c1f01c9fd}\label{group__encoder_ga5d00a9f9e10b9f49ca91e72c1f01c9fd}} 
+\#define {\bfseries VPX\+\_\+\+DL\+\_\+\+GOOD\+\_\+\+QUALITY}~(1000000)
+\begin{DoxyCompactList}\small\item\em deadline parameter analogous to VPx GOOD QUALITY mode. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_gab350573bea112f2fdf8e5677db3ac0da}\label{group__encoder_gab350573bea112f2fdf8e5677db3ac0da}} 
+\#define {\bfseries VPX\+\_\+\+DL\+\_\+\+BEST\+\_\+\+QUALITY}~(0)
+\begin{DoxyCompactList}\small\item\em deadline parameter analogous to VPx BEST QUALITY mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvpx__fixed__buf}{vpx\+\_\+fixed\+\_\+buf}} \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Generic fixed size buffer structure. \end{DoxyCompactList}\item 
+typedef int64\+\_\+t \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\+\_\+codec\+\_\+pts\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Time Stamp Type. \end{DoxyCompactList}\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}{vpx\+\_\+codec\+\_\+frame\+\_\+flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Compressed Frame Flags. \end{DoxyCompactList}\item 
+typedef uint32\+\_\+t \mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\+\_\+codec\+\_\+er\+\_\+flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Error Resilient flags. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt}} \mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Encoder output packet. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__encoder_ga2ced5dac1f5d963a38bd4d2a05ec8bd9}{vpx\+\_\+codec\+\_\+enc\+\_\+output\+\_\+cx\+\_\+pkt\+\_\+cb\+\_\+fn\+\_\+t}}) (\mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}} $\ast$pkt, void $\ast$user\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Encoder return output buffer callback. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga6dbae227a256ab95e73f8b80db1ab66f}\label{group__encoder_ga6dbae227a256ab95e73f8b80db1ab66f}} 
+typedef struct \mbox{\hyperlink{structvpx__codec__enc__output__cx__cb__pair}{vpx\+\_\+codec\+\_\+enc\+\_\+output\+\_\+cx\+\_\+cb\+\_\+pair}} {\bfseries vpx\+\_\+codec\+\_\+priv\+\_\+output\+\_\+cx\+\_\+pkt\+\_\+cb\+\_\+pair\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Callback function pointer / user data pair storage. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}} \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Rational Number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__encoder_ga40c5a87f3da5d898a0fec0efd182d682}\label{group__encoder_ga40c5a87f3da5d898a0fec0efd182d682}} 
+typedef enum \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\+\_\+enc\+\_\+pass}} {\bfseries vpx\+\_\+enc\+\_\+pass}
+\begin{DoxyCompactList}\small\item\em Multi-\/pass Encoding Pass. \end{DoxyCompactList}\item 
+typedef long \mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\+\_\+enc\+\_\+frame\+\_\+flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Encoded Frame Flags. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg}} \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Encoder configuration structure. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__parameters}{vpx\+\_\+svc\+\_\+parameters}} \mbox{\hyperlink{group__encoder_ga525a602e500de9d845c6f55ccc805a6f}{vpx\+\_\+svc\+\_\+extra\+\_\+cfg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc extra configure parameters \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+kind}} \{ \newline
+\mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a2261aae5594289400e812fb1e6b6b0cc}{VPX\+\_\+\+CODEC\+\_\+\+CX\+\_\+\+FRAME\+\_\+\+PKT}}
+, \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a77cd8b95d9891bcce36117f5f31994fd}{VPX\+\_\+\+CODEC\+\_\+\+STATS\+\_\+\+PKT}}
+, \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a9953278e8a3abc9764981352b1c36d9d}{VPX\+\_\+\+CODEC\+\_\+\+FPMB\+\_\+\+STATS\+\_\+\+PKT}}
+, \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a11eefa1328e6d22eb7c844645a260628}{VPX\+\_\+\+CODEC\+\_\+\+PSNR\+\_\+\+PKT}}
+, \newline
+\mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a7b54c122969397b1926de853d28b3c80}{VPX\+\_\+\+CODEC\+\_\+\+CUSTOM\+\_\+\+PKT}} = 256
+ \}
+\begin{DoxyCompactList}\small\item\em Encoder output packet variants. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\+\_\+enc\+\_\+pass}} \{ \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa7b6943a41868e8e26a77e9500f139ca1}{VPX\+\_\+\+RC\+\_\+\+ONE\+\_\+\+PASS}}
+, \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493faa0765945345b160905f3b762986dae3b}{VPX\+\_\+\+RC\+\_\+\+FIRST\+\_\+\+PASS}}
+, \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa65da543b956d6a9b1f301ab8cc90d3a7}{VPX\+\_\+\+RC\+\_\+\+LAST\+\_\+\+PASS}}
+ \}
+\begin{DoxyCompactList}\small\item\em Multi-\/pass Encoding Pass. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\+\_\+rc\+\_\+mode}} \{ \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2ab8fbe4441ed3f31a167c8194e8a64f87}{VPX\+\_\+\+VBR}}
+, \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a8b02853cb35790d60cc171a11f6c268a}{VPX\+\_\+\+CBR}}
+, \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5f2fd02b55c67d62bfd79380bcb03f63}{VPX\+\_\+\+CQ}}
+, \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5ebb5564dc5e8ec99d3c6221d89b8858}{VPX\+\_\+Q}}
+ \}
+\begin{DoxyCompactList}\small\item\em Rate control mode. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\+\_\+kf\+\_\+mode}} \{ \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40a6bd87eea515c65661a5241a0f01e44a6}{VPX\+\_\+\+KF\+\_\+\+FIXED}}
+, \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40ab1b423e78f72e77d2dce755d6c9652f8}{VPX\+\_\+\+KF\+\_\+\+AUTO}}
+, \mbox{\hyperlink{group__encoder_gga9f461802aa4db35c04a8b23837987f40a56513f60cbf3434ca0092173005d0ab2}{VPX\+\_\+\+KF\+\_\+\+DISABLED}} = 0
+ \}
+\begin{DoxyCompactList}\small\item\em Keyframe placement mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface, const \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$cfg, \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}} flags, int ver)
+\begin{DoxyCompactList}\small\item\em Initialize an encoder instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_ga1c0415984a5469687f53613a5471f53d}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi\+\_\+ver}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface, \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$cfg, int num\+\_\+enc, \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}} flags, \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} $\ast$dsf, int ver)
+\begin{DoxyCompactList}\small\item\em Initialize multi-\/encoder instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_ga9ab8c79623312e9c5d5405d66a788f59}{vpx\+\_\+codec\+\_\+enc\+\_\+config\+\_\+default}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface, \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$cfg, unsigned int usage)
+\begin{DoxyCompactList}\small\item\em Get a default configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_gabbc036b1fbc1288485df5562a989da9b}{vpx\+\_\+codec\+\_\+enc\+\_\+config\+\_\+set}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, const \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$cfg)
+\begin{DoxyCompactList}\small\item\em Set or change configuration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} $\ast$ \mbox{\hyperlink{group__encoder_gac6f384a63106c702fda0c7caa6a705cb}{vpx\+\_\+codec\+\_\+get\+\_\+global\+\_\+headers}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Get global stream headers. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}{vpx\+\_\+codec\+\_\+encode}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img, \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\+\_\+codec\+\_\+pts\+\_\+t}} pts, unsigned long duration, \mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\+\_\+enc\+\_\+frame\+\_\+flags\+\_\+t}} flags, unsigned long deadline)
+\begin{DoxyCompactList}\small\item\em Encode a frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__encoder_gae9f8f75978a1ebcf1f358964b55ecb9e}{vpx\+\_\+codec\+\_\+set\+\_\+cx\+\_\+data\+\_\+buf}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, const \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} $\ast$buf, unsigned int pad\+\_\+before, unsigned int pad\+\_\+after)
+\begin{DoxyCompactList}\small\item\em Set compressed data output buffer. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}} $\ast$ \mbox{\hyperlink{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}{vpx\+\_\+codec\+\_\+get\+\_\+cx\+\_\+data}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}} $\ast$iter)
+\begin{DoxyCompactList}\small\item\em Encoded data iterator. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ \mbox{\hyperlink{group__encoder_ga4a028491afe4e2cfaa7cb772173c7d36}{vpx\+\_\+codec\+\_\+get\+\_\+preview\+\_\+frame}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Get Preview Frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+This abstraction allows applications using this encoder to easily support multiple video formats with minimal code duplication. This section describes the interface common to all encoders. 
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__encoder_ga684b48cb6e47a258247637186557eb19}\label{group__encoder_ga684b48cb6e47a258247637186557eb19}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_TS\_MAX\_PERIODICITY@{VPX\_TS\_MAX\_PERIODICITY}}
+\index{VPX\_TS\_MAX\_PERIODICITY@{VPX\_TS\_MAX\_PERIODICITY}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_TS\_MAX\_PERIODICITY}{VPX\_TS\_MAX\_PERIODICITY}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+TS\+\_\+\+MAX\+\_\+\+PERIODICITY~16}
+
+Temporal Scalability\+: Maximum length of the sequence defining frame layer membership \mbox{\Hypertarget{group__encoder_ga2715ac3dd8bf2f5438c4bbfc82788eb2}\label{group__encoder_ga2715ac3dd8bf2f5438c4bbfc82788eb2}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_TS\_MAX\_LAYERS@{VPX\_TS\_MAX\_LAYERS}}
+\index{VPX\_TS\_MAX\_LAYERS@{VPX\_TS\_MAX\_LAYERS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_TS\_MAX\_LAYERS}{VPX\_TS\_MAX\_LAYERS}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+TS\+\_\+\+MAX\+\_\+\+LAYERS~5}
+
+Temporal Scalability\+: Maximum number of coding layers \mbox{\Hypertarget{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}\label{group__encoder_ga6edf57208cc368274e905c4d87dccf2e}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_MAX\_LAYERS@{VPX\_MAX\_LAYERS}}
+\index{VPX\_MAX\_LAYERS@{VPX\_MAX\_LAYERS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_MAX\_LAYERS}{VPX\_MAX\_LAYERS}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+MAX\+\_\+\+LAYERS~12}
+
+Temporal+\+Spatial Scalability\+: Maximum number of coding layers \mbox{\Hypertarget{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}\label{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_SS\_MAX\_LAYERS@{VPX\_SS\_MAX\_LAYERS}}
+\index{VPX\_SS\_MAX\_LAYERS@{VPX\_SS\_MAX\_LAYERS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_SS\_MAX\_LAYERS}{VPX\_SS\_MAX\_LAYERS}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+SS\+\_\+\+MAX\+\_\+\+LAYERS~5}
+
+Spatial Scalability\+: Maximum number of coding layers \mbox{\Hypertarget{group__encoder_ga8324b8c1ebf8a80253d544584f9439eb}\label{group__encoder_ga8324b8c1ebf8a80253d544584f9439eb}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_SS\_DEFAULT\_LAYERS@{VPX\_SS\_DEFAULT\_LAYERS}}
+\index{VPX\_SS\_DEFAULT\_LAYERS@{VPX\_SS\_DEFAULT\_LAYERS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_SS\_DEFAULT\_LAYERS}{VPX\_SS\_DEFAULT\_LAYERS}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+SS\+\_\+\+DEFAULT\+\_\+\+LAYERS~1}
+
+Spatial Scalability\+: Default number of coding layers \mbox{\Hypertarget{group__encoder_ga398803f408d6f71aae730b5ee7793e1c}\label{group__encoder_ga398803f408d6f71aae730b5ee7793e1c}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_CAP\_PSNR@{VPX\_CODEC\_CAP\_PSNR}}
+\index{VPX\_CODEC\_CAP\_PSNR@{VPX\_CODEC\_CAP\_PSNR}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_CAP\_PSNR}{VPX\_CODEC\_CAP\_PSNR}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+PSNR~0x10000}
+
+
+
+Encoder capabilities bitfield. 
+
+Each encoder advertises the capabilities it supports as part of its \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} interface structure. Capabilities are extra interfaces or functionality, and are not required to be supported by an encoder.
+
+The available flags are specified by VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+$\ast$ defines. Can issue PSNR packets \mbox{\Hypertarget{group__encoder_ga69768adb51faa28d98870cbc77e9ea93}\label{group__encoder_ga69768adb51faa28d98870cbc77e9ea93}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_CAP\_OUTPUT\_PARTITION@{VPX\_CODEC\_CAP\_OUTPUT\_PARTITION}}
+\index{VPX\_CODEC\_CAP\_OUTPUT\_PARTITION@{VPX\_CODEC\_CAP\_OUTPUT\_PARTITION}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_CAP\_OUTPUT\_PARTITION}{VPX\_CODEC\_CAP\_OUTPUT\_PARTITION}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+OUTPUT\+\_\+\+PARTITION~0x20000}
+
+Can output one partition at a time. Each partition is returned in its own VPX\+\_\+\+CODEC\+\_\+\+CX\+\_\+\+FRAME\+\_\+\+PKT, with the FRAME\+\_\+\+IS\+\_\+\+FRAGMENT flag set for every partition but the last. In this mode all frames are always returned partition by partition. \mbox{\Hypertarget{group__encoder_ga57bb9eb1881c7e4bf86580660a5e40a0}\label{group__encoder_ga57bb9eb1881c7e4bf86580660a5e40a0}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_USE\_PSNR@{VPX\_CODEC\_USE\_PSNR}}
+\index{VPX\_CODEC\_USE\_PSNR@{VPX\_CODEC\_USE\_PSNR}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_USE\_PSNR}{VPX\_CODEC\_USE\_PSNR}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+PSNR~0x10000}
+
+
+
+Initialization-\/time Feature Enabling. 
+
+Certain codec features must be known at initialization time, to allow for proper memory allocation.
+
+The available flags are specified by VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+$\ast$ defines. Calculate PSNR on each frame \mbox{\Hypertarget{group__encoder_ga69576ef94099286853e64aee29661608}\label{group__encoder_ga69576ef94099286853e64aee29661608}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_USE\_HIGHBITDEPTH@{VPX\_CODEC\_USE\_HIGHBITDEPTH}}
+\index{VPX\_CODEC\_USE\_HIGHBITDEPTH@{VPX\_CODEC\_USE\_HIGHBITDEPTH}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_USE\_HIGHBITDEPTH}{VPX\_CODEC\_USE\_HIGHBITDEPTH}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+HIGHBITDEPTH~0x40000}
+
+Use high bitdepth \mbox{\Hypertarget{group__encoder_ga7a896eb3bc74f33419e6a9812c60e4c9}\label{group__encoder_ga7a896eb3bc74f33419e6a9812c60e4c9}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_FRAME\_IS\_KEY@{VPX\_FRAME\_IS\_KEY}}
+\index{VPX\_FRAME\_IS\_KEY@{VPX\_FRAME\_IS\_KEY}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_FRAME\_IS\_KEY}{VPX\_FRAME\_IS\_KEY}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+FRAME\+\_\+\+IS\+\_\+\+KEY~0x1}
+
+frame is the start of a GOP \mbox{\Hypertarget{group__encoder_ga4c4f4e3cbb5225d2c6c050e2d1e948fa}\label{group__encoder_ga4c4f4e3cbb5225d2c6c050e2d1e948fa}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_EFLAG\_FORCE\_KF@{VPX\_EFLAG\_FORCE\_KF}}
+\index{VPX\_EFLAG\_FORCE\_KF@{VPX\_EFLAG\_FORCE\_KF}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_EFLAG\_FORCE\_KF}{VPX\_EFLAG\_FORCE\_KF}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+KF~(1 $<$$<$ 0)}
+
+Force this frame to be a keyframe \mbox{\Hypertarget{group__encoder_ga3d490a2a9a6acd7c9ef82a603155f3cf}\label{group__encoder_ga3d490a2a9a6acd7c9ef82a603155f3cf}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_init@{vpx\_codec\_enc\_init}}
+\index{vpx\_codec\_enc\_init@{vpx\_codec\_enc\_init}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_init}{vpx\_codec\_enc\_init}}
+{\footnotesize\ttfamily \#define vpx\+\_\+codec\+\_\+enc\+\_\+init(\begin{DoxyParamCaption}\item[{}]{ctx,  }\item[{}]{iface,  }\item[{}]{cfg,  }\item[{}]{flags }\end{DoxyParamCaption})~  \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver}}(ctx, iface, cfg, flags, \mbox{\hyperlink{group__encoder_gaa4f0b52293c08ba672429c3a03648b9d}{VPX\+\_\+\+ENCODER\+\_\+\+ABI\+\_\+\+VERSION}})}
+
+
+
+Convenience macro for \mbox{\hyperlink{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver()}} 
+
+Ensures the ABI version parameter is properly set. \mbox{\Hypertarget{group__encoder_gad7ae1d930cf110d6fe70beafeacfd9c7}\label{group__encoder_gad7ae1d930cf110d6fe70beafeacfd9c7}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_init\_multi@{vpx\_codec\_enc\_init\_multi}}
+\index{vpx\_codec\_enc\_init\_multi@{vpx\_codec\_enc\_init\_multi}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_init\_multi}{vpx\_codec\_enc\_init\_multi}}
+{\footnotesize\ttfamily \#define vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi(\begin{DoxyParamCaption}\item[{}]{ctx,  }\item[{}]{iface,  }\item[{}]{cfg,  }\item[{}]{num\+\_\+enc,  }\item[{}]{flags,  }\item[{}]{dsf }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{group__encoder_ga1c0415984a5469687f53613a5471f53d}{vpx\_codec\_enc\_init\_multi\_ver}}(ctx, iface, cfg, num\_enc, flags, dsf,   \(\backslash\)}
+\DoxyCodeLine{                               \mbox{\hyperlink{group__encoder_gaa4f0b52293c08ba672429c3a03648b9d}{VPX\_ENCODER\_ABI\_VERSION}})}
+
+\end{DoxyCode}
+
+
+Convenience macro for \mbox{\hyperlink{group__encoder_ga1c0415984a5469687f53613a5471f53d}{vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi\+\_\+ver()}} 
+
+Ensures the ABI version parameter is properly set. 
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}\label{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_fixed\_buf\_t@{vpx\_fixed\_buf\_t}}
+\index{vpx\_fixed\_buf\_t@{vpx\_fixed\_buf\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_fixed\_buf\_t}{vpx\_fixed\_buf\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__fixed__buf}{vpx\+\_\+fixed\+\_\+buf}} \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}}}
+
+
+
+Generic fixed size buffer structure. 
+
+This structure is able to hold a reference to any fixed size buffer. alias for struct \mbox{\hyperlink{structvpx__fixed__buf}{vpx\+\_\+fixed\+\_\+buf}} \mbox{\Hypertarget{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}\label{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_pts\_t@{vpx\_codec\_pts\_t}}
+\index{vpx\_codec\_pts\_t@{vpx\_codec\_pts\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_pts\_t}{vpx\_codec\_pts\_t}}
+{\footnotesize\ttfamily typedef int64\+\_\+t \mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\+\_\+codec\+\_\+pts\+\_\+t}}}
+
+
+
+Time Stamp Type. 
+
+An integer, which when multiplied by the stream\textquotesingle{}s time base, provides the absolute time of a sample. \mbox{\Hypertarget{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}\label{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_frame\_flags\_t@{vpx\_codec\_frame\_flags\_t}}
+\index{vpx\_codec\_frame\_flags\_t@{vpx\_codec\_frame\_flags\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_frame\_flags\_t}{vpx\_codec\_frame\_flags\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{group__encoder_gaac8ee319b9a6175f6946f59437c7ae4b}{vpx\+\_\+codec\+\_\+frame\+\_\+flags\+\_\+t}}}
+
+
+
+Compressed Frame Flags. 
+
+This type represents a bitfield containing information about a compressed frame that may be useful to an application. The most significant 16 bits can be used by an algorithm to provide additional detail, for example to support frame types that are codec specific (MPEG-\/1 D-\/frames for example) \mbox{\Hypertarget{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}\label{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_er\_flags\_t@{vpx\_codec\_er\_flags\_t}}
+\index{vpx\_codec\_er\_flags\_t@{vpx\_codec\_er\_flags\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_er\_flags\_t}{vpx\_codec\_er\_flags\_t}}
+{\footnotesize\ttfamily typedef uint32\+\_\+t \mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\+\_\+codec\+\_\+er\+\_\+flags\+\_\+t}}}
+
+
+
+Error Resilient flags. 
+
+These flags define which error resilient features to enable in the encoder. The flags are specified through the \mbox{\hyperlink{structvpx__codec__enc__cfg_a4e17173b66ca0d7dfba9978625d7ba76}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+error\+\_\+resilient}} variable. \mbox{\Hypertarget{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}\label{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_cx\_pkt\_t@{vpx\_codec\_cx\_pkt\_t}}
+\index{vpx\_codec\_cx\_pkt\_t@{vpx\_codec\_cx\_pkt\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_cx\_pkt\_t}{vpx\_codec\_cx\_pkt\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt}} \mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}}}
+
+
+
+Encoder output packet. 
+
+This structure contains the different kinds of output data the encoder may produce while compressing a frame. alias for struct \mbox{\hyperlink{structvpx__codec__cx__pkt}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt}} \mbox{\Hypertarget{group__encoder_ga2ced5dac1f5d963a38bd4d2a05ec8bd9}\label{group__encoder_ga2ced5dac1f5d963a38bd4d2a05ec8bd9}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t@{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}}
+\index{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t@{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}{vpx\_codec\_enc\_output\_cx\_pkt\_cb\_fn\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ vpx\+\_\+codec\+\_\+enc\+\_\+output\+\_\+cx\+\_\+pkt\+\_\+cb\+\_\+fn\+\_\+t) (\mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}} $\ast$pkt, void $\ast$user\+\_\+data)}
+
+
+
+Encoder return output buffer callback. 
+
+This callback function, when registered, returns with packets when each spatial layer is encoded. \mbox{\Hypertarget{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}\label{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_rational\_t@{vpx\_rational\_t}}
+\index{vpx\_rational\_t@{vpx\_rational\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_rational\_t}{vpx\_rational\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}} \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}}}
+
+
+
+Rational Number. 
+
+This structure holds a fractional value. alias for struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}} \mbox{\Hypertarget{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}\label{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_enc\_frame\_flags\_t@{vpx\_enc\_frame\_flags\_t}}
+\index{vpx\_enc\_frame\_flags\_t@{vpx\_enc\_frame\_flags\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_enc\_frame\_flags\_t}{vpx\_enc\_frame\_flags\_t}}
+{\footnotesize\ttfamily typedef long \mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\+\_\+enc\+\_\+frame\+\_\+flags\+\_\+t}}}
+
+
+
+Encoded Frame Flags. 
+
+This type indicates a bitfield to be passed to \mbox{\hyperlink{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}{vpx\+\_\+codec\+\_\+encode()}}, defining per-\/frame boolean values. By convention, bits common to all codecs will be named VPX\+\_\+\+EFLAG\+\_\+$\ast$, and bits specific to an algorithm will be named /algo/\+\_\+eflag\+\_\+$\ast$. The lower order 16 bits are reserved for common use. \mbox{\Hypertarget{group__encoder_ga246fa1661bea01a5ae609bce827cce25}\label{group__encoder_ga246fa1661bea01a5ae609bce827cce25}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_cfg\_t@{vpx\_codec\_enc\_cfg\_t}}
+\index{vpx\_codec\_enc\_cfg\_t@{vpx\_codec\_enc\_cfg\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_cfg\_t}{vpx\_codec\_enc\_cfg\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg}} \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}}}
+
+
+
+Encoder configuration structure. 
+
+This structure contains the encoder settings that have common representations across all codecs. This doesn\textquotesingle{}t imply that all codecs support all features, however. alias for struct \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg}} \mbox{\Hypertarget{group__encoder_ga525a602e500de9d845c6f55ccc805a6f}\label{group__encoder_ga525a602e500de9d845c6f55ccc805a6f}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_svc\_extra\_cfg\_t@{vpx\_svc\_extra\_cfg\_t}}
+\index{vpx\_svc\_extra\_cfg\_t@{vpx\_svc\_extra\_cfg\_t}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_svc\_extra\_cfg\_t}{vpx\_svc\_extra\_cfg\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__svc__parameters}{vpx\+\_\+svc\+\_\+parameters}} \mbox{\hyperlink{group__encoder_ga525a602e500de9d845c6f55ccc805a6f}{vpx\+\_\+svc\+\_\+extra\+\_\+cfg\+\_\+t}}}
+
+
+
+vp9 svc extra configure parameters 
+
+This defines max/min quantizers and scale factors for each layer 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__encoder_ga28a79375279536526552af3a83d2ed72}\label{group__encoder_ga28a79375279536526552af3a83d2ed72}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_cx\_pkt\_kind@{vpx\_codec\_cx\_pkt\_kind}}
+\index{vpx\_codec\_cx\_pkt\_kind@{vpx\_codec\_cx\_pkt\_kind}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_cx\_pkt\_kind}{vpx\_codec\_cx\_pkt\_kind}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+kind}}}
+
+
+
+Encoder output packet variants. 
+
+This enumeration lists the different kinds of data packets that can be returned by calls to \mbox{\hyperlink{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}{vpx\+\_\+codec\+\_\+get\+\_\+cx\+\_\+data()}}. Algorithms \mbox{\hyperlink{rfc2119_MAY}{MAY}} extend this list to provide additional functionality. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_CX\_FRAME\_PKT@{VPX\_CODEC\_CX\_FRAME\_PKT}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_CX\_FRAME\_PKT@{VPX\_CODEC\_CX\_FRAME\_PKT}}}\mbox{\Hypertarget{group__encoder_gga28a79375279536526552af3a83d2ed72a2261aae5594289400e812fb1e6b6b0cc}\label{group__encoder_gga28a79375279536526552af3a83d2ed72a2261aae5594289400e812fb1e6b6b0cc}} 
+VPX\+\_\+\+CODEC\+\_\+\+CX\+\_\+\+FRAME\+\_\+\+PKT&Compressed video frame \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_STATS\_PKT@{VPX\_CODEC\_STATS\_PKT}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_STATS\_PKT@{VPX\_CODEC\_STATS\_PKT}}}\mbox{\Hypertarget{group__encoder_gga28a79375279536526552af3a83d2ed72a77cd8b95d9891bcce36117f5f31994fd}\label{group__encoder_gga28a79375279536526552af3a83d2ed72a77cd8b95d9891bcce36117f5f31994fd}} 
+VPX\+\_\+\+CODEC\+\_\+\+STATS\+\_\+\+PKT&Two-\/pass statistics for this frame \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_FPMB\_STATS\_PKT@{VPX\_CODEC\_FPMB\_STATS\_PKT}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_FPMB\_STATS\_PKT@{VPX\_CODEC\_FPMB\_STATS\_PKT}}}\mbox{\Hypertarget{group__encoder_gga28a79375279536526552af3a83d2ed72a9953278e8a3abc9764981352b1c36d9d}\label{group__encoder_gga28a79375279536526552af3a83d2ed72a9953278e8a3abc9764981352b1c36d9d}} 
+VPX\+\_\+\+CODEC\+\_\+\+FPMB\+\_\+\+STATS\+\_\+\+PKT&first pass mb statistics for this frame \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_PSNR\_PKT@{VPX\_CODEC\_PSNR\_PKT}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_PSNR\_PKT@{VPX\_CODEC\_PSNR\_PKT}}}\mbox{\Hypertarget{group__encoder_gga28a79375279536526552af3a83d2ed72a11eefa1328e6d22eb7c844645a260628}\label{group__encoder_gga28a79375279536526552af3a83d2ed72a11eefa1328e6d22eb7c844645a260628}} 
+VPX\+\_\+\+CODEC\+\_\+\+PSNR\+\_\+\+PKT&PSNR statistics for this frame \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_CUSTOM\_PKT@{VPX\_CODEC\_CUSTOM\_PKT}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CODEC\_CUSTOM\_PKT@{VPX\_CODEC\_CUSTOM\_PKT}}}\mbox{\Hypertarget{group__encoder_gga28a79375279536526552af3a83d2ed72a7b54c122969397b1926de853d28b3c80}\label{group__encoder_gga28a79375279536526552af3a83d2ed72a7b54c122969397b1926de853d28b3c80}} 
+VPX\+\_\+\+CODEC\+\_\+\+CUSTOM\+\_\+\+PKT&Algorithm extensions ~\newline
+ \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}\label{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_enc\_pass@{vpx\_enc\_pass}}
+\index{vpx\_enc\_pass@{vpx\_enc\_pass}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_enc\_pass}{vpx\_enc\_pass}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\+\_\+enc\+\_\+pass}}}
+
+
+
+Multi-\/pass Encoding Pass. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_RC\_ONE\_PASS@{VPX\_RC\_ONE\_PASS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_RC\_ONE\_PASS@{VPX\_RC\_ONE\_PASS}}}\mbox{\Hypertarget{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa7b6943a41868e8e26a77e9500f139ca1}\label{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa7b6943a41868e8e26a77e9500f139ca1}} 
+VPX\+\_\+\+RC\+\_\+\+ONE\+\_\+\+PASS&Single pass mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_RC\_FIRST\_PASS@{VPX\_RC\_FIRST\_PASS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_RC\_FIRST\_PASS@{VPX\_RC\_FIRST\_PASS}}}\mbox{\Hypertarget{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493faa0765945345b160905f3b762986dae3b}\label{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493faa0765945345b160905f3b762986dae3b}} 
+VPX\+\_\+\+RC\+\_\+\+FIRST\+\_\+\+PASS&First pass of multi-\/pass mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_RC\_LAST\_PASS@{VPX\_RC\_LAST\_PASS}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_RC\_LAST\_PASS@{VPX\_RC\_LAST\_PASS}}}\mbox{\Hypertarget{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa65da543b956d6a9b1f301ab8cc90d3a7}\label{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa65da543b956d6a9b1f301ab8cc90d3a7}} 
+VPX\+\_\+\+RC\+\_\+\+LAST\+\_\+\+PASS&Final pass of multi-\/pass mode \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}\label{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_rc\_mode@{vpx\_rc\_mode}}
+\index{vpx\_rc\_mode@{vpx\_rc\_mode}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_rc\_mode}{vpx\_rc\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\+\_\+rc\+\_\+mode}}}
+
+
+
+Rate control mode. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_VBR@{VPX\_VBR}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_VBR@{VPX\_VBR}}}\mbox{\Hypertarget{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2ab8fbe4441ed3f31a167c8194e8a64f87}\label{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2ab8fbe4441ed3f31a167c8194e8a64f87}} 
+VPX\+\_\+\+VBR&Variable Bit Rate (VBR) mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CBR@{VPX\_CBR}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CBR@{VPX\_CBR}}}\mbox{\Hypertarget{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a8b02853cb35790d60cc171a11f6c268a}\label{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a8b02853cb35790d60cc171a11f6c268a}} 
+VPX\+\_\+\+CBR&Constant Bit Rate (CBR) mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CQ@{VPX\_CQ}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_CQ@{VPX\_CQ}}}\mbox{\Hypertarget{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5f2fd02b55c67d62bfd79380bcb03f63}\label{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5f2fd02b55c67d62bfd79380bcb03f63}} 
+VPX\+\_\+\+CQ&Constrained Quality (CQ) mode \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_Q@{VPX\_Q}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_Q@{VPX\_Q}}}\mbox{\Hypertarget{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5ebb5564dc5e8ec99d3c6221d89b8858}\label{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5ebb5564dc5e8ec99d3c6221d89b8858}} 
+VPX\+\_\+Q&Constant Quality (Q) mode \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__encoder_ga9f461802aa4db35c04a8b23837987f40}\label{group__encoder_ga9f461802aa4db35c04a8b23837987f40}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_kf\_mode@{vpx\_kf\_mode}}
+\index{vpx\_kf\_mode@{vpx\_kf\_mode}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_kf\_mode}{vpx\_kf\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\+\_\+kf\+\_\+mode}}}
+
+
+
+Keyframe placement mode. 
+
+This enumeration determines whether keyframes are placed automatically by the encoder or whether this behavior is disabled. Older releases of this SDK were implemented such that VPX\+\_\+\+KF\+\_\+\+FIXED meant keyframes were disabled. This name is confusing for this behavior, so the new symbols to be used are VPX\+\_\+\+KF\+\_\+\+AUTO and VPX\+\_\+\+KF\+\_\+\+DISABLED. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_KF\_FIXED@{VPX\_KF\_FIXED}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_KF\_FIXED@{VPX\_KF\_FIXED}}}\mbox{\Hypertarget{group__encoder_gga9f461802aa4db35c04a8b23837987f40a6bd87eea515c65661a5241a0f01e44a6}\label{group__encoder_gga9f461802aa4db35c04a8b23837987f40a6bd87eea515c65661a5241a0f01e44a6}} 
+VPX\+\_\+\+KF\+\_\+\+FIXED&deprecated, implies VPX\+\_\+\+KF\+\_\+\+DISABLED \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_KF\_AUTO@{VPX\_KF\_AUTO}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_KF\_AUTO@{VPX\_KF\_AUTO}}}\mbox{\Hypertarget{group__encoder_gga9f461802aa4db35c04a8b23837987f40ab1b423e78f72e77d2dce755d6c9652f8}\label{group__encoder_gga9f461802aa4db35c04a8b23837987f40ab1b423e78f72e77d2dce755d6c9652f8}} 
+VPX\+\_\+\+KF\+\_\+\+AUTO&Encoder determines optimal placement automatically \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_KF\_DISABLED@{VPX\_KF\_DISABLED}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!VPX\_KF\_DISABLED@{VPX\_KF\_DISABLED}}}\mbox{\Hypertarget{group__encoder_gga9f461802aa4db35c04a8b23837987f40a56513f60cbf3434ca0092173005d0ab2}\label{group__encoder_gga9f461802aa4db35c04a8b23837987f40a56513f60cbf3434ca0092173005d0ab2}} 
+VPX\+\_\+\+KF\+\_\+\+DISABLED&Encoder does not place keyframes. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}\label{group__encoder_ga1472ec347010fe5ef32766a299e57cc4}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_init\_ver@{vpx\_codec\_enc\_init\_ver}}
+\index{vpx\_codec\_enc\_init\_ver@{vpx\_codec\_enc\_init\_ver}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_init\_ver()}{vpx\_codec\_enc\_init\_ver()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+ver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$}]{iface,  }\item[{const \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$}]{cfg,  }\item[{\mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}}}]{flags,  }\item[{int}]{ver }\end{DoxyParamCaption})}
+
+
+
+Initialize an encoder instance. 
+
+Initializes a encoder context using the given interface. Applications should call the vpx\+\_\+codec\+\_\+enc\+\_\+init convenience macro instead of this function directly, to ensure that the ABI version number parameter is properly initialized.
+
+If the library was configured with --disable-\/multithread, this call is not thread safe and should be guarded with a lock if being used in a multithreaded context.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iface} & Pointer to the algorithm interface to use. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cfg} & Configuration to use, if known. May be NULL. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Bitfield of VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+$\ast$ flags \\
+\hline
+\mbox{\texttt{ in}}  & {\em ver} & ABI version number. Must be set to VPX\+\_\+\+ENCODER\+\_\+\+ABI\+\_\+\+VERSION \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The decoder algorithm initialized. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR}}} & Memory allocation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_ga1c0415984a5469687f53613a5471f53d}\label{group__encoder_ga1c0415984a5469687f53613a5471f53d}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_init\_multi\_ver@{vpx\_codec\_enc\_init\_multi\_ver}}
+\index{vpx\_codec\_enc\_init\_multi\_ver@{vpx\_codec\_enc\_init\_multi\_ver}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_init\_multi\_ver()}{vpx\_codec\_enc\_init\_multi\_ver()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi\+\_\+ver (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$}]{iface,  }\item[{\mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$}]{cfg,  }\item[{int}]{num\+\_\+enc,  }\item[{\mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}}}]{flags,  }\item[{\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} $\ast$}]{dsf,  }\item[{int}]{ver }\end{DoxyParamCaption})}
+
+
+
+Initialize multi-\/encoder instance. 
+
+Initializes multi-\/encoder context using the given interface. Applications should call the vpx\+\_\+codec\+\_\+enc\+\_\+init\+\_\+multi convenience macro instead of this function directly, to ensure that the ABI version number parameter is properly initialized.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context. \\
+\hline
+\mbox{\texttt{ in}}  & {\em iface} & Pointer to the algorithm interface to use. \\
+\hline
+\mbox{\texttt{ in}}  & {\em cfg} & Configuration to use, if known. May be NULL. \\
+\hline
+\mbox{\texttt{ in}}  & {\em num\+\_\+enc} & Total number of encoders. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Bitfield of VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+$\ast$ flags \\
+\hline
+\mbox{\texttt{ in}}  & {\em dsf} & Pointer to down-\/sampling factors. \\
+\hline
+\mbox{\texttt{ in}}  & {\em ver} & ABI version number. Must be set to VPX\+\_\+\+ENCODER\+\_\+\+ABI\+\_\+\+VERSION \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The decoder algorithm initialized. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR}}} & Memory allocation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_ga9ab8c79623312e9c5d5405d66a788f59}\label{group__encoder_ga9ab8c79623312e9c5d5405d66a788f59}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_config\_default@{vpx\_codec\_enc\_config\_default}}
+\index{vpx\_codec\_enc\_config\_default@{vpx\_codec\_enc\_config\_default}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_config\_default()}{vpx\_codec\_enc\_config\_default()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+config\+\_\+default (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$}]{iface,  }\item[{\mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$}]{cfg,  }\item[{unsigned int}]{usage }\end{DoxyParamCaption})}
+
+
+
+Get a default configuration. 
+
+Initializes a encoder configuration structure with default values. Supports the notion of \char`\"{}usages\char`\"{} so that an algorithm may offer different default settings depending on the user\textquotesingle{}s intended goal. This function \mbox{\hyperlink{rfc2119_SHOULD}{SHOULD}} be called by all applications to initialize the configuration structure before specializing the configuration with application specific values.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em iface} & Pointer to the algorithm interface to use. \\
+\hline
+\mbox{\texttt{ out}}  & {\em cfg} & Configuration buffer to populate. \\
+\hline
+\mbox{\texttt{ in}}  & {\em usage} & Must be set to 0.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The configuration was populated. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}} & Interface is not an encoder interface. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & A parameter was NULL, or the usage value was not recognized. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_gabbc036b1fbc1288485df5562a989da9b}\label{group__encoder_gabbc036b1fbc1288485df5562a989da9b}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_enc\_config\_set@{vpx\_codec\_enc\_config\_set}}
+\index{vpx\_codec\_enc\_config\_set@{vpx\_codec\_enc\_config\_set}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_enc\_config\_set()}{vpx\_codec\_enc\_config\_set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+config\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{group__encoder_ga246fa1661bea01a5ae609bce827cce25}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t}} $\ast$}]{cfg }\end{DoxyParamCaption})}
+
+
+
+Set or change configuration. 
+
+Reconfigures an encoder instance according to the given configuration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em cfg} & Configuration buffer to use\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The configuration was populated. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}} & Interface is not an encoder interface. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & A parameter was NULL, or the usage value was not recognized. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_gac6f384a63106c702fda0c7caa6a705cb}\label{group__encoder_gac6f384a63106c702fda0c7caa6a705cb}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_get\_global\_headers@{vpx\_codec\_get\_global\_headers}}
+\index{vpx\_codec\_get\_global\_headers@{vpx\_codec\_get\_global\_headers}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_get\_global\_headers()}{vpx\_codec\_get\_global\_headers()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} $\ast$ vpx\+\_\+codec\+\_\+get\+\_\+global\+\_\+headers (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Get global stream headers. 
+
+Retrieves a stream level global header packet, if supported by the codec.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em NULL} & Encoder does not support global header \\
+\hline
+{\em Non-\/\+NULL} & Pointer to buffer containing global header packet \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}\label{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_encode@{vpx\_codec\_encode}}
+\index{vpx\_codec\_encode@{vpx\_codec\_encode}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_encode()}{vpx\_codec\_encode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+encode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img,  }\item[{\mbox{\hyperlink{group__encoder_ga7e711b0a71c65aef8f0faea8bd57b05f}{vpx\+\_\+codec\+\_\+pts\+\_\+t}}}]{pts,  }\item[{unsigned long}]{duration,  }\item[{\mbox{\hyperlink{group__encoder_ga99e4a3c966f0de19fe1aa626bd860366}{vpx\+\_\+enc\+\_\+frame\+\_\+flags\+\_\+t}}}]{flags,  }\item[{unsigned long}]{deadline }\end{DoxyParamCaption})}
+
+
+
+Encode a frame. 
+
+Encodes a video frame at the given \char`\"{}presentation time.\char`\"{} The presentation time stamp (PTS) \mbox{\hyperlink{rfc2119_MUST}{MUST}} be strictly increasing.
+
+The encoder supports the notion of a soft real-\/time deadline. Given a non-\/zero value to the deadline parameter, the encoder will make a \char`\"{}best effort\char`\"{} guarantee to return before the given time slice expires. It is implicit that limiting the available time to encode will degrade the output quality. The encoder can be given an unlimited time to produce the best possible frame by specifying a deadline of \textquotesingle{}0\textquotesingle{}. This deadline supersedes the VPx notion of \char`\"{}best quality, good quality, realtime\char`\"{}. Applications that wish to map these former settings to the new deadline based system can use the symbols \mbox{\hyperlink{group__encoder_ga04253cc9ec1146d72fa8bb86bcf32144}{VPX\+\_\+\+DL\+\_\+\+REALTIME}}, \mbox{\hyperlink{group__encoder_ga5d00a9f9e10b9f49ca91e72c1f01c9fd}{VPX\+\_\+\+DL\+\_\+\+GOOD\+\_\+\+QUALITY}}, and \mbox{\hyperlink{group__encoder_gab350573bea112f2fdf8e5677db3ac0da}{VPX\+\_\+\+DL\+\_\+\+BEST\+\_\+\+QUALITY}}.
+
+When the last frame has been passed to the encoder, this function should continue to be called, with the img parameter set to NULL. This will signal the end-\/of-\/stream condition to the encoder and allow it to encode any held buffers. Encoding is complete when \mbox{\hyperlink{group__encoder_gaf990542e2aeb389f05fae3e9c7803639}{vpx\+\_\+codec\+\_\+encode()}} is called and \mbox{\hyperlink{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}{vpx\+\_\+codec\+\_\+get\+\_\+cx\+\_\+data()}} returns no data.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em img} & Image data to encode, NULL to flush. \\
+\hline
+\mbox{\texttt{ in}}  & {\em pts} & Presentation time stamp, in timebase units. \\
+\hline
+\mbox{\texttt{ in}}  & {\em duration} & Duration to show frame, in timebase units. \\
+\hline
+\mbox{\texttt{ in}}  & {\em flags} & Flags to use for encoding this frame. \\
+\hline
+\mbox{\texttt{ in}}  & {\em deadline} & Time to spend encoding, in microseconds. (0=infinite)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The configuration was populated. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}} & Interface is not an encoder interface. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & A parameter was NULL, the image format is unsupported, etc. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_gae9f8f75978a1ebcf1f358964b55ecb9e}\label{group__encoder_gae9f8f75978a1ebcf1f358964b55ecb9e}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_set\_cx\_data\_buf@{vpx\_codec\_set\_cx\_data\_buf}}
+\index{vpx\_codec\_set\_cx\_data\_buf@{vpx\_codec\_set\_cx\_data\_buf}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_set\_cx\_data\_buf()}{vpx\_codec\_set\_cx\_data\_buf()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+set\+\_\+cx\+\_\+data\+\_\+buf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} $\ast$}]{buf,  }\item[{unsigned int}]{pad\+\_\+before,  }\item[{unsigned int}]{pad\+\_\+after }\end{DoxyParamCaption})}
+
+
+
+Set compressed data output buffer. 
+
+Sets the buffer that the codec should output the compressed data into. This call effectively sets the buffer pointer returned in the next VPX\+\_\+\+CODEC\+\_\+\+CX\+\_\+\+FRAME\+\_\+\+PKT packet. Subsequent packets will be appended into this buffer. The buffer is preserved across frames, so applications must periodically call this function after flushing the accumulated compressed data to disk or to the network to reset the pointer to the buffer\textquotesingle{}s head.
+
+{\ttfamily pad\+\_\+before} bytes will be skipped before writing the compressed data, and {\ttfamily pad\+\_\+after} bytes will be appended to the packet. The size of the packet will be the sum of the size of the actual compressed data, pad\+\_\+before, and pad\+\_\+after. The padding bytes will be preserved (not overwritten).
+
+Note that calling this function does not guarantee that the returned compressed data will be placed into the specified buffer. In the event that the encoded data will not fit into the buffer provided, the returned packet \mbox{\hyperlink{rfc2119_MAY}{MAY}} point to an internal buffer, as it would if this call were never used. In this event, the output packet will NOT have any padding, and the application must free space and copy it to the proper place. This is of particular note in configurations that may output multiple packets for a single encoded frame (e.\+g., lagged encoding) or if the application does not reset the buffer periodically.
+
+Applications may restore the default behavior of the codec providing the compressed data buffer by calling this function with a NULL buffer.
+
+Applications \mbox{\hyperlink{rfc2119_MUSTNOT}{MUST NOT}} call this function during iteration of \mbox{\hyperlink{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}{vpx\+\_\+codec\+\_\+get\+\_\+cx\+\_\+data()}}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em buf} & Buffer to store compressed data into \\
+\hline
+\mbox{\texttt{ in}}  & {\em pad\+\_\+before} & Bytes to skip before writing compressed data \\
+\hline
+\mbox{\texttt{ in}}  & {\em pad\+\_\+after} & Bytes to skip after writing compressed data\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The buffer was set successfully. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & A parameter was NULL, the image format is unsupported, etc. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}\label{group__encoder_ga5f7ee7fb6c7e5af848db9f363b3c375c}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_get\_cx\_data@{vpx\_codec\_get\_cx\_data}}
+\index{vpx\_codec\_get\_cx\_data@{vpx\_codec\_get\_cx\_data}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_get\_cx\_data()}{vpx\_codec\_get\_cx\_data()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{group__encoder_gaa3731d516e0317b39ddc04417fb2609e}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+t}} $\ast$ vpx\+\_\+codec\+\_\+get\+\_\+cx\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}} $\ast$}]{iter }\end{DoxyParamCaption})}
+
+
+
+Encoded data iterator. 
+
+Iterates over a list of data packets to be passed from the encoder to the application. The different kinds of packets available are enumerated in \mbox{\hyperlink{group__encoder_ga28a79375279536526552af3a83d2ed72}{vpx\+\_\+codec\+\_\+cx\+\_\+pkt\+\_\+kind}}.
+
+\mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a2261aae5594289400e812fb1e6b6b0cc}{VPX\+\_\+\+CODEC\+\_\+\+CX\+\_\+\+FRAME\+\_\+\+PKT}} packets should be passed to the application\textquotesingle{}s muxer. Multiple compressed frames may be in the list. \mbox{\hyperlink{group__encoder_gga28a79375279536526552af3a83d2ed72a77cd8b95d9891bcce36117f5f31994fd}{VPX\+\_\+\+CODEC\+\_\+\+STATS\+\_\+\+PKT}} packets should be appended to a global buffer.
+
+The application \mbox{\hyperlink{rfc2119_MUST}{MUST}} silently ignore any packet kinds that it does not recognize or support.
+
+The data buffers returned from this function are only guaranteed to be valid until the application makes another call to any vpx\+\_\+codec\+\_\+$\ast$ function.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em iter} & Iterator storage, initialized to NULL\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to an output data packet (compressed frame data, two-\/pass statistics, etc.) or NULL to signal end-\/of-\/list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{group__encoder_ga4a028491afe4e2cfaa7cb772173c7d36}\label{group__encoder_ga4a028491afe4e2cfaa7cb772173c7d36}} 
+\index{Encoder Algorithm Interface@{Encoder Algorithm Interface}!vpx\_codec\_get\_preview\_frame@{vpx\_codec\_get\_preview\_frame}}
+\index{vpx\_codec\_get\_preview\_frame@{vpx\_codec\_get\_preview\_frame}!Encoder Algorithm Interface@{Encoder Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_get\_preview\_frame()}{vpx\_codec\_get\_preview\_frame()}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ vpx\+\_\+codec\+\_\+get\+\_\+preview\+\_\+frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Get Preview Frame. 
+
+Returns an image that can be used as a preview. Shows the image as it would exist at the decompressor. The application \mbox{\hyperlink{rfc2119_MUST}{MUST}} NOT write into this image buffer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to a preview image, or NULL if no image is available. 
+\end{DoxyReturn}

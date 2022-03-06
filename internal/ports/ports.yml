@@ -1,0 +1,123 @@
+root: ../../libvpxsrc
+out: .
+package: ports
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+  - name: DECLARE_ALIGNED(n, typ, val) typ val __attribute__((aligned(n)))
+use_go_int: true
+#replace:
+idents:
+  - name: vpx_clear_system_state
+    rename: ClearSystemState
+  - name: mem_get_be16_as_int
+    rename: GetBe16AsInt
+  - name: mem_get_be24_as_int
+    rename: GetBe24AsInt
+  - name: mem_get_be32_as_int
+    rename: GetBe32AsInt
+  - name: mem_get_le16_as_int
+    rename: GetLe16AsInt
+  - name: mem_get_le24_as_int
+    rename: GetLe24AsInt
+  - name: mem_get_le32_as_int
+    rename: GetLe32AsInt
+  - name: mem_get_sbe16_as_int
+    rename: GetSbe16AsInt
+  - name: mem_get_sbe24_as_int
+    rename: GetSbe24AsInt
+  - name: mem_get_sbe32_as_int
+    rename: GetSbe32AsInt
+  - name: mem_get_sle16_as_int
+    rename: GetSle16AsInt
+  - name: mem_get_sle24_as_int
+    rename: GetSle24AsInt
+  - name: mem_get_sle32_as_int
+    rename: GetSle32AsInt
+  - name: mem_put_be16_as_int
+    rename: PutBe16AsInt
+  - name: mem_put_be24_as_int
+    rename: PutBe24AsInt
+  - name: mem_put_be32_as_int
+    rename: PutBe32AsInt
+  - name: mem_put_le16_as_int
+    rename: PutLe16AsInt
+  - name: mem_put_le24_as_int
+    rename: PutLe24AsInt
+  - name: mem_put_le32_as_int
+    rename: PutLe32AsInt
+  - name: once
+    rename: Once
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  #  - name: vpx_ports/compiler_attributes.h
+  #    go: compiler_attributes_h.go
+  - name: vpx_ports/mem.h
+    go: mem_h.go
+  - name: vpx_ports/mem_ops.h
+    go: mem_ops_h.go
+  #  - name: vpx_ports/static_assert.h
+  #    go: static_assert_h.go
+  - name: vpx_ports/system_state.h
+    go: system_state_h.go
+  - name: vpx_ports/vpx_once.h
+    go: once_h.go
+  #  - name: vpx_ports/vpx_timer.h
+  #    go: timer_h.go
+  #  - name: vpx_ports/x86.h
+  #    go: x86_h.go
+  - name: hack.go
+    go: hack.go
+    content: |
+      package ports
+      
+      func ClearSystemState() {
+
+      }
+  - name: ports_test.go
+    content: |
+      package ports
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include
+
+sys_include:
+  - /usr/include

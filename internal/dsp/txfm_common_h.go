@@ -1,0 +1,42 @@
+package dsp
+
+const DCT_CONST_BITS = 14
+const DCT_CONST_ROUNDING = 8192
+const UNIT_QUANT_SHIFT = 2
+const UNIT_QUANT_FACTOR = 4
+
+var cospi_1_64 int16 = 0x3FEC
+var cospi_2_64 int16 = 0x3FB1
+var cospi_3_64 int16 = 0x3F4F
+var cospi_4_64 int16 = 0x3EC5
+var cospi_5_64 int16 = 0x3E15
+var cospi_6_64 int16 = 0x3D3F
+var cospi_7_64 int16 = 0x3C42
+var cospi_8_64 int16 = 0x3B21
+var cospi_9_64 int16 = 0x39DB
+var cospi_10_64 int16 = 0x3871
+var cospi_11_64 int16 = 0x36E5
+var cospi_12_64 int16 = 0x3537
+var cospi_13_64 int16 = 13160
+var cospi_14_64 int16 = 0x3179
+var cospi_15_64 int16 = 12140
+var cospi_16_64 int16 = 0x2D41
+var cospi_17_64 int16 = 0x2AFB
+var cospi_18_64 int16 = 0x289A
+var cospi_19_64 int16 = 9760
+var cospi_20_64 int16 = 9102
+var cospi_21_64 int16 = 8423
+var cospi_22_64 int16 = 7723
+var cospi_23_64 int16 = 7005
+var cospi_24_64 int16 = 6270
+var cospi_25_64 int16 = 5520
+var cospi_26_64 int16 = 4756
+var cospi_27_64 int16 = 3981
+var cospi_28_64 int16 = 3196
+var cospi_29_64 int16 = 2404
+var cospi_30_64 int16 = 1606
+var cospi_31_64 int16 = 804
+var sinpi_1_9 int16 = 5283
+var sinpi_2_9 int16 = 9929
+var sinpi_3_9 int16 = 0x3441
+var sinpi_4_9 int16 = 0x3B6C

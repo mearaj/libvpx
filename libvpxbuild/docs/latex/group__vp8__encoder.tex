@@ -1,0 +1,922 @@
+\hypertarget{group__vp8__encoder}{}\doxysubsection{WebM VP8/\+VP9 Encoder}
+\label{group__vp8__encoder}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{vp8cx_8h}{vp8cx.\+h}}
+\begin{DoxyCompactList}\small\item\em Provides definitions for using VP8 or VP9 encoder algorithm within the vpx Codec Interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__roi__map}{vpx\+\_\+roi\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em vpx region of interest map \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__active__map}{vpx\+\_\+active\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em vpx active region map \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__scaling__mode}{vpx\+\_\+scaling\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em vpx image scaling mode \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__layer__id}{vpx\+\_\+svc\+\_\+layer\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em vp9 svc layer parameters \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame flag parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__frame__drop}{vpx\+\_\+svc\+\_\+frame\+\_\+drop}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame dropping parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__spatial__layer__sync}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync}}
+\begin{DoxyCompactList}\small\item\em vp9 svc spatial layer sync parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gafb51c67e5743275146bc1fc425727da3}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+LAST}}~(1 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the last frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gabb5e95343a2738abef44eca13059da33}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+GF}}~(1 $<$$<$ 17)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the golden frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga650ab0baea12be91082226a5cc18776a}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+ARF}}~(1 $<$$<$ 21)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the alternate reference frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga602edb6b02a89cb2db7a16d6dffba583}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+LAST}}~(1 $<$$<$ 18)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the last frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gab01d066c5236457d345ce1cab4c41d6b}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+GF}}~(1 $<$$<$ 22)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the golden frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga1cff46a5287e73a620660030d40b9e6c}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ARF}}~(1 $<$$<$ 23)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the alternate reference frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gacb64c00adcb361f72a9a3028eb12f5ff}{VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+GF}}~(1 $<$$<$ 19)
+\begin{DoxyCompactList}\small\item\em Force golden frame update. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga50584fe4bdb62ff935347576539650b7}{VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+ARF}}~(1 $<$$<$ 24)
+\begin{DoxyCompactList}\small\item\em Force alternate reference frame update. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga5b91ad179910d4efc23aef66c7b2148b}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ENTROPY}}~(1 $<$$<$ 20)
+\begin{DoxyCompactList}\small\item\em Disable entropy update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}} \mbox{\hyperlink{group__vp8__encoder_gae5db03d2e5dfebf41e36ed3a78cf3738}{VPX\+\_\+\+SCALING\+\_\+\+MODE}}
+\begin{DoxyCompactList}\small\item\em vpx 1-\/D scaling mode \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga3cb12c63f036011e188eacc7f25353f5}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE}}
+\begin{DoxyCompactList}\small\item\em Temporal layering mode enum for VP9 SVC. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__roi__map}{vpx\+\_\+roi\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga96ca68fa2cc61c584255da66c98311fa}{vpx\+\_\+roi\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx region of interest map \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__active__map}{vpx\+\_\+active\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga07ddda574f58506212aa94595e558d6e}{vpx\+\_\+active\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx active region map \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__scaling__mode}{vpx\+\_\+scaling\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga4e46f6c67cfa949207e1daa0584f0da9}{vpx\+\_\+scaling\+\_\+mode\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx image scaling mode \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__layer__id}{vpx\+\_\+svc\+\_\+layer\+\_\+id}} \mbox{\hyperlink{group__vp8__encoder_ga277102e1e112d6d97687da48d0397b61}{vpx\+\_\+svc\+\_\+layer\+\_\+id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc layer parameters \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}} \mbox{\hyperlink{group__vp8__encoder_gaa9de17289d263427dfa0ecc27517cb10}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame flag parameters. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__frame__drop}{vpx\+\_\+svc\+\_\+frame\+\_\+drop}} \mbox{\hyperlink{group__vp8__encoder_gac8d3a0417e29daf952fb4ca53a5a2b01}{vpx\+\_\+svc\+\_\+frame\+\_\+drop\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame dropping parameters. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__spatial__layer__sync}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync}} \mbox{\hyperlink{group__vp8__encoder_gafe6ed894d1768033dc9dd799443ac292}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc spatial layer sync parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga6deae3d561c838952552c3d3756322ec}{vp8e\+\_\+enc\+\_\+control\+\_\+id}} \{ \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca25a828dbab350f80db769a8f53e3940f}{VP8\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP}} = 8
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca6c904eb7e9e4aa58052742b56f1b4497}{VP8\+E\+\_\+\+SET\+\_\+\+ACTIVEMAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7a6db9fd1c434d2e4d91b3935777ab9f}{VP8\+E\+\_\+\+SET\+\_\+\+SCALEMODE}} = 11
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca953ff0eaa2fcdc2ecd627e449b026853}{VP8\+E\+\_\+\+SET\+\_\+\+CPUUSED}} = 13
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca24a5530efabb8b4949d01622b1d72cb0}{VP8\+E\+\_\+\+SET\+\_\+\+ENABLEAUTOALTREF}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3fa90cb70bade72af3c2d8d91471a36c}{VP8\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca815930923fff388825ee3cc4ef69bb28}{VP8\+E\+\_\+\+SET\+\_\+\+SHARPNESS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab34559df04d3d662616300ed0682dcfd}{VP8\+E\+\_\+\+SET\+\_\+\+STATIC\+\_\+\+THRESHOLD}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca462a4f14f39a6eb5c4a4004fc8d0ad75}{VP8\+E\+\_\+\+SET\+\_\+\+TOKEN\+\_\+\+PARTITIONS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5bb0569b813853e981a61c97697cbecd}{VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad2cfc9712d2eab30b5a59a60d0daaade}{VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+64}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca628d73f1a69fadd8aa57e0dfef578da8}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+MAXFRAMES}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca0a8c40a768af935ae73faa53355c3244}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+STRENGTH}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4e0a0af58670012026c213083cd48f3a}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+TYPE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca126ccbe7bde63b59cec5ea68a82dd498}{VP8\+E\+\_\+\+SET\+\_\+\+TUNING}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd4f5b730bddb9788c3d0b82218ec503}{VP8\+E\+\_\+\+SET\+\_\+\+CQ\+\_\+\+LEVEL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca09c69ff4a3aabdb307d4f24027dfc4c1}{VP8\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTRA\+\_\+\+BITRATE\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad8a730e3be2912848ac97b651680dc14}{VP8\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+FLAGS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca05c677432387056a74b92d0546c80fd4}{VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTER\+\_\+\+BITRATE\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae38181c436d82d8554b43303e18cff0b}{VP9\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca97533c494b55a54f6136cc2788966a03}{VP8\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacbd74e1cbae2b8a95907ea5eabbbe590}{VP8\+E\+\_\+\+SET\+\_\+\+SCREEN\+\_\+\+CONTENT\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7224f4edeeaf940584e6fe3ff2345b86}{VP9\+E\+\_\+\+SET\+\_\+\+LOSSLESS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c221dc99c51eb5e6304461aed9b5f5b}{VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+COLUMNS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5c6da58a82728ce850d0b2c9188f9fa2}{VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+ROWS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7e61bfc05a2eb5a53d8f2091ebc5d40e}{VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PARALLEL\+\_\+\+DECODING}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca375af288e2d7fa169cbfef4ba586c1d2}{VP9\+E\+\_\+\+SET\+\_\+\+AQ\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca064d768f60d2d60a07c160174c3df266}{VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PERIODIC\+\_\+\+BOOST}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecace6096a9fbe83dc72ed6a54a81ce215b}{VP9\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca88f29897083911e08434857aeff77407}{VP9\+E\+\_\+\+SET\+\_\+\+SVC}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca238a2ff6df22a651f6ef251ea0d81715}{VP9\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7836375eec7f50dc580a2a8ace9c9055}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+PARAMETERS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca090ad9dcb1f2eea2af60f4737c5bf514}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca87292610b42f00676aebdc75b63227de}{VP9\+E\+\_\+\+SET\+\_\+\+TUNE\+\_\+\+CONTENT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae5198050ccb3c1aed11fee8a9fb3be18}{VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4a8cf2d34935d9d7e05149fd19673dd7}{VP9\+E\+\_\+\+REGISTER\+\_\+\+CX\+\_\+\+CALLBACK}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab67a3db9b16d938513d1ee6a69b24e02}{VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+SPACE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca34af61e36500e1455aa2fc5bf62183ea}{VP9\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca04ae4a1b699c5d22f2510c7509124ea9}{VP9\+E\+\_\+\+SET\+\_\+\+MIN\+\_\+\+GF\+\_\+\+INTERVAL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae8a09d2ee42538af1c00bc403c6d29d8}{VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+GF\+\_\+\+INTERVAL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecade5d0ccfb428b3f443e47aba7354586f}{VP9\+E\+\_\+\+GET\+\_\+\+ACTIVEMAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5197d959e8a124180de5f7a4bb240595}{VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+RANGE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacabcfc4edba61f54d6a7b7592a64e48b}{VP9\+E\+\_\+\+SET\+\_\+\+RENDER\+\_\+\+SIZE}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca2e6d09f137b021acf240cdfc1a7372a8}{VP9\+E\+\_\+\+SET\+\_\+\+TARGET\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8ec97b90e57f4ddba099cd881a509360}{VP9\+E\+\_\+\+SET\+\_\+\+ROW\+\_\+\+MT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3030515b85602b997d76b6e26093708b}{VP9\+E\+\_\+\+GET\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaee9ecd5c9530a1bb3a770c9aee6c1f66}{VP9\+E\+\_\+\+SET\+\_\+\+ALT\+\_\+\+REF\+\_\+\+AQ}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca816c34530f29b611644592f439addfae}{VP8\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca323d7dc55db6b5762849ac40f504936d}{VP9\+E\+\_\+\+ENABLE\+\_\+\+MOTION\+\_\+\+VECTOR\+\_\+\+UNIT\+\_\+\+TEST}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca13dd95dd05c39d2f4db73d9c03add7b1}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+INTER\+\_\+\+LAYER\+\_\+\+PRED}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c3914bdf858bcb1c8e8a2922bd97783}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+FRAME\+\_\+\+DROP\+\_\+\+LAYER}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3e61dbe3054c7e51c45e5883a994bad7}{VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3f592e28996106e5f4cf7d3be44f4fbf}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+GF\+\_\+\+TEMPORAL\+\_\+\+REF}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca75400bbb30c8e4c3690446bea6ac2be3}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+SPATIAL\+\_\+\+LAYER\+\_\+\+SYNC}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8cc35557a64db25075d35e2b34373864}{VP9\+E\+\_\+\+SET\+\_\+\+TPL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca474cce061fe13ef1d408b0a0224d887d}{VP9\+E\+\_\+\+SET\+\_\+\+POSTENCODE\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaff9d5b81d7fa5578a640a7afa3cc5ec8}{VP9\+E\+\_\+\+SET\+\_\+\+DELTA\+\_\+\+Q\+\_\+\+UV}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca73257656241aac7371e60fa99c8b797b}{VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+OVERSHOOT\+\_\+\+MAXQ\+\_\+\+CBR}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd2d31e611840edb87a0484a9ef1781a}{VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+LOOPFILTER}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae899930430f09c2082e4fa3d7772ef20}{VP9\+E\+\_\+\+SET\+\_\+\+EXTERNAL\+\_\+\+RATE\+\_\+\+CONTROL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae49dc24c62281fa8d17bbaa3c22fb6bb}{VP9\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca249badba7f5ee05962fed693c9424c4f}{VP9\+E\+\_\+\+GET\+\_\+\+LOOPFILTER\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecac711667f05bf3c80acbdb94ea1e13217}{VP9\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+\+SVC\+\_\+\+LAYERS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca28a08f7ee44abb2073c48ba7a18f04b5}{VP8\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL}}
+ \}
+\begin{DoxyCompactList}\small\item\em VPx encoder control functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}} \{ {\bfseries VP8\+E\+\_\+\+NORMAL} = 0
+, {\bfseries VP8\+E\+\_\+\+FOURFIVE} = 1
+, {\bfseries VP8\+E\+\_\+\+THREEFIVE} = 2
+, {\bfseries VP8\+E\+\_\+\+ONETWO} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em vpx 1-\/D scaling mode \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}} \{ \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ac9713fea328d8c59130250a6d5b35add}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+NOLAYERING}} = 0
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a680204f7c9d48155170bcb3fc6e673e8}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+BYPASS}} = 1
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a7bb06aacd0b926d40a7df261fa2937b9}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0101}} = 2
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ad2a4ba7d6535ce3514fec130c806d457}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0212}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Temporal layering mode enum for VP9 SVC. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga5f7508ba3fb453b47f62313ed0b864d2}{vp8e\+\_\+token\+\_\+partitions}} \{ {\bfseries VP8\+\_\+\+ONE\+\_\+\+TOKENPARTITION} = 0
+, {\bfseries VP8\+\_\+\+TWO\+\_\+\+TOKENPARTITION} = 1
+, {\bfseries VP8\+\_\+\+FOUR\+\_\+\+TOKENPARTITION} = 2
+, {\bfseries VP8\+\_\+\+EIGHT\+\_\+\+TOKENPARTITION} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em VP8 token partition mode. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga76d4298d5ee58718597f307a290211a9}{vp9e\+\_\+tune\+\_\+content}} \{ {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+DEFAULT}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+SCREEN}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+FILM}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+INVALID}
+ \}
+\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga371dbc29054b3d46364af996ad42ab94}{vp8e\+\_\+tuning}} \{ {\bfseries VP8\+\_\+\+TUNE\+\_\+\+PSNR}
+, {\bfseries VP8\+\_\+\+TUNE\+\_\+\+SSIM}
+ \}
+\begin{DoxyCompactList}\small\item\em VP8 model tuning parameters. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}{SVC\+\_\+\+LAYER\+\_\+\+DROP\+\_\+\+MODE}} \{ \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a84363e856c23be36b1cec8e6f86d6712}{CONSTRAINED\+\_\+\+LAYER\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a91fdaca8868dbd1a1c073bf1675c134c}{LAYER\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a6ae5f6715816a5d8af0f880a46604753}{FULL\+\_\+\+SUPERFRAME\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a36d6bf5e257bcc352660ee059b427d43}{CONSTRAINED\+\_\+\+FROM\+\_\+\+ABOVE\+\_\+\+DROP}}
+ \}
+\begin{DoxyCompactList}\small\item\em VP9 svc frame dropping mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP8}
+\label{_amgrp0b829b38ff2e659173b35cd78e0735bd}%
+This interface provides the capability to encode raw VP8 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__vp8__encoder_ga689ede372ab835c8e1c9631f17b47eb5}\label{group__vp8__encoder_ga689ede372ab835c8e1c9631f17b47eb5}} 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+cx\+\_\+algo}
+\item 
+\mbox{\Hypertarget{group__vp8__encoder_ga6e956d6f055479ab6e2701d9f1e2140f}\label{group__vp8__encoder_ga6e956d6f055479ab6e2701d9f1e2140f}} 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+cx} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP9}
+\label{_amgrp9a787aae8f239d3b1cb9aeff16fb31ef}%
+This interface provides the capability to encode raw VP9 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__vp8__encoder_ga2d01224b7a5b2a1ecf538493b3089d0f}\label{group__vp8__encoder_ga2d01224b7a5b2a1ecf538493b3089d0f}} 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+cx\+\_\+algo}
+\item 
+\mbox{\Hypertarget{group__vp8__encoder_ga23acf551e5fd07acfdd53cabd82b1457}\label{group__vp8__encoder_ga23acf551e5fd07acfdd53cabd82b1457}} 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+cx} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__vp8__encoder_gafb51c67e5743275146bc1fc425727da3}\label{group__vp8__encoder_gafb51c67e5743275146bc1fc425727da3}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_REF\_LAST@{VP8\_EFLAG\_NO\_REF\_LAST}}
+\index{VP8\_EFLAG\_NO\_REF\_LAST@{VP8\_EFLAG\_NO\_REF\_LAST}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_REF\_LAST}{VP8\_EFLAG\_NO\_REF\_LAST}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+LAST~(1 $<$$<$ 16)}
+
+
+
+Don\textquotesingle{}t reference the last frame. 
+
+When this flag is set, the encoder will not use the last frame as a predictor. When not set, the encoder will choose whether to use the last frame or not automatically. \mbox{\Hypertarget{group__vp8__encoder_gabb5e95343a2738abef44eca13059da33}\label{group__vp8__encoder_gabb5e95343a2738abef44eca13059da33}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_REF\_GF@{VP8\_EFLAG\_NO\_REF\_GF}}
+\index{VP8\_EFLAG\_NO\_REF\_GF@{VP8\_EFLAG\_NO\_REF\_GF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_REF\_GF}{VP8\_EFLAG\_NO\_REF\_GF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+GF~(1 $<$$<$ 17)}
+
+
+
+Don\textquotesingle{}t reference the golden frame. 
+
+When this flag is set, the encoder will not use the golden frame as a predictor. When not set, the encoder will choose whether to use the golden frame or not automatically. \mbox{\Hypertarget{group__vp8__encoder_ga650ab0baea12be91082226a5cc18776a}\label{group__vp8__encoder_ga650ab0baea12be91082226a5cc18776a}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_REF\_ARF@{VP8\_EFLAG\_NO\_REF\_ARF}}
+\index{VP8\_EFLAG\_NO\_REF\_ARF@{VP8\_EFLAG\_NO\_REF\_ARF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_REF\_ARF}{VP8\_EFLAG\_NO\_REF\_ARF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+ARF~(1 $<$$<$ 21)}
+
+
+
+Don\textquotesingle{}t reference the alternate reference frame. 
+
+When this flag is set, the encoder will not use the alt ref frame as a predictor. When not set, the encoder will choose whether to use the alt ref frame or not automatically. \mbox{\Hypertarget{group__vp8__encoder_ga602edb6b02a89cb2db7a16d6dffba583}\label{group__vp8__encoder_ga602edb6b02a89cb2db7a16d6dffba583}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_UPD\_LAST@{VP8\_EFLAG\_NO\_UPD\_LAST}}
+\index{VP8\_EFLAG\_NO\_UPD\_LAST@{VP8\_EFLAG\_NO\_UPD\_LAST}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_UPD\_LAST}{VP8\_EFLAG\_NO\_UPD\_LAST}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+LAST~(1 $<$$<$ 18)}
+
+
+
+Don\textquotesingle{}t update the last frame. 
+
+When this flag is set, the encoder will not update the last frame with the contents of the current frame. \mbox{\Hypertarget{group__vp8__encoder_gab01d066c5236457d345ce1cab4c41d6b}\label{group__vp8__encoder_gab01d066c5236457d345ce1cab4c41d6b}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_UPD\_GF@{VP8\_EFLAG\_NO\_UPD\_GF}}
+\index{VP8\_EFLAG\_NO\_UPD\_GF@{VP8\_EFLAG\_NO\_UPD\_GF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_UPD\_GF}{VP8\_EFLAG\_NO\_UPD\_GF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+GF~(1 $<$$<$ 22)}
+
+
+
+Don\textquotesingle{}t update the golden frame. 
+
+When this flag is set, the encoder will not update the golden frame with the contents of the current frame. \mbox{\Hypertarget{group__vp8__encoder_ga1cff46a5287e73a620660030d40b9e6c}\label{group__vp8__encoder_ga1cff46a5287e73a620660030d40b9e6c}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_UPD\_ARF@{VP8\_EFLAG\_NO\_UPD\_ARF}}
+\index{VP8\_EFLAG\_NO\_UPD\_ARF@{VP8\_EFLAG\_NO\_UPD\_ARF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_UPD\_ARF}{VP8\_EFLAG\_NO\_UPD\_ARF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ARF~(1 $<$$<$ 23)}
+
+
+
+Don\textquotesingle{}t update the alternate reference frame. 
+
+When this flag is set, the encoder will not update the alt ref frame with the contents of the current frame. \mbox{\Hypertarget{group__vp8__encoder_gacb64c00adcb361f72a9a3028eb12f5ff}\label{group__vp8__encoder_gacb64c00adcb361f72a9a3028eb12f5ff}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_FORCE\_GF@{VP8\_EFLAG\_FORCE\_GF}}
+\index{VP8\_EFLAG\_FORCE\_GF@{VP8\_EFLAG\_FORCE\_GF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_FORCE\_GF}{VP8\_EFLAG\_FORCE\_GF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+GF~(1 $<$$<$ 19)}
+
+
+
+Force golden frame update. 
+
+When this flag is set, the encoder copy the contents of the current frame to the golden frame buffer. \mbox{\Hypertarget{group__vp8__encoder_ga50584fe4bdb62ff935347576539650b7}\label{group__vp8__encoder_ga50584fe4bdb62ff935347576539650b7}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_FORCE\_ARF@{VP8\_EFLAG\_FORCE\_ARF}}
+\index{VP8\_EFLAG\_FORCE\_ARF@{VP8\_EFLAG\_FORCE\_ARF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_FORCE\_ARF}{VP8\_EFLAG\_FORCE\_ARF}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+ARF~(1 $<$$<$ 24)}
+
+
+
+Force alternate reference frame update. 
+
+When this flag is set, the encoder copy the contents of the current frame to the alternate reference frame buffer. \mbox{\Hypertarget{group__vp8__encoder_ga5b91ad179910d4efc23aef66c7b2148b}\label{group__vp8__encoder_ga5b91ad179910d4efc23aef66c7b2148b}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8\_EFLAG\_NO\_UPD\_ENTROPY@{VP8\_EFLAG\_NO\_UPD\_ENTROPY}}
+\index{VP8\_EFLAG\_NO\_UPD\_ENTROPY@{VP8\_EFLAG\_NO\_UPD\_ENTROPY}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP8\_EFLAG\_NO\_UPD\_ENTROPY}{VP8\_EFLAG\_NO\_UPD\_ENTROPY}}
+{\footnotesize\ttfamily \#define VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ENTROPY~(1 $<$$<$ 20)}
+
+
+
+Disable entropy update. 
+
+When this flag is set, the encoder will not update its internal entropy model based on the entropy of this frame. 
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__vp8__encoder_gae5db03d2e5dfebf41e36ed3a78cf3738}\label{group__vp8__encoder_gae5db03d2e5dfebf41e36ed3a78cf3738}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VPX\_SCALING\_MODE@{VPX\_SCALING\_MODE}}
+\index{VPX\_SCALING\_MODE@{VPX\_SCALING\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VPX\_SCALING\_MODE}{VPX\_SCALING\_MODE}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}} \mbox{\hyperlink{group__vp8__encoder_gae5db03d2e5dfebf41e36ed3a78cf3738}{VPX\+\_\+\+SCALING\+\_\+\+MODE}}}
+
+
+
+vpx 1-\/D scaling mode 
+
+This set of constants define 1-\/D vpx scaling modes \mbox{\Hypertarget{group__vp8__encoder_ga3cb12c63f036011e188eacc7f25353f5}\label{group__vp8__encoder_ga3cb12c63f036011e188eacc7f25353f5}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_TEMPORAL\_LAYERING\_MODE@{VP9E\_TEMPORAL\_LAYERING\_MODE}}
+\index{VP9E\_TEMPORAL\_LAYERING\_MODE@{VP9E\_TEMPORAL\_LAYERING\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{VP9E\_TEMPORAL\_LAYERING\_MODE}{VP9E\_TEMPORAL\_LAYERING\_MODE}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga3cb12c63f036011e188eacc7f25353f5}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE}}}
+
+
+
+Temporal layering mode enum for VP9 SVC. 
+
+This set of macros define the different temporal layering modes. Supported codecs\+: VP9 (in SVC mode) \mbox{\Hypertarget{group__vp8__encoder_ga96ca68fa2cc61c584255da66c98311fa}\label{group__vp8__encoder_ga96ca68fa2cc61c584255da66c98311fa}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_roi\_map\_t@{vpx\_roi\_map\_t}}
+\index{vpx\_roi\_map\_t@{vpx\_roi\_map\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_roi\_map\_t}{vpx\_roi\_map\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__roi__map}{vpx\+\_\+roi\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga96ca68fa2cc61c584255da66c98311fa}{vpx\+\_\+roi\+\_\+map\+\_\+t}}}
+
+
+
+vpx region of interest map 
+
+These defines the data structures for the region of interest map \mbox{\Hypertarget{group__vp8__encoder_ga07ddda574f58506212aa94595e558d6e}\label{group__vp8__encoder_ga07ddda574f58506212aa94595e558d6e}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_active\_map\_t@{vpx\_active\_map\_t}}
+\index{vpx\_active\_map\_t@{vpx\_active\_map\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_active\_map\_t}{vpx\_active\_map\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__active__map}{vpx\+\_\+active\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga07ddda574f58506212aa94595e558d6e}{vpx\+\_\+active\+\_\+map\+\_\+t}}}
+
+
+
+vpx active region map 
+
+These defines the data structures for active region map \mbox{\Hypertarget{group__vp8__encoder_ga4e46f6c67cfa949207e1daa0584f0da9}\label{group__vp8__encoder_ga4e46f6c67cfa949207e1daa0584f0da9}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_scaling\_mode\_t@{vpx\_scaling\_mode\_t}}
+\index{vpx\_scaling\_mode\_t@{vpx\_scaling\_mode\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_scaling\_mode\_t}{vpx\_scaling\_mode\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__scaling__mode}{vpx\+\_\+scaling\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga4e46f6c67cfa949207e1daa0584f0da9}{vpx\+\_\+scaling\+\_\+mode\+\_\+t}}}
+
+
+
+vpx image scaling mode 
+
+This defines the data structure for image scaling mode \mbox{\Hypertarget{group__vp8__encoder_ga277102e1e112d6d97687da48d0397b61}\label{group__vp8__encoder_ga277102e1e112d6d97687da48d0397b61}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_svc\_layer\_id\_t@{vpx\_svc\_layer\_id\_t}}
+\index{vpx\_svc\_layer\_id\_t@{vpx\_svc\_layer\_id\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_svc\_layer\_id\_t}{vpx\_svc\_layer\_id\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__svc__layer__id}{vpx\+\_\+svc\+\_\+layer\+\_\+id}} \mbox{\hyperlink{group__vp8__encoder_ga277102e1e112d6d97687da48d0397b61}{vpx\+\_\+svc\+\_\+layer\+\_\+id\+\_\+t}}}
+
+
+
+vp9 svc layer parameters 
+
+This defines the spatial and temporal layer id numbers for svc encoding. This is used with the \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca090ad9dcb1f2eea2af60f4737c5bf514}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID}} control to set the spatial and temporal layer id for the current frame. \mbox{\Hypertarget{group__vp8__encoder_gaa9de17289d263427dfa0ecc27517cb10}\label{group__vp8__encoder_gaa9de17289d263427dfa0ecc27517cb10}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_svc\_ref\_frame\_config\_t@{vpx\_svc\_ref\_frame\_config\_t}}
+\index{vpx\_svc\_ref\_frame\_config\_t@{vpx\_svc\_ref\_frame\_config\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_svc\_ref\_frame\_config\_t}{vpx\_svc\_ref\_frame\_config\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}} \mbox{\hyperlink{group__vp8__encoder_gaa9de17289d263427dfa0ecc27517cb10}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+\_\+t}}}
+
+
+
+vp9 svc frame flag parameters. 
+
+This defines the frame flags and buffer indices for each spatial layer for svc encoding. This is used with the \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}} control to set frame flags and buffer indices for each spatial layer for the current (super)frame. \mbox{\Hypertarget{group__vp8__encoder_gac8d3a0417e29daf952fb4ca53a5a2b01}\label{group__vp8__encoder_gac8d3a0417e29daf952fb4ca53a5a2b01}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_svc\_frame\_drop\_t@{vpx\_svc\_frame\_drop\_t}}
+\index{vpx\_svc\_frame\_drop\_t@{vpx\_svc\_frame\_drop\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_svc\_frame\_drop\_t}{vpx\_svc\_frame\_drop\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__svc__frame__drop}{vpx\+\_\+svc\+\_\+frame\+\_\+drop}} \mbox{\hyperlink{group__vp8__encoder_gac8d3a0417e29daf952fb4ca53a5a2b01}{vpx\+\_\+svc\+\_\+frame\+\_\+drop\+\_\+t}}}
+
+
+
+vp9 svc frame dropping parameters. 
+
+This defines the frame drop thresholds for each spatial layer, and the frame dropping mode\+: 0 = layer based frame dropping (default), 1 = constrained dropping where current layer drop forces all upper spatial layers to drop. \mbox{\Hypertarget{group__vp8__encoder_gafe6ed894d1768033dc9dd799443ac292}\label{group__vp8__encoder_gafe6ed894d1768033dc9dd799443ac292}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_svc\_spatial\_layer\_sync\_t@{vpx\_svc\_spatial\_layer\_sync\_t}}
+\index{vpx\_svc\_spatial\_layer\_sync\_t@{vpx\_svc\_spatial\_layer\_sync\_t}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_svc\_spatial\_layer\_sync\_t}{vpx\_svc\_spatial\_layer\_sync\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__svc__spatial__layer__sync}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync}} \mbox{\hyperlink{group__vp8__encoder_gafe6ed894d1768033dc9dd799443ac292}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync\+\_\+t}}}
+
+
+
+vp9 svc spatial layer sync parameters. 
+
+This defines the spatial layer sync flag, defined per spatial layer. 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__vp8__encoder_ga6deae3d561c838952552c3d3756322ec}\label{group__vp8__encoder_ga6deae3d561c838952552c3d3756322ec}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vp8e\_enc\_control\_id@{vp8e\_enc\_control\_id}}
+\index{vp8e\_enc\_control\_id@{vp8e\_enc\_control\_id}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vp8e\_enc\_control\_id}{vp8e\_enc\_control\_id}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga6deae3d561c838952552c3d3756322ec}{vp8e\+\_\+enc\+\_\+control\+\_\+id}}}
+
+
+
+VPx encoder control functions. 
+
+This set of macros define the control functions available for VPx encoder interface.
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}{vpx\+\_\+codec\+\_\+control}} 
+\end{DoxySeeAlso}
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ROI\_MAP@{VP8E\_SET\_ROI\_MAP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ROI\_MAP@{VP8E\_SET\_ROI\_MAP}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca25a828dbab350f80db769a8f53e3940f}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca25a828dbab350f80db769a8f53e3940f}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP&Codec control function to pass an ROI map to encoder. Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ACTIVEMAP@{VP8E\_SET\_ACTIVEMAP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ACTIVEMAP@{VP8E\_SET\_ACTIVEMAP}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca6c904eb7e9e4aa58052742b56f1b4497}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca6c904eb7e9e4aa58052742b56f1b4497}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ACTIVEMAP&Codec control function to pass an Active map to encoder. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_SCALEMODE@{VP8E\_SET\_SCALEMODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_SCALEMODE@{VP8E\_SET\_SCALEMODE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7a6db9fd1c434d2e4d91b3935777ab9f}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7a6db9fd1c434d2e4d91b3935777ab9f}} 
+VP8\+E\+\_\+\+SET\+\_\+\+SCALEMODE&Codec control function to set encoder scaling mode. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_CPUUSED@{VP8E\_SET\_CPUUSED}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_CPUUSED@{VP8E\_SET\_CPUUSED}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca953ff0eaa2fcdc2ecd627e449b026853}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca953ff0eaa2fcdc2ecd627e449b026853}} 
+VP8\+E\+\_\+\+SET\+\_\+\+CPUUSED&Codec control function to set encoder internal speed settings. Changes in this value influences, among others, the encoder\textquotesingle{}s selection of motion estimation methods. Values greater than 0 will increase encoder speed at the expense of quality.
+
+\begin{DoxyNote}{Note}
+Valid range for VP8\+: -\/16..16 
+
+Valid range for VP9\+: -\/9..9
+\end{DoxyNote}
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ENABLEAUTOALTREF@{VP8E\_SET\_ENABLEAUTOALTREF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ENABLEAUTOALTREF@{VP8E\_SET\_ENABLEAUTOALTREF}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca24a5530efabb8b4949d01622b1d72cb0}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca24a5530efabb8b4949d01622b1d72cb0}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ENABLEAUTOALTREF&Codec control function to enable automatic use of arf frames. \begin{DoxyNote}{Note}
+Valid range for VP8\+: 0..1 
+
+Valid range for VP9\+: 0..6
+\end{DoxyNote}
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_NOISE\_SENSITIVITY@{VP8E\_SET\_NOISE\_SENSITIVITY}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_NOISE\_SENSITIVITY@{VP8E\_SET\_NOISE\_SENSITIVITY}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3fa90cb70bade72af3c2d8d91471a36c}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3fa90cb70bade72af3c2d8d91471a36c}} 
+VP8\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY&control function to set noise sensitivity 0\+: off, 1\+: On\+YOnly, 2\+: On\+YUV, 3\+: On\+YUVAggressive, 4\+: Adaptive
+
+Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_SHARPNESS@{VP8E\_SET\_SHARPNESS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_SHARPNESS@{VP8E\_SET\_SHARPNESS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca815930923fff388825ee3cc4ef69bb28}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca815930923fff388825ee3cc4ef69bb28}} 
+VP8\+E\+\_\+\+SET\+\_\+\+SHARPNESS&Codec control function to set higher sharpness at the expense of a lower PSNR. \begin{DoxyNote}{Note}
+Valid range\+: 0..7
+\end{DoxyNote}
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_STATIC\_THRESHOLD@{VP8E\_SET\_STATIC\_THRESHOLD}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_STATIC\_THRESHOLD@{VP8E\_SET\_STATIC\_THRESHOLD}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab34559df04d3d662616300ed0682dcfd}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab34559df04d3d662616300ed0682dcfd}} 
+VP8\+E\+\_\+\+SET\+\_\+\+STATIC\+\_\+\+THRESHOLD&Codec control function to set the threshold for MBs treated static. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_TOKEN\_PARTITIONS@{VP8E\_SET\_TOKEN\_PARTITIONS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_TOKEN\_PARTITIONS@{VP8E\_SET\_TOKEN\_PARTITIONS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca462a4f14f39a6eb5c4a4004fc8d0ad75}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca462a4f14f39a6eb5c4a4004fc8d0ad75}} 
+VP8\+E\+\_\+\+SET\+\_\+\+TOKEN\+\_\+\+PARTITIONS&Codec control function to set the number of token partitions. Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_GET\_LAST\_QUANTIZER@{VP8E\_GET\_LAST\_QUANTIZER}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_GET\_LAST\_QUANTIZER@{VP8E\_GET\_LAST\_QUANTIZER}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5bb0569b813853e981a61c97697cbecd}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5bb0569b813853e981a61c97697cbecd}} 
+VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER&Codec control function to get last quantizer chosen by the encoder. Return value uses internal quantizer scale defined by the codec.
+
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_GET\_LAST\_QUANTIZER\_64@{VP8E\_GET\_LAST\_QUANTIZER\_64}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_GET\_LAST\_QUANTIZER\_64@{VP8E\_GET\_LAST\_QUANTIZER\_64}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad2cfc9712d2eab30b5a59a60d0daaade}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad2cfc9712d2eab30b5a59a60d0daaade}} 
+VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+64&Codec control function to get last quantizer chosen by the encoder. Return value uses the 0..63 scale as used by the rc\+\_\+$\ast$\+\_\+quantizer config parameters.
+
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ARNR\_MAXFRAMES@{VP8E\_SET\_ARNR\_MAXFRAMES}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ARNR\_MAXFRAMES@{VP8E\_SET\_ARNR\_MAXFRAMES}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca628d73f1a69fadd8aa57e0dfef578da8}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca628d73f1a69fadd8aa57e0dfef578da8}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+MAXFRAMES&Codec control function to set the max no of frames to create arf. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ARNR\_STRENGTH@{VP8E\_SET\_ARNR\_STRENGTH}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ARNR\_STRENGTH@{VP8E\_SET\_ARNR\_STRENGTH}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca0a8c40a768af935ae73faa53355c3244}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca0a8c40a768af935ae73faa53355c3244}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+STRENGTH&Codec control function to set the filter strength for the arf. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_ARNR\_TYPE@{VP8E\_SET\_ARNR\_TYPE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_ARNR\_TYPE@{VP8E\_SET\_ARNR\_TYPE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4e0a0af58670012026c213083cd48f3a}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4e0a0af58670012026c213083cd48f3a}} 
+VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+TYPE&\begin{DoxyRefDesc}{Deprecated}
+\item[\mbox{\hyperlink{deprecated__deprecated000001}{Deprecated}}]control function to set the filter type to use for the arf. \end{DoxyRefDesc}
+\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_TUNING@{VP8E\_SET\_TUNING}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_TUNING@{VP8E\_SET\_TUNING}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca126ccbe7bde63b59cec5ea68a82dd498}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca126ccbe7bde63b59cec5ea68a82dd498}} 
+VP8\+E\+\_\+\+SET\+\_\+\+TUNING&Codec control function to set visual tuning. Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_CQ\_LEVEL@{VP8E\_SET\_CQ\_LEVEL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_CQ\_LEVEL@{VP8E\_SET\_CQ\_LEVEL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd4f5b730bddb9788c3d0b82218ec503}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd4f5b730bddb9788c3d0b82218ec503}} 
+VP8\+E\+\_\+\+SET\+\_\+\+CQ\+\_\+\+LEVEL&Codec control function to set constrained / constant quality level. \begin{DoxyAttention}{Attention}
+For this value to be used \mbox{\hyperlink{structvpx__codec__enc__cfg_a99c415edb6c6f909a095a57c3430a116}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+\_\+t\+::rc\+\_\+end\+\_\+usage}} must be set to \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5f2fd02b55c67d62bfd79380bcb03f63}{VPX\+\_\+\+CQ}} or \mbox{\hyperlink{group__encoder_ggaf50e74d91be4cae6f70dfeba5b7410d2a5ebb5564dc5e8ec99d3c6221d89b8858}{VPX\+\_\+Q}} 
+\end{DoxyAttention}
+\begin{DoxyNote}{Note}
+Valid range\+: 0..63
+\end{DoxyNote}
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_MAX\_INTRA\_BITRATE\_PCT@{VP8E\_SET\_MAX\_INTRA\_BITRATE\_PCT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_MAX\_INTRA\_BITRATE\_PCT@{VP8E\_SET\_MAX\_INTRA\_BITRATE\_PCT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca09c69ff4a3aabdb307d4f24027dfc4c1}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca09c69ff4a3aabdb307d4f24027dfc4c1}} 
+VP8\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTRA\+\_\+\+BITRATE\+\_\+\+PCT&Codec control function to set Max data rate for Intra frames. This value controls additional clamping on the maximum size of a keyframe. It is expressed as a percentage of the average per-\/frame bitrate, with the special (and default) value 0 meaning unlimited, or no additional clamping beyond the codec\textquotesingle{}s built-\/in algorithm.
+
+For example, to allocate no more than 4.\+5 frames worth of bitrate to a keyframe, set this to 450.
+
+Supported in codecs\+: VP8, VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_FRAME\_FLAGS@{VP8E\_SET\_FRAME\_FLAGS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_FRAME\_FLAGS@{VP8E\_SET\_FRAME\_FLAGS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad8a730e3be2912848ac97b651680dc14}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad8a730e3be2912848ac97b651680dc14}} 
+VP8\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+FLAGS&Codec control function to set reference and update frame flags. Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_MAX\_INTER\_BITRATE\_PCT@{VP9E\_SET\_MAX\_INTER\_BITRATE\_PCT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_MAX\_INTER\_BITRATE\_PCT@{VP9E\_SET\_MAX\_INTER\_BITRATE\_PCT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca05c677432387056a74b92d0546c80fd4}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca05c677432387056a74b92d0546c80fd4}} 
+VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTER\+\_\+\+BITRATE\+\_\+\+PCT&Codec control function to set max data rate for Inter frames. This value controls additional clamping on the maximum size of an inter frame. It is expressed as a percentage of the average per-\/frame bitrate, with the special (and default) value 0 meaning unlimited, or no additional clamping beyond the codec\textquotesingle{}s built-\/in algorithm.
+
+For example, to allow no more than 4.\+5 frames worth of bitrate to an inter frame, set this to 450.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_GF\_CBR\_BOOST\_PCT@{VP9E\_SET\_GF\_CBR\_BOOST\_PCT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_GF\_CBR\_BOOST\_PCT@{VP9E\_SET\_GF\_CBR\_BOOST\_PCT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae38181c436d82d8554b43303e18cff0b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae38181c436d82d8554b43303e18cff0b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT&Boost percentage for Golden Frame in CBR mode. This value controls the amount of boost given to Golden Frame in CBR mode. It is expressed as a percentage of the average per-\/frame bitrate, with the special (and default) value 0 meaning the feature is off, i.\+e., no golden frame boost in CBR mode and average bitrate target is used.
+
+For example, to allow 100\% more bits, i.\+e, 2X, in a golden frame than average frame, set this to 100.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_TEMPORAL\_LAYER\_ID@{VP8E\_SET\_TEMPORAL\_LAYER\_ID}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_TEMPORAL\_LAYER\_ID@{VP8E\_SET\_TEMPORAL\_LAYER\_ID}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca97533c494b55a54f6136cc2788966a03}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca97533c494b55a54f6136cc2788966a03}} 
+VP8\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYER\+\_\+\+ID&Codec control function to set the temporal layer id. For temporal scalability\+: this control allows the application to set the layer id for each frame to be encoded. Note that this control must be set for every frame prior to encoding. The usage of this control function supersedes the internal temporal pattern counter, which is now deprecated.
+
+Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_SCREEN\_CONTENT\_MODE@{VP8E\_SET\_SCREEN\_CONTENT\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_SCREEN\_CONTENT\_MODE@{VP8E\_SET\_SCREEN\_CONTENT\_MODE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacbd74e1cbae2b8a95907ea5eabbbe590}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacbd74e1cbae2b8a95907ea5eabbbe590}} 
+VP8\+E\+\_\+\+SET\+\_\+\+SCREEN\+\_\+\+CONTENT\+\_\+\+MODE&Codec control function to set encoder screen content mode. 0\+: off, 1\+: On, 2\+: On with more aggressive rate control.
+
+Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_LOSSLESS@{VP9E\_SET\_LOSSLESS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_LOSSLESS@{VP9E\_SET\_LOSSLESS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7224f4edeeaf940584e6fe3ff2345b86}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7224f4edeeaf940584e6fe3ff2345b86}} 
+VP9\+E\+\_\+\+SET\+\_\+\+LOSSLESS&Codec control function to set lossless encoding mode. VP9 can operate in lossless encoding mode, in which the bitstream produced will be able to decode and reconstruct a perfect copy of input source. This control function provides a mean to switch encoder into lossless coding mode(1) or normal coding mode(0) that may be lossy. 0 = lossy coding mode 1 = lossless coding mode
+
+By default, encoder operates in normal coding mode (maybe lossy).
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TILE\_COLUMNS@{VP9E\_SET\_TILE\_COLUMNS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TILE\_COLUMNS@{VP9E\_SET\_TILE\_COLUMNS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c221dc99c51eb5e6304461aed9b5f5b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c221dc99c51eb5e6304461aed9b5f5b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+COLUMNS&Codec control function to set number of tile columns. In encoding and decoding, VP9 allows an input image frame be partitioned into separated vertical tile columns, which can be encoded or decoded independently. This enables easy implementation of parallel encoding and decoding. This control requests the encoder to use column tiles in encoding an input frame, with number of tile columns (in Log2 unit) as the parameter\+: 0 = 1 tile column 1 = 2 tile columns 2 = 4 tile columns ..... n = 2$\ast$$\ast$n tile columns The requested tile columns will be capped by the encoder based on image size limitations (The minimum width of a tile column is 256 pixels, the maximum is 4096).
+
+By default, the value is 6, i.\+e., the maximum number of tiles supported by the resolution.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TILE\_ROWS@{VP9E\_SET\_TILE\_ROWS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TILE\_ROWS@{VP9E\_SET\_TILE\_ROWS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5c6da58a82728ce850d0b2c9188f9fa2}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5c6da58a82728ce850d0b2c9188f9fa2}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+ROWS&Codec control function to set number of tile rows. In encoding and decoding, VP9 allows an input image frame be partitioned into separated horizontal tile rows. Tile rows are encoded or decoded sequentially. Even though encoding/decoding of later tile rows depends on earlier ones, this allows the encoder to output data packets for tile rows prior to completely processing all tile rows in a frame, thereby reducing the latency in processing between input and output. The parameter for this control describes the number of tile rows, which has a valid range \mbox{[}0, 2\mbox{]}\+: 0 = 1 tile row 1 = 2 tile rows 2 = 4 tile rows
+
+By default, the value is 0, i.\+e. one single row tile for entire image.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_FRAME\_PARALLEL\_DECODING@{VP9E\_SET\_FRAME\_PARALLEL\_DECODING}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_FRAME\_PARALLEL\_DECODING@{VP9E\_SET\_FRAME\_PARALLEL\_DECODING}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7e61bfc05a2eb5a53d8f2091ebc5d40e}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7e61bfc05a2eb5a53d8f2091ebc5d40e}} 
+VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PARALLEL\+\_\+\+DECODING&Codec control function to enable frame parallel decoding feature. VP9 has a bitstream feature to reduce decoding dependency between frames by turning off backward update of probability context used in encoding and decoding. This allows staged parallel processing of more than one video frame in the decoder. This control function provides a means to turn this feature on or off for bitstreams produced by encoder.
+
+By default, this feature is on.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_AQ\_MODE@{VP9E\_SET\_AQ\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_AQ\_MODE@{VP9E\_SET\_AQ\_MODE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca375af288e2d7fa169cbfef4ba586c1d2}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca375af288e2d7fa169cbfef4ba586c1d2}} 
+VP9\+E\+\_\+\+SET\+\_\+\+AQ\+\_\+\+MODE&Codec control function to set adaptive quantization mode. VP9 has a segment based feature that allows encoder to adaptively change quantization parameter for each segment within a frame to improve the subjective quality. This control makes encoder operate in one of the several AQ\+\_\+modes supported.
+
+By default, encoder operates with AQ\+\_\+\+Mode 0(adaptive quantization off).
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_FRAME\_PERIODIC\_BOOST@{VP9E\_SET\_FRAME\_PERIODIC\_BOOST}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_FRAME\_PERIODIC\_BOOST@{VP9E\_SET\_FRAME\_PERIODIC\_BOOST}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca064d768f60d2d60a07c160174c3df266}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca064d768f60d2d60a07c160174c3df266}} 
+VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PERIODIC\+\_\+\+BOOST&Codec control function to enable/disable periodic Q boost. One VP9 encoder speed feature is to enable quality boost by lowering frame level Q periodically. This control function provides a mean to turn on/off this feature. 0 = off 1 = on
+
+By default, the encoder is allowed to use this feature for appropriate encoding modes.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_NOISE\_SENSITIVITY@{VP9E\_SET\_NOISE\_SENSITIVITY}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_NOISE\_SENSITIVITY@{VP9E\_SET\_NOISE\_SENSITIVITY}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecace6096a9fbe83dc72ed6a54a81ce215b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecace6096a9fbe83dc72ed6a54a81ce215b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY&Codec control function to set noise sensitivity. 0\+: off, 1\+: On(\+YOnly), 2\+: For SVC only, on top two spatial layers(\+YOnly)
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC@{VP9E\_SET\_SVC}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC@{VP9E\_SET\_SVC}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca88f29897083911e08434857aeff77407}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca88f29897083911e08434857aeff77407}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC&Codec control function to turn on/off SVC in encoder. \begin{DoxyNote}{Note}
+Return value is VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM if the encoder does not support SVC in its current encoding mode 0\+: off, 1\+: on
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_ROI\_MAP@{VP9E\_SET\_ROI\_MAP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_ROI\_MAP@{VP9E\_SET\_ROI\_MAP}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca238a2ff6df22a651f6ef251ea0d81715}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca238a2ff6df22a651f6ef251ea0d81715}} 
+VP9\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP&Codec control function to pass an ROI map to encoder. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_PARAMETERS@{VP9E\_SET\_SVC\_PARAMETERS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_PARAMETERS@{VP9E\_SET\_SVC\_PARAMETERS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7836375eec7f50dc580a2a8ace9c9055}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7836375eec7f50dc580a2a8ace9c9055}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+PARAMETERS&Codec control function to set parameters for SVC. \begin{DoxyNote}{Note}
+Parameters contain min\+\_\+q, max\+\_\+q, scaling factor for each of the SVC layers.
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_LAYER\_ID@{VP9E\_SET\_SVC\_LAYER\_ID}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_LAYER\_ID@{VP9E\_SET\_SVC\_LAYER\_ID}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca090ad9dcb1f2eea2af60f4737c5bf514}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca090ad9dcb1f2eea2af60f4737c5bf514}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID&Codec control function to set svc layer for spatial and temporal. \begin{DoxyNote}{Note}
+Valid ranges\+: 0..\mbox{\hyperlink{structvpx__codec__enc__cfg_a1e5e1d00b22f2ba8c5c7230f31900f95}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ss\+\_\+number\+\_\+layers}} for spatial layer and 0..\mbox{\hyperlink{structvpx__codec__enc__cfg_a16d4549a30cbd585e3c3056ef873d8c7}{vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+number\+\_\+layers}} for temporal layer.
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TUNE\_CONTENT@{VP9E\_SET\_TUNE\_CONTENT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TUNE\_CONTENT@{VP9E\_SET\_TUNE\_CONTENT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca87292610b42f00676aebdc75b63227de}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca87292610b42f00676aebdc75b63227de}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TUNE\+\_\+\+CONTENT&Codec control function to set content type. \begin{DoxyNote}{Note}
+Valid parameter range\+: VP9\+E\+\_\+\+CONTENT\+\_\+\+DEFAULT = Regular video content (Default) VP9\+E\+\_\+\+CONTENT\+\_\+\+SCREEN = Screen capture content VP9\+E\+\_\+\+CONTENT\+\_\+\+FILM = Film content\+: improves grain retention
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_SVC\_LAYER\_ID@{VP9E\_GET\_SVC\_LAYER\_ID}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_SVC\_LAYER\_ID@{VP9E\_GET\_SVC\_LAYER\_ID}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae5198050ccb3c1aed11fee8a9fb3be18}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae5198050ccb3c1aed11fee8a9fb3be18}} 
+VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID&Codec control function to get svc layer ID. \begin{DoxyNote}{Note}
+The layer ID returned is for the data packet from the registered callback function.
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_REGISTER\_CX\_CALLBACK@{VP9E\_REGISTER\_CX\_CALLBACK}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_REGISTER\_CX\_CALLBACK@{VP9E\_REGISTER\_CX\_CALLBACK}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4a8cf2d34935d9d7e05149fd19673dd7}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4a8cf2d34935d9d7e05149fd19673dd7}} 
+VP9\+E\+\_\+\+REGISTER\+\_\+\+CX\+\_\+\+CALLBACK&Codec control function to register callback to get per layer packet. \begin{DoxyNote}{Note}
+Parameter for this control function is a structure with a callback function and a pointer to private data used by the callback.
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_COLOR\_SPACE@{VP9E\_SET\_COLOR\_SPACE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_COLOR\_SPACE@{VP9E\_SET\_COLOR\_SPACE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab67a3db9b16d938513d1ee6a69b24e02}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab67a3db9b16d938513d1ee6a69b24e02}} 
+VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+SPACE&Codec control function to set color space info. \begin{DoxyNote}{Note}
+Valid ranges\+: 0..7, default is \char`\"{}\+UNKNOWN\char`\"{}. 0 = UNKNOWN, 1 = BT\+\_\+601 2 = BT\+\_\+709 3 = SMPTE\+\_\+170 4 = SMPTE\+\_\+240 5 = BT\+\_\+2020 6 = RESERVED 7 = SRGB
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TEMPORAL\_LAYERING\_MODE@{VP9E\_SET\_TEMPORAL\_LAYERING\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TEMPORAL\_LAYERING\_MODE@{VP9E\_SET\_TEMPORAL\_LAYERING\_MODE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca34af61e36500e1455aa2fc5bf62183ea}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca34af61e36500e1455aa2fc5bf62183ea}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE&Codec control function to set temporal layering mode. \begin{DoxyNote}{Note}
+Valid ranges\+: 0..3, default is \char`\"{}0\char`\"{} (VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+NOLAYERING). 0 = VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+NOLAYERING 1 = VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+BYPASS 2 = VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0101 3 = VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0212
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_MIN\_GF\_INTERVAL@{VP9E\_SET\_MIN\_GF\_INTERVAL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_MIN\_GF\_INTERVAL@{VP9E\_SET\_MIN\_GF\_INTERVAL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca04ae4a1b699c5d22f2510c7509124ea9}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca04ae4a1b699c5d22f2510c7509124ea9}} 
+VP9\+E\+\_\+\+SET\+\_\+\+MIN\+\_\+\+GF\+\_\+\+INTERVAL&Codec control function to set minimum interval between GF/\+ARF frames. By default the value is set as 4.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_MAX\_GF\_INTERVAL@{VP9E\_SET\_MAX\_GF\_INTERVAL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_MAX\_GF\_INTERVAL@{VP9E\_SET\_MAX\_GF\_INTERVAL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae8a09d2ee42538af1c00bc403c6d29d8}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae8a09d2ee42538af1c00bc403c6d29d8}} 
+VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+GF\+\_\+\+INTERVAL&Codec control function to set minimum interval between GF/\+ARF frames. By default the value is set as 16.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_ACTIVEMAP@{VP9E\_GET\_ACTIVEMAP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_ACTIVEMAP@{VP9E\_GET\_ACTIVEMAP}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecade5d0ccfb428b3f443e47aba7354586f}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecade5d0ccfb428b3f443e47aba7354586f}} 
+VP9\+E\+\_\+\+GET\+\_\+\+ACTIVEMAP&Codec control function to get an Active map back from the encoder. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_COLOR\_RANGE@{VP9E\_SET\_COLOR\_RANGE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_COLOR\_RANGE@{VP9E\_SET\_COLOR\_RANGE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5197d959e8a124180de5f7a4bb240595}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5197d959e8a124180de5f7a4bb240595}} 
+VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+RANGE&Codec control function to set color range bit. \begin{DoxyNote}{Note}
+Valid ranges\+: 0..1, default is 0 0 = Limited range (16..235 or HBD equivalent) 1 = Full range (0..255 or HBD equivalent)
+\end{DoxyNote}
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_REF\_FRAME\_CONFIG@{VP9E\_SET\_SVC\_REF\_FRAME\_CONFIG}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_REF\_FRAME\_CONFIG@{VP9E\_SET\_SVC\_REF\_FRAME\_CONFIG}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG&Codec control function to set the frame flags and buffer indices for spatial layers. The frame flags and buffer indices are set using the struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}} defined below. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_RENDER\_SIZE@{VP9E\_SET\_RENDER\_SIZE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_RENDER\_SIZE@{VP9E\_SET\_RENDER\_SIZE}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacabcfc4edba61f54d6a7b7592a64e48b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacabcfc4edba61f54d6a7b7592a64e48b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+RENDER\+\_\+\+SIZE&Codec control function to set intended rendering image size. By default, this is identical to the image size in pixels.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TARGET\_LEVEL@{VP9E\_SET\_TARGET\_LEVEL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TARGET\_LEVEL@{VP9E\_SET\_TARGET\_LEVEL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca2e6d09f137b021acf240cdfc1a7372a8}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca2e6d09f137b021acf240cdfc1a7372a8}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TARGET\+\_\+\+LEVEL&Codec control function to set target level. 255\+: off (default); 0\+: only keep level stats; 10\+: target for level 1.\+0; 11\+: target for level 1.\+1; ... 62\+: target for level 6.\+2
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_ROW\_MT@{VP9E\_SET\_ROW\_MT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_ROW\_MT@{VP9E\_SET\_ROW\_MT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8ec97b90e57f4ddba099cd881a509360}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8ec97b90e57f4ddba099cd881a509360}} 
+VP9\+E\+\_\+\+SET\+\_\+\+ROW\+\_\+\+MT&Codec control function to set row level multi-\/threading. 0 \+: off, 1 \+: on
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_LEVEL@{VP9E\_GET\_LEVEL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_LEVEL@{VP9E\_GET\_LEVEL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3030515b85602b997d76b6e26093708b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3030515b85602b997d76b6e26093708b}} 
+VP9\+E\+\_\+\+GET\+\_\+\+LEVEL&Codec control function to get bitstream level. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_ALT\_REF\_AQ@{VP9E\_SET\_ALT\_REF\_AQ}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_ALT\_REF\_AQ@{VP9E\_SET\_ALT\_REF\_AQ}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaee9ecd5c9530a1bb3a770c9aee6c1f66}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaee9ecd5c9530a1bb3a770c9aee6c1f66}} 
+VP9\+E\+\_\+\+SET\+\_\+\+ALT\+\_\+\+REF\+\_\+\+AQ&Codec control function to enable/disable special mode for altref adaptive quantization. You can use it with --aq-\/mode concurrently. Enable special adaptive quantization for altref frames based on their expected prediction quality for the future frames.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_GF\_CBR\_BOOST\_PCT@{VP8E\_SET\_GF\_CBR\_BOOST\_PCT}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_GF\_CBR\_BOOST\_PCT@{VP8E\_SET\_GF\_CBR\_BOOST\_PCT}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca816c34530f29b611644592f439addfae}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca816c34530f29b611644592f439addfae}} 
+VP8\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT&Boost percentage for Golden Frame in CBR mode. This value controls the amount of boost given to Golden Frame in CBR mode. It is expressed as a percentage of the average per-\/frame bitrate, with the special (and default) value 0 meaning the feature is off, i.\+e., no golden frame boost in CBR mode and average bitrate target is used.
+
+For example, to allow 100\% more bits, i.\+e, 2X, in a golden frame than average frame, set this to 100.
+
+Supported in codecs\+: VP8 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_ENABLE\_MOTION\_VECTOR\_UNIT\_TEST@{VP9E\_ENABLE\_MOTION\_VECTOR\_UNIT\_TEST}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_ENABLE\_MOTION\_VECTOR\_UNIT\_TEST@{VP9E\_ENABLE\_MOTION\_VECTOR\_UNIT\_TEST}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca323d7dc55db6b5762849ac40f504936d}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca323d7dc55db6b5762849ac40f504936d}} 
+VP9\+E\+\_\+\+ENABLE\+\_\+\+MOTION\+\_\+\+VECTOR\+\_\+\+UNIT\+\_\+\+TEST&Codec control function to enable the extreme motion vector unit test in VP9. Please note that this is only used in motion vector unit test. 0 \+: off, 1 \+: MAX\+\_\+\+EXTREME\+\_\+\+MV, 2 \+: MIN\+\_\+\+EXTREME\+\_\+\+MV
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_INTER\_LAYER\_PRED@{VP9E\_SET\_SVC\_INTER\_LAYER\_PRED}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_INTER\_LAYER\_PRED@{VP9E\_SET\_SVC\_INTER\_LAYER\_PRED}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca13dd95dd05c39d2f4db73d9c03add7b1}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca13dd95dd05c39d2f4db73d9c03add7b1}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+INTER\+\_\+\+LAYER\+\_\+\+PRED&Codec control function to constrain the inter-\/layer prediction (prediction of lower spatial resolution) in VP9 SVC. 0 \+: inter-\/layer prediction on, 1 \+: off, 2 \+: off only on non-\/key frames
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_FRAME\_DROP\_LAYER@{VP9E\_SET\_SVC\_FRAME\_DROP\_LAYER}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_FRAME\_DROP\_LAYER@{VP9E\_SET\_SVC\_FRAME\_DROP\_LAYER}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c3914bdf858bcb1c8e8a2922bd97783}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c3914bdf858bcb1c8e8a2922bd97783}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+FRAME\+\_\+\+DROP\+\_\+\+LAYER&Codec control function to set mode and thresholds for frame dropping in SVC. Drop frame thresholds are set per-\/layer. Mode is set as\+: 0 \+: layer-\/dependent dropping, 1 \+: constrained dropping, current layer drop forces drop on all upper layers. Default mode is 0. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_SVC\_REF\_FRAME\_CONFIG@{VP9E\_GET\_SVC\_REF\_FRAME\_CONFIG}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_SVC\_REF\_FRAME\_CONFIG@{VP9E\_GET\_SVC\_REF\_FRAME\_CONFIG}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3e61dbe3054c7e51c45e5883a994bad7}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3e61dbe3054c7e51c45e5883a994bad7}} 
+VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG&Codec control function to get the refresh and reference flags and the buffer indices, up to the last encoded spatial layer. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_GF\_TEMPORAL\_REF@{VP9E\_SET\_SVC\_GF\_TEMPORAL\_REF}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_GF\_TEMPORAL\_REF@{VP9E\_SET\_SVC\_GF\_TEMPORAL\_REF}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3f592e28996106e5f4cf7d3be44f4fbf}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3f592e28996106e5f4cf7d3be44f4fbf}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+GF\+\_\+\+TEMPORAL\+\_\+\+REF&Codec control function to enable/disable use of golden reference as a second temporal reference for SVC. Only used when inter-\/layer prediction is disabled on INTER frames. 0\+: Off, 1\+: Enabled (default)
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_SVC\_SPATIAL\_LAYER\_SYNC@{VP9E\_SET\_SVC\_SPATIAL\_LAYER\_SYNC}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_SVC\_SPATIAL\_LAYER\_SYNC@{VP9E\_SET\_SVC\_SPATIAL\_LAYER\_SYNC}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca75400bbb30c8e4c3690446bea6ac2be3}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca75400bbb30c8e4c3690446bea6ac2be3}} 
+VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+SPATIAL\+\_\+\+LAYER\+\_\+\+SYNC&Codec control function to enable spatial layer sync frame, for any spatial layer. Enabling it for layer k means spatial layer k will disable all temporal prediction, but keep the inter-\/layer prediction. It will refresh any temporal reference buffer for that layer, and reset the temporal layer for the superframe to 0. Setting the layer sync for base spatial layer forces a key frame. Default is off (0) for all spatial layers. Spatial layer sync flag is reset to 0 after each encoded layer, so when control is invoked it is only used for the current superframe. 0\+: Off (default), 1\+: Enabled
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_TPL@{VP9E\_SET\_TPL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_TPL@{VP9E\_SET\_TPL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8cc35557a64db25075d35e2b34373864}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8cc35557a64db25075d35e2b34373864}} 
+VP9\+E\+\_\+\+SET\+\_\+\+TPL&Codec control function to enable temporal dependency model. Vp9 allows the encoder to run temporal dependency model and use it to improve the compression performance. To enable, set this parameter to be
+\begin{DoxyEnumerate}
+\item The default value is set to be 1. 
+\end{DoxyEnumerate}\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_POSTENCODE\_DROP@{VP9E\_SET\_POSTENCODE\_DROP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_POSTENCODE\_DROP@{VP9E\_SET\_POSTENCODE\_DROP}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca474cce061fe13ef1d408b0a0224d887d}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca474cce061fe13ef1d408b0a0224d887d}} 
+VP9\+E\+\_\+\+SET\+\_\+\+POSTENCODE\+\_\+\+DROP&Codec control function to enable postencode frame drop. This will allow encoder to drop frame after it\textquotesingle{}s encoded.
+
+0\+: Off (default), 1\+: Enabled
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_DELTA\_Q\_UV@{VP9E\_SET\_DELTA\_Q\_UV}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_DELTA\_Q\_UV@{VP9E\_SET\_DELTA\_Q\_UV}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaff9d5b81d7fa5578a640a7afa3cc5ec8}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaff9d5b81d7fa5578a640a7afa3cc5ec8}} 
+VP9\+E\+\_\+\+SET\+\_\+\+DELTA\+\_\+\+Q\+\_\+\+UV&Codec control function to set delta q for uv. Cap it at +/-\/15.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_DISABLE\_OVERSHOOT\_MAXQ\_CBR@{VP9E\_SET\_DISABLE\_OVERSHOOT\_MAXQ\_CBR}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_DISABLE\_OVERSHOOT\_MAXQ\_CBR@{VP9E\_SET\_DISABLE\_OVERSHOOT\_MAXQ\_CBR}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca73257656241aac7371e60fa99c8b797b}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca73257656241aac7371e60fa99c8b797b}} 
+VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+OVERSHOOT\+\_\+\+MAXQ\+\_\+\+CBR&Codec control function to disable increase Q on overshoot in CBR. 0\+: On (default), 1\+: Disable.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_DISABLE\_LOOPFILTER@{VP9E\_SET\_DISABLE\_LOOPFILTER}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_DISABLE\_LOOPFILTER@{VP9E\_SET\_DISABLE\_LOOPFILTER}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd2d31e611840edb87a0484a9ef1781a}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd2d31e611840edb87a0484a9ef1781a}} 
+VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+LOOPFILTER&Codec control function to disable loopfilter. 0\+: Loopfilter on all frames, 1\+: Disable on non reference frames. 2\+: Disable on all frames.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_EXTERNAL\_RATE\_CONTROL@{VP9E\_SET\_EXTERNAL\_RATE\_CONTROL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_EXTERNAL\_RATE\_CONTROL@{VP9E\_SET\_EXTERNAL\_RATE\_CONTROL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae899930430f09c2082e4fa3d7772ef20}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae899930430f09c2082e4fa3d7772ef20}} 
+VP9\+E\+\_\+\+SET\+\_\+\+EXTERNAL\+\_\+\+RATE\+\_\+\+CONTROL&Codec control function to enable external rate control library. args\mbox{[}0\mbox{]}\+: path of the rate control library
+
+args\mbox{[}1\mbox{]}\+: private config of the rate control library
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_SET\_RTC\_EXTERNAL\_RATECTRL@{VP9E\_SET\_RTC\_EXTERNAL\_RATECTRL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_SET\_RTC\_EXTERNAL\_RATECTRL@{VP9E\_SET\_RTC\_EXTERNAL\_RATECTRL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae49dc24c62281fa8d17bbaa3c22fb6bb}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae49dc24c62281fa8d17bbaa3c22fb6bb}} 
+VP9\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL&Codec control to disable internal features in rate control. This will do 3 things, only for 1 pass\+:
+\begin{DoxyItemize}
+\item Turn off low motion computation
+\item Turn off gf update constraint on key frame frequency
+\item Turn off content mode for cyclic refresh
+\end{DoxyItemize}
+
+With those, the rate control is expected to work exactly the same as the interface provided in ratectrl\+\_\+rtc.\+cc/h
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_LOOPFILTER\_LEVEL@{VP9E\_GET\_LOOPFILTER\_LEVEL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_LOOPFILTER\_LEVEL@{VP9E\_GET\_LOOPFILTER\_LEVEL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca249badba7f5ee05962fed693c9424c4f}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca249badba7f5ee05962fed693c9424c4f}} 
+VP9\+E\+\_\+\+GET\+\_\+\+LOOPFILTER\+\_\+\+LEVEL&Codec control function to get loopfilter level in the encoder. Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_GET\_LAST\_QUANTIZER\_SVC\_LAYERS@{VP9E\_GET\_LAST\_QUANTIZER\_SVC\_LAYERS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_GET\_LAST\_QUANTIZER\_SVC\_LAYERS@{VP9E\_GET\_LAST\_QUANTIZER\_SVC\_LAYERS}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecac711667f05bf3c80acbdb94ea1e13217}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecac711667f05bf3c80acbdb94ea1e13217}} 
+VP9\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+\+SVC\+\_\+\+LAYERS&Codec control to get last quantizers for all spatial layers. Return value uses an array of internal quantizers scale defined by the codec, for all spatial layers. The size of the array passed in should be \mbox{\hyperlink{group__encoder_ga8ee6b12a5f4c97d9767adffb88fff7da}{VPX\+\_\+\+SS\+\_\+\+MAX\+\_\+\+LAYERS}}.
+
+Supported in codecs\+: VP9 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP8E\_SET\_RTC\_EXTERNAL\_RATECTRL@{VP8E\_SET\_RTC\_EXTERNAL\_RATECTRL}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP8E\_SET\_RTC\_EXTERNAL\_RATECTRL@{VP8E\_SET\_RTC\_EXTERNAL\_RATECTRL}}}\mbox{\Hypertarget{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca28a08f7ee44abb2073c48ba7a18f04b5}\label{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca28a08f7ee44abb2073c48ba7a18f04b5}} 
+VP8\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL&Codec control to disable internal features in rate control. This will turn off cyclic refresh for vp8.
+
+With this, the rate control is expected to work exactly the same as the interface provided in vp8\+\_\+ratectrl\+\_\+rtc.\+cc/h
+
+Supported in codecs\+: VP8 \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}\label{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vpx\_scaling\_mode\_1d@{vpx\_scaling\_mode\_1d}}
+\index{vpx\_scaling\_mode\_1d@{vpx\_scaling\_mode\_1d}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vpx\_scaling\_mode\_1d}{vpx\_scaling\_mode\_1d}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}}}
+
+
+
+vpx 1-\/D scaling mode 
+
+This set of constants define 1-\/D vpx scaling modes \mbox{\Hypertarget{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}\label{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vp9e\_temporal\_layering\_mode@{vp9e\_temporal\_layering\_mode}}
+\index{vp9e\_temporal\_layering\_mode@{vp9e\_temporal\_layering\_mode}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vp9e\_temporal\_layering\_mode}{vp9e\_temporal\_layering\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}}}
+
+
+
+Temporal layering mode enum for VP9 SVC. 
+
+This set of macros define the different temporal layering modes. Supported codecs\+: VP9 (in SVC mode) \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_TEMPORAL\_LAYERING\_MODE\_NOLAYERING@{VP9E\_TEMPORAL\_LAYERING\_MODE\_NOLAYERING}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_TEMPORAL\_LAYERING\_MODE\_NOLAYERING@{VP9E\_TEMPORAL\_LAYERING\_MODE\_NOLAYERING}}}\mbox{\Hypertarget{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ac9713fea328d8c59130250a6d5b35add}\label{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ac9713fea328d8c59130250a6d5b35add}} 
+VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+NOLAYERING&No temporal layering. Used when only spatial layering is used. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_TEMPORAL\_LAYERING\_MODE\_BYPASS@{VP9E\_TEMPORAL\_LAYERING\_MODE\_BYPASS}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_TEMPORAL\_LAYERING\_MODE\_BYPASS@{VP9E\_TEMPORAL\_LAYERING\_MODE\_BYPASS}}}\mbox{\Hypertarget{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a680204f7c9d48155170bcb3fc6e673e8}\label{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a680204f7c9d48155170bcb3fc6e673e8}} 
+VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+BYPASS&Bypass mode. Used when application needs to control temporal layering. This will only work when the number of spatial layers equals 1. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_TEMPORAL\_LAYERING\_MODE\_0101@{VP9E\_TEMPORAL\_LAYERING\_MODE\_0101}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_TEMPORAL\_LAYERING\_MODE\_0101@{VP9E\_TEMPORAL\_LAYERING\_MODE\_0101}}}\mbox{\Hypertarget{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a7bb06aacd0b926d40a7df261fa2937b9}\label{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a7bb06aacd0b926d40a7df261fa2937b9}} 
+VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0101&0-\/1-\/0-\/1... temporal layering scheme with two temporal layers. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VP9E\_TEMPORAL\_LAYERING\_MODE\_0212@{VP9E\_TEMPORAL\_LAYERING\_MODE\_0212}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!VP9E\_TEMPORAL\_LAYERING\_MODE\_0212@{VP9E\_TEMPORAL\_LAYERING\_MODE\_0212}}}\mbox{\Hypertarget{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ad2a4ba7d6535ce3514fec130c806d457}\label{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ad2a4ba7d6535ce3514fec130c806d457}} 
+VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0212&0-\/2-\/1-\/2... temporal layering scheme with three temporal layers. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__vp8__encoder_ga5f7508ba3fb453b47f62313ed0b864d2}\label{group__vp8__encoder_ga5f7508ba3fb453b47f62313ed0b864d2}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vp8e\_token\_partitions@{vp8e\_token\_partitions}}
+\index{vp8e\_token\_partitions@{vp8e\_token\_partitions}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vp8e\_token\_partitions}{vp8e\_token\_partitions}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga5f7508ba3fb453b47f62313ed0b864d2}{vp8e\+\_\+token\+\_\+partitions}}}
+
+
+
+VP8 token partition mode. 
+
+This defines VP8 partitioning mode for compressed data, i.\+e., the number of sub-\/streams in the bitstream. Used for parallelized decoding. \mbox{\Hypertarget{group__vp8__encoder_ga76d4298d5ee58718597f307a290211a9}\label{group__vp8__encoder_ga76d4298d5ee58718597f307a290211a9}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vp9e\_tune\_content@{vp9e\_tune\_content}}
+\index{vp9e\_tune\_content@{vp9e\_tune\_content}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vp9e\_tune\_content}{vp9e\_tune\_content}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga76d4298d5ee58718597f307a290211a9}{vp9e\+\_\+tune\+\_\+content}}}
+
+brief VP9 encoder content type \mbox{\Hypertarget{group__vp8__encoder_ga371dbc29054b3d46364af996ad42ab94}\label{group__vp8__encoder_ga371dbc29054b3d46364af996ad42ab94}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!vp8e\_tuning@{vp8e\_tuning}}
+\index{vp8e\_tuning@{vp8e\_tuning}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{vp8e\_tuning}{vp8e\_tuning}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga371dbc29054b3d46364af996ad42ab94}{vp8e\+\_\+tuning}}}
+
+
+
+VP8 model tuning parameters. 
+
+Changes the encoder to tune for certain types of input material. \mbox{\Hypertarget{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}\label{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}} 
+\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!SVC\_LAYER\_DROP\_MODE@{SVC\_LAYER\_DROP\_MODE}}
+\index{SVC\_LAYER\_DROP\_MODE@{SVC\_LAYER\_DROP\_MODE}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}
+\doxyparagraph{\texorpdfstring{SVC\_LAYER\_DROP\_MODE}{SVC\_LAYER\_DROP\_MODE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}{SVC\+\_\+\+LAYER\+\_\+\+DROP\+\_\+\+MODE}}}
+
+
+
+VP9 svc frame dropping mode. 
+
+This defines the frame drop mode for SVC. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTRAINED\_LAYER\_DROP@{CONSTRAINED\_LAYER\_DROP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!CONSTRAINED\_LAYER\_DROP@{CONSTRAINED\_LAYER\_DROP}}}\mbox{\Hypertarget{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a84363e856c23be36b1cec8e6f86d6712}\label{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a84363e856c23be36b1cec8e6f86d6712}} 
+CONSTRAINED\+\_\+\+LAYER\+\_\+\+DROP&Upper layers are constrained to drop if current layer drops. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LAYER\_DROP@{LAYER\_DROP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!LAYER\_DROP@{LAYER\_DROP}}}\mbox{\Hypertarget{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a91fdaca8868dbd1a1c073bf1675c134c}\label{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a91fdaca8868dbd1a1c073bf1675c134c}} 
+LAYER\+\_\+\+DROP&Any spatial layer can drop. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULL\_SUPERFRAME\_DROP@{FULL\_SUPERFRAME\_DROP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!FULL\_SUPERFRAME\_DROP@{FULL\_SUPERFRAME\_DROP}}}\mbox{\Hypertarget{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a6ae5f6715816a5d8af0f880a46604753}\label{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a6ae5f6715816a5d8af0f880a46604753}} 
+FULL\+\_\+\+SUPERFRAME\+\_\+\+DROP&Only full superframe can drop. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTRAINED\_FROM\_ABOVE\_DROP@{CONSTRAINED\_FROM\_ABOVE\_DROP}!WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}}\index{WebM VP8/VP9 Encoder@{WebM VP8/VP9 Encoder}!CONSTRAINED\_FROM\_ABOVE\_DROP@{CONSTRAINED\_FROM\_ABOVE\_DROP}}}\mbox{\Hypertarget{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a36d6bf5e257bcc352660ee059b427d43}\label{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a36d6bf5e257bcc352660ee059b427d43}} 
+CONSTRAINED\+\_\+\+FROM\+\_\+\+ABOVE\+\_\+\+DROP&Lower layers are constrained to drop if current layer drops. \\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,299 @@
+# Specifies the root path for C files
+root: ./libvpxsrc
+# Specifies the output path for Go files
+out: ./cmd/vpxdecgo
+# Package name for Go files
+package: main
+
+int_size: 8
+ptr_size: 8
+
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+
+# Replace C int with Go int (the default is to use int32/int64)
+use_go_int: true
+
+
+replace:
+  - old: EXIT_SUCCESS
+    new: 1
+  - old: EXIT_FAILURE
+    new: 0
+
+idents:
+  - name: VpxInputContext
+    rename: internal.VpxInputContext
+  - name: WebmInputContext
+    rename: internal.WebmInputContext
+  - name: arg_def
+    rename: internal.ArgDef
+  - name: arg_def_t
+    rename: internal.ArgDefT
+  - name: vpx_image_t
+    rename: vpx.Image
+  - name: vpx_codec_iface_name
+    rename: vpx.CodecIFaceName
+  - name: vpx_img_fmt_t
+    rename: vpx.ImgFmt
+  - name: vpx_codec_stream_info_t
+    rename: vpx.CodecStreamInfo
+  - name: vpx_codec_peek_stream_info
+    rename: vpx.CodecPeekStreamInfo
+  - name: vpx_codec_frame_buffer_t
+    rename: vpx.CodecFrameBuffer
+  - name: vpx_codec_ctx_t
+    rename: vpx.CodecCtx
+  - name: vpx_codec_dec_cfg_t
+    rename: vpx.CodecDecCfg
+  - name: vp8_postproc_cfg_t
+    rename: vpx.Vp8PostProcCfg
+  - name: vpx_img_free
+    rename: vpx.ImgFree
+  - name: vpx_codec_dec_init_ver
+    rename: vpx.CodecDecInitVer
+  - name: vpx_codec_flags_t
+    rename: vpx.CodecFlags
+  - name: vpx_codec_control_VP9_DECODE_SVC_SPATIAL_LAYER
+    rename: vpx.Vp9DecodeSvcSpatialLayer
+  - name: vpx_codec_control_VP9D_SET_LOOP_FILTER_OPT
+    rename: vpx.Vp9dSetLoopFilterOpt
+  - name: vpx_codec_set_frame_buffer_functions
+    rename: vpx.CodecSetFrameBufferFunctions
+  - name: vpx_codec_control_VP8_SET_POSTPROC
+    rename: vpx.Vp8SetPostProc
+  - name: vpx_codec_control_VP8D_GET_FRAME_CORRUPTED
+    rename: vpx.Vp8dGetFrameCorrupted
+  - name: vpx_codec_control_VP9D_GET_DISPLAY_SIZE
+    rename: vpx.Vp9dGetDisplaySize
+  - name: vpx_codec_error
+    rename: vpx.CodecError
+  - name: vpx_img_alloc
+    rename: vpx.ImgAlloc
+  - name: vpx_codec_control_VP9D_SET_ROW_MT
+    rename: vpx.Vp9dSetRowMt
+  - name: get_vpx_decoder_by_name
+    rename: internal.GetVpxDecoderByName
+  - name: arg_show_usage
+    rename: internal.ArgShowUsage
+  - name: get_vpx_decoder_count
+    rename: internal.GetVpxDecoderCount
+  - name: vpx_codec_iter_t
+    rename: vpx.CodecIter
+  - name: vpx_codec_control_VPXD_GET_LAST_QUANTIZER
+    rename: vpx.VpxdGetLastQuantizer
+  - name: vpx_usec_timer
+    rename: vpx.VpxUsecTimer
+  - name: vpx_usec_timer_start
+    rename: vpx.VpxUsecTimerStart
+  - name: vpx_usec_timer_mark
+    rename: vpx.VpxUsecTimerMark
+  - name: vpx_usec_timer_elapsed
+    rename: vpx.VpxUsecTimerElapsed
+  - name: vpx_codec_decode
+    rename: vpx.CodecDecode
+  - name: vpx_codec_error_detail
+    rename: vpx.CodecErrorDetail
+  - name: VpxInterface
+    rename: internal.VpxInterface
+  - name: get_vpx_decoder_by_index
+    rename: internal.GetVpxDecoderByIndex
+  - name: die
+    rename: internal.Die
+  - name: fatal
+    rename: internal.Fatal
+  - name: warn
+    rename: internal.Warn
+  - name: I420Scale
+    rename: internal.I420Scale
+  - name: FilterModeEnum
+    rename: internal.FilterModeEnum
+  - name: FilterMode
+    rename: internal.FilterMode
+  - name: webm_read_frame
+    rename: internal.WebmReadFrame
+  - name: vpx_img_plane_width
+    rename: internal.ImgPlaneWidth
+  - name: vpx_img_plane_height
+    rename: internal.ImgPlaneHeight
+  - name: ivf_read_frame
+    rename: internal.IvfReadFrame
+  - name: MD5Context
+    rename: internal.MD5Context
+  - name: MD5Update
+    rename: internal.MD5Update
+  - name: MD5Init
+    rename: internal.MD5Init
+  - name: MD5Final
+    rename: internal.MD5Final
+  - name: mem_get_le32_as_int
+    rename: ports.GetLe32AsInt
+  - name: set_binary_mode
+    rename: internal.SetBinaryMode
+  - name: argv_dup
+    rename: internal.ArgvDup
+  - name: arg_match
+    rename: internal.ArgMatch
+  - name: arg_parse_uint
+    rename: internal.ArgParseUint
+  - name: VideoFileType
+    rename: internal.VideoFileType
+  - name: file_is_ivf
+    rename: internal.FileIsIvf
+  - name: file_is_webm
+    rename: internal.FileIsWebm
+  - name: webm_free
+    rename: internal.WebmFree
+  - name: rewind
+    rename: internal.Rewind
+  - name: isatty
+    rename: internal.IsAtty
+  - name: webm_guess_framerate
+    rename: internal.WebmGuessFrameRate
+  - name: get_vpx_decoder_by_fourcc
+    rename: internal.GetVpxDecoderByFourcc
+  - name: vpx_codec_destroy
+    rename: vpx.CodecDestroy
+  - name: vpx_codec_get_frame
+    rename: vpx.CodecGetFrame
+  - name: y4m_write_file_header
+    rename: internal.Y4mWriteFileHeader
+  - name: y4m_write_frame_header
+    rename: internal.Y4mWriteFrameHeader
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  - name: vpxdec.c
+    go: vpxdecgo
+    replace:
+      - old: '"vpx"'
+        new: '"github.com/mearaj/libvpx/internal/vpx"'
+      - old: '"ports"'
+        new: '"github.com/mearaj/libvpx/internal/ports"'
+      - old: '"internal"'
+        new: '"github.com/mearaj/libvpx/internal"'
+      - old: 'planes     *int'
+        new: 'planes     [3]int'
+      - old: 'planes = &PLANES_YVU[0]'
+        new: 'planes = PLANES_YVU'
+      - old: 'planes = &PLANES_YUV[0]'
+        new: 'planes = PLANES_YUV'
+      - old: 'arg                        arg'
+        new: 'arg                        internal.Arg'
+      - old: 'arg = arg{}'
+        new: 'arg = internal.Arg{}'
+      - old: 'arg   arg'
+        new: 'arg   internal.Arg'
+      - old: PATH_MAX
+        new: internal.PATH_MAX
+      - old: VPX_IMG_FMT_HIGHBITDEPTH
+        new: vpx.VPX_IMG_FMT_HIGHBITDEPTH
+      - old: VPX_IMG_FMT_NV12
+        new: vpx.VPX_IMG_FMT_NV12
+      - old: VPX_IMG_FMT_YV12
+        new: vpx.VPX_IMG_FMT_YV12
+      - old: VPX_PLANE_V
+        new: vpx.VPX_PLANE_V
+      - old: VPX_PLANE_U
+        new: vpx.VPX_PLANE_U
+      - old: VPX_PLANE_Y
+        new: vpx.VPX_PLANE_Y
+      - old: VPX_PLANE_ALPHA
+        new: vpx.VPX_PLANE_ALPHA
+      - old: VPX_IMG_FMT_I44416
+        new: vpx.VPX_IMG_FMT_I44416
+      - old: VPX_IMG_FMT_I42216
+        new: vpx.VPX_IMG_FMT_I42216
+      - old: VPX_IMG_FMT_I444
+        new: vpx.VPX_IMG_FMT_I444
+      - old: VPX_IMG_FMT_I420
+        new: vpx.VPX_IMG_FMT_I420
+      - old: VPX_IMG_FMT_I422
+        new: vpx.VPX_IMG_FMT_I422
+      - old: VPX_IMG_FMT_I440
+        new: vpx.VPX_IMG_FMT_I440
+      - old: VPX_CODEC_USE_POSTPROC
+        new: vpx.VPX_CODEC_USE_POSTPROC
+      - old: VPX_CODEC_USE_ERROR_CONCEALMENT
+        new: vpx.VPX_CODEC_USE_ERROR_CONCEALMENT
+      - old: VP8_ADDNOISE
+        new: int(vpx.VP8_ADDNOISE)
+      - old: VP8_DEMACROBLOCK
+        new: int(vpx.VP8_DEMACROBLOCK)
+      - old: VP8_DEBLOCK
+        new: int(vpx.VP8_DEBLOCK)
+      - old: VP8_MFQE
+        new: int(vpx.VP8_MFQE)
+      - old: VP9D_SET_ROW_MT
+        new: int(vpx.VP9D_SET_ROW_MT)
+      - old: VP8_SET_POSTPROC
+        new: int(vpx.VP8_SET_POSTPROC)
+      - old: VPXD_GET_LAST_QUANTIZER
+        new: int(vpx.VPXD_GET_LAST_QUANTIZER)
+      - old: VP8D_GET_FRAME_CORRUPTED
+        new: int(vpx.VP8D_GET_FRAME_CORRUPTED)
+      - old: VP9D_GET_DISPLAY_SIZE
+        new: int(vpx.VP9D_GET_DISPLAY_SIZE)
+      - old: VP9_DECODE_SVC_SPATIAL_LAYER
+        new: int(vpx.VP9_DECODE_SVC_SPATIAL_LAYER)
+      - old: VP9D_SET_LOOP_FILTER_OPT
+        new: int(vpx.VP9D_SET_LOOP_FILTER_OPT)
+      - old: FILE_TYPE_WEBM
+        new: internal.FILE_TYPE_WEBM
+      - old: FILE_TYPE_RAW
+        new: internal.FILE_TYPE_RAW
+      - old: FILE_TYPE_IVF
+        new: internal.FILE_TYPE_IVF
+      - old: VP9_FOURCC
+        new: internal.VP9_FOURCC
+      - old: kFilterNone
+        new: internal.KFilterNone
+      - old: kFilterLinear
+        new: internal.KFilterLinear
+      - old: kFilterBilinear
+        new: internal.KFilterBilinear
+      - old: kFilterBox
+        new: internal.KFilterBox
+
+  - name: vpxdecgo_test.go
+    content: |
+      package main
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include

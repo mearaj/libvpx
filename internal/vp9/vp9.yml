@@ -1,0 +1,74 @@
+# Specifies the root path for C files
+root: ../../libvpxsrc
+# Specifies the output path for Go files
+out: .
+# Package name for Go files
+package: vp9
+
+int_size: 8
+ptr_size: 8
+
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+#  - name: uint8_t
+#    value: uint8
+#  - name: int64_t
+#    value: int64
+
+# Replace C int with Go int (the default is to use int32/int64)
+use_go_int: true
+
+
+#replace:
+#  - old: EXIT_SUCCESS
+#    new: 1
+#  - old: EXIT_FAILURE
+#    new: 0
+
+idents:
+
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  - name: vp9_test.go
+    content: |
+      package vp9
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include

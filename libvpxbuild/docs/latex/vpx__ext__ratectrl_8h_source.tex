@@ -1,0 +1,131 @@
+\hypertarget{vpx__ext__ratectrl_8h_source}{}\doxysubsection{vpx\+\_\+ext\+\_\+ratectrl.\+h}
+\label{vpx__ext__ratectrl_8h_source}\index{vpx/vpx\_ext\_ratectrl.h@{vpx/vpx\_ext\_ratectrl.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2020 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VPX\_EXT\_RATECTRL\_H\_}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define VPX\_VPX\_VPX\_EXT\_RATECTRL\_H\_}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{15 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}./vpx\_integer.h"{}}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#define VPX\_EXT\_RATECTRL\_ABI\_VERSION (1)}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{35 \textcolor{keyword}{typedef} \textcolor{keywordtype}{void} *vpx\_rc\_model\_t;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{47 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__encodeframe__decision}{vpx\_rc\_encodeframe\_decision}} \{}
+\DoxyCodeLine{48   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__decision_a3afa3736d1d0077805ae19fcfaab629f}{q\_index}};        }
+\DoxyCodeLine{49   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__decision_aca8ad3f842c315e677c53a298bc4a3c0}{max\_frame\_size}}; }
+\DoxyCodeLine{50 \} \mbox{\hyperlink{structvpx__rc__encodeframe__decision}{vpx\_rc\_encodeframe\_decision\_t}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{58 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__encodeframe__info}{vpx\_rc\_encodeframe\_info}} \{}
+\DoxyCodeLine{66   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_aa847a25c28cc5659bb97502db93b5402}{frame\_type}};}
+\DoxyCodeLine{67   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_a0561ac82f416aa0cfc4e69cfa13d9b2d}{show\_index}};   }
+\DoxyCodeLine{68   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_a3c0e2cbab26f8413b5c48dc4d3ecfc93}{coding\_index}}; }
+\DoxyCodeLine{72   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_a7272ee027968a6b2844c18e6ef8f41c3}{gop\_index}};}
+\DoxyCodeLine{73   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_a5377a3fc68eb647f9d4f735b7cb39277}{ref\_frame\_coding\_indexes}}[3]; }
+\DoxyCodeLine{79   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__info_a71f00c61c7ac6a584c8ca894cda8dea0}{ref\_frame\_valid\_list}}[3];}
+\DoxyCodeLine{80 \} \mbox{\hyperlink{structvpx__rc__encodeframe__info}{vpx\_rc\_encodeframe\_info\_t}};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{87 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__encodeframe__result}{vpx\_rc\_encodeframe\_result}} \{}
+\DoxyCodeLine{88   int64\_t \mbox{\hyperlink{structvpx__rc__encodeframe__result_a6027fb3230818c94b97b5a3665c72753}{sse}};         }
+\DoxyCodeLine{89   int64\_t \mbox{\hyperlink{structvpx__rc__encodeframe__result_aeec8657ac20c266ecf69487d2af25978}{bit\_count}};   }
+\DoxyCodeLine{90   int64\_t \mbox{\hyperlink{structvpx__rc__encodeframe__result_a8bd6cf9bbc780256390d51dcab7fad24}{pixel\_count}}; }
+\DoxyCodeLine{91   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__encodeframe__result_a51e720171e4397e00703886dd5a85195}{actual\_encoding\_qindex}}; }
+\DoxyCodeLine{92 \} \mbox{\hyperlink{structvpx__rc__encodeframe__result}{vpx\_rc\_encodeframe\_result\_t}};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{96 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} vpx\_rc\_status \{}
+\DoxyCodeLine{97   VPX\_RC\_OK = 0,}
+\DoxyCodeLine{98   VPX\_RC\_ERROR = 1,}
+\DoxyCodeLine{99 \} vpx\_rc\_status\_t;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{105 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__frame__stats}{vpx\_rc\_frame\_stats}} \{}
+\DoxyCodeLine{110   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a54f4244c577b52e14dd7a4b07263b314}{frame}};}
+\DoxyCodeLine{116   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a2b38dfcb23198646bb456575cee65d66}{weight}};}
+\DoxyCodeLine{120   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a76ef89afc4d4b33dcf98959c73289909}{intra\_error}};}
+\DoxyCodeLine{124   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_afe9f577c4ecd1d3d54b1e1c0bebd21d9}{coded\_error}};}
+\DoxyCodeLine{128   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_af2028a626d0a6c82eb4b66c857f1a229}{sr\_coded\_error}};}
+\DoxyCodeLine{132   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a8613271397e98d987fd1e828910e64cd}{frame\_noise\_energy}};}
+\DoxyCodeLine{136   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_aeb2715f040b2b11a0d6073c28b441cb9}{pcnt\_inter}};}
+\DoxyCodeLine{140   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_ab5457c7f776d950c9b34ad1ee3c4599f}{pcnt\_motion}};}
+\DoxyCodeLine{146   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_af472b9802b6058b22a8cf759eb1f0ea4}{pcnt\_second\_ref}};}
+\DoxyCodeLine{151   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a881e2fd9c0386c4a08b562e4115d2ada}{pcnt\_neutral}};}
+\DoxyCodeLine{159   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a1a5737b9d35c2585112633f953c6339f}{pcnt\_intra\_low}};}
+\DoxyCodeLine{167   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_ad90b106ed97ca963064469393698a943}{pcnt\_intra\_high}};}
+\DoxyCodeLine{175   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_aec7182d9a9814ffb0905e08993220b88}{intra\_skip\_pct}};}
+\DoxyCodeLine{182   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_aa7baa726de870cbb5d9133e6cccfec01}{intra\_smooth\_pct}};}
+\DoxyCodeLine{186   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a53ed0ea951ef9cf69a06675caea0063a}{inactive\_zone\_rows}};}
+\DoxyCodeLine{190   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a285bf0d70ca484103768d29e7bacfd85}{inactive\_zone\_cols}};}
+\DoxyCodeLine{194   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a3e10a3da3bbb2f71e8e1e361f6cee1ee}{MVr}};}
+\DoxyCodeLine{198   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a0364a5c441f8f25fa56e30d5e26df6a8}{mvr\_abs}};}
+\DoxyCodeLine{202   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a9dbae816fc93d2bee2c4dbed1ec8dbcc}{MVc}};}
+\DoxyCodeLine{206   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a9e27da5e9133c163b8401b442c039654}{mvc\_abs}};}
+\DoxyCodeLine{210   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_ab4a1f2deb61ba70a3ee65dc62c3b21f2}{MVrv}};}
+\DoxyCodeLine{214   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_ac44474935465688d9e724696e72a3bca}{MVcv}};}
+\DoxyCodeLine{220   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a429711a1c5dc4e419195ff7ff9871fe6}{mv\_in\_out\_count}};}
+\DoxyCodeLine{224   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_a147bcc75f78565428aae81dccc11833f}{duration}};}
+\DoxyCodeLine{229   \textcolor{keywordtype}{double} \mbox{\hyperlink{structvpx__rc__frame__stats_ae426e907555e2cd05e844c14b6c6c8a3}{count}};}
+\DoxyCodeLine{230 \} \mbox{\hyperlink{structvpx__rc__frame__stats}{vpx\_rc\_frame\_stats\_t}};}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{234 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__firstpass__stats}{vpx\_rc\_firstpass\_stats}} \{}
+\DoxyCodeLine{240   \mbox{\hyperlink{structvpx__rc__frame__stats}{vpx\_rc\_frame\_stats\_t}} *\mbox{\hyperlink{structvpx__rc__firstpass__stats_a1fc9a422d49fc21d2063f07f5429433c}{frame\_stats}};}
+\DoxyCodeLine{244   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__firstpass__stats_a51cea1631afdd7e2d009989609a21cc0}{num\_frames}};}
+\DoxyCodeLine{245 \} \mbox{\hyperlink{structvpx__rc__firstpass__stats}{vpx\_rc\_firstpass\_stats\_t}};}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{249 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__config}{vpx\_rc\_config}} \{}
+\DoxyCodeLine{250   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_a4012bb3d43a91dbd8bbdcbd87044c351}{frame\_width}};      }
+\DoxyCodeLine{251   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_a26fdca318d478447314117eba58a4207}{frame\_height}};     }
+\DoxyCodeLine{252   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_a4938b42c05be72fb8c81e27b4aad3300}{show\_frame\_count}}; }
+\DoxyCodeLine{256   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_a937d54e2d27a65059972afd457d6350e}{target\_bitrate\_kbps}};}
+\DoxyCodeLine{257   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_a95e617963d2cbffba335db477d39e4c0}{frame\_rate\_num}}; }
+\DoxyCodeLine{258   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__rc__config_af7457385b81f1def89c9ba051b9c487c}{frame\_rate\_den}}; }
+\DoxyCodeLine{259 \} \mbox{\hyperlink{structvpx__rc__config}{vpx\_rc\_config\_t}};}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{270 \textcolor{keyword}{typedef} vpx\_rc\_status\_t (*vpx\_rc\_create\_model\_cb\_fn\_t)(}
+\DoxyCodeLine{271     \textcolor{keywordtype}{void} *priv, \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__rc__config}{vpx\_rc\_config\_t}} *ratectrl\_config,}
+\DoxyCodeLine{272     vpx\_rc\_model\_t *rate\_ctrl\_model\_pt);}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{283 \textcolor{keyword}{typedef} vpx\_rc\_status\_t (*vpx\_rc\_send\_firstpass\_stats\_cb\_fn\_t)(}
+\DoxyCodeLine{284     vpx\_rc\_model\_t rate\_ctrl\_model,}
+\DoxyCodeLine{285     \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__rc__firstpass__stats}{vpx\_rc\_firstpass\_stats\_t}} *first\_pass\_stats);}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{296 \textcolor{keyword}{typedef} vpx\_rc\_status\_t (*vpx\_rc\_get\_encodeframe\_decision\_cb\_fn\_t)(}
+\DoxyCodeLine{297     vpx\_rc\_model\_t rate\_ctrl\_model,}
+\DoxyCodeLine{298     \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__rc__encodeframe__info}{vpx\_rc\_encodeframe\_info\_t}} *encode\_frame\_info,}
+\DoxyCodeLine{299     \mbox{\hyperlink{structvpx__rc__encodeframe__decision}{vpx\_rc\_encodeframe\_decision\_t}} *frame\_decision);}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{309 \textcolor{keyword}{typedef} vpx\_rc\_status\_t (*vpx\_rc\_update\_encodeframe\_result\_cb\_fn\_t)(}
+\DoxyCodeLine{310     vpx\_rc\_model\_t rate\_ctrl\_model,}
+\DoxyCodeLine{311     \textcolor{keyword}{const} \mbox{\hyperlink{structvpx__rc__encodeframe__result}{vpx\_rc\_encodeframe\_result\_t}} *encode\_frame\_result);}
+\DoxyCodeLine{312 }
+\DoxyCodeLine{320 \textcolor{keyword}{typedef} vpx\_rc\_status\_t (*vpx\_rc\_delete\_model\_cb\_fn\_t)(}
+\DoxyCodeLine{321     vpx\_rc\_model\_t rate\_ctrl\_model);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{329 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__rc__funcs}{vpx\_rc\_funcs}} \{}
+\DoxyCodeLine{333   vpx\_rc\_create\_model\_cb\_fn\_t \mbox{\hyperlink{structvpx__rc__funcs_a42018da8738118e26c7c794d75990df7}{create\_model}};}
+\DoxyCodeLine{337   vpx\_rc\_send\_firstpass\_stats\_cb\_fn\_t \mbox{\hyperlink{structvpx__rc__funcs_a20650a36f534e644f8a6d4857d8ad7c2}{send\_firstpass\_stats}};}
+\DoxyCodeLine{341   vpx\_rc\_get\_encodeframe\_decision\_cb\_fn\_t \mbox{\hyperlink{structvpx__rc__funcs_a3cf04d445786ab5508803abdd5f58577}{get\_encodeframe\_decision}};}
+\DoxyCodeLine{345   vpx\_rc\_update\_encodeframe\_result\_cb\_fn\_t \mbox{\hyperlink{structvpx__rc__funcs_a9a400b964a01c4dfcc4fc10a0565a4b6}{update\_encodeframe\_result}};}
+\DoxyCodeLine{349   vpx\_rc\_delete\_model\_cb\_fn\_t \mbox{\hyperlink{structvpx__rc__funcs_ae8b0d3830d49cb7fb806dab3ebb936c8}{delete\_model}};}
+\DoxyCodeLine{353   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__rc__funcs_a8d44fc305a9799f885f21b3386720d02}{priv}};}
+\DoxyCodeLine{354 \} \mbox{\hyperlink{structvpx__rc__funcs}{vpx\_rc\_funcs\_t}};}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{357 \}  \textcolor{comment}{// extern "{}C"{}}}
+\DoxyCodeLine{358 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VPX\_EXT\_RATECTRL\_H\_}}
+
+\end{DoxyCode}

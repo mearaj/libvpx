@@ -1,0 +1,197 @@
+\hypertarget{vpx__codec_8h_source}{}\doxysubsection{vpx\+\_\+codec.\+h}
+\label{vpx__codec_8h_source}\index{vpx/vpx\_codec.h@{vpx/vpx\_codec.h}}
+\mbox{\hyperlink{vpx__codec_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2010 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{41 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VPX\_CODEC\_H\_}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{\#define VPX\_VPX\_VPX\_CODEC\_H\_}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{45 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{vpx__image_8h}{./vpx\_image.h}}"{}}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#include "{}./vpx\_integer.h"{}}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#ifndef VPX\_DEPRECATED}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{\#if defined(\_\_GNUC\_\_) \&\& \_\_GNUC\_\_}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#define VPX\_DEPRECATED \_\_attribute\_\_((deprecated))}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{\#elif defined(\_MSC\_VER)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{\#define VPX\_DEPRECATED}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#define VPX\_DEPRECATED}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* VPX\_DEPRECATED */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{preprocessor}{\#ifndef VPX\_DECLSPEC\_DEPRECATED}}
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#if defined(\_\_GNUC\_\_) \&\& \_\_GNUC\_\_}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define VPX\_DECLSPEC\_DEPRECATED }}
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#elif defined(\_MSC\_VER)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{\#define VPX\_DECLSPEC\_DEPRECATED \_\_declspec(deprecated)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#define VPX\_DECLSPEC\_DEPRECATED }}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* VPX\_DECLSPEC\_DEPRECATED */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#ifndef VPX\_UNUSED}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#if defined(\_\_GNUC\_\_) || defined(\_\_clang\_\_)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define VPX\_UNUSED \_\_attribute\_\_((unused))}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#define VPX\_UNUSED}}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* VPX\_UNUSED */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#define VPX\_CODEC\_ABI\_VERSION (4 + VPX\_IMAGE\_ABI\_VERSION) }}
+\DoxyCodeLine{93 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{}
+\DoxyCodeLine{95   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\_CODEC\_OK}},}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{98   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\_CODEC\_ERROR}},}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{101   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\_CODEC\_MEM\_ERROR}},}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{104   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afe8f723512f728bc518bbfba3b96d324}{VPX\_CODEC\_ABI\_MISMATCH}},}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{107   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\_CODEC\_INCAPABLE}},}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{114   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afff886e57782098a3df13d4e349ca973}{VPX\_CODEC\_UNSUP\_BITSTREAM}},}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{123   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a8a86701e65d826d82651537aadd6c539}{VPX\_CODEC\_UNSUP\_FEATURE}},}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{133   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a29d03c009e0479dbf4ecbd8db1011b85}{VPX\_CODEC\_CORRUPT\_FRAME}},}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{138   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\_CODEC\_INVALID\_PARAM}},}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{143   \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a452450a5adfcc14ef8a0ac12611dae21}{VPX\_CODEC\_LIST\_END}}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \} \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{155 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\_codec\_caps\_t}};}
+\DoxyCodeLine{156 \textcolor{preprocessor}{\#define VPX\_CODEC\_CAP\_DECODER 0x1 }}
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#define VPX\_CODEC\_CAP\_ENCODER 0x2 }}
+\DoxyCodeLine{161 \textcolor{preprocessor}{\#define VPX\_CODEC\_CAP\_HIGHBITDEPTH 0x4}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{170 \textcolor{keyword}{typedef} \textcolor{keywordtype}{long} \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\_codec\_flags\_t}};}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{177 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keyword}{struct }vpx\_codec\_iface \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}};}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{184 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }vpx\_codec\_priv \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\_codec\_priv\_t}};}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{190 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{void} *\mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\_codec\_iter\_t}};}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{200 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx}} \{}
+\DoxyCodeLine{201   \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structvpx__codec__ctx_a7ed1bf8f6434ea2df01da8011849c6cb}{name}};             }
+\DoxyCodeLine{202   \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *\mbox{\hyperlink{structvpx__codec__ctx_af5986790e3420beda77f3a9b64f6b953}{iface}};     }
+\DoxyCodeLine{203   \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{structvpx__codec__ctx_a6f448802b0675013fd8c5179675c30de}{err}};          }
+\DoxyCodeLine{204   \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structvpx__codec__ctx_ad785c88ae862dd9129965c72723260bd}{err\_detail}};       }
+\DoxyCodeLine{205   \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\_codec\_flags\_t}} \mbox{\hyperlink{structvpx__codec__ctx_a76546548086c060a6bd21cb55037fb2b}{init\_flags}}; }
+\DoxyCodeLine{206   \textcolor{keyword}{union }\{}
+\DoxyCodeLine{208     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__dec__cfg}{vpx\_codec\_dec\_cfg}} *\mbox{\hyperlink{structvpx__codec__ctx_a3033c08dd62713d56d875ea51575bd2b}{dec}};}
+\DoxyCodeLine{210     \textcolor{keyword}{const} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg}} *enc;}
+\DoxyCodeLine{211     \textcolor{keyword}{const} \textcolor{keywordtype}{void} *raw;}
+\DoxyCodeLine{212   \} \mbox{\hyperlink{structvpx__codec__ctx_a75647250ef1522c14bf749e1f868e46e}{config}};               }
+\DoxyCodeLine{213   \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\_codec\_priv\_t}} *\mbox{\hyperlink{structvpx__codec__ctx_acee775fd5b7580e112e245ce39733f92}{priv}}; }
+\DoxyCodeLine{214 \} \mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\_codec\_ctx\_t}};}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{220 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\_bit\_depth}} \{}
+\DoxyCodeLine{221   \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a664e60a9d8c84563836073d88ae1cfe8}{VPX\_BITS\_8}} = 8,   }
+\DoxyCodeLine{222   \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9aaecd7245969d06b539de89cf580401e1}{VPX\_BITS\_10}} = 10, }
+\DoxyCodeLine{223   \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a7d053a31e269b4d3746e88b0ff424862}{VPX\_BITS\_12}} = 12, }
+\DoxyCodeLine{224 \} \mbox{\hyperlink{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}{vpx\_bit\_depth\_t}};}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 \textcolor{comment}{/*}}
+\DoxyCodeLine{227 \textcolor{comment}{ * Library Version Number Interface}}
+\DoxyCodeLine{228 \textcolor{comment}{ *}}
+\DoxyCodeLine{229 \textcolor{comment}{ * For example, see the following sample return values:}}
+\DoxyCodeLine{230 \textcolor{comment}{ *     vpx\_codec\_version()           (1<<16 | 2<<8 | 3)}}
+\DoxyCodeLine{231 \textcolor{comment}{ *     vpx\_codec\_version\_str()       "{}v1.2.3-\/rc1-\/16-\/gec6a1ba"{}}}
+\DoxyCodeLine{232 \textcolor{comment}{ *     vpx\_codec\_version\_extra\_str() "{}rc1-\/16-\/gec6a1ba"{}}}
+\DoxyCodeLine{233 \textcolor{comment}{ */}}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{245 \textcolor{keywordtype}{int} \mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\_codec\_version}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#define VPX\_VERSION\_MAJOR(v) \(\backslash\)}}
+\DoxyCodeLine{247 \textcolor{preprocessor}{  (((v) >> 16) \& 0xff) }}
+\DoxyCodeLine{248 \textcolor{preprocessor}{\#define VPX\_VERSION\_MINOR(v) \(\backslash\)}}
+\DoxyCodeLine{249 \textcolor{preprocessor}{  (((v) >> 8) \& 0xff) }}
+\DoxyCodeLine{250 \textcolor{preprocessor}{\#define VPX\_VERSION\_PATCH(v) \(\backslash\)}}
+\DoxyCodeLine{251 \textcolor{preprocessor}{  (((v) >> 0) \& 0xff) }}
+\DoxyCodeLine{254 \textcolor{preprocessor}{\#define vpx\_codec\_version\_major() ((vpx\_codec\_version() >> 16) \& 0xff)}}
+\DoxyCodeLine{255 }
+\DoxyCodeLine{257 \textcolor{preprocessor}{\#define vpx\_codec\_version\_minor() ((vpx\_codec\_version() >> 8) \& 0xff)}}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{260 \textcolor{preprocessor}{\#define vpx\_codec\_version\_patch() ((vpx\_codec\_version() >> 0) \& 0xff)}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{271 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}{vpx\_codec\_version\_str}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{280 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_gadd9d73842c7d006a84f5113f855f73c9}{vpx\_codec\_version\_extra\_str}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{288 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_ga79cbf3d41086b2214653d794557e15ae}{vpx\_codec\_build\_config}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{289 }
+\DoxyCodeLine{297 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_ga723b3bb6778e7362bb2eb2058348a530}{vpx\_codec\_iface\_name}}(\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *iface);}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{309 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_ga550c4616424a08e85fc102486846141e}{vpx\_codec\_err\_to\_string}}(\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} err);}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{321 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_gaea707e8aaeb2badbf40f1c1dc32462b4}{vpx\_codec\_error}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx);}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{333 \textcolor{keyword}{const} \textcolor{keywordtype}{char} *\mbox{\hyperlink{group__codec_ga68a900e49d568c5c39b6a53e25b5d4a8}{vpx\_codec\_error\_detail}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx);}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 \textcolor{comment}{/* REQUIRED FUNCTIONS}}
+\DoxyCodeLine{336 \textcolor{comment}{ *}}
+\DoxyCodeLine{337 \textcolor{comment}{ * The following functions are required to be implemented for all codecs.}}
+\DoxyCodeLine{338 \textcolor{comment}{ * They represent the base case functionality expected of all codecs.}}
+\DoxyCodeLine{339 \textcolor{comment}{ */}}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{352 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__codec_ga6ae21d96909660d0ac978b59a863f53b}{vpx\_codec\_destroy}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx);}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{361 \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\_codec\_caps\_t}} \mbox{\hyperlink{group__codec_ga43adff58759093401235fb99247c82b8}{vpx\_codec\_get\_caps}}(\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\_codec\_iface\_t}} *iface);}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{387 \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\_codec\_err\_t}} \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\_codec\_control\_}}(\mbox{\hyperlink{structvpx__codec__ctx}{vpx\_codec\_ctx\_t}} *ctx, \textcolor{keywordtype}{int} ctrl\_id, ...);}
+\DoxyCodeLine{388 \textcolor{preprocessor}{\#if defined(VPX\_DISABLE\_CTRL\_TYPECHECKS) \&\& VPX\_DISABLE\_CTRL\_TYPECHECKS}}
+\DoxyCodeLine{389 \textcolor{preprocessor}{\#define vpx\_codec\_control(ctx, id, data) vpx\_codec\_control\_(ctx, id, data)}}
+\DoxyCodeLine{390 \textcolor{preprocessor}{\#define VPX\_CTRL\_USE\_TYPE(id, typ)}}
+\DoxyCodeLine{391 \textcolor{preprocessor}{\#define VPX\_CTRL\_USE\_TYPE\_DEPRECATED(id, typ)}}
+\DoxyCodeLine{392 \textcolor{preprocessor}{\#define VPX\_CTRL\_VOID(id, typ)}}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{394 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{404 \textcolor{preprocessor}{\#define vpx\_codec\_control(ctx, id, data) \(\backslash\)}}
+\DoxyCodeLine{405 \textcolor{preprocessor}{  vpx\_codec\_control\_\#\#id(ctx, id, data) }}
+\DoxyCodeLine{418 \textcolor{preprocessor}{\#define VPX\_CTRL\_USE\_TYPE(id, typ)                                           \(\backslash\)}}
+\DoxyCodeLine{419 \textcolor{preprocessor}{  static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id(vpx\_codec\_ctx\_t *, int, typ) \(\backslash\)}}
+\DoxyCodeLine{420 \textcolor{preprocessor}{      VPX\_UNUSED;                                                            \(\backslash\)}}
+\DoxyCodeLine{421 \textcolor{preprocessor}{                                                                             \(\backslash\)}}
+\DoxyCodeLine{422 \textcolor{preprocessor}{  static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id(vpx\_codec\_ctx\_t *ctx,        \(\backslash\)}}
+\DoxyCodeLine{423 \textcolor{preprocessor}{                                                int ctrl\_id, typ data) \{     \(\backslash\)}}
+\DoxyCodeLine{424 \textcolor{preprocessor}{    return vpx\_codec\_control\_(ctx, ctrl\_id, data);                           \(\backslash\)}}
+\DoxyCodeLine{425 \textcolor{preprocessor}{  \} }}
+\DoxyCodeLine{437 \textcolor{preprocessor}{\#define VPX\_CTRL\_USE\_TYPE\_DEPRECATED(id, typ)                            \(\backslash\)}}
+\DoxyCodeLine{438 \textcolor{preprocessor}{  VPX\_DECLSPEC\_DEPRECATED static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id( \(\backslash\)}}
+\DoxyCodeLine{439 \textcolor{preprocessor}{      vpx\_codec\_ctx\_t *, int, typ) VPX\_DEPRECATED VPX\_UNUSED;            \(\backslash\)}}
+\DoxyCodeLine{440 \textcolor{preprocessor}{                                                                         \(\backslash\)}}
+\DoxyCodeLine{441 \textcolor{preprocessor}{  VPX\_DECLSPEC\_DEPRECATED static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id( \(\backslash\)}}
+\DoxyCodeLine{442 \textcolor{preprocessor}{      vpx\_codec\_ctx\_t *ctx, int ctrl\_id, typ data) \{                     \(\backslash\)}}
+\DoxyCodeLine{443 \textcolor{preprocessor}{    return vpx\_codec\_control\_(ctx, ctrl\_id, data);                       \(\backslash\)}}
+\DoxyCodeLine{444 \textcolor{preprocessor}{  \} }}
+\DoxyCodeLine{456 \textcolor{preprocessor}{\#define VPX\_CTRL\_VOID(id)                                               \(\backslash\)}}
+\DoxyCodeLine{457 \textcolor{preprocessor}{  static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id(vpx\_codec\_ctx\_t *, int) \(\backslash\)}}
+\DoxyCodeLine{458 \textcolor{preprocessor}{      VPX\_UNUSED;                                                       \(\backslash\)}}
+\DoxyCodeLine{459 \textcolor{preprocessor}{                                                                        \(\backslash\)}}
+\DoxyCodeLine{460 \textcolor{preprocessor}{  static vpx\_codec\_err\_t vpx\_codec\_control\_\#\#id(vpx\_codec\_ctx\_t *ctx,   \(\backslash\)}}
+\DoxyCodeLine{461 \textcolor{preprocessor}{                                                int ctrl\_id) \{          \(\backslash\)}}
+\DoxyCodeLine{462 \textcolor{preprocessor}{    return vpx\_codec\_control\_(ctx, ctrl\_id);                            \(\backslash\)}}
+\DoxyCodeLine{463 \textcolor{preprocessor}{  \} }}
+\DoxyCodeLine{465 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{466 }
+\DoxyCodeLine{468 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{469 \}}
+\DoxyCodeLine{470 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{471 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VPX\_CODEC\_H\_}}
+
+\end{DoxyCode}

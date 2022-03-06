@@ -1,0 +1,115 @@
+\hypertarget{structvpx__svc__ref__frame__config}{}\doxysubsection{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config Struct Reference}
+\label{structvpx__svc__ref__frame__config}\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+
+
+vp9 svc frame flag parameters.  
+
+
+
+
+{\ttfamily \#include $<$vp8cx.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a19b5483bc516fc83469d5967dc966783}{lst\+\_\+fb\+\_\+idx}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a4af48b570c3262ad1d6fc7d436a7d5cc}{gld\+\_\+fb\+\_\+idx}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_ab2a913dc166956efad8bdf6ad009b2eb}{alt\+\_\+fb\+\_\+idx}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a3ff7ebe7b8056278efbbb9abae4d830a}{update\+\_\+buffer\+\_\+slot}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a8c6315e853ebf15e3e621332d77f4232}{update\+\_\+last}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_ae97b52fa83d6589a1efdae7f2747fe72}{update\+\_\+golden}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a2f4ed0250ec58bc3b1faa0d49fbdf436}{update\+\_\+alt\+\_\+ref}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a812c764e0bd981b7083d66557595aa09}{reference\+\_\+last}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_a8b61c119c626ec78b29ef52d0def7810}{reference\+\_\+golden}} \mbox{[}5\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__svc__ref__frame__config_aab75feb72ec5cef3c6620765ac52c997}{reference\+\_\+alt\+\_\+ref}} \mbox{[}5\mbox{]}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structvpx__svc__ref__frame__config_ab089b385aaa31730b1c1f7ad08f0e1f6}{duration}} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+vp9 svc frame flag parameters. 
+
+This defines the frame flags and buffer indices for each spatial layer for svc encoding. This is used with the \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}} control to set frame flags and buffer indices for each spatial layer for the current (super)frame. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__svc__ref__frame__config_a19b5483bc516fc83469d5967dc966783}\label{structvpx__svc__ref__frame__config_a19b5483bc516fc83469d5967dc966783}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!lst\_fb\_idx@{lst\_fb\_idx}}
+\index{lst\_fb\_idx@{lst\_fb\_idx}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{lst\_fb\_idx}{lst\_fb\_idx}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::lst\+\_\+fb\+\_\+idx\mbox{[}5\mbox{]}}
+
+Last buffer index. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a4af48b570c3262ad1d6fc7d436a7d5cc}\label{structvpx__svc__ref__frame__config_a4af48b570c3262ad1d6fc7d436a7d5cc}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!gld\_fb\_idx@{gld\_fb\_idx}}
+\index{gld\_fb\_idx@{gld\_fb\_idx}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{gld\_fb\_idx}{gld\_fb\_idx}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::gld\+\_\+fb\+\_\+idx\mbox{[}5\mbox{]}}
+
+Golden buffer index. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_ab2a913dc166956efad8bdf6ad009b2eb}\label{structvpx__svc__ref__frame__config_ab2a913dc166956efad8bdf6ad009b2eb}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!alt\_fb\_idx@{alt\_fb\_idx}}
+\index{alt\_fb\_idx@{alt\_fb\_idx}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{alt\_fb\_idx}{alt\_fb\_idx}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::alt\+\_\+fb\+\_\+idx\mbox{[}5\mbox{]}}
+
+Altref buffer index. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a3ff7ebe7b8056278efbbb9abae4d830a}\label{structvpx__svc__ref__frame__config_a3ff7ebe7b8056278efbbb9abae4d830a}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!update\_buffer\_slot@{update\_buffer\_slot}}
+\index{update\_buffer\_slot@{update\_buffer\_slot}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{update\_buffer\_slot}{update\_buffer\_slot}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::update\+\_\+buffer\+\_\+slot\mbox{[}5\mbox{]}}
+
+Update reference frames. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a8c6315e853ebf15e3e621332d77f4232}\label{structvpx__svc__ref__frame__config_a8c6315e853ebf15e3e621332d77f4232}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!update\_last@{update\_last}}
+\index{update\_last@{update\_last}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{update\_last}{update\_last}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::update\+\_\+last\mbox{[}5\mbox{]}}
+
+Update last. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_ae97b52fa83d6589a1efdae7f2747fe72}\label{structvpx__svc__ref__frame__config_ae97b52fa83d6589a1efdae7f2747fe72}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!update\_golden@{update\_golden}}
+\index{update\_golden@{update\_golden}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{update\_golden}{update\_golden}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::update\+\_\+golden\mbox{[}5\mbox{]}}
+
+Update golden. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a2f4ed0250ec58bc3b1faa0d49fbdf436}\label{structvpx__svc__ref__frame__config_a2f4ed0250ec58bc3b1faa0d49fbdf436}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!update\_alt\_ref@{update\_alt\_ref}}
+\index{update\_alt\_ref@{update\_alt\_ref}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{update\_alt\_ref}{update\_alt\_ref}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::update\+\_\+alt\+\_\+ref\mbox{[}5\mbox{]}}
+
+Update altref. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a812c764e0bd981b7083d66557595aa09}\label{structvpx__svc__ref__frame__config_a812c764e0bd981b7083d66557595aa09}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!reference\_last@{reference\_last}}
+\index{reference\_last@{reference\_last}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{reference\_last}{reference\_last}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::reference\+\_\+last\mbox{[}5\mbox{]}}
+
+Last as reference. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_a8b61c119c626ec78b29ef52d0def7810}\label{structvpx__svc__ref__frame__config_a8b61c119c626ec78b29ef52d0def7810}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!reference\_golden@{reference\_golden}}
+\index{reference\_golden@{reference\_golden}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{reference\_golden}{reference\_golden}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::reference\+\_\+golden\mbox{[}5\mbox{]}}
+
+Golden as reference. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_aab75feb72ec5cef3c6620765ac52c997}\label{structvpx__svc__ref__frame__config_aab75feb72ec5cef3c6620765ac52c997}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!reference\_alt\_ref@{reference\_alt\_ref}}
+\index{reference\_alt\_ref@{reference\_alt\_ref}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{reference\_alt\_ref}{reference\_alt\_ref}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::reference\+\_\+alt\+\_\+ref\mbox{[}5\mbox{]}}
+
+Altref as reference. \mbox{\Hypertarget{structvpx__svc__ref__frame__config_ab089b385aaa31730b1c1f7ad08f0e1f6}\label{structvpx__svc__ref__frame__config_ab089b385aaa31730b1c1f7ad08f0e1f6}} 
+\index{vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}!duration@{duration}}
+\index{duration@{duration}!vpx\_svc\_ref\_frame\_config@{vpx\_svc\_ref\_frame\_config}}
+\doxyparagraph{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily int64\+\_\+t vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+::duration\mbox{[}5\mbox{]}}
+
+Duration per spatial layer. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vp8cx_8h}{vp8cx.\+h}}\end{DoxyCompactItemize}

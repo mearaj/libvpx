@@ -1,0 +1,116 @@
+\hypertarget{vpx__image_8h_source}{}\doxysubsection{vpx\+\_\+image.\+h}
+\label{vpx__image_8h_source}\index{vpx/vpx\_image.h@{vpx/vpx\_image.h}}
+\mbox{\hyperlink{vpx__image_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2010 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VPX\_IMAGE\_H\_}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define VPX\_VPX\_VPX\_IMAGE\_H\_}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{19 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define VPX\_IMAGE\_ABI\_VERSION (5) }}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#define VPX\_IMG\_FMT\_PLANAR 0x100       }}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#define VPX\_IMG\_FMT\_UV\_FLIP 0x200      }}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#define VPX\_IMG\_FMT\_HAS\_ALPHA 0x400    }}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#define VPX\_IMG\_FMT\_HIGHBITDEPTH 0x800 }}
+\DoxyCodeLine{38 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}{vpx\_img\_fmt}} \{}
+\DoxyCodeLine{39   VPX\_IMG\_FMT\_NONE,}
+\DoxyCodeLine{40   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a6e4e8961bbcf96478c300dc4c3e1dc18}{VPX\_IMG\_FMT\_YV12}} =}
+\DoxyCodeLine{41       \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | \mbox{\hyperlink{vpx__image_8h_a52193af375ccdbe6b1fc2c706e308b4e}{VPX\_IMG\_FMT\_UV\_FLIP}} | 1, }
+\DoxyCodeLine{42   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193af17ce49c9a6efd7c8c8ea8928d4ce26c}{VPX\_IMG\_FMT\_I420}} = \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | 2,}
+\DoxyCodeLine{43   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aff252f61fc80e0c71924beac4615e812}{VPX\_IMG\_FMT\_I422}} = \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | 5,}
+\DoxyCodeLine{44   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aaeaaafc8f14c88e1a63ff9da398c9f99}{VPX\_IMG\_FMT\_I444}} = \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | 6,}
+\DoxyCodeLine{45   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193abd8236de582725101cc28e5df344adf0}{VPX\_IMG\_FMT\_I440}} = \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | 7,}
+\DoxyCodeLine{46   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a4dfa1428ebda772a75eabe412ca90207}{VPX\_IMG\_FMT\_NV12}} = \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\_IMG\_FMT\_PLANAR}} | 9,}
+\DoxyCodeLine{47   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a93598e3a282b878ddad1487de80918c2}{VPX\_IMG\_FMT\_I42016}} = \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193af17ce49c9a6efd7c8c8ea8928d4ce26c}{VPX\_IMG\_FMT\_I420}} | \mbox{\hyperlink{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}{VPX\_IMG\_FMT\_HIGHBITDEPTH}},}
+\DoxyCodeLine{48   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a1564a04c49b4d043678ea5252137fd59}{VPX\_IMG\_FMT\_I42216}} = \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aff252f61fc80e0c71924beac4615e812}{VPX\_IMG\_FMT\_I422}} | \mbox{\hyperlink{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}{VPX\_IMG\_FMT\_HIGHBITDEPTH}},}
+\DoxyCodeLine{49   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aea72721e07f09e733aa6d7fe2efd5178}{VPX\_IMG\_FMT\_I44416}} = \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aaeaaafc8f14c88e1a63ff9da398c9f99}{VPX\_IMG\_FMT\_I444}} | \mbox{\hyperlink{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}{VPX\_IMG\_FMT\_HIGHBITDEPTH}},}
+\DoxyCodeLine{50   \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a2f62c84c87d447666f2f19ce5a54052e}{VPX\_IMG\_FMT\_I44016}} = \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193abd8236de582725101cc28e5df344adf0}{VPX\_IMG\_FMT\_I440}} | \mbox{\hyperlink{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}{VPX\_IMG\_FMT\_HIGHBITDEPTH}}}
+\DoxyCodeLine{51 \} \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\_img\_fmt\_t}}; }
+\DoxyCodeLine{54 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}{vpx\_color\_space}} \{}
+\DoxyCodeLine{55   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae039d02fe72e38d97e871aadccb49983}{VPX\_CS\_UNKNOWN}} = 0,   }
+\DoxyCodeLine{56   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aa88555230e42885238a78702bed06ccf}{VPX\_CS\_BT\_601}} = 1,    }
+\DoxyCodeLine{57   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a1cf07322afddb380115c2e44a0a41897}{VPX\_CS\_BT\_709}} = 2,    }
+\DoxyCodeLine{58   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ad6b52554e4ef85c21202f4706f08e4d6}{VPX\_CS\_SMPTE\_170}} = 3, }
+\DoxyCodeLine{59   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae5086aefd5c262f8e3adc048d086a15c}{VPX\_CS\_SMPTE\_240}} = 4, }
+\DoxyCodeLine{60   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aaedabef15fc5263f41145f9b733ef9e1}{VPX\_CS\_BT\_2020}} = 5,   }
+\DoxyCodeLine{61   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae90aa2028199b5b1ec7e76a19241f59a}{VPX\_CS\_RESERVED}} = 6,  }
+\DoxyCodeLine{62   \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a3fab005feb8c95c928b2410a7781a111}{VPX\_CS\_SRGB}} = 7       }
+\DoxyCodeLine{63 \} \mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\_color\_space\_t}};    }
+\DoxyCodeLine{66 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}{vpx\_color\_range}} \{}
+\DoxyCodeLine{67   \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a79df55e8de368f43a1a19fac73b8b77e}{VPX\_CR\_STUDIO\_RANGE}} = 0, }
+\DoxyCodeLine{68   \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a99279dd1663bc45aa479ec82ee96d1a6}{VPX\_CR\_FULL\_RANGE}} = 1    }
+\DoxyCodeLine{69 \} \mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\_color\_range\_t}};       }
+\DoxyCodeLine{72 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__image}{vpx\_image}} \{}
+\DoxyCodeLine{73   \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\_img\_fmt\_t}} \mbox{\hyperlink{structvpx__image_a1d734f8afa9200a21c2d9f6bcf8c04d8}{fmt}};       }
+\DoxyCodeLine{74   \mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\_color\_space\_t}} \mbox{\hyperlink{structvpx__image_a8fda4fb8430e4cede2a4ee7d28dd0a6c}{cs}};    }
+\DoxyCodeLine{75   \mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\_color\_range\_t}} \mbox{\hyperlink{structvpx__image_af451ddd9be4cf49958e253a2b8dd12a9}{range}}; }
+\DoxyCodeLine{77   \textcolor{comment}{/* Image storage dimensions */}}
+\DoxyCodeLine{78   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_ac7b7d569142f878155b28141653adcd6}{w}};         }
+\DoxyCodeLine{79   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a9d1070804dfe08cd5becd68d597fee69}{h}};         }
+\DoxyCodeLine{80   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_aac11754e8f8e4fb9e7b3a721ce8be0f1}{bit\_depth}}; }
+\DoxyCodeLine{82   \textcolor{comment}{/* Image display dimensions */}}
+\DoxyCodeLine{83   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a806bf23143bf00a0b3fdbd6ba030c483}{d\_w}}; }
+\DoxyCodeLine{84   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a31bc5f045d4f3c2b6bb0f57bb53078e7}{d\_h}}; }
+\DoxyCodeLine{86   \textcolor{comment}{/* Image intended rendering dimensions */}}
+\DoxyCodeLine{87   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a1fe4736c2554836d510589cdbbece76a}{r\_w}}; }
+\DoxyCodeLine{88   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_ad969a04e4a11749f3718ef5909db6da8}{r\_h}}; }
+\DoxyCodeLine{90   \textcolor{comment}{/* Chroma subsampling info */}}
+\DoxyCodeLine{91   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_affaf210489dcefebd90b87fd5f12dc0b}{x\_chroma\_shift}}; }
+\DoxyCodeLine{92   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a1e3d9b699d46ca32e3916d1ac635a4a2}{y\_chroma\_shift}}; }
+\DoxyCodeLine{94 \textcolor{comment}{/* Image data pointers. */}}
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#define VPX\_PLANE\_PACKED 0  }}
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define VPX\_PLANE\_Y 0       }}
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define VPX\_PLANE\_U 1       }}
+\DoxyCodeLine{98 \textcolor{preprocessor}{\#define VPX\_PLANE\_V 2       }}
+\DoxyCodeLine{99 \textcolor{preprocessor}{\#define VPX\_PLANE\_ALPHA 3   }}
+\DoxyCodeLine{100   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structvpx__image_ab6258308ba7a5f4a113348120e20e2ce}{planes}}[4]; }
+\DoxyCodeLine{101   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_ac9c7b83e3eea44cb680956f90dc789cf}{stride}}[4];            }
+\DoxyCodeLine{103   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a53a02fad822151eb8eeb2f64f195e1f6}{bps}}; }
+\DoxyCodeLine{108   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__image_a28ae6c046dfca87de4fca4e67cab563d}{user\_priv}};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110   \textcolor{comment}{/* The following members should be treated as private. */}}
+\DoxyCodeLine{111   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structvpx__image_a3c9b7a7a68e4a9665b47433a1e96d78b}{img\_data}}; }
+\DoxyCodeLine{112   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a4d2c8d41b67f7d3f3114212a8d8afdce}{img\_data\_owner}};      }
+\DoxyCodeLine{113   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image_a33e8c75d8efc5d4f389e8fc09283a4cc}{self\_allocd}};         }
+\DoxyCodeLine{115   \textcolor{keywordtype}{void} *\mbox{\hyperlink{structvpx__image_a4b138b7d146dc75ef5d8947d421b0533}{fb\_priv}}; }
+\DoxyCodeLine{116 \} \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\_image\_t}};   }
+\DoxyCodeLine{119 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__image__rect}{vpx\_image\_rect}} \{}
+\DoxyCodeLine{120   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image__rect_a8e38dee721dbf4e121f40c315d45103a}{x}};   }
+\DoxyCodeLine{121   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image__rect_a6d4457644e2ce0d54af55eb313a37204}{y}};   }
+\DoxyCodeLine{122   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image__rect_a4b4fcec1e4cdcbd9dde5d44b6ad16dab}{w}};   }
+\DoxyCodeLine{123   \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structvpx__image__rect_afeb74a8c6f0c7e24d82b80db9431a501}{h}};   }
+\DoxyCodeLine{124 \} \mbox{\hyperlink{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}{vpx\_image\_rect\_t}}; }
+\DoxyCodeLine{144 \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *\mbox{\hyperlink{vpx__image_8h_a0e458791d0d7ce2df6b25d141aac557f}{vpx\_img\_alloc}}(\mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img, \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\_img\_fmt\_t}} fmt,}
+\DoxyCodeLine{145                            \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} d\_w, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} d\_h,}
+\DoxyCodeLine{146                            \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} align);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{167 \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *\mbox{\hyperlink{vpx__image_8h_ad1569670ea26357799c081caf98d3d1c}{vpx\_img\_wrap}}(\mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img, \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\_img\_fmt\_t}} fmt, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} d\_w,}
+\DoxyCodeLine{168                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} d\_h, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} stride\_align,}
+\DoxyCodeLine{169                           \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *img\_data);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{185 \textcolor{keywordtype}{int} \mbox{\hyperlink{vpx__image_8h_ab5c1d1a5548752f7cd5047f43d5f25c4}{vpx\_img\_set\_rect}}(\mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} y,}
+\DoxyCodeLine{186                      \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} w, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} h);}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{195 \textcolor{keywordtype}{void} \mbox{\hyperlink{vpx__image_8h_a01201327328c1cdd365632e5056b1850}{vpx\_img\_flip}}(\mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{203 \textcolor{keywordtype}{void} \mbox{\hyperlink{vpx__image_8h_af47ebaf286812d037425d41990d48a17}{vpx\_img\_free}}(\mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} *img);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{206 \}  \textcolor{comment}{// extern "{}C"{}}}
+\DoxyCodeLine{207 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VPX\_IMAGE\_H\_}}
+
+\end{DoxyCode}

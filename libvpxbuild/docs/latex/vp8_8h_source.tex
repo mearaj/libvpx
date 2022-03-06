@@ -1,0 +1,83 @@
+\hypertarget{vp8_8h_source}{}\doxysubsection{vp8.\+h}
+\label{vp8_8h_source}\index{vpx/vp8.h@{vpx/vp8.h}}
+\mbox{\hyperlink{vp8_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ *  Copyright (c) 2010 The WebM project authors. All Rights Reserved.}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ *  Use of this source code is governed by a BSD-\/style license}}
+\DoxyCodeLine{5 \textcolor{comment}{ *  that can be found in the LICENSE file in the root of the source}}
+\DoxyCodeLine{6 \textcolor{comment}{ *  tree. An additional intellectual property rights grant can be found}}
+\DoxyCodeLine{7 \textcolor{comment}{ *  in the file PATENTS.  All contributing project authors may}}
+\DoxyCodeLine{8 \textcolor{comment}{ *  be found in the AUTHORS file in the root of the source tree.}}
+\DoxyCodeLine{9 \textcolor{comment}{ */}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#ifndef VPX\_VPX\_VP8\_H\_}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#define VPX\_VPX\_VP8\_H\_}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{vpx__codec_8h}{./vpx\_codec.h}}"{}}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{vpx__image_8h}{./vpx\_image.h}}"{}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{37 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{44 \textcolor{keyword}{enum} \mbox{\hyperlink{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}{vp8\_com\_control\_id}} \{}
+\DoxyCodeLine{47   \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}{VP8\_SET\_REFERENCE}} = 1,}
+\DoxyCodeLine{48   \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}{VP8\_COPY\_REFERENCE}} = 2, }
+\DoxyCodeLine{49   \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}{VP8\_SET\_POSTPROC}} = 3,   }
+\DoxyCodeLine{51   \textcolor{comment}{/* TODO(jkoleszar): The encoder incorrectly reuses some of these values (5+)}}
+\DoxyCodeLine{52 \textcolor{comment}{   * for its control ids. These should be migrated to something like the}}
+\DoxyCodeLine{53 \textcolor{comment}{   * VP8\_DECODER\_CTRL\_ID\_START range next time we're ready to break the ABI.}}
+\DoxyCodeLine{54 \textcolor{comment}{   */}}
+\DoxyCodeLine{55   \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}{VP9\_GET\_REFERENCE}} = 128, }
+\DoxyCodeLine{56   VP8\_COMMON\_CTRL\_ID\_MAX,}
+\DoxyCodeLine{57   VP8\_DECODER\_CTRL\_ID\_START = 256}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64 \textcolor{keyword}{enum} \mbox{\hyperlink{group__vp8_ga99557e20eb37826e6792cd8819121770}{vp8\_postproc\_level}} \{}
+\DoxyCodeLine{65   VP8\_NOFILTERING = 0,}
+\DoxyCodeLine{66   VP8\_DEBLOCK = 1 << 0,}
+\DoxyCodeLine{67   VP8\_DEMACROBLOCK = 1 << 1,}
+\DoxyCodeLine{68   VP8\_ADDNOISE = 1 << 2,}
+\DoxyCodeLine{69   VP8\_MFQE = 1 << 3}
+\DoxyCodeLine{70 \};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{79 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvp8__postproc__cfg}{vp8\_postproc\_cfg}} \{}
+\DoxyCodeLine{82   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvp8__postproc__cfg_ae9adc230642ac230f39eb4c531cf85e5}{post\_proc\_flag}};}
+\DoxyCodeLine{83   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvp8__postproc__cfg_afe919a9546e79798d840b1492f7e0249}{deblocking\_level}}; }
+\DoxyCodeLine{84   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvp8__postproc__cfg_a32f28e4003e5d9bf55d188247f3f156c}{noise\_level}}; }
+\DoxyCodeLine{85 \} \mbox{\hyperlink{group__vp8_ga63451227ec446b9f19a01295df0149ed}{vp8\_postproc\_cfg\_t}};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{91 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\_ref\_frame\_type}} \{}
+\DoxyCodeLine{92   VP8\_LAST\_FRAME = 1,}
+\DoxyCodeLine{93   VP8\_GOLD\_FRAME = 2,}
+\DoxyCodeLine{94   VP8\_ALTR\_FRAME = 4}
+\DoxyCodeLine{95 \} \mbox{\hyperlink{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}{vpx\_ref\_frame\_type\_t}};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{101 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvpx__ref__frame}{vpx\_ref\_frame}} \{}
+\DoxyCodeLine{102   \mbox{\hyperlink{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}{vpx\_ref\_frame\_type\_t}} \mbox{\hyperlink{structvpx__ref__frame_a7fbe51de592d0ff16d9fbd4d2b367c9b}{frame\_type}}; }
+\DoxyCodeLine{103   \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} \mbox{\hyperlink{structvpx__ref__frame_a972d24d0243f51f84eef7e1b79c6c414}{img}};                 }
+\DoxyCodeLine{104 \} \mbox{\hyperlink{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}{vpx\_ref\_frame\_t}};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{110 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\mbox{\hyperlink{structvp9__ref__frame}{vp9\_ref\_frame}} \{}
+\DoxyCodeLine{111   \textcolor{keywordtype}{int} \mbox{\hyperlink{structvp9__ref__frame_a26e0d119a61c29b72c6ccb91748b6b82}{idx}};         }
+\DoxyCodeLine{112   \mbox{\hyperlink{structvpx__image}{vpx\_image\_t}} \mbox{\hyperlink{structvp9__ref__frame_ab8d92d960007586ea7c8cd9306e98db2}{img}}; }
+\DoxyCodeLine{113 \} \mbox{\hyperlink{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}{vp9\_ref\_frame\_t}};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{120 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}{VP8\_SET\_REFERENCE}}, \mbox{\hyperlink{structvpx__ref__frame}{vpx\_ref\_frame\_t}} *)}
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8\_SET\_REFERENCE}}
+\DoxyCodeLine{122 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}{VP8\_COPY\_REFERENCE}}, \mbox{\hyperlink{structvpx__ref__frame}{vpx\_ref\_frame\_t}} *)}
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8\_COPY\_REFERENCE}}
+\DoxyCodeLine{124 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}{VP8\_SET\_POSTPROC}}, \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\_postproc\_cfg\_t}} *)}
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP8\_SET\_POSTPROC}}
+\DoxyCodeLine{126 \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\_CTRL\_USE\_TYPE}}(\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}{VP9\_GET\_REFERENCE}}, \mbox{\hyperlink{structvp9__ref__frame}{vp9\_ref\_frame\_t}} *)}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#define VPX\_CTRL\_VP9\_GET\_REFERENCE}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{132 \textcolor{preprocessor}{\#ifdef \_\_cplusplus}}
+\DoxyCodeLine{133 \}  \textcolor{comment}{// extern "{}C"{}}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#endif  }\textcolor{comment}{// VPX\_VPX\_VP8\_H\_}}
+
+\end{DoxyCode}

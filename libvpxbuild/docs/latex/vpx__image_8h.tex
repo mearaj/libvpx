@@ -1,0 +1,456 @@
+\hypertarget{vpx__image_8h}{}\doxysubsection{vpx/vpx\+\_\+image.h File Reference}
+\label{vpx__image_8h}\index{vpx/vpx\_image.h@{vpx/vpx\_image.h}}
+
+
+Describes the vpx image descriptor and associated operations.  
+
+
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__image}{vpx\+\_\+image}}
+\begin{DoxyCompactList}\small\item\em Image Descriptor. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__image__rect}{vpx\+\_\+image\+\_\+rect}}
+\begin{DoxyCompactList}\small\item\em Representation of a rectangle on a surface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{vpx__image_8h_a2bbca4a324bbc83eb49e50b6b1b7b00d}\label{vpx__image_8h_a2bbca4a324bbc83eb49e50b6b1b7b00d}} 
+\#define {\bfseries VPX\+\_\+\+IMAGE\+\_\+\+ABI\+\_\+\+VERSION}
+\begin{DoxyCompactList}\small\item\em Current ABI version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+PLANAR}}~0x100
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_a52193af375ccdbe6b1fc2c706e308b4e}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+UV\+\_\+\+FLIP}}~0x200
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_adceef04930837f46dad16d648cb152f9}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+HAS\+\_\+\+ALPHA}}~0x400
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+HIGHBITDEPTH}}~0x800
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_aed2dfee103bf123bad08ceefdba21301}{VPX\+\_\+\+PLANE\+\_\+\+PACKED}}~0
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_a08171c4636c655e1ab0b76e06219f9e2}{VPX\+\_\+\+PLANE\+\_\+Y}}~0
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_a4770fc8fa60021a2229f25553152cf81}{VPX\+\_\+\+PLANE\+\_\+U}}~1
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_aca9436ec761457cc6d2e356e0ac2fd23}{VPX\+\_\+\+PLANE\+\_\+V}}~2
+\item 
+\#define \mbox{\hyperlink{vpx__image_8h_ac7a57e3c466f599abbcbd655db92c24d}{VPX\+\_\+\+PLANE\+\_\+\+ALPHA}}~3
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}{vpx\+\_\+img\+\_\+fmt}} \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em List of supported image formats. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}{vpx\+\_\+color\+\_\+space}} \mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\+\_\+color\+\_\+space\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em List of supported color spaces. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}{vpx\+\_\+color\+\_\+range}} \mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\+\_\+color\+\_\+range\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em List of supported color range. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__image}{vpx\+\_\+image}} \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Image Descriptor. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__image__rect}{vpx\+\_\+image\+\_\+rect}} \mbox{\hyperlink{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}{vpx\+\_\+image\+\_\+rect\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Representation of a rectangle on a surface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}{vpx\+\_\+img\+\_\+fmt}} \{ \newline
+{\bfseries VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+NONE}
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a6e4e8961bbcf96478c300dc4c3e1dc18}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+YV12}}
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193af17ce49c9a6efd7c8c8ea8928d4ce26c}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I420}} = 0x100 $\vert$ 2
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aff252f61fc80e0c71924beac4615e812}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I422}} = 0x100 $\vert$ 5
+, \newline
+\mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aaeaaafc8f14c88e1a63ff9da398c9f99}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I444}} = 0x100 $\vert$ 6
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193abd8236de582725101cc28e5df344adf0}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I440}} = 0x100 $\vert$ 7
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a4dfa1428ebda772a75eabe412ca90207}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+NV12}} = 0x100 $\vert$ 9
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a93598e3a282b878ddad1487de80918c2}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I42016}} = VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I420 $\vert$ 0x800
+, \newline
+\mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a1564a04c49b4d043678ea5252137fd59}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I42216}} = VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I422 $\vert$ 0x800
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aea72721e07f09e733aa6d7fe2efd5178}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I44416}} = VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I444 $\vert$ 0x800
+, \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a2f62c84c87d447666f2f19ce5a54052e}{VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I44016}} = VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I440 $\vert$ 0x800
+ \}
+\begin{DoxyCompactList}\small\item\em List of supported image formats. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}{vpx\+\_\+color\+\_\+space}} \{ \newline
+\mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae039d02fe72e38d97e871aadccb49983}{VPX\+\_\+\+CS\+\_\+\+UNKNOWN}} = 0
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aa88555230e42885238a78702bed06ccf}{VPX\+\_\+\+CS\+\_\+\+BT\+\_\+601}} = 1
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a1cf07322afddb380115c2e44a0a41897}{VPX\+\_\+\+CS\+\_\+\+BT\+\_\+709}} = 2
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ad6b52554e4ef85c21202f4706f08e4d6}{VPX\+\_\+\+CS\+\_\+\+SMPTE\+\_\+170}} = 3
+, \newline
+\mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae5086aefd5c262f8e3adc048d086a15c}{VPX\+\_\+\+CS\+\_\+\+SMPTE\+\_\+240}} = 4
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aaedabef15fc5263f41145f9b733ef9e1}{VPX\+\_\+\+CS\+\_\+\+BT\+\_\+2020}} = 5
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae90aa2028199b5b1ec7e76a19241f59a}{VPX\+\_\+\+CS\+\_\+\+RESERVED}} = 6
+, \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a3fab005feb8c95c928b2410a7781a111}{VPX\+\_\+\+CS\+\_\+\+SRGB}} = 7
+ \}
+\begin{DoxyCompactList}\small\item\em List of supported color spaces. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}{vpx\+\_\+color\+\_\+range}} \{ \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a79df55e8de368f43a1a19fac73b8b77e}{VPX\+\_\+\+CR\+\_\+\+STUDIO\+\_\+\+RANGE}} = 0
+, \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a99279dd1663bc45aa479ec82ee96d1a6}{VPX\+\_\+\+CR\+\_\+\+FULL\+\_\+\+RANGE}} = 1
+ \}
+\begin{DoxyCompactList}\small\item\em List of supported color range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ \mbox{\hyperlink{vpx__image_8h_a0e458791d0d7ce2df6b25d141aac557f}{vpx\+\_\+img\+\_\+alloc}} (\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img, \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}} fmt, unsigned int d\+\_\+w, unsigned int d\+\_\+h, unsigned int align)
+\begin{DoxyCompactList}\small\item\em Open a descriptor, allocating storage for the underlying image. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ \mbox{\hyperlink{vpx__image_8h_ad1569670ea26357799c081caf98d3d1c}{vpx\+\_\+img\+\_\+wrap}} (\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img, \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}} fmt, unsigned int d\+\_\+w, unsigned int d\+\_\+h, unsigned int stride\+\_\+align, unsigned char $\ast$img\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Open a descriptor, using existing storage for the underlying image. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{vpx__image_8h_ab5c1d1a5548752f7cd5047f43d5f25c4}{vpx\+\_\+img\+\_\+set\+\_\+rect}} (\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img, unsigned int x, unsigned int y, unsigned int w, unsigned int h)
+\begin{DoxyCompactList}\small\item\em Set the rectangle identifying the displayed portion of the image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vpx__image_8h_a01201327328c1cdd365632e5056b1850}{vpx\+\_\+img\+\_\+flip}} (\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img)
+\begin{DoxyCompactList}\small\item\em Flip the image vertically (top for bottom) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{vpx__image_8h_af47ebaf286812d037425d41990d48a17}{vpx\+\_\+img\+\_\+free}} (\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img)
+\begin{DoxyCompactList}\small\item\em Close an image descriptor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Describes the vpx image descriptor and associated operations. 
+
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}\label{vpx__image_8h_aba054d28e7205f3cbd260c8b1e741bca}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_PLANAR@{VPX\_IMG\_FMT\_PLANAR}}
+\index{VPX\_IMG\_FMT\_PLANAR@{VPX\_IMG\_FMT\_PLANAR}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_IMG\_FMT\_PLANAR}{VPX\_IMG\_FMT\_PLANAR}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+PLANAR~0x100}
+
+Image is a planar format. \mbox{\Hypertarget{vpx__image_8h_a52193af375ccdbe6b1fc2c706e308b4e}\label{vpx__image_8h_a52193af375ccdbe6b1fc2c706e308b4e}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_UV\_FLIP@{VPX\_IMG\_FMT\_UV\_FLIP}}
+\index{VPX\_IMG\_FMT\_UV\_FLIP@{VPX\_IMG\_FMT\_UV\_FLIP}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_IMG\_FMT\_UV\_FLIP}{VPX\_IMG\_FMT\_UV\_FLIP}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+UV\+\_\+\+FLIP~0x200}
+
+V plane precedes U in memory. \mbox{\Hypertarget{vpx__image_8h_adceef04930837f46dad16d648cb152f9}\label{vpx__image_8h_adceef04930837f46dad16d648cb152f9}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_HAS\_ALPHA@{VPX\_IMG\_FMT\_HAS\_ALPHA}}
+\index{VPX\_IMG\_FMT\_HAS\_ALPHA@{VPX\_IMG\_FMT\_HAS\_ALPHA}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_IMG\_FMT\_HAS\_ALPHA}{VPX\_IMG\_FMT\_HAS\_ALPHA}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+HAS\+\_\+\+ALPHA~0x400}
+
+Image has an alpha channel. \mbox{\Hypertarget{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}\label{vpx__image_8h_a3bc1062c5b6a80bfa8a4ae2c8f961026}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_HIGHBITDEPTH@{VPX\_IMG\_FMT\_HIGHBITDEPTH}}
+\index{VPX\_IMG\_FMT\_HIGHBITDEPTH@{VPX\_IMG\_FMT\_HIGHBITDEPTH}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_IMG\_FMT\_HIGHBITDEPTH}{VPX\_IMG\_FMT\_HIGHBITDEPTH}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+HIGHBITDEPTH~0x800}
+
+Image uses 16bit framebuffer. \mbox{\Hypertarget{vpx__image_8h_aed2dfee103bf123bad08ceefdba21301}\label{vpx__image_8h_aed2dfee103bf123bad08ceefdba21301}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_PLANE\_PACKED@{VPX\_PLANE\_PACKED}}
+\index{VPX\_PLANE\_PACKED@{VPX\_PLANE\_PACKED}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_PLANE\_PACKED}{VPX\_PLANE\_PACKED}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+PLANE\+\_\+\+PACKED~0}
+
+To be used for all packed formats \mbox{\Hypertarget{vpx__image_8h_a08171c4636c655e1ab0b76e06219f9e2}\label{vpx__image_8h_a08171c4636c655e1ab0b76e06219f9e2}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_PLANE\_Y@{VPX\_PLANE\_Y}}
+\index{VPX\_PLANE\_Y@{VPX\_PLANE\_Y}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_PLANE\_Y}{VPX\_PLANE\_Y}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+PLANE\+\_\+Y~0}
+
+Y (Luminance) plane \mbox{\Hypertarget{vpx__image_8h_a4770fc8fa60021a2229f25553152cf81}\label{vpx__image_8h_a4770fc8fa60021a2229f25553152cf81}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_PLANE\_U@{VPX\_PLANE\_U}}
+\index{VPX\_PLANE\_U@{VPX\_PLANE\_U}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_PLANE\_U}{VPX\_PLANE\_U}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+PLANE\+\_\+U~1}
+
+U (Chroma) plane \mbox{\Hypertarget{vpx__image_8h_aca9436ec761457cc6d2e356e0ac2fd23}\label{vpx__image_8h_aca9436ec761457cc6d2e356e0ac2fd23}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_PLANE\_V@{VPX\_PLANE\_V}}
+\index{VPX\_PLANE\_V@{VPX\_PLANE\_V}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_PLANE\_V}{VPX\_PLANE\_V}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+PLANE\+\_\+V~2}
+
+V (Chroma) plane \mbox{\Hypertarget{vpx__image_8h_ac7a57e3c466f599abbcbd655db92c24d}\label{vpx__image_8h_ac7a57e3c466f599abbcbd655db92c24d}} 
+\index{vpx\_image.h@{vpx\_image.h}!VPX\_PLANE\_ALPHA@{VPX\_PLANE\_ALPHA}}
+\index{VPX\_PLANE\_ALPHA@{VPX\_PLANE\_ALPHA}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{VPX\_PLANE\_ALPHA}{VPX\_PLANE\_ALPHA}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+PLANE\+\_\+\+ALPHA~3}
+
+A (Transparency) plane 
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{vpx__image_8h_ad491e9c858d337700cca18afc8412545}\label{vpx__image_8h_ad491e9c858d337700cca18afc8412545}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_fmt\_t@{vpx\_img\_fmt\_t}}
+\index{vpx\_img\_fmt\_t@{vpx\_img\_fmt\_t}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_fmt\_t}{vpx\_img\_fmt\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}{vpx\+\_\+img\+\_\+fmt}} \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}}}
+
+
+
+List of supported image formats. 
+
+alias for enum vpx\+\_\+img\+\_\+fmt \mbox{\Hypertarget{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}\label{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_color\_space\_t@{vpx\_color\_space\_t}}
+\index{vpx\_color\_space\_t@{vpx\_color\_space\_t}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_color\_space\_t}{vpx\_color\_space\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}{vpx\+\_\+color\+\_\+space}} \mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\+\_\+color\+\_\+space\+\_\+t}}}
+
+
+
+List of supported color spaces. 
+
+alias for enum vpx\+\_\+color\+\_\+space \mbox{\Hypertarget{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}\label{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_color\_range\_t@{vpx\_color\_range\_t}}
+\index{vpx\_color\_range\_t@{vpx\_color\_range\_t}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_color\_range\_t}{vpx\_color\_range\_t}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}{vpx\+\_\+color\+\_\+range}} \mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\+\_\+color\+\_\+range\+\_\+t}}}
+
+
+
+List of supported color range. 
+
+alias for enum vpx\+\_\+color\+\_\+range \mbox{\Hypertarget{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}\label{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_image\_t@{vpx\_image\_t}}
+\index{vpx\_image\_t@{vpx\_image\_t}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_image\_t}{vpx\_image\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__image}{vpx\+\_\+image}} \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}}}
+
+
+
+Image Descriptor. 
+
+alias for struct \mbox{\hyperlink{structvpx__image}{vpx\+\_\+image}} \mbox{\Hypertarget{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}\label{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_image\_rect\_t@{vpx\_image\_rect\_t}}
+\index{vpx\_image\_rect\_t@{vpx\_image\_rect\_t}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_image\_rect\_t}{vpx\_image\_rect\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__image__rect}{vpx\+\_\+image\+\_\+rect}} \mbox{\hyperlink{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}{vpx\+\_\+image\+\_\+rect\+\_\+t}}}
+
+
+
+Representation of a rectangle on a surface. 
+
+alias for struct \mbox{\hyperlink{structvpx__image__rect}{vpx\+\_\+image\+\_\+rect}} 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_fmt@{vpx\_img\_fmt}}
+\index{vpx\_img\_fmt@{vpx\_img\_fmt}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_fmt}{vpx\_img\_fmt}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193}{vpx\+\_\+img\+\_\+fmt}}}
+
+
+
+List of supported image formats. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_YV12@{VPX\_IMG\_FMT\_YV12}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_YV12@{VPX\_IMG\_FMT\_YV12}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a6e4e8961bbcf96478c300dc4c3e1dc18}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a6e4e8961bbcf96478c300dc4c3e1dc18}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+YV12&Image is a planar format. V plane precedes U in memory. planar YVU \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I420@{VPX\_IMG\_FMT\_I420}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I420@{VPX\_IMG\_FMT\_I420}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193af17ce49c9a6efd7c8c8ea8928d4ce26c}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193af17ce49c9a6efd7c8c8ea8928d4ce26c}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I420&Image is a planar format. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I422@{VPX\_IMG\_FMT\_I422}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I422@{VPX\_IMG\_FMT\_I422}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aff252f61fc80e0c71924beac4615e812}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aff252f61fc80e0c71924beac4615e812}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I422&Image is a planar format. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I444@{VPX\_IMG\_FMT\_I444}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I444@{VPX\_IMG\_FMT\_I444}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aaeaaafc8f14c88e1a63ff9da398c9f99}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aaeaaafc8f14c88e1a63ff9da398c9f99}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I444&Image is a planar format. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I440@{VPX\_IMG\_FMT\_I440}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I440@{VPX\_IMG\_FMT\_I440}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193abd8236de582725101cc28e5df344adf0}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193abd8236de582725101cc28e5df344adf0}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I440&Image is a planar format. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_NV12@{VPX\_IMG\_FMT\_NV12}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_NV12@{VPX\_IMG\_FMT\_NV12}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a4dfa1428ebda772a75eabe412ca90207}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a4dfa1428ebda772a75eabe412ca90207}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+NV12&Image is a planar format. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I42016@{VPX\_IMG\_FMT\_I42016}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I42016@{VPX\_IMG\_FMT\_I42016}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a93598e3a282b878ddad1487de80918c2}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a93598e3a282b878ddad1487de80918c2}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I42016&Image uses 16bit framebuffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I42216@{VPX\_IMG\_FMT\_I42216}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I42216@{VPX\_IMG\_FMT\_I42216}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a1564a04c49b4d043678ea5252137fd59}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a1564a04c49b4d043678ea5252137fd59}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I42216&Image uses 16bit framebuffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I44416@{VPX\_IMG\_FMT\_I44416}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I44416@{VPX\_IMG\_FMT\_I44416}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aea72721e07f09e733aa6d7fe2efd5178}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193aea72721e07f09e733aa6d7fe2efd5178}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I44416&Image uses 16bit framebuffer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_IMG\_FMT\_I44016@{VPX\_IMG\_FMT\_I44016}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_IMG\_FMT\_I44016@{VPX\_IMG\_FMT\_I44016}}}\mbox{\Hypertarget{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a2f62c84c87d447666f2f19ce5a54052e}\label{vpx__image_8h_a7a30a7bff7400fb83ad45fede5077193a2f62c84c87d447666f2f19ce5a54052e}} 
+VPX\+\_\+\+IMG\+\_\+\+FMT\+\_\+\+I44016&Image uses 16bit framebuffer. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_color\_space@{vpx\_color\_space}}
+\index{vpx\_color\_space@{vpx\_color\_space}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_color\_space}{vpx\_color\_space}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0}{vpx\+\_\+color\+\_\+space}}}
+
+
+
+List of supported color spaces. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_UNKNOWN@{VPX\_CS\_UNKNOWN}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_UNKNOWN@{VPX\_CS\_UNKNOWN}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae039d02fe72e38d97e871aadccb49983}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae039d02fe72e38d97e871aadccb49983}} 
+VPX\+\_\+\+CS\+\_\+\+UNKNOWN&Unknown \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_BT\_601@{VPX\_CS\_BT\_601}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_BT\_601@{VPX\_CS\_BT\_601}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aa88555230e42885238a78702bed06ccf}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aa88555230e42885238a78702bed06ccf}} 
+VPX\+\_\+\+CS\+\_\+\+BT\+\_\+601&BT.\+601 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_BT\_709@{VPX\_CS\_BT\_709}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_BT\_709@{VPX\_CS\_BT\_709}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a1cf07322afddb380115c2e44a0a41897}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a1cf07322afddb380115c2e44a0a41897}} 
+VPX\+\_\+\+CS\+\_\+\+BT\+\_\+709&BT.\+709 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_SMPTE\_170@{VPX\_CS\_SMPTE\_170}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_SMPTE\_170@{VPX\_CS\_SMPTE\_170}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ad6b52554e4ef85c21202f4706f08e4d6}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ad6b52554e4ef85c21202f4706f08e4d6}} 
+VPX\+\_\+\+CS\+\_\+\+SMPTE\+\_\+170&SMPTE.\+170 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_SMPTE\_240@{VPX\_CS\_SMPTE\_240}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_SMPTE\_240@{VPX\_CS\_SMPTE\_240}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae5086aefd5c262f8e3adc048d086a15c}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae5086aefd5c262f8e3adc048d086a15c}} 
+VPX\+\_\+\+CS\+\_\+\+SMPTE\+\_\+240&SMPTE.\+240 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_BT\_2020@{VPX\_CS\_BT\_2020}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_BT\_2020@{VPX\_CS\_BT\_2020}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aaedabef15fc5263f41145f9b733ef9e1}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0aaedabef15fc5263f41145f9b733ef9e1}} 
+VPX\+\_\+\+CS\+\_\+\+BT\+\_\+2020&BT.\+2020 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_RESERVED@{VPX\_CS\_RESERVED}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_RESERVED@{VPX\_CS\_RESERVED}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae90aa2028199b5b1ec7e76a19241f59a}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0ae90aa2028199b5b1ec7e76a19241f59a}} 
+VPX\+\_\+\+CS\+\_\+\+RESERVED&Reserved \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CS\_SRGB@{VPX\_CS\_SRGB}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CS\_SRGB@{VPX\_CS\_SRGB}}}\mbox{\Hypertarget{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a3fab005feb8c95c928b2410a7781a111}\label{vpx__image_8h_a015098daa919d66314a81dadcdd38ef0a3fab005feb8c95c928b2410a7781a111}} 
+VPX\+\_\+\+CS\+\_\+\+SRGB&s\+RGB \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}\label{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_color\_range@{vpx\_color\_range}}
+\index{vpx\_color\_range@{vpx\_color\_range}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_color\_range}{vpx\_color\_range}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62}{vpx\+\_\+color\+\_\+range}}}
+
+
+
+List of supported color range. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CR\_STUDIO\_RANGE@{VPX\_CR\_STUDIO\_RANGE}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CR\_STUDIO\_RANGE@{VPX\_CR\_STUDIO\_RANGE}}}\mbox{\Hypertarget{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a79df55e8de368f43a1a19fac73b8b77e}\label{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a79df55e8de368f43a1a19fac73b8b77e}} 
+VPX\+\_\+\+CR\+\_\+\+STUDIO\+\_\+\+RANGE&Y \mbox{[}16..235\mbox{]}, UV \mbox{[}16..240\mbox{]} \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CR\_FULL\_RANGE@{VPX\_CR\_FULL\_RANGE}!vpx\_image.h@{vpx\_image.h}}\index{vpx\_image.h@{vpx\_image.h}!VPX\_CR\_FULL\_RANGE@{VPX\_CR\_FULL\_RANGE}}}\mbox{\Hypertarget{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a99279dd1663bc45aa479ec82ee96d1a6}\label{vpx__image_8h_a892217e6a7ba64059d9733f85728dd62a99279dd1663bc45aa479ec82ee96d1a6}} 
+VPX\+\_\+\+CR\+\_\+\+FULL\+\_\+\+RANGE&YUV/\+RGB \mbox{[}0..255\mbox{]} \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{vpx__image_8h_a0e458791d0d7ce2df6b25d141aac557f}\label{vpx__image_8h_a0e458791d0d7ce2df6b25d141aac557f}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_alloc@{vpx\_img\_alloc}}
+\index{vpx\_img\_alloc@{vpx\_img\_alloc}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_alloc()}{vpx\_img\_alloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ vpx\+\_\+img\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img,  }\item[{\mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}}}]{fmt,  }\item[{unsigned int}]{d\+\_\+w,  }\item[{unsigned int}]{d\+\_\+h,  }\item[{unsigned int}]{align }\end{DoxyParamCaption})}
+
+
+
+Open a descriptor, allocating storage for the underlying image. 
+
+Returns a descriptor for storing an image of the given format. The storage for the descriptor is allocated on the heap.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Pointer to storage for descriptor. If this parameter is NULL, the storage for the descriptor will be allocated on the heap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fmt} & Format for the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em d\+\_\+w} & Width of the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em d\+\_\+h} & Height of the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em align} & Alignment, in bytes, of the image buffer and each row in the image(stride).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the initialized image descriptor. If the img parameter is non-\/null, the value of the img parameter will be returned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vpx__image_8h_ad1569670ea26357799c081caf98d3d1c}\label{vpx__image_8h_ad1569670ea26357799c081caf98d3d1c}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_wrap@{vpx\_img\_wrap}}
+\index{vpx\_img\_wrap@{vpx\_img\_wrap}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_wrap()}{vpx\_img\_wrap()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ vpx\+\_\+img\+\_\+wrap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img,  }\item[{\mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}}}]{fmt,  }\item[{unsigned int}]{d\+\_\+w,  }\item[{unsigned int}]{d\+\_\+h,  }\item[{unsigned int}]{stride\+\_\+align,  }\item[{unsigned char $\ast$}]{img\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Open a descriptor, using existing storage for the underlying image. 
+
+Returns a descriptor for storing an image of the given format. The storage for descriptor has been allocated elsewhere, and a descriptor is desired to \char`\"{}wrap\char`\"{} that storage.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Pointer to storage for descriptor. If this parameter is NULL, the storage for the descriptor will be allocated on the heap. \\
+\hline
+\mbox{\texttt{ in}}  & {\em fmt} & Format for the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em d\+\_\+w} & Width of the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em d\+\_\+h} & Height of the image \\
+\hline
+\mbox{\texttt{ in}}  & {\em stride\+\_\+align} & Alignment, in bytes, of each row in the image. \\
+\hline
+\mbox{\texttt{ in}}  & {\em img\+\_\+data} & Storage to use for the image\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the initialized image descriptor. If the img parameter is non-\/null, the value of the img parameter will be returned. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vpx__image_8h_ab5c1d1a5548752f7cd5047f43d5f25c4}\label{vpx__image_8h_ab5c1d1a5548752f7cd5047f43d5f25c4}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_set\_rect@{vpx\_img\_set\_rect}}
+\index{vpx\_img\_set\_rect@{vpx\_img\_set\_rect}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_set\_rect()}{vpx\_img\_set\_rect()}}
+{\footnotesize\ttfamily int vpx\+\_\+img\+\_\+set\+\_\+rect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img,  }\item[{unsigned int}]{x,  }\item[{unsigned int}]{y,  }\item[{unsigned int}]{w,  }\item[{unsigned int}]{h }\end{DoxyParamCaption})}
+
+
+
+Set the rectangle identifying the displayed portion of the image. 
+
+Updates the displayed rectangle (aka viewport) on the image surface to match the specified coordinates and size. Specifically, sets img-\/\texorpdfstring{$>$}{>}d\+\_\+w, img-\/\texorpdfstring{$>$}{>}d\+\_\+h, and elements of the img-\/\texorpdfstring{$>$}{>}planes\mbox{[}\mbox{]} array.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Image descriptor \\
+\hline
+\mbox{\texttt{ in}}  & {\em x} & leftmost column \\
+\hline
+\mbox{\texttt{ in}}  & {\em y} & topmost row \\
+\hline
+\mbox{\texttt{ in}}  & {\em w} & width \\
+\hline
+\mbox{\texttt{ in}}  & {\em h} & height\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the requested rectangle is valid, nonzero (-\/1) otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{vpx__image_8h_a01201327328c1cdd365632e5056b1850}\label{vpx__image_8h_a01201327328c1cdd365632e5056b1850}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_flip@{vpx\_img\_flip}}
+\index{vpx\_img\_flip@{vpx\_img\_flip}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_flip()}{vpx\_img\_flip()}}
+{\footnotesize\ttfamily void vpx\+\_\+img\+\_\+flip (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img }\end{DoxyParamCaption})}
+
+
+
+Flip the image vertically (top for bottom) 
+
+Adjusts the image descriptor\textquotesingle{}s pointers and strides to make the image be referenced upside-\/down.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Image descriptor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{vpx__image_8h_af47ebaf286812d037425d41990d48a17}\label{vpx__image_8h_af47ebaf286812d037425d41990d48a17}} 
+\index{vpx\_image.h@{vpx\_image.h}!vpx\_img\_free@{vpx\_img\_free}}
+\index{vpx\_img\_free@{vpx\_img\_free}!vpx\_image.h@{vpx\_image.h}}
+\doxyparagraph{\texorpdfstring{vpx\_img\_free()}{vpx\_img\_free()}}
+{\footnotesize\ttfamily void vpx\+\_\+img\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$}]{img }\end{DoxyParamCaption})}
+
+
+
+Close an image descriptor. 
+
+Frees all allocated storage associated with an image descriptor.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em img} & Image descriptor \\
+\hline
+\end{DoxyParams}

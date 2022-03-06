@@ -1,0 +1,75 @@
+\hypertarget{structvpx__rc__encodeframe__info}{}\doxysubsection{vpx\+\_\+rc\+\_\+encodeframe\+\_\+info Struct Reference}
+\label{structvpx__rc__encodeframe__info}\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+
+
+Information for the frame to be encoded.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+ext\+\_\+ratectrl.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_aa847a25c28cc5659bb97502db93b5402}{frame\+\_\+type}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_a0561ac82f416aa0cfc4e69cfa13d9b2d}{show\+\_\+index}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_a3c0e2cbab26f8413b5c48dc4d3ecfc93}{coding\+\_\+index}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_a7272ee027968a6b2844c18e6ef8f41c3}{gop\+\_\+index}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_a5377a3fc68eb647f9d4f735b7cb39277}{ref\+\_\+frame\+\_\+coding\+\_\+indexes}} \mbox{[}3\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__info_a71f00c61c7ac6a584c8ca894cda8dea0}{ref\+\_\+frame\+\_\+valid\+\_\+list}} \mbox{[}3\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Information for the frame to be encoded. 
+
+The encoder will send the information to external rate control model through get\+\_\+encodeframe\+\_\+decision() defined in vpx\+\_\+rc\+\_\+funcs\+\_\+t. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__rc__encodeframe__info_aa847a25c28cc5659bb97502db93b5402}\label{structvpx__rc__encodeframe__info_aa847a25c28cc5659bb97502db93b5402}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!frame\_type@{frame\_type}}
+\index{frame\_type@{frame\_type}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{frame\_type}{frame\_type}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::frame\+\_\+type}
+
+0\+: Key frame 1\+: Inter frame 2\+: Alternate reference frame 3\+: Overlay frame 4\+: Golden frame \mbox{\Hypertarget{structvpx__rc__encodeframe__info_a0561ac82f416aa0cfc4e69cfa13d9b2d}\label{structvpx__rc__encodeframe__info_a0561ac82f416aa0cfc4e69cfa13d9b2d}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!show\_index@{show\_index}}
+\index{show\_index@{show\_index}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{show\_index}{show\_index}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::show\+\_\+index}
+
+display index, starts from zero \mbox{\Hypertarget{structvpx__rc__encodeframe__info_a3c0e2cbab26f8413b5c48dc4d3ecfc93}\label{structvpx__rc__encodeframe__info_a3c0e2cbab26f8413b5c48dc4d3ecfc93}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!coding\_index@{coding\_index}}
+\index{coding\_index@{coding\_index}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{coding\_index}{coding\_index}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::coding\+\_\+index}
+
+coding index, starts from zero \mbox{\Hypertarget{structvpx__rc__encodeframe__info_a7272ee027968a6b2844c18e6ef8f41c3}\label{structvpx__rc__encodeframe__info_a7272ee027968a6b2844c18e6ef8f41c3}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!gop\_index@{gop\_index}}
+\index{gop\_index@{gop\_index}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{gop\_index}{gop\_index}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::gop\+\_\+index}
+
+index in group of picture, starts from zero. \mbox{\Hypertarget{structvpx__rc__encodeframe__info_a5377a3fc68eb647f9d4f735b7cb39277}\label{structvpx__rc__encodeframe__info_a5377a3fc68eb647f9d4f735b7cb39277}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!ref\_frame\_coding\_indexes@{ref\_frame\_coding\_indexes}}
+\index{ref\_frame\_coding\_indexes@{ref\_frame\_coding\_indexes}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{ref\_frame\_coding\_indexes}{ref\_frame\_coding\_indexes}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::ref\+\_\+frame\+\_\+coding\+\_\+indexes\mbox{[}3\mbox{]}}
+
+three reference frames\textquotesingle{} coding indices \mbox{\Hypertarget{structvpx__rc__encodeframe__info_a71f00c61c7ac6a584c8ca894cda8dea0}\label{structvpx__rc__encodeframe__info_a71f00c61c7ac6a584c8ca894cda8dea0}} 
+\index{vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}!ref\_frame\_valid\_list@{ref\_frame\_valid\_list}}
+\index{ref\_frame\_valid\_list@{ref\_frame\_valid\_list}!vpx\_rc\_encodeframe\_info@{vpx\_rc\_encodeframe\_info}}
+\doxyparagraph{\texorpdfstring{ref\_frame\_valid\_list}{ref\_frame\_valid\_list}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+info\+::ref\+\_\+frame\+\_\+valid\+\_\+list\mbox{[}3\mbox{]}}
+
+The validity of the three reference frames. 0\+: Invalid 1\+: Valid 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/vpx\+\_\+ext\+\_\+ratectrl.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,723 @@
+\hypertarget{structvpx__codec__enc__cfg}{}\doxysubsection{vpx\+\_\+codec\+\_\+enc\+\_\+cfg Struct Reference}
+\label{structvpx__codec__enc__cfg}\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+
+
+Encoder configuration structure.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+encoder.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a5bcf7fc1efc4890de351e3c6fe252355}{g\+\_\+usage}}
+\begin{DoxyCompactList}\small\item\em Deprecated\+: Algorithm specific \char`\"{}usage\char`\"{} value. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_aff9d8d458c45c95dd542603210ba2b8b}{g\+\_\+threads}}
+\begin{DoxyCompactList}\small\item\em Maximum number of threads to use. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a3d7fe3a8b237338c094d5a956a41804d}{g\+\_\+profile}}
+\begin{DoxyCompactList}\small\item\em Bitstream profile to use. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a5c165f5b41ca1158f2883983a2b7709c}{g\+\_\+w}}
+\begin{DoxyCompactList}\small\item\em Width of the frame. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a4132bd89ce85bce7c08f2cc3b6f2b82e}{g\+\_\+h}}
+\begin{DoxyCompactList}\small\item\em Height of the frame. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}{vpx\+\_\+bit\+\_\+depth\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aaaa7bca27fd42f24a2c215b247ba9190}{g\+\_\+bit\+\_\+depth}}
+\begin{DoxyCompactList}\small\item\em Bit-\/depth of the codec. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_abebad3c575d7a5ba6c09a52fedb7d762}{g\+\_\+input\+\_\+bit\+\_\+depth}}
+\begin{DoxyCompactList}\small\item\em Bit-\/depth of the input frames. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a6498d378e4c29ef3e22258289e481087}{g\+\_\+timebase}}
+\begin{DoxyCompactList}\small\item\em Stream timebase units. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\+\_\+codec\+\_\+er\+\_\+flags\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a4e17173b66ca0d7dfba9978625d7ba76}{g\+\_\+error\+\_\+resilient}}
+\begin{DoxyCompactList}\small\item\em Enable error resilient modes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\+\_\+enc\+\_\+pass}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a70d62d87aae7d1168746577f14a6dccf}{g\+\_\+pass}}
+\begin{DoxyCompactList}\small\item\em Multi-\/pass Encoding Mode. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a992668d9e30305f3f7ab2672ea31a890}{g\+\_\+lag\+\_\+in\+\_\+frames}}
+\begin{DoxyCompactList}\small\item\em Allow lagged encoding. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a619269f9a6904de58c4790e6806a3905}{rc\+\_\+dropframe\+\_\+thresh}}
+\begin{DoxyCompactList}\small\item\em Temporal resampling configuration, if supported by the codec. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a02a4e2f18fb0fdfff44df8b0d9a99d6c}{rc\+\_\+resize\+\_\+allowed}}
+\begin{DoxyCompactList}\small\item\em Enable/disable spatial resampling, if supported by the codec. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a2edc2097b6c74f837f129d3cc8901fca}{rc\+\_\+scaled\+\_\+width}}
+\begin{DoxyCompactList}\small\item\em Internal coded frame width. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a5586418c28a5f7f327c4ba7567467243}{rc\+\_\+scaled\+\_\+height}}
+\begin{DoxyCompactList}\small\item\em Internal coded frame height. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a855599c0660f31dfcab4a64996b4f6ad}{rc\+\_\+resize\+\_\+up\+\_\+thresh}}
+\begin{DoxyCompactList}\small\item\em Spatial resampling up watermark. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a1be7bd7b0eaf1e99b5e4028c37c65488}{rc\+\_\+resize\+\_\+down\+\_\+thresh}}
+\begin{DoxyCompactList}\small\item\em Spatial resampling down watermark. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\+\_\+rc\+\_\+mode}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a99c415edb6c6f909a095a57c3430a116}{rc\+\_\+end\+\_\+usage}}
+\begin{DoxyCompactList}\small\item\em Rate control algorithm to use. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a1bd769247042e5806295f6e06d20f008}{rc\+\_\+twopass\+\_\+stats\+\_\+in}}
+\begin{DoxyCompactList}\small\item\em Two-\/pass stats buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a52dbc21bc28d6a2c7c70a43ad18461d8}{rc\+\_\+firstpass\+\_\+mb\+\_\+stats\+\_\+in}}
+\begin{DoxyCompactList}\small\item\em first pass mb stats buffer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}{rc\+\_\+target\+\_\+bitrate}}
+\begin{DoxyCompactList}\small\item\em Target data rate. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a1324600e3c63faaa7717e85cf6509dd9}{rc\+\_\+min\+\_\+quantizer}}
+\begin{DoxyCompactList}\small\item\em Minimum (Best Quality) Quantizer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a8abdd985d317b720e142335887d737df}{rc\+\_\+max\+\_\+quantizer}}
+\begin{DoxyCompactList}\small\item\em Maximum (Worst Quality) Quantizer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_ad279fbb0a9fe9395340913161e28651a}{rc\+\_\+undershoot\+\_\+pct}}
+\begin{DoxyCompactList}\small\item\em Rate control adaptation undershoot control. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a4f2fbd015c1b1f395cc4a4b03d4ead5f}{rc\+\_\+overshoot\+\_\+pct}}
+\begin{DoxyCompactList}\small\item\em Rate control adaptation overshoot control. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a61866272bb588cd86d28834f420430f0}{rc\+\_\+buf\+\_\+sz}}
+\begin{DoxyCompactList}\small\item\em Decoder Buffer Size. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_aa9e4d6405994ef42d61d478cf6e0d5e0}{rc\+\_\+buf\+\_\+initial\+\_\+sz}}
+\begin{DoxyCompactList}\small\item\em Decoder Buffer Initial Size. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_aafde485867e040a58504ad796e79e47f}{rc\+\_\+buf\+\_\+optimal\+\_\+sz}}
+\begin{DoxyCompactList}\small\item\em Decoder Buffer Optimal Size. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a21c21ff097890dc3a450731c9b504cf4}{rc\+\_\+2pass\+\_\+vbr\+\_\+bias\+\_\+pct}}
+\begin{DoxyCompactList}\small\item\em Two-\/pass mode CBR/\+VBR bias. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a21eb9fce0844ae07b617bf3f0a25f5a5}{rc\+\_\+2pass\+\_\+vbr\+\_\+minsection\+\_\+pct}}
+\begin{DoxyCompactList}\small\item\em Two-\/pass mode per-\/\+GOP minimum bitrate. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_ab5212050b71b2d9f4dc663caa496949e}{rc\+\_\+2pass\+\_\+vbr\+\_\+maxsection\+\_\+pct}}
+\begin{DoxyCompactList}\small\item\em Two-\/pass mode per-\/\+GOP maximum bitrate. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_a8c205a9616aaa16b17dbd47e90d3b5b1}\label{structvpx__codec__enc__cfg_a8c205a9616aaa16b17dbd47e90d3b5b1}} 
+unsigned int {\bfseries rc\+\_\+2pass\+\_\+vbr\+\_\+corpus\+\_\+complexity}
+\begin{DoxyCompactList}\small\item\em Two-\/pass corpus vbr mode complexity control Used only in VP9\+: A value representing the corpus midpoint complexity for corpus vbr mode. This value defaults to 0 which disables corpus vbr mode in favour of normal vbr mode. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\+\_\+kf\+\_\+mode}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a491d67f061dcdb13f60c017563e9d788}{kf\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Keyframe placement mode. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a0a7b5444ecb09745cbe8d5af17553846}{kf\+\_\+min\+\_\+dist}}
+\begin{DoxyCompactList}\small\item\em Keyframe minimum interval. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_ae018440136e271743376730413d25a9b}{kf\+\_\+max\+\_\+dist}}
+\begin{DoxyCompactList}\small\item\em Keyframe maximum interval. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a1e5e1d00b22f2ba8c5c7230f31900f95}{ss\+\_\+number\+\_\+layers}}
+\begin{DoxyCompactList}\small\item\em Number of spatial coding layers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structvpx__codec__enc__cfg_a26e33bbfa43485c21ea58da6cee23c36}{ss\+\_\+enable\+\_\+auto\+\_\+alt\+\_\+ref}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Enable auto alt reference flags for each spatial layer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a5ff2f5884109736d0c2464bc156fda1f}{ss\+\_\+target\+\_\+bitrate}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Target bitrate for each spatial layer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a16d4549a30cbd585e3c3056ef873d8c7}{ts\+\_\+number\+\_\+layers}}
+\begin{DoxyCompactList}\small\item\em Number of temporal coding layers. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_aba7ceb7a90500a8f76aff89575737f3a}{ts\+\_\+target\+\_\+bitrate}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Target bitrate for each temporal layer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_ad40c30846ef8ef1d8684f10a491ec535}{ts\+\_\+rate\+\_\+decimator}} \mbox{[}5\mbox{]}
+\begin{DoxyCompactList}\small\item\em Frame rate decimation factor for each temporal layer. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a4ec338780115dd270acf0dac24193474}{ts\+\_\+periodicity}}
+\begin{DoxyCompactList}\small\item\em Length of the sequence defining frame temporal layer membership. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a4d105d2470dbfb7210b33d298f1cf1f6}{ts\+\_\+layer\+\_\+id}} \mbox{[}16\mbox{]}
+\begin{DoxyCompactList}\small\item\em Template defining the membership of frames to temporal layers. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{structvpx__codec__enc__cfg_a3f6b4c8aea7a713c51ad5d44e3552b1f}{layer\+\_\+target\+\_\+bitrate}} \mbox{[}12\mbox{]}
+\begin{DoxyCompactList}\small\item\em Target bitrate for each spatial/temporal layer. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structvpx__codec__enc__cfg_a07c78dd29423d5ab475b9d77a0107d16}{temporal\+\_\+layering\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Temporal layering mode indicating which temporal layering scheme to use. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_ab1c9d7319d8a87dd17ccc2b555634686}\label{structvpx__codec__enc__cfg_ab1c9d7319d8a87dd17ccc2b555634686}} 
+int {\bfseries use\+\_\+vizier\+\_\+rc\+\_\+params}
+\begin{DoxyCompactList}\small\item\em A flag indicating whether to use external rate control parameters. By default is 0. If set to 1, the following parameters will be used in the rate control system. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a9bb3db547c03143d4dc648f333781703}{active\+\_\+wq\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Active worst quality factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_abab974caea6e3f792628862e6842f79f}{err\+\_\+per\+\_\+mb\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Error per macroblock adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a0f9a1db193023e7845d91ea6f620158f}{sr\+\_\+default\+\_\+decay\+\_\+limit}}
+\begin{DoxyCompactList}\small\item\em Second reference default decay limit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac079d4de770df17fa5cae5d4b4538f35}{sr\+\_\+diff\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Second reference difference factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac203b189d3eeb77c2cc1fae906af6044}{kf\+\_\+err\+\_\+per\+\_\+mb\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Keyframe error per macroblock adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ac02848debdf9e48e1e38feddad8a52d7}{kf\+\_\+frame\+\_\+min\+\_\+boost\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Keyframe minimum boost adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a83402e1fe64b99834ae18c7cd08963d1}{kf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+first\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Keyframe maximum boost adjustment factor, for the first keyframe in a chunk. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_ae6fbc825378fb79f738bd00cc9feaf50}{kf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+subs\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Keyframe maximum boost adjustment factor, for subsequent keyframes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a18ef715918dff63b457ec4b6ddd4ae84}{kf\+\_\+max\+\_\+total\+\_\+boost\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Keyframe maximum total boost adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aa897f623221b5fe976a2be0ed2377fa4}{gf\+\_\+max\+\_\+total\+\_\+boost\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Golden frame maximum total boost adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_aae24f58760d0eae8806a2ed9bad9751e}{gf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Golden frame maximum boost adjustment factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} \mbox{\hyperlink{structvpx__codec__enc__cfg_a962618e5fc695f384f4d1658df65936e}{zm\+\_\+factor}}
+\begin{DoxyCompactList}\small\item\em Zero motion power factor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_ae280f6e2cf1c137fbaf4b090e3833a41}\label{structvpx__codec__enc__cfg_ae280f6e2cf1c137fbaf4b090e3833a41}} 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} {\bfseries rd\+\_\+mult\+\_\+inter\+\_\+qp\+\_\+fac}
+\begin{DoxyCompactList}\small\item\em Rate-\/distortion multiplier for inter frames. The multiplier is a crucial parameter in the calculation of rate distortion cost. It is often related to the qp (qindex) value. Rate control parameters, could be set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_a0159398aa8030f8c7f145f89c0c6392c}\label{structvpx__codec__enc__cfg_a0159398aa8030f8c7f145f89c0c6392c}} 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} {\bfseries rd\+\_\+mult\+\_\+arf\+\_\+qp\+\_\+fac}
+\begin{DoxyCompactList}\small\item\em Rate-\/distortion multiplier for alt-\/ref frames. The multiplier is a crucial parameter in the calculation of rate distortion cost. It is often related to the qp (qindex) value. Rate control parameters, could be set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_a371b2c46238dfa8d44f0fa8a4f731591}\label{structvpx__codec__enc__cfg_a371b2c46238dfa8d44f0fa8a4f731591}} 
+\mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} {\bfseries rd\+\_\+mult\+\_\+key\+\_\+qp\+\_\+fac}
+\begin{DoxyCompactList}\small\item\em Rate-\/distortion multiplier for key frames. The multiplier is a crucial parameter in the calculation of rate distortion cost. It is often related to the qp (qindex) value. Rate control parameters, could be set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Encoder configuration structure. 
+
+This structure contains the encoder settings that have common representations across all codecs. This doesn\textquotesingle{}t imply that all codecs support all features, however. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__codec__enc__cfg_a5bcf7fc1efc4890de351e3c6fe252355}\label{structvpx__codec__enc__cfg_a5bcf7fc1efc4890de351e3c6fe252355}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_usage@{g\_usage}}
+\index{g\_usage@{g\_usage}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_usage}{g\_usage}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+usage}
+
+
+
+Deprecated\+: Algorithm specific \char`\"{}usage\char`\"{} value. 
+
+This value must be zero. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aff9d8d458c45c95dd542603210ba2b8b}\label{structvpx__codec__enc__cfg_aff9d8d458c45c95dd542603210ba2b8b}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_threads@{g\_threads}}
+\index{g\_threads@{g\_threads}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_threads}{g\_threads}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+threads}
+
+
+
+Maximum number of threads to use. 
+
+For multi-\/threaded implementations, use no more than this number of threads. The codec may use fewer threads than allowed. The value 0 is equivalent to the value 1. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a3d7fe3a8b237338c094d5a956a41804d}\label{structvpx__codec__enc__cfg_a3d7fe3a8b237338c094d5a956a41804d}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_profile@{g\_profile}}
+\index{g\_profile@{g\_profile}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_profile}{g\_profile}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+profile}
+
+
+
+Bitstream profile to use. 
+
+Some codecs support a notion of multiple bitstream profiles. Typically this maps to a set of features that are turned on or off. Often the profile to use is determined by the features of the intended decoder. Consult the documentation for the codec to determine the valid values for this parameter, or set to zero for a sane default. profile of bitstream to use \mbox{\Hypertarget{structvpx__codec__enc__cfg_a5c165f5b41ca1158f2883983a2b7709c}\label{structvpx__codec__enc__cfg_a5c165f5b41ca1158f2883983a2b7709c}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_w@{g\_w}}
+\index{g\_w@{g\_w}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_w}{g\_w}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+w}
+
+
+
+Width of the frame. 
+
+This value identifies the presentation resolution of the frame, in pixels. Note that the frames passed as input to the encoder must have this resolution. Frames will be presented by the decoder in this resolution, independent of any spatial resampling the encoder may do. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a4132bd89ce85bce7c08f2cc3b6f2b82e}\label{structvpx__codec__enc__cfg_a4132bd89ce85bce7c08f2cc3b6f2b82e}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_h@{g\_h}}
+\index{g\_h@{g\_h}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_h}{g\_h}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+h}
+
+
+
+Height of the frame. 
+
+This value identifies the presentation resolution of the frame, in pixels. Note that the frames passed as input to the encoder must have this resolution. Frames will be presented by the decoder in this resolution, independent of any spatial resampling the encoder may do. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aaaa7bca27fd42f24a2c215b247ba9190}\label{structvpx__codec__enc__cfg_aaaa7bca27fd42f24a2c215b247ba9190}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_bit\_depth@{g\_bit\_depth}}
+\index{g\_bit\_depth@{g\_bit\_depth}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_bit\_depth}{g\_bit\_depth}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}{vpx\+\_\+bit\+\_\+depth\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+bit\+\_\+depth}
+
+
+
+Bit-\/depth of the codec. 
+
+This value identifies the bit\+\_\+depth of the codec, Only certain bit-\/depths are supported as identified in the vpx\+\_\+bit\+\_\+depth\+\_\+t enum. \mbox{\Hypertarget{structvpx__codec__enc__cfg_abebad3c575d7a5ba6c09a52fedb7d762}\label{structvpx__codec__enc__cfg_abebad3c575d7a5ba6c09a52fedb7d762}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_input\_bit\_depth@{g\_input\_bit\_depth}}
+\index{g\_input\_bit\_depth@{g\_input\_bit\_depth}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_input\_bit\_depth}{g\_input\_bit\_depth}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+input\+\_\+bit\+\_\+depth}
+
+
+
+Bit-\/depth of the input frames. 
+
+This value identifies the bit\+\_\+depth of the input frames in bits. Note that the frames passed as input to the encoder must have this bit-\/depth. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a6498d378e4c29ef3e22258289e481087}\label{structvpx__codec__enc__cfg_a6498d378e4c29ef3e22258289e481087}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_timebase@{g\_timebase}}
+\index{g\_timebase@{g\_timebase}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_timebase}{g\_timebase}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structvpx__rational}{vpx\+\_\+rational}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+timebase}
+
+
+
+Stream timebase units. 
+
+Indicates the smallest interval of time, in seconds, used by the stream. For fixed frame rate material, or variable frame rate material where frames are timed at a multiple of a given clock (ex\+: video capture), the \mbox{\hyperlink{rfc2119_RECOMMENDED}{RECOMMENDED}} method is to set the timebase to the reciprocal of the frame rate (ex\+: 1001/30000 for 29.\+970 Hz NTSC). This allows the pts to correspond to the frame number, which can be handy. For re-\/encoding video from containers with absolute time timestamps, the \mbox{\hyperlink{rfc2119_RECOMMENDED}{RECOMMENDED}} method is to set the timebase to that of the parent container or multimedia framework (ex\+: 1/1000 for ms, as in FLV). \mbox{\Hypertarget{structvpx__codec__enc__cfg_a4e17173b66ca0d7dfba9978625d7ba76}\label{structvpx__codec__enc__cfg_a4e17173b66ca0d7dfba9978625d7ba76}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_error\_resilient@{g\_error\_resilient}}
+\index{g\_error\_resilient@{g\_error\_resilient}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_error\_resilient}{g\_error\_resilient}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_ga77e0e1fff62556a4f4d54c84467a41f3}{vpx\+\_\+codec\+\_\+er\+\_\+flags\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+error\+\_\+resilient}
+
+
+
+Enable error resilient modes. 
+
+The error resilient bitfield indicates to the encoder which features it should enable to take measures for streaming over lossy or noisy links. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a70d62d87aae7d1168746577f14a6dccf}\label{structvpx__codec__enc__cfg_a70d62d87aae7d1168746577f14a6dccf}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_pass@{g\_pass}}
+\index{g\_pass@{g\_pass}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_pass}{g\_pass}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_ga476c5417f9c15a1dc5d3f68fa44c493f}{vpx\+\_\+enc\+\_\+pass}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+pass}
+
+
+
+Multi-\/pass Encoding Mode. 
+
+This value should be set to the current phase for multi-\/pass encoding. For single pass, set to \mbox{\hyperlink{group__encoder_gga476c5417f9c15a1dc5d3f68fa44c493fa7b6943a41868e8e26a77e9500f139ca1}{VPX\+\_\+\+RC\+\_\+\+ONE\+\_\+\+PASS}}. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a992668d9e30305f3f7ab2672ea31a890}\label{structvpx__codec__enc__cfg_a992668d9e30305f3f7ab2672ea31a890}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!g\_lag\_in\_frames@{g\_lag\_in\_frames}}
+\index{g\_lag\_in\_frames@{g\_lag\_in\_frames}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{g\_lag\_in\_frames}{g\_lag\_in\_frames}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::g\+\_\+lag\+\_\+in\+\_\+frames}
+
+
+
+Allow lagged encoding. 
+
+If set, this value allows the encoder to consume a number of input frames before producing output frames. This allows the encoder to base decisions for the current frame on future frames. This does increase the latency of the encoding pipeline, so it is not appropriate in all situations (ex\+: realtime encoding).
+
+Note that this is a maximum value -- the encoder may produce frames sooner than the given limit. Set this value to 0 to disable this feature. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a619269f9a6904de58c4790e6806a3905}\label{structvpx__codec__enc__cfg_a619269f9a6904de58c4790e6806a3905}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_dropframe\_thresh@{rc\_dropframe\_thresh}}
+\index{rc\_dropframe\_thresh@{rc\_dropframe\_thresh}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_dropframe\_thresh}{rc\_dropframe\_thresh}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+dropframe\+\_\+thresh}
+
+
+
+Temporal resampling configuration, if supported by the codec. 
+
+Temporal resampling allows the codec to \char`\"{}drop\char`\"{} frames as a strategy to meet its target data rate. This can cause temporal discontinuities in the encoded video, which may appear as stuttering during playback. This trade-\/off is often acceptable, but for many applications is not. It can be disabled in these cases.
+
+This threshold is described as a percentage of the target data buffer. When the data buffer falls below this percentage of fullness, a dropped frame is indicated. Set the threshold to zero (0) to disable this feature. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a02a4e2f18fb0fdfff44df8b0d9a99d6c}\label{structvpx__codec__enc__cfg_a02a4e2f18fb0fdfff44df8b0d9a99d6c}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_resize\_allowed@{rc\_resize\_allowed}}
+\index{rc\_resize\_allowed@{rc\_resize\_allowed}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_resize\_allowed}{rc\_resize\_allowed}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+resize\+\_\+allowed}
+
+
+
+Enable/disable spatial resampling, if supported by the codec. 
+
+Spatial resampling allows the codec to compress a lower resolution version of the frame, which is then upscaled by the encoder to the correct presentation resolution. This increases visual quality at low data rates, at the expense of CPU time on the encoder/decoder. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a2edc2097b6c74f837f129d3cc8901fca}\label{structvpx__codec__enc__cfg_a2edc2097b6c74f837f129d3cc8901fca}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_scaled\_width@{rc\_scaled\_width}}
+\index{rc\_scaled\_width@{rc\_scaled\_width}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_scaled\_width}{rc\_scaled\_width}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+scaled\+\_\+width}
+
+
+
+Internal coded frame width. 
+
+If spatial resampling is enabled this specifies the width of the encoded frame. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a5586418c28a5f7f327c4ba7567467243}\label{structvpx__codec__enc__cfg_a5586418c28a5f7f327c4ba7567467243}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_scaled\_height@{rc\_scaled\_height}}
+\index{rc\_scaled\_height@{rc\_scaled\_height}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_scaled\_height}{rc\_scaled\_height}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+scaled\+\_\+height}
+
+
+
+Internal coded frame height. 
+
+If spatial resampling is enabled this specifies the height of the encoded frame. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a855599c0660f31dfcab4a64996b4f6ad}\label{structvpx__codec__enc__cfg_a855599c0660f31dfcab4a64996b4f6ad}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_resize\_up\_thresh@{rc\_resize\_up\_thresh}}
+\index{rc\_resize\_up\_thresh@{rc\_resize\_up\_thresh}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_resize\_up\_thresh}{rc\_resize\_up\_thresh}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+resize\+\_\+up\+\_\+thresh}
+
+
+
+Spatial resampling up watermark. 
+
+This threshold is described as a percentage of the target data buffer. When the data buffer rises above this percentage of fullness, the encoder will step up to a higher resolution version of the frame. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a1be7bd7b0eaf1e99b5e4028c37c65488}\label{structvpx__codec__enc__cfg_a1be7bd7b0eaf1e99b5e4028c37c65488}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_resize\_down\_thresh@{rc\_resize\_down\_thresh}}
+\index{rc\_resize\_down\_thresh@{rc\_resize\_down\_thresh}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_resize\_down\_thresh}{rc\_resize\_down\_thresh}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+resize\+\_\+down\+\_\+thresh}
+
+
+
+Spatial resampling down watermark. 
+
+This threshold is described as a percentage of the target data buffer. When the data buffer falls below this percentage of fullness, the encoder will step down to a lower resolution version of the frame. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a99c415edb6c6f909a095a57c3430a116}\label{structvpx__codec__enc__cfg_a99c415edb6c6f909a095a57c3430a116}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_end\_usage@{rc\_end\_usage}}
+\index{rc\_end\_usage@{rc\_end\_usage}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_end\_usage}{rc\_end\_usage}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_gaf50e74d91be4cae6f70dfeba5b7410d2}{vpx\+\_\+rc\+\_\+mode}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+end\+\_\+usage}
+
+
+
+Rate control algorithm to use. 
+
+Indicates whether the end usage of this stream is to be streamed over a bandwidth constrained link, indicating that Constant Bit Rate (CBR) mode should be used, or whether it will be played back on a high bandwidth link, as from a local disk, where higher variations in bitrate are acceptable. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a1bd769247042e5806295f6e06d20f008}\label{structvpx__codec__enc__cfg_a1bd769247042e5806295f6e06d20f008}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_twopass\_stats\_in@{rc\_twopass\_stats\_in}}
+\index{rc\_twopass\_stats\_in@{rc\_twopass\_stats\_in}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_twopass\_stats\_in}{rc\_twopass\_stats\_in}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+twopass\+\_\+stats\+\_\+in}
+
+
+
+Two-\/pass stats buffer. 
+
+A buffer containing all of the stats packets produced in the first pass, concatenated. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a52dbc21bc28d6a2c7c70a43ad18461d8}\label{structvpx__codec__enc__cfg_a52dbc21bc28d6a2c7c70a43ad18461d8}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_firstpass\_mb\_stats\_in@{rc\_firstpass\_mb\_stats\_in}}
+\index{rc\_firstpass\_mb\_stats\_in@{rc\_firstpass\_mb\_stats\_in}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_firstpass\_mb\_stats\_in}{rc\_firstpass\_mb\_stats\_in}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_ga59e25e1f67a2930489f93a10f0d36a7a}{vpx\+\_\+fixed\+\_\+buf\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+firstpass\+\_\+mb\+\_\+stats\+\_\+in}
+
+
+
+first pass mb stats buffer. 
+
+A buffer containing all of the first pass mb stats packets produced in the first pass, concatenated. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}\label{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_target\_bitrate@{rc\_target\_bitrate}}
+\index{rc\_target\_bitrate@{rc\_target\_bitrate}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_target\_bitrate}{rc\_target\_bitrate}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+target\+\_\+bitrate}
+
+
+
+Target data rate. 
+
+Target bitrate to use for this stream, in kilobits per second. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a1324600e3c63faaa7717e85cf6509dd9}\label{structvpx__codec__enc__cfg_a1324600e3c63faaa7717e85cf6509dd9}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_min\_quantizer@{rc\_min\_quantizer}}
+\index{rc\_min\_quantizer@{rc\_min\_quantizer}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_min\_quantizer}{rc\_min\_quantizer}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+min\+\_\+quantizer}
+
+
+
+Minimum (Best Quality) Quantizer. 
+
+The quantizer is the most direct control over the quality of the encoded image. The range of valid values for the quantizer is codec specific. Consult the documentation for the codec to determine the values to use. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a8abdd985d317b720e142335887d737df}\label{structvpx__codec__enc__cfg_a8abdd985d317b720e142335887d737df}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_max\_quantizer@{rc\_max\_quantizer}}
+\index{rc\_max\_quantizer@{rc\_max\_quantizer}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_max\_quantizer}{rc\_max\_quantizer}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+max\+\_\+quantizer}
+
+
+
+Maximum (Worst Quality) Quantizer. 
+
+The quantizer is the most direct control over the quality of the encoded image. The range of valid values for the quantizer is codec specific. Consult the documentation for the codec to determine the values to use. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ad279fbb0a9fe9395340913161e28651a}\label{structvpx__codec__enc__cfg_ad279fbb0a9fe9395340913161e28651a}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_undershoot\_pct@{rc\_undershoot\_pct}}
+\index{rc\_undershoot\_pct@{rc\_undershoot\_pct}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_undershoot\_pct}{rc\_undershoot\_pct}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+undershoot\+\_\+pct}
+
+
+
+Rate control adaptation undershoot control. 
+
+VP8\+: Expressed as a percentage of the target bitrate, controls the maximum allowed adaptation speed of the codec. This factor controls the maximum amount of bits that can be subtracted from the target bitrate in order to compensate for prior overshoot. VP9\+: Expressed as a percentage of the target bitrate, a threshold undershoot level (current rate vs target) beyond which more aggressive corrective measures are taken.
+\begin{DoxyItemize}
+\item Valid values in the range VP8\+:0-\/100 VP9\+: 0-\/100. 
+\end{DoxyItemize}\mbox{\Hypertarget{structvpx__codec__enc__cfg_a4f2fbd015c1b1f395cc4a4b03d4ead5f}\label{structvpx__codec__enc__cfg_a4f2fbd015c1b1f395cc4a4b03d4ead5f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_overshoot\_pct@{rc\_overshoot\_pct}}
+\index{rc\_overshoot\_pct@{rc\_overshoot\_pct}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_overshoot\_pct}{rc\_overshoot\_pct}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+overshoot\+\_\+pct}
+
+
+
+Rate control adaptation overshoot control. 
+
+VP8\+: Expressed as a percentage of the target bitrate, controls the maximum allowed adaptation speed of the codec. This factor controls the maximum amount of bits that can be added to the target bitrate in order to compensate for prior undershoot. VP9\+: Expressed as a percentage of the target bitrate, a threshold overshoot level (current rate vs target) beyond which more aggressive corrective measures are taken.
+
+Valid values in the range VP8\+:0-\/100 VP9\+: 0-\/100. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a61866272bb588cd86d28834f420430f0}\label{structvpx__codec__enc__cfg_a61866272bb588cd86d28834f420430f0}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_buf\_sz@{rc\_buf\_sz}}
+\index{rc\_buf\_sz@{rc\_buf\_sz}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_buf\_sz}{rc\_buf\_sz}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+buf\+\_\+sz}
+
+
+
+Decoder Buffer Size. 
+
+This value indicates the amount of data that may be buffered by the decoding application. Note that this value is expressed in units of time (milliseconds). For example, a value of 5000 indicates that the client will buffer (at least) 5000ms worth of encoded data. Use the target bitrate (\mbox{\hyperlink{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}{rc\+\_\+target\+\_\+bitrate}}) to convert to bits/bytes, if necessary. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aa9e4d6405994ef42d61d478cf6e0d5e0}\label{structvpx__codec__enc__cfg_aa9e4d6405994ef42d61d478cf6e0d5e0}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_buf\_initial\_sz@{rc\_buf\_initial\_sz}}
+\index{rc\_buf\_initial\_sz@{rc\_buf\_initial\_sz}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_buf\_initial\_sz}{rc\_buf\_initial\_sz}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+buf\+\_\+initial\+\_\+sz}
+
+
+
+Decoder Buffer Initial Size. 
+
+This value indicates the amount of data that will be buffered by the decoding application prior to beginning playback. This value is expressed in units of time (milliseconds). Use the target bitrate (\mbox{\hyperlink{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}{rc\+\_\+target\+\_\+bitrate}}) to convert to bits/bytes, if necessary. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aafde485867e040a58504ad796e79e47f}\label{structvpx__codec__enc__cfg_aafde485867e040a58504ad796e79e47f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_buf\_optimal\_sz@{rc\_buf\_optimal\_sz}}
+\index{rc\_buf\_optimal\_sz@{rc\_buf\_optimal\_sz}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_buf\_optimal\_sz}{rc\_buf\_optimal\_sz}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+buf\+\_\+optimal\+\_\+sz}
+
+
+
+Decoder Buffer Optimal Size. 
+
+This value indicates the amount of data that the encoder should try to maintain in the decoder\textquotesingle{}s buffer. This value is expressed in units of time (milliseconds). Use the target bitrate (\mbox{\hyperlink{structvpx__codec__enc__cfg_ab8339685175d66710f482706cc9f0aed}{rc\+\_\+target\+\_\+bitrate}}) to convert to bits/bytes, if necessary. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a21c21ff097890dc3a450731c9b504cf4}\label{structvpx__codec__enc__cfg_a21c21ff097890dc3a450731c9b504cf4}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_2pass\_vbr\_bias\_pct@{rc\_2pass\_vbr\_bias\_pct}}
+\index{rc\_2pass\_vbr\_bias\_pct@{rc\_2pass\_vbr\_bias\_pct}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_2pass\_vbr\_bias\_pct}{rc\_2pass\_vbr\_bias\_pct}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+2pass\+\_\+vbr\+\_\+bias\+\_\+pct}
+
+
+
+Two-\/pass mode CBR/\+VBR bias. 
+
+Bias, expressed on a scale of 0 to 100, for determining target size for the current frame. The value 0 indicates the optimal CBR mode value should be used. The value 100 indicates the optimal VBR mode value should be used. Values in between indicate which way the encoder should \char`\"{}lean.\char`\"{} \mbox{\Hypertarget{structvpx__codec__enc__cfg_a21eb9fce0844ae07b617bf3f0a25f5a5}\label{structvpx__codec__enc__cfg_a21eb9fce0844ae07b617bf3f0a25f5a5}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_2pass\_vbr\_minsection\_pct@{rc\_2pass\_vbr\_minsection\_pct}}
+\index{rc\_2pass\_vbr\_minsection\_pct@{rc\_2pass\_vbr\_minsection\_pct}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_2pass\_vbr\_minsection\_pct}{rc\_2pass\_vbr\_minsection\_pct}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+2pass\+\_\+vbr\+\_\+minsection\+\_\+pct}
+
+
+
+Two-\/pass mode per-\/\+GOP minimum bitrate. 
+
+This value, expressed as a percentage of the target bitrate, indicates the minimum bitrate to be used for a single GOP (aka \char`\"{}section\char`\"{}) \mbox{\Hypertarget{structvpx__codec__enc__cfg_ab5212050b71b2d9f4dc663caa496949e}\label{structvpx__codec__enc__cfg_ab5212050b71b2d9f4dc663caa496949e}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!rc\_2pass\_vbr\_maxsection\_pct@{rc\_2pass\_vbr\_maxsection\_pct}}
+\index{rc\_2pass\_vbr\_maxsection\_pct@{rc\_2pass\_vbr\_maxsection\_pct}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{rc\_2pass\_vbr\_maxsection\_pct}{rc\_2pass\_vbr\_maxsection\_pct}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::rc\+\_\+2pass\+\_\+vbr\+\_\+maxsection\+\_\+pct}
+
+
+
+Two-\/pass mode per-\/\+GOP maximum bitrate. 
+
+This value, expressed as a percentage of the target bitrate, indicates the maximum bitrate to be used for a single GOP (aka \char`\"{}section\char`\"{}) \mbox{\Hypertarget{structvpx__codec__enc__cfg_a491d67f061dcdb13f60c017563e9d788}\label{structvpx__codec__enc__cfg_a491d67f061dcdb13f60c017563e9d788}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_mode@{kf\_mode}}
+\index{kf\_mode@{kf\_mode}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_mode}{kf\_mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__encoder_ga9f461802aa4db35c04a8b23837987f40}{vpx\+\_\+kf\+\_\+mode}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+mode}
+
+
+
+Keyframe placement mode. 
+
+This value indicates whether the encoder should place keyframes at a fixed interval, or determine the optimal placement automatically (as governed by the \mbox{\hyperlink{structvpx__codec__enc__cfg_a0a7b5444ecb09745cbe8d5af17553846}{kf\+\_\+min\+\_\+dist}} and \mbox{\hyperlink{structvpx__codec__enc__cfg_ae018440136e271743376730413d25a9b}{kf\+\_\+max\+\_\+dist}} parameters) \mbox{\Hypertarget{structvpx__codec__enc__cfg_a0a7b5444ecb09745cbe8d5af17553846}\label{structvpx__codec__enc__cfg_a0a7b5444ecb09745cbe8d5af17553846}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_min\_dist@{kf\_min\_dist}}
+\index{kf\_min\_dist@{kf\_min\_dist}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_min\_dist}{kf\_min\_dist}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+min\+\_\+dist}
+
+
+
+Keyframe minimum interval. 
+
+This value, expressed as a number of frames, prevents the encoder from placing a keyframe nearer than kf\+\_\+min\+\_\+dist to the previous keyframe. At least kf\+\_\+min\+\_\+dist frames non-\/keyframes will be coded before the next keyframe. Set kf\+\_\+min\+\_\+dist equal to kf\+\_\+max\+\_\+dist for a fixed interval. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ae018440136e271743376730413d25a9b}\label{structvpx__codec__enc__cfg_ae018440136e271743376730413d25a9b}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_max\_dist@{kf\_max\_dist}}
+\index{kf\_max\_dist@{kf\_max\_dist}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_max\_dist}{kf\_max\_dist}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+max\+\_\+dist}
+
+
+
+Keyframe maximum interval. 
+
+This value, expressed as a number of frames, forces the encoder to code a keyframe if one has not been coded in the last kf\+\_\+max\+\_\+dist frames. A value of 0 implies all frames will be keyframes. Set kf\+\_\+min\+\_\+dist equal to kf\+\_\+max\+\_\+dist for a fixed interval. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a1e5e1d00b22f2ba8c5c7230f31900f95}\label{structvpx__codec__enc__cfg_a1e5e1d00b22f2ba8c5c7230f31900f95}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ss\_number\_layers@{ss\_number\_layers}}
+\index{ss\_number\_layers@{ss\_number\_layers}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ss\_number\_layers}{ss\_number\_layers}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ss\+\_\+number\+\_\+layers}
+
+
+
+Number of spatial coding layers. 
+
+This value specifies the number of spatial coding layers to be used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a26e33bbfa43485c21ea58da6cee23c36}\label{structvpx__codec__enc__cfg_a26e33bbfa43485c21ea58da6cee23c36}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ss\_enable\_auto\_alt\_ref@{ss\_enable\_auto\_alt\_ref}}
+\index{ss\_enable\_auto\_alt\_ref@{ss\_enable\_auto\_alt\_ref}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ss\_enable\_auto\_alt\_ref}{ss\_enable\_auto\_alt\_ref}}
+{\footnotesize\ttfamily int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ss\+\_\+enable\+\_\+auto\+\_\+alt\+\_\+ref\mbox{[}5\mbox{]}}
+
+
+
+Enable auto alt reference flags for each spatial layer. 
+
+These values specify if auto alt reference frame is enabled for each spatial layer. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a5ff2f5884109736d0c2464bc156fda1f}\label{structvpx__codec__enc__cfg_a5ff2f5884109736d0c2464bc156fda1f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ss\_target\_bitrate@{ss\_target\_bitrate}}
+\index{ss\_target\_bitrate@{ss\_target\_bitrate}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ss\_target\_bitrate}{ss\_target\_bitrate}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ss\+\_\+target\+\_\+bitrate\mbox{[}5\mbox{]}}
+
+
+
+Target bitrate for each spatial layer. 
+
+These values specify the target coding bitrate to be used for each spatial layer. (in kbps) \mbox{\Hypertarget{structvpx__codec__enc__cfg_a16d4549a30cbd585e3c3056ef873d8c7}\label{structvpx__codec__enc__cfg_a16d4549a30cbd585e3c3056ef873d8c7}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ts\_number\_layers@{ts\_number\_layers}}
+\index{ts\_number\_layers@{ts\_number\_layers}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ts\_number\_layers}{ts\_number\_layers}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+number\+\_\+layers}
+
+
+
+Number of temporal coding layers. 
+
+This value specifies the number of temporal layers to be used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aba7ceb7a90500a8f76aff89575737f3a}\label{structvpx__codec__enc__cfg_aba7ceb7a90500a8f76aff89575737f3a}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ts\_target\_bitrate@{ts\_target\_bitrate}}
+\index{ts\_target\_bitrate@{ts\_target\_bitrate}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ts\_target\_bitrate}{ts\_target\_bitrate}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+target\+\_\+bitrate\mbox{[}5\mbox{]}}
+
+
+
+Target bitrate for each temporal layer. 
+
+These values specify the target coding bitrate to be used for each temporal layer. (in kbps) \mbox{\Hypertarget{structvpx__codec__enc__cfg_ad40c30846ef8ef1d8684f10a491ec535}\label{structvpx__codec__enc__cfg_ad40c30846ef8ef1d8684f10a491ec535}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ts\_rate\_decimator@{ts\_rate\_decimator}}
+\index{ts\_rate\_decimator@{ts\_rate\_decimator}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ts\_rate\_decimator}{ts\_rate\_decimator}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+rate\+\_\+decimator\mbox{[}5\mbox{]}}
+
+
+
+Frame rate decimation factor for each temporal layer. 
+
+These values specify the frame rate decimation factors to apply to each temporal layer. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a4ec338780115dd270acf0dac24193474}\label{structvpx__codec__enc__cfg_a4ec338780115dd270acf0dac24193474}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ts\_periodicity@{ts\_periodicity}}
+\index{ts\_periodicity@{ts\_periodicity}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ts\_periodicity}{ts\_periodicity}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+periodicity}
+
+
+
+Length of the sequence defining frame temporal layer membership. 
+
+This value specifies the length of the sequence that defines the membership of frames to temporal layers. For example, if the ts\+\_\+periodicity = 8, then the frames are assigned to coding layers with a repeated sequence of length 8. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a4d105d2470dbfb7210b33d298f1cf1f6}\label{structvpx__codec__enc__cfg_a4d105d2470dbfb7210b33d298f1cf1f6}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!ts\_layer\_id@{ts\_layer\_id}}
+\index{ts\_layer\_id@{ts\_layer\_id}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{ts\_layer\_id}{ts\_layer\_id}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::ts\+\_\+layer\+\_\+id\mbox{[}16\mbox{]}}
+
+
+
+Template defining the membership of frames to temporal layers. 
+
+This array defines the membership of frames to temporal coding layers. For a 2-\/layer encoding that assigns even numbered frames to one temporal layer (0) and odd numbered frames to a second temporal layer (1) with ts\+\_\+periodicity=8, then ts\+\_\+layer\+\_\+id = (0,1,0,1,0,1,0,1). \mbox{\Hypertarget{structvpx__codec__enc__cfg_a3f6b4c8aea7a713c51ad5d44e3552b1f}\label{structvpx__codec__enc__cfg_a3f6b4c8aea7a713c51ad5d44e3552b1f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!layer\_target\_bitrate@{layer\_target\_bitrate}}
+\index{layer\_target\_bitrate@{layer\_target\_bitrate}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{layer\_target\_bitrate}{layer\_target\_bitrate}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::layer\+\_\+target\+\_\+bitrate\mbox{[}12\mbox{]}}
+
+
+
+Target bitrate for each spatial/temporal layer. 
+
+These values specify the target coding bitrate to be used for each spatial/temporal layer. (in kbps) \mbox{\Hypertarget{structvpx__codec__enc__cfg_a07c78dd29423d5ab475b9d77a0107d16}\label{structvpx__codec__enc__cfg_a07c78dd29423d5ab475b9d77a0107d16}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!temporal\_layering\_mode@{temporal\_layering\_mode}}
+\index{temporal\_layering\_mode@{temporal\_layering\_mode}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{temporal\_layering\_mode}{temporal\_layering\_mode}}
+{\footnotesize\ttfamily int vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::temporal\+\_\+layering\+\_\+mode}
+
+
+
+Temporal layering mode indicating which temporal layering scheme to use. 
+
+The value (refer to VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE) specifies the temporal layering mode to use. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a9bb3db547c03143d4dc648f333781703}\label{structvpx__codec__enc__cfg_a9bb3db547c03143d4dc648f333781703}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!active\_wq\_factor@{active\_wq\_factor}}
+\index{active\_wq\_factor@{active\_wq\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{active\_wq\_factor}{active\_wq\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::active\+\_\+wq\+\_\+factor}
+
+
+
+Active worst quality factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_abab974caea6e3f792628862e6842f79f}\label{structvpx__codec__enc__cfg_abab974caea6e3f792628862e6842f79f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!err\_per\_mb\_factor@{err\_per\_mb\_factor}}
+\index{err\_per\_mb\_factor@{err\_per\_mb\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{err\_per\_mb\_factor}{err\_per\_mb\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::err\+\_\+per\+\_\+mb\+\_\+factor}
+
+
+
+Error per macroblock adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a0f9a1db193023e7845d91ea6f620158f}\label{structvpx__codec__enc__cfg_a0f9a1db193023e7845d91ea6f620158f}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!sr\_default\_decay\_limit@{sr\_default\_decay\_limit}}
+\index{sr\_default\_decay\_limit@{sr\_default\_decay\_limit}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{sr\_default\_decay\_limit}{sr\_default\_decay\_limit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::sr\+\_\+default\+\_\+decay\+\_\+limit}
+
+
+
+Second reference default decay limit. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ac079d4de770df17fa5cae5d4b4538f35}\label{structvpx__codec__enc__cfg_ac079d4de770df17fa5cae5d4b4538f35}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!sr\_diff\_factor@{sr\_diff\_factor}}
+\index{sr\_diff\_factor@{sr\_diff\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{sr\_diff\_factor}{sr\_diff\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::sr\+\_\+diff\+\_\+factor}
+
+
+
+Second reference difference factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ac203b189d3eeb77c2cc1fae906af6044}\label{structvpx__codec__enc__cfg_ac203b189d3eeb77c2cc1fae906af6044}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_err\_per\_mb\_factor@{kf\_err\_per\_mb\_factor}}
+\index{kf\_err\_per\_mb\_factor@{kf\_err\_per\_mb\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_err\_per\_mb\_factor}{kf\_err\_per\_mb\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+err\+\_\+per\+\_\+mb\+\_\+factor}
+
+
+
+Keyframe error per macroblock adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ac02848debdf9e48e1e38feddad8a52d7}\label{structvpx__codec__enc__cfg_ac02848debdf9e48e1e38feddad8a52d7}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_frame\_min\_boost\_factor@{kf\_frame\_min\_boost\_factor}}
+\index{kf\_frame\_min\_boost\_factor@{kf\_frame\_min\_boost\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_frame\_min\_boost\_factor}{kf\_frame\_min\_boost\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+frame\+\_\+min\+\_\+boost\+\_\+factor}
+
+
+
+Keyframe minimum boost adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a83402e1fe64b99834ae18c7cd08963d1}\label{structvpx__codec__enc__cfg_a83402e1fe64b99834ae18c7cd08963d1}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_frame\_max\_boost\_first\_factor@{kf\_frame\_max\_boost\_first\_factor}}
+\index{kf\_frame\_max\_boost\_first\_factor@{kf\_frame\_max\_boost\_first\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_frame\_max\_boost\_first\_factor}{kf\_frame\_max\_boost\_first\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+first\+\_\+factor}
+
+
+
+Keyframe maximum boost adjustment factor, for the first keyframe in a chunk. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_ae6fbc825378fb79f738bd00cc9feaf50}\label{structvpx__codec__enc__cfg_ae6fbc825378fb79f738bd00cc9feaf50}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_frame\_max\_boost\_subs\_factor@{kf\_frame\_max\_boost\_subs\_factor}}
+\index{kf\_frame\_max\_boost\_subs\_factor@{kf\_frame\_max\_boost\_subs\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_frame\_max\_boost\_subs\_factor}{kf\_frame\_max\_boost\_subs\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+subs\+\_\+factor}
+
+
+
+Keyframe maximum boost adjustment factor, for subsequent keyframes. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a18ef715918dff63b457ec4b6ddd4ae84}\label{structvpx__codec__enc__cfg_a18ef715918dff63b457ec4b6ddd4ae84}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!kf\_max\_total\_boost\_factor@{kf\_max\_total\_boost\_factor}}
+\index{kf\_max\_total\_boost\_factor@{kf\_max\_total\_boost\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{kf\_max\_total\_boost\_factor}{kf\_max\_total\_boost\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::kf\+\_\+max\+\_\+total\+\_\+boost\+\_\+factor}
+
+
+
+Keyframe maximum total boost adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aa897f623221b5fe976a2be0ed2377fa4}\label{structvpx__codec__enc__cfg_aa897f623221b5fe976a2be0ed2377fa4}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!gf\_max\_total\_boost\_factor@{gf\_max\_total\_boost\_factor}}
+\index{gf\_max\_total\_boost\_factor@{gf\_max\_total\_boost\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{gf\_max\_total\_boost\_factor}{gf\_max\_total\_boost\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::gf\+\_\+max\+\_\+total\+\_\+boost\+\_\+factor}
+
+
+
+Golden frame maximum total boost adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_aae24f58760d0eae8806a2ed9bad9751e}\label{structvpx__codec__enc__cfg_aae24f58760d0eae8806a2ed9bad9751e}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!gf\_frame\_max\_boost\_factor@{gf\_frame\_max\_boost\_factor}}
+\index{gf\_frame\_max\_boost\_factor@{gf\_frame\_max\_boost\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{gf\_frame\_max\_boost\_factor}{gf\_frame\_max\_boost\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::gf\+\_\+frame\+\_\+max\+\_\+boost\+\_\+factor}
+
+
+
+Golden frame maximum boost adjustment factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. \mbox{\Hypertarget{structvpx__codec__enc__cfg_a962618e5fc695f384f4d1658df65936e}\label{structvpx__codec__enc__cfg_a962618e5fc695f384f4d1658df65936e}} 
+\index{vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}!zm\_factor@{zm\_factor}}
+\index{zm\_factor@{zm\_factor}!vpx\_codec\_enc\_cfg@{vpx\_codec\_enc\_cfg}}
+\doxyparagraph{\texorpdfstring{zm\_factor}{zm\_factor}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__encoder_gae84b20b68e4c6cdd6a5aab5b7fe981a5}{vpx\+\_\+rational\+\_\+t}} vpx\+\_\+codec\+\_\+enc\+\_\+cfg\+::zm\+\_\+factor}
+
+
+
+Zero motion power factor. 
+
+Rate control parameters, set from external experiment results. Only when $\vert$use\+\_\+vizier\+\_\+rc\+\_\+params$\vert$ is set to 1, the pass in value will be used. Otherwise, the default value is used. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vpx__encoder_8h}{vpx\+\_\+encoder.\+h}}\end{DoxyCompactItemize}

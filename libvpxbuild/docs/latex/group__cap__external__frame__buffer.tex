@@ -1,0 +1,55 @@
+\hypertarget{group__cap__external__frame__buffer}{}\doxysubsection{External Frame Buffer Functions}
+\label{group__cap__external__frame__buffer}\index{External Frame Buffer Functions@{External Frame Buffer Functions}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__cap__external__frame__buffer_gad209e7c3f6a330d11846be70a880182c}{vpx\+\_\+codec\+\_\+set\+\_\+frame\+\_\+buffer\+\_\+functions}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}{vpx\+\_\+get\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}} cb\+\_\+get, \mbox{\hyperlink{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}{vpx\+\_\+release\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}} cb\+\_\+release, void $\ast$cb\+\_\+priv)
+\begin{DoxyCompactList}\small\item\em Pass in external frame buffers for the decoder to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The following function is required to be implemented for all decoders that advertise the VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+EXTERNAL\+\_\+\+FRAME\+\_\+\+BUFFER capability. Calling this function for codecs that don\textquotesingle{}t advertise this capability will result in an error code being returned, usually VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE.
+
+\begin{DoxyNote}{Note}
+Currently this only works with VP9. 
+\end{DoxyNote}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{group__cap__external__frame__buffer_gad209e7c3f6a330d11846be70a880182c}\label{group__cap__external__frame__buffer_gad209e7c3f6a330d11846be70a880182c}} 
+\index{External Frame Buffer Functions@{External Frame Buffer Functions}!vpx\_codec\_set\_frame\_buffer\_functions@{vpx\_codec\_set\_frame\_buffer\_functions}}
+\index{vpx\_codec\_set\_frame\_buffer\_functions@{vpx\_codec\_set\_frame\_buffer\_functions}!External Frame Buffer Functions@{External Frame Buffer Functions}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_set\_frame\_buffer\_functions()}{vpx\_codec\_set\_frame\_buffer\_functions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+set\+\_\+frame\+\_\+buffer\+\_\+functions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}{vpx\+\_\+get\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb\+\_\+get,  }\item[{\mbox{\hyperlink{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}{vpx\+\_\+release\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb\+\_\+release,  }\item[{void $\ast$}]{cb\+\_\+priv }\end{DoxyParamCaption})}
+
+
+
+Pass in external frame buffers for the decoder to use. 
+
+Registers functions to be called when libvpx needs a frame buffer to decode the current frame and a function to be called when libvpx does not internally reference the frame buffer. This set function must be called before the first call to decode or libvpx will assume the default behavior of allocating frame buffers internally.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+get} & Pointer to the get callback function \\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+release} & Pointer to the release callback function \\
+\hline
+\mbox{\texttt{ in}}  & {\em cb\+\_\+priv} & Callback\textquotesingle{}s private data\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & External frame buffers will be used by libvpx. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & One or more of the callbacks were NULL. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}}} & Decoder context not initialized. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}} & Algorithm not capable of using external frame buffers.\\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyNote}{Note}
+When decoding VP9, the application may be required to pass in at least \mbox{\hyperlink{vpx__frame__buffer_8h_abf69f005955646519b1379d5ed67b002}{VP9\+\_\+\+MAXIMUM\+\_\+\+REF\+\_\+\+BUFFERS}} + \mbox{\hyperlink{vpx__frame__buffer_8h_a92d4c1a691bffa03789df35386788295}{VPX\+\_\+\+MAXIMUM\+\_\+\+WORK\+\_\+\+BUFFERS}} external frame buffers. 
+\end{DoxyNote}

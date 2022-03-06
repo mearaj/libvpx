@@ -1,0 +1,240 @@
+\hypertarget{structvpx__rc__frame__stats}{}\doxysubsection{vpx\+\_\+rc\+\_\+frame\+\_\+stats Struct Reference}
+\label{structvpx__rc__frame__stats}\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+
+
+First pass frame stats This is a mirror of vp9\textquotesingle{}s FIRSTPASS\+\_\+\+STATS except that spatial\+\_\+layer\+\_\+id is omitted.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+ext\+\_\+ratectrl.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a54f4244c577b52e14dd7a4b07263b314}{frame}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a2b38dfcb23198646bb456575cee65d66}{weight}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a76ef89afc4d4b33dcf98959c73289909}{intra\+\_\+error}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_afe9f577c4ecd1d3d54b1e1c0bebd21d9}{coded\+\_\+error}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_af2028a626d0a6c82eb4b66c857f1a229}{sr\+\_\+coded\+\_\+error}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a8613271397e98d987fd1e828910e64cd}{frame\+\_\+noise\+\_\+energy}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_aeb2715f040b2b11a0d6073c28b441cb9}{pcnt\+\_\+inter}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_ab5457c7f776d950c9b34ad1ee3c4599f}{pcnt\+\_\+motion}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_af472b9802b6058b22a8cf759eb1f0ea4}{pcnt\+\_\+second\+\_\+ref}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a881e2fd9c0386c4a08b562e4115d2ada}{pcnt\+\_\+neutral}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a1a5737b9d35c2585112633f953c6339f}{pcnt\+\_\+intra\+\_\+low}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_ad90b106ed97ca963064469393698a943}{pcnt\+\_\+intra\+\_\+high}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_aec7182d9a9814ffb0905e08993220b88}{intra\+\_\+skip\+\_\+pct}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_aa7baa726de870cbb5d9133e6cccfec01}{intra\+\_\+smooth\+\_\+pct}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a53ed0ea951ef9cf69a06675caea0063a}{inactive\+\_\+zone\+\_\+rows}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a285bf0d70ca484103768d29e7bacfd85}{inactive\+\_\+zone\+\_\+cols}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a3e10a3da3bbb2f71e8e1e361f6cee1ee}{MVr}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a0364a5c441f8f25fa56e30d5e26df6a8}{mvr\+\_\+abs}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a9dbae816fc93d2bee2c4dbed1ec8dbcc}{MVc}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a9e27da5e9133c163b8401b442c039654}{mvc\+\_\+abs}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_ab4a1f2deb61ba70a3ee65dc62c3b21f2}{MVrv}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_ac44474935465688d9e724696e72a3bca}{MVcv}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a429711a1c5dc4e419195ff7ff9871fe6}{mv\+\_\+in\+\_\+out\+\_\+count}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_a147bcc75f78565428aae81dccc11833f}{duration}}
+\item 
+double \mbox{\hyperlink{structvpx__rc__frame__stats_ae426e907555e2cd05e844c14b6c6c8a3}{count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+First pass frame stats This is a mirror of vp9\textquotesingle{}s FIRSTPASS\+\_\+\+STATS except that spatial\+\_\+layer\+\_\+id is omitted. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__rc__frame__stats_a54f4244c577b52e14dd7a4b07263b314}\label{structvpx__rc__frame__stats_a54f4244c577b52e14dd7a4b07263b314}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!frame@{frame}}
+\index{frame@{frame}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::frame}
+
+Frame number in display order, if stats are for a single frame. No real meaning for a collection of frames. \mbox{\Hypertarget{structvpx__rc__frame__stats_a2b38dfcb23198646bb456575cee65d66}\label{structvpx__rc__frame__stats_a2b38dfcb23198646bb456575cee65d66}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!weight@{weight}}
+\index{weight@{weight}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::weight}
+
+Weight assigned to this frame (or total weight for the collection of frames) currently based on intra factor and brightness factor. This is used to distribute bits between easier and harder frames. \mbox{\Hypertarget{structvpx__rc__frame__stats_a76ef89afc4d4b33dcf98959c73289909}\label{structvpx__rc__frame__stats_a76ef89afc4d4b33dcf98959c73289909}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!intra\_error@{intra\_error}}
+\index{intra\_error@{intra\_error}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{intra\_error}{intra\_error}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::intra\+\_\+error}
+
+Intra prediction error. \mbox{\Hypertarget{structvpx__rc__frame__stats_afe9f577c4ecd1d3d54b1e1c0bebd21d9}\label{structvpx__rc__frame__stats_afe9f577c4ecd1d3d54b1e1c0bebd21d9}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!coded\_error@{coded\_error}}
+\index{coded\_error@{coded\_error}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{coded\_error}{coded\_error}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::coded\+\_\+error}
+
+Best of intra pred error and inter pred error using last frame as ref. \mbox{\Hypertarget{structvpx__rc__frame__stats_af2028a626d0a6c82eb4b66c857f1a229}\label{structvpx__rc__frame__stats_af2028a626d0a6c82eb4b66c857f1a229}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!sr\_coded\_error@{sr\_coded\_error}}
+\index{sr\_coded\_error@{sr\_coded\_error}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{sr\_coded\_error}{sr\_coded\_error}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::sr\+\_\+coded\+\_\+error}
+
+Best of intra pred error and inter pred error using golden frame as ref. \mbox{\Hypertarget{structvpx__rc__frame__stats_a8613271397e98d987fd1e828910e64cd}\label{structvpx__rc__frame__stats_a8613271397e98d987fd1e828910e64cd}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!frame\_noise\_energy@{frame\_noise\_energy}}
+\index{frame\_noise\_energy@{frame\_noise\_energy}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{frame\_noise\_energy}{frame\_noise\_energy}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::frame\+\_\+noise\+\_\+energy}
+
+Estimate the noise energy of the current frame. \mbox{\Hypertarget{structvpx__rc__frame__stats_aeb2715f040b2b11a0d6073c28b441cb9}\label{structvpx__rc__frame__stats_aeb2715f040b2b11a0d6073c28b441cb9}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_inter@{pcnt\_inter}}
+\index{pcnt\_inter@{pcnt\_inter}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_inter}{pcnt\_inter}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+inter}
+
+Percentage of blocks with inter pred error \texorpdfstring{$<$}{<} intra pred error. \mbox{\Hypertarget{structvpx__rc__frame__stats_ab5457c7f776d950c9b34ad1ee3c4599f}\label{structvpx__rc__frame__stats_ab5457c7f776d950c9b34ad1ee3c4599f}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_motion@{pcnt\_motion}}
+\index{pcnt\_motion@{pcnt\_motion}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_motion}{pcnt\_motion}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+motion}
+
+Percentage of blocks using (inter prediction and) non-\/zero motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_af472b9802b6058b22a8cf759eb1f0ea4}\label{structvpx__rc__frame__stats_af472b9802b6058b22a8cf759eb1f0ea4}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_second\_ref@{pcnt\_second\_ref}}
+\index{pcnt\_second\_ref@{pcnt\_second\_ref}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_second\_ref}{pcnt\_second\_ref}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+second\+\_\+ref}
+
+Percentage of blocks where golden frame was better than last or intra\+: inter pred error using golden frame \texorpdfstring{$<$}{<} inter pred error using last frame and inter pred error using golden frame \texorpdfstring{$<$}{<} intra pred error \mbox{\Hypertarget{structvpx__rc__frame__stats_a881e2fd9c0386c4a08b562e4115d2ada}\label{structvpx__rc__frame__stats_a881e2fd9c0386c4a08b562e4115d2ada}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_neutral@{pcnt\_neutral}}
+\index{pcnt\_neutral@{pcnt\_neutral}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_neutral}{pcnt\_neutral}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+neutral}
+
+Percentage of blocks where intra and inter prediction errors were very close. \mbox{\Hypertarget{structvpx__rc__frame__stats_a1a5737b9d35c2585112633f953c6339f}\label{structvpx__rc__frame__stats_a1a5737b9d35c2585112633f953c6339f}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_intra\_low@{pcnt\_intra\_low}}
+\index{pcnt\_intra\_low@{pcnt\_intra\_low}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_intra\_low}{pcnt\_intra\_low}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+intra\+\_\+low}
+
+Percentage of blocks that have intra error \texorpdfstring{$<$}{<} inter error and inter error \texorpdfstring{$<$}{<} LOW\+\_\+\+I\+\_\+\+THRESH
+\begin{DoxyItemize}
+\item bit\+\_\+depth 8\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000
+\item bit\+\_\+depth 10\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4
+\item bit\+\_\+depth 12\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 8 
+\end{DoxyItemize}\mbox{\Hypertarget{structvpx__rc__frame__stats_ad90b106ed97ca963064469393698a943}\label{structvpx__rc__frame__stats_ad90b106ed97ca963064469393698a943}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!pcnt\_intra\_high@{pcnt\_intra\_high}}
+\index{pcnt\_intra\_high@{pcnt\_intra\_high}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{pcnt\_intra\_high}{pcnt\_intra\_high}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::pcnt\+\_\+intra\+\_\+high}
+
+Percentage of blocks that have intra error \texorpdfstring{$<$}{<} inter error and intra error \texorpdfstring{$<$}{<} LOW\+\_\+\+I\+\_\+\+THRESH but inter error \texorpdfstring{$>$}{>}= LOW\+\_\+\+I\+\_\+\+THRESH LOW\+\_\+\+I\+\_\+\+THRESH
+\begin{DoxyItemize}
+\item bit\+\_\+depth 8\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000
+\item bit\+\_\+depth 10\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4
+\item bit\+\_\+depth 12\+: LOW\+\_\+\+I\+\_\+\+THRESH = 24000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 8 
+\end{DoxyItemize}\mbox{\Hypertarget{structvpx__rc__frame__stats_aec7182d9a9814ffb0905e08993220b88}\label{structvpx__rc__frame__stats_aec7182d9a9814ffb0905e08993220b88}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!intra\_skip\_pct@{intra\_skip\_pct}}
+\index{intra\_skip\_pct@{intra\_skip\_pct}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{intra\_skip\_pct}{intra\_skip\_pct}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::intra\+\_\+skip\+\_\+pct}
+
+Percentage of blocks that have almost no intra error residual (i.\+e. are in effect completely flat and untextured in the intra domain). In natural videos this is uncommon, but it is much more common in animations, graphics and screen content, so may be used as a signal to detect these types of content. \mbox{\Hypertarget{structvpx__rc__frame__stats_aa7baa726de870cbb5d9133e6cccfec01}\label{structvpx__rc__frame__stats_aa7baa726de870cbb5d9133e6cccfec01}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!intra\_smooth\_pct@{intra\_smooth\_pct}}
+\index{intra\_smooth\_pct@{intra\_smooth\_pct}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{intra\_smooth\_pct}{intra\_smooth\_pct}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::intra\+\_\+smooth\+\_\+pct}
+
+Percentage of blocks that have intra error \texorpdfstring{$<$}{<} SMOOTH\+\_\+\+INTRA\+\_\+\+THRESH
+\begin{DoxyItemize}
+\item bit\+\_\+depth 8\+: SMOOTH\+\_\+\+INTRA\+\_\+\+THRESH = 4000
+\item bit\+\_\+depth 10\+: SMOOTH\+\_\+\+INTRA\+\_\+\+THRESH = 4000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 4
+\item bit\+\_\+depth 12\+: SMOOTH\+\_\+\+INTRA\+\_\+\+THRESH = 4000 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 8 
+\end{DoxyItemize}\mbox{\Hypertarget{structvpx__rc__frame__stats_a53ed0ea951ef9cf69a06675caea0063a}\label{structvpx__rc__frame__stats_a53ed0ea951ef9cf69a06675caea0063a}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!inactive\_zone\_rows@{inactive\_zone\_rows}}
+\index{inactive\_zone\_rows@{inactive\_zone\_rows}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{inactive\_zone\_rows}{inactive\_zone\_rows}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::inactive\+\_\+zone\+\_\+rows}
+
+Image mask rows top and bottom. \mbox{\Hypertarget{structvpx__rc__frame__stats_a285bf0d70ca484103768d29e7bacfd85}\label{structvpx__rc__frame__stats_a285bf0d70ca484103768d29e7bacfd85}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!inactive\_zone\_cols@{inactive\_zone\_cols}}
+\index{inactive\_zone\_cols@{inactive\_zone\_cols}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{inactive\_zone\_cols}{inactive\_zone\_cols}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::inactive\+\_\+zone\+\_\+cols}
+
+Image mask columns at left and right edges. \mbox{\Hypertarget{structvpx__rc__frame__stats_a3e10a3da3bbb2f71e8e1e361f6cee1ee}\label{structvpx__rc__frame__stats_a3e10a3da3bbb2f71e8e1e361f6cee1ee}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!MVr@{MVr}}
+\index{MVr@{MVr}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{MVr}{MVr}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::\+MVr}
+
+Mean of row motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_a0364a5c441f8f25fa56e30d5e26df6a8}\label{structvpx__rc__frame__stats_a0364a5c441f8f25fa56e30d5e26df6a8}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!mvr\_abs@{mvr\_abs}}
+\index{mvr\_abs@{mvr\_abs}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{mvr\_abs}{mvr\_abs}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::mvr\+\_\+abs}
+
+Mean of absolute value of row motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_a9dbae816fc93d2bee2c4dbed1ec8dbcc}\label{structvpx__rc__frame__stats_a9dbae816fc93d2bee2c4dbed1ec8dbcc}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!MVc@{MVc}}
+\index{MVc@{MVc}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{MVc}{MVc}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::\+MVc}
+
+Mean of column motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_a9e27da5e9133c163b8401b442c039654}\label{structvpx__rc__frame__stats_a9e27da5e9133c163b8401b442c039654}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!mvc\_abs@{mvc\_abs}}
+\index{mvc\_abs@{mvc\_abs}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{mvc\_abs}{mvc\_abs}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::mvc\+\_\+abs}
+
+Mean of absolute value of column motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_ab4a1f2deb61ba70a3ee65dc62c3b21f2}\label{structvpx__rc__frame__stats_ab4a1f2deb61ba70a3ee65dc62c3b21f2}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!MVrv@{MVrv}}
+\index{MVrv@{MVrv}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{MVrv}{MVrv}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::\+MVrv}
+
+Variance of row motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_ac44474935465688d9e724696e72a3bca}\label{structvpx__rc__frame__stats_ac44474935465688d9e724696e72a3bca}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!MVcv@{MVcv}}
+\index{MVcv@{MVcv}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{MVcv}{MVcv}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::\+MVcv}
+
+Variance of column motion vectors. \mbox{\Hypertarget{structvpx__rc__frame__stats_a429711a1c5dc4e419195ff7ff9871fe6}\label{structvpx__rc__frame__stats_a429711a1c5dc4e419195ff7ff9871fe6}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!mv\_in\_out\_count@{mv\_in\_out\_count}}
+\index{mv\_in\_out\_count@{mv\_in\_out\_count}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{mv\_in\_out\_count}{mv\_in\_out\_count}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::mv\+\_\+in\+\_\+out\+\_\+count}
+
+Value in range \mbox{[}-\/1,1\mbox{]} indicating fraction of row and column motion vectors that point inwards (negative MV value) or outwards (positive MV value). For example, value of 1 indicates, all row/column MVs are inwards. \mbox{\Hypertarget{structvpx__rc__frame__stats_a147bcc75f78565428aae81dccc11833f}\label{structvpx__rc__frame__stats_a147bcc75f78565428aae81dccc11833f}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!duration@{duration}}
+\index{duration@{duration}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::duration}
+
+Duration of the frame / collection of frames. \mbox{\Hypertarget{structvpx__rc__frame__stats_ae426e907555e2cd05e844c14b6c6c8a3}\label{structvpx__rc__frame__stats_ae426e907555e2cd05e844c14b6c6c8a3}} 
+\index{vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}!count@{count}}
+\index{count@{count}!vpx\_rc\_frame\_stats@{vpx\_rc\_frame\_stats}}
+\doxyparagraph{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily double vpx\+\_\+rc\+\_\+frame\+\_\+stats\+::count}
+
+1.\+0 if stats are for a single frame, or number of frames whose stats are accumulated. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/vpx\+\_\+ext\+\_\+ratectrl.\+h\end{DoxyCompactItemize}

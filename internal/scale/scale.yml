@@ -1,0 +1,120 @@
+root: ../../libvpxsrc
+out: .
+package: scale
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+  - name: uint8_t
+    value: uint8
+  - name: int64_t
+    value: int64
+  - name: uint64_t
+    value: uint64
+use_go_int: true
+replace:
+  - regexp: '__assert_fail.*'
+    new: |
+      // Todo:
+      log.Fatal("error")
+  - old: '"vpx"'
+    new: '"github.com/mearaj/libvpx/internal/vpx"'
+  - old: '"mem"'
+    new: '"github.com/mearaj/libvpx/internal/mem"'
+  - old: '"ports"'
+    new: '"github.com/mearaj/libvpx/internal/ports"'
+#  - old: EXIT_SUCCESS
+#    new: 1
+#  - old: EXIT_FAILURE
+#    new: 0
+
+idents:
+  - name: vpx_scale_rtcd
+    rename: ScaleRtcd
+  - name: yv12_buffer_config
+    rename: Yv12BufferConfig
+  - name: vp8_yv12_de_alloc_frame_buffer
+    rename: Vp8Yv12DeAllocFrameBuffer
+  - name: vp8_yv12_realloc_frame_buffer
+    rename: Vp8Yv12ReAllocFrameBuffer
+  - name: vp8_yv12_alloc_frame_buffer
+    rename: Vp8Yv12AllocFrameBuffer
+  - name: vpx_free_frame_buffer
+    rename: VpxFreeFrameBuffer
+  - name: vpx_realloc_frame_buffer
+    rename: VpxReAllocFrameBuffer
+  - name: vpx_alloc_frame_buffer
+    rename: VpxAllocFrameBuffer
+  - name: YV12_BUFFER_CONFIG
+    alias: true
+  - name: vpx_codec_frame_buffer_t
+    rename: vpx.CodecFrameBuffer
+  - name: vpx_get_frame_buffer_cb_fn_t
+    rename: vpx.GetFrameBufferCbFn
+  - name: vpx_free
+    rename: mem.VpxFree
+  - name: vpx_memalign
+    rename: mem.VpxMemAlign
+  - name: vp8_yv12_copy_frame_c
+    rename: Vp8Yv12CopyFrameC
+  - name: once
+    rename: ports.Once
+  - name: vp8_yv12_extend_frame_borders_c
+    rename: Vp8Yv12ExtendFrameBorders
+  - name: vpx_color_space_t
+    rename: vpx.ColorSpace
+# List of files to convert. Supports wildcards (*.c).
+files:
+  - name: vpx_scale/vpx_scale_rtcd.c
+    go: rtcd.go
+  - name: vpx_scale/yv12config.h
+    go: yuv12_config_h.go
+  - name: vpx_scale/generic/yv12config.c
+    go: gen_yuv12_config.go
+  - name: vpx_scale/generic/yv12extend.c
+    go: gen_yv12_extend.go
+  - name: scale_test.go
+    content: |
+      package scale
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include
+
+sys_include:
+  - /usr/include

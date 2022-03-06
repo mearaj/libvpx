@@ -1,0 +1,564 @@
+\hypertarget{group__codec}{}\doxysubsection{Common Algorithm Interface}
+\label{group__codec}\index{Common Algorithm Interface@{Common Algorithm Interface}}
+\doxysubsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__decoder}{Decoder Algorithm Interface}}
+\item 
+\mbox{\hyperlink{group__encoder}{Encoder Algorithm Interface}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{vpx__codec_8h}{vpx\+\_\+codec.\+h}}
+\begin{DoxyCompactList}\small\item\em Describes the codec algorithm interface to applications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__codec__ctx}{vpx\+\_\+codec\+\_\+ctx}}
+\begin{DoxyCompactList}\small\item\em Codec context structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{group__codec_gae3469452735ce633173b00024c97d556}\label{group__codec_gae3469452735ce633173b00024c97d556}} 
+\#define {\bfseries VPX\+\_\+\+DEPRECATED}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is deprecated. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga725e874689726a0df88873b93c50254e}{VPX\+\_\+\+DECLSPEC\+\_\+\+DEPRECATED}}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is deprecated. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__codec_ga21537a8053ca3eb8f1b9f12c47f2883f}\label{group__codec_ga21537a8053ca3eb8f1b9f12c47f2883f}} 
+\#define {\bfseries VPX\+\_\+\+UNUSED}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is potentially unused. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__codec_gaf7e9cad2df0f81679b881f46740ad097}\label{group__codec_gaf7e9cad2df0f81679b881f46740ad097}} 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+ABI\+\_\+\+VERSION}
+\begin{DoxyCompactList}\small\item\em Current ABI version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gae10ad7f9548170aef77df09d48ad108a}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+DECODER}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__codec_gab2e8b76fff95ebd573a17bdc11f8a441}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+ENCODER}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__codec_ga8edce93a29457f2de6c0f92e3b3c192d}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+HIGHBITDEPTH}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__codec_gadebddd67347fe47c0772b1e06b6173ba}{VPX\+\_\+\+VERSION\+\_\+\+MAJOR}}(v)~  (((v) $>$$>$ 16) \& 0xff)
+\item 
+\#define \mbox{\hyperlink{group__codec_ga4a5ce4588576306dee0d95e8f8706f86}{VPX\+\_\+\+VERSION\+\_\+\+MINOR}}(v)~  (((v) $>$$>$ 8) \& 0xff)
+\item 
+\#define \mbox{\hyperlink{group__codec_ga4acf2cf4c35ff123d17cd67c069fdbaa}{VPX\+\_\+\+VERSION\+\_\+\+PATCH}}(v)~  (((v) $>$$>$ 0) \& 0xff)
+\item 
+\mbox{\Hypertarget{group__codec_gaf314b746e4e202045e85ac073c29a495}\label{group__codec_gaf314b746e4e202045e85ac073c29a495}} 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+major}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 16) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version major number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__codec_ga2b668688a7d1551ea89bcda8f2587f93}\label{group__codec_ga2b668688a7d1551ea89bcda8f2587f93}} 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+minor}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 8) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version minor number. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__codec_ga8ed64bded0d763fa2158312ac8fbcf26}\label{group__codec_ga8ed64bded0d763fa2158312ac8fbcf26}} 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+patch}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 0) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version patch number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}{vpx\+\_\+codec\+\_\+control}}(ctx,  id,  data)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control wrapper macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE}}(id,  typ)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control type definition macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga147463efbdbe3b9823e054fe2d56851b}{VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE\+\_\+\+DEPRECATED}}(id,  typ)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control deprecated type definition macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga2610354d13efd9ca04fb95823aeda773}{VPX\+\_\+\+CTRL\+\_\+\+VOID}}(id)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control void type definition macro \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef long \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec capabilities bitfield. \end{DoxyCompactList}\item 
+typedef long \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Initialization-\/time Feature Enabling. \end{DoxyCompactList}\item 
+typedef const struct vpx\+\_\+codec\+\_\+iface \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec interface structure. \end{DoxyCompactList}\item 
+typedef struct vpx\+\_\+codec\+\_\+priv \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\+\_\+codec\+\_\+priv\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec private data structure. \end{DoxyCompactList}\item 
+typedef const void $\ast$ \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Iterator. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__ctx}{vpx\+\_\+codec\+\_\+ctx}} \mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec context structure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}\label{group__codec_ga7c83dfc1c49b0fe94a929d7d04b7f3f1}} 
+typedef enum \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\+\_\+bit\+\_\+depth}} {\bfseries vpx\+\_\+bit\+\_\+depth\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Bit depth for codec
+\begin{DoxyItemize}
+\item This enumeration determines the bit depth of the codec. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afe8f723512f728bc518bbfba3b96d324}{VPX\+\_\+\+CODEC\+\_\+\+ABI\+\_\+\+MISMATCH}}
+, \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afff886e57782098a3df13d4e349ca973}{VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+BITSTREAM}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a8a86701e65d826d82651537aadd6c539}{VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+FEATURE}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a29d03c009e0479dbf4ecbd8db1011b85}{VPX\+\_\+\+CODEC\+\_\+\+CORRUPT\+\_\+\+FRAME}}
+, \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a452450a5adfcc14ef8a0ac12611dae21}{VPX\+\_\+\+CODEC\+\_\+\+LIST\+\_\+\+END}}
+ \}
+\begin{DoxyCompactList}\small\item\em Algorithm return codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\+\_\+bit\+\_\+depth}} \{ \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a664e60a9d8c84563836073d88ae1cfe8}{VPX\+\_\+\+BITS\+\_\+8}} = 8
+, \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9aaecd7245969d06b539de89cf580401e1}{VPX\+\_\+\+BITS\+\_\+10}} = 10
+, \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a7d053a31e269b4d3746e88b0ff424862}{VPX\+\_\+\+BITS\+\_\+12}} = 12
+ \}
+\begin{DoxyCompactList}\small\item\em Bit depth for codec
+\begin{DoxyItemize}
+\item This enumeration determines the bit depth of the codec. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as an integer) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}{vpx\+\_\+codec\+\_\+version\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as a string) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_gadd9d73842c7d006a84f5113f855f73c9}{vpx\+\_\+codec\+\_\+version\+\_\+extra\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as a string) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga79cbf3d41086b2214653d794557e15ae}{vpx\+\_\+codec\+\_\+build\+\_\+config}} (void)
+\begin{DoxyCompactList}\small\item\em Return the build configuration. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga723b3bb6778e7362bb2eb2058348a530}{vpx\+\_\+codec\+\_\+iface\+\_\+name}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface)
+\begin{DoxyCompactList}\small\item\em Return the name for a given interface. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga550c4616424a08e85fc102486846141e}{vpx\+\_\+codec\+\_\+err\+\_\+to\+\_\+string}} (\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} err)
+\begin{DoxyCompactList}\small\item\em Convert error number to printable string. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_gaea707e8aaeb2badbf40f1c1dc32462b4}{vpx\+\_\+codec\+\_\+error}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Retrieve error synopsis for codec context. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga68a900e49d568c5c39b6a53e25b5d4a8}{vpx\+\_\+codec\+\_\+error\+\_\+detail}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Retrieve detailed error information for codec context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__codec_ga6ae21d96909660d0ac978b59a863f53b}{vpx\+\_\+codec\+\_\+destroy}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Destroy a codec instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}} \mbox{\hyperlink{group__codec_ga43adff58759093401235fb99247c82b8}{vpx\+\_\+codec\+\_\+get\+\_\+caps}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface)
+\begin{DoxyCompactList}\small\item\em Get the capabilities of an algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\+\_\+codec\+\_\+control\+\_\+}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, int ctrl\+\_\+id,...)
+\begin{DoxyCompactList}\small\item\em Control algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+This abstraction allows applications to easily support multiple video formats with minimal code duplication. This section describes the interface common to all codecs (both encoders and decoders). 
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{group__codec_ga725e874689726a0df88873b93c50254e}\label{group__codec_ga725e874689726a0df88873b93c50254e}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_DECLSPEC\_DEPRECATED@{VPX\_DECLSPEC\_DEPRECATED}}
+\index{VPX\_DECLSPEC\_DEPRECATED@{VPX\_DECLSPEC\_DEPRECATED}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_DECLSPEC\_DEPRECATED}{VPX\_DECLSPEC\_DEPRECATED}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+DECLSPEC\+\_\+\+DEPRECATED}
+
+
+
+Decorator indicating a function is deprecated. 
+
+\mbox{\Hypertarget{group__codec_gae10ad7f9548170aef77df09d48ad108a}\label{group__codec_gae10ad7f9548170aef77df09d48ad108a}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_CAP\_DECODER@{VPX\_CODEC\_CAP\_DECODER}}
+\index{VPX\_CODEC\_CAP\_DECODER@{VPX\_CODEC\_CAP\_DECODER}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_CAP\_DECODER}{VPX\_CODEC\_CAP\_DECODER}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+DECODER~0x1}
+
+Is a decoder \mbox{\Hypertarget{group__codec_gab2e8b76fff95ebd573a17bdc11f8a441}\label{group__codec_gab2e8b76fff95ebd573a17bdc11f8a441}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_CAP\_ENCODER@{VPX\_CODEC\_CAP\_ENCODER}}
+\index{VPX\_CODEC\_CAP\_ENCODER@{VPX\_CODEC\_CAP\_ENCODER}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_CAP\_ENCODER}{VPX\_CODEC\_CAP\_ENCODER}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+ENCODER~0x2}
+
+Is an encoder \mbox{\Hypertarget{group__codec_ga8edce93a29457f2de6c0f92e3b3c192d}\label{group__codec_ga8edce93a29457f2de6c0f92e3b3c192d}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_CAP\_HIGHBITDEPTH@{VPX\_CODEC\_CAP\_HIGHBITDEPTH}}
+\index{VPX\_CODEC\_CAP\_HIGHBITDEPTH@{VPX\_CODEC\_CAP\_HIGHBITDEPTH}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CODEC\_CAP\_HIGHBITDEPTH}{VPX\_CODEC\_CAP\_HIGHBITDEPTH}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+HIGHBITDEPTH~0x4}
+
+Can support images at greater than 8 bitdepth. \mbox{\Hypertarget{group__codec_gadebddd67347fe47c0772b1e06b6173ba}\label{group__codec_gadebddd67347fe47c0772b1e06b6173ba}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_VERSION\_MAJOR@{VPX\_VERSION\_MAJOR}}
+\index{VPX\_VERSION\_MAJOR@{VPX\_VERSION\_MAJOR}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_VERSION\_MAJOR}{VPX\_VERSION\_MAJOR}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+VERSION\+\_\+\+MAJOR(\begin{DoxyParamCaption}\item[{}]{v }\end{DoxyParamCaption})~  (((v) $>$$>$ 16) \& 0xff)}
+
+extract major from packed version \mbox{\Hypertarget{group__codec_ga4a5ce4588576306dee0d95e8f8706f86}\label{group__codec_ga4a5ce4588576306dee0d95e8f8706f86}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_VERSION\_MINOR@{VPX\_VERSION\_MINOR}}
+\index{VPX\_VERSION\_MINOR@{VPX\_VERSION\_MINOR}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_VERSION\_MINOR}{VPX\_VERSION\_MINOR}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+VERSION\+\_\+\+MINOR(\begin{DoxyParamCaption}\item[{}]{v }\end{DoxyParamCaption})~  (((v) $>$$>$ 8) \& 0xff)}
+
+extract minor from packed version \mbox{\Hypertarget{group__codec_ga4acf2cf4c35ff123d17cd67c069fdbaa}\label{group__codec_ga4acf2cf4c35ff123d17cd67c069fdbaa}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_VERSION\_PATCH@{VPX\_VERSION\_PATCH}}
+\index{VPX\_VERSION\_PATCH@{VPX\_VERSION\_PATCH}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_VERSION\_PATCH}{VPX\_VERSION\_PATCH}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+VERSION\+\_\+\+PATCH(\begin{DoxyParamCaption}\item[{}]{v }\end{DoxyParamCaption})~  (((v) $>$$>$ 0) \& 0xff)}
+
+extract patch from packed version \mbox{\Hypertarget{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}\label{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_control@{vpx\_codec\_control}}
+\index{vpx\_codec\_control@{vpx\_codec\_control}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_control}{vpx\_codec\_control}}
+{\footnotesize\ttfamily \#define vpx\+\_\+codec\+\_\+control(\begin{DoxyParamCaption}\item[{}]{ctx,  }\item[{}]{id,  }\item[{}]{data }\end{DoxyParamCaption})}
+
+
+
+vpx\+\_\+codec\+\_\+control wrapper macro 
+
+This macro allows for type safe conversions across the variadic parameter to \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\+\_\+codec\+\_\+control\+\_\+()}}. \mbox{\Hypertarget{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}\label{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CTRL\_USE\_TYPE@{VPX\_CTRL\_USE\_TYPE}}
+\index{VPX\_CTRL\_USE\_TYPE@{VPX\_CTRL\_USE\_TYPE}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CTRL\_USE\_TYPE}{VPX\_CTRL\_USE\_TYPE}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE(\begin{DoxyParamCaption}\item[{}]{id,  }\item[{}]{typ }\end{DoxyParamCaption})}
+
+
+
+vpx\+\_\+codec\+\_\+control type definition macro 
+
+This macro allows for type safe conversions across the variadic parameter to \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\+\_\+codec\+\_\+control\+\_\+()}}. It defines the type of the argument for a given control identifier. \mbox{\Hypertarget{group__codec_ga147463efbdbe3b9823e054fe2d56851b}\label{group__codec_ga147463efbdbe3b9823e054fe2d56851b}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CTRL\_USE\_TYPE\_DEPRECATED@{VPX\_CTRL\_USE\_TYPE\_DEPRECATED}}
+\index{VPX\_CTRL\_USE\_TYPE\_DEPRECATED@{VPX\_CTRL\_USE\_TYPE\_DEPRECATED}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CTRL\_USE\_TYPE\_DEPRECATED}{VPX\_CTRL\_USE\_TYPE\_DEPRECATED}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE\+\_\+\+DEPRECATED(\begin{DoxyParamCaption}\item[{}]{id,  }\item[{}]{typ }\end{DoxyParamCaption})}
+
+
+
+vpx\+\_\+codec\+\_\+control deprecated type definition macro 
+
+Like \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE}}, but indicates that the specified control is deprecated and should not be used. Consult the documentation for your codec for more information. \mbox{\Hypertarget{group__codec_ga2610354d13efd9ca04fb95823aeda773}\label{group__codec_ga2610354d13efd9ca04fb95823aeda773}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CTRL\_VOID@{VPX\_CTRL\_VOID}}
+\index{VPX\_CTRL\_VOID@{VPX\_CTRL\_VOID}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{VPX\_CTRL\_VOID}{VPX\_CTRL\_VOID}}
+{\footnotesize\ttfamily \#define VPX\+\_\+\+CTRL\+\_\+\+VOID(\begin{DoxyParamCaption}\item[{}]{id }\end{DoxyParamCaption})}
+
+
+
+vpx\+\_\+codec\+\_\+control void type definition macro 
+
+This macro allows for type safe conversions across the variadic parameter to \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\+\_\+codec\+\_\+control\+\_\+()}}. It indicates that a given control identifier takes no argument. 
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__codec_gad2b690c0ef83cbd83a7234078791913f}\label{group__codec_gad2b690c0ef83cbd83a7234078791913f}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_caps\_t@{vpx\_codec\_caps\_t}}
+\index{vpx\_codec\_caps\_t@{vpx\_codec\_caps\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_caps\_t}{vpx\_codec\_caps\_t}}
+{\footnotesize\ttfamily typedef long \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}}}
+
+
+
+Codec capabilities bitfield. 
+
+Each codec advertises the capabilities it supports as part of its \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} interface structure. Capabilities are extra interfaces or functionality, and are not required to be supported.
+
+The available flags are specified by VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+$\ast$ defines. \mbox{\Hypertarget{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}\label{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_flags\_t@{vpx\_codec\_flags\_t}}
+\index{vpx\_codec\_flags\_t@{vpx\_codec\_flags\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_flags\_t}{vpx\_codec\_flags\_t}}
+{\footnotesize\ttfamily typedef long \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}}}
+
+
+
+Initialization-\/time Feature Enabling. 
+
+Certain codec features must be known at initialization time, to allow for proper memory allocation.
+
+The available flags are specified by VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+$\ast$ defines. \mbox{\Hypertarget{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}\label{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_iface\_t@{vpx\_codec\_iface\_t}}
+\index{vpx\_codec\_iface\_t@{vpx\_codec\_iface\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_iface\_t}{vpx\_codec\_iface\_t}}
+{\footnotesize\ttfamily typedef const struct vpx\+\_\+codec\+\_\+iface \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}}}
+
+
+
+Codec interface structure. 
+
+Contains function pointers and other data private to the codec implementation. This structure is opaque to the application. \mbox{\Hypertarget{group__codec_ga1e262f91be9141a7176335fd409397ab}\label{group__codec_ga1e262f91be9141a7176335fd409397ab}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_priv\_t@{vpx\_codec\_priv\_t}}
+\index{vpx\_codec\_priv\_t@{vpx\_codec\_priv\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_priv\_t}{vpx\_codec\_priv\_t}}
+{\footnotesize\ttfamily typedef struct vpx\+\_\+codec\+\_\+priv \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\+\_\+codec\+\_\+priv\+\_\+t}}}
+
+
+
+Codec private data structure. 
+
+Contains data private to the codec implementation. This structure is opaque to the application. \mbox{\Hypertarget{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}\label{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_iter\_t@{vpx\_codec\_iter\_t}}
+\index{vpx\_codec\_iter\_t@{vpx\_codec\_iter\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_iter\_t}{vpx\_codec\_iter\_t}}
+{\footnotesize\ttfamily typedef const void$\ast$ \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}}}
+
+
+
+Iterator. 
+
+Opaque storage used for iterating over lists. \mbox{\Hypertarget{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}\label{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_ctx\_t@{vpx\_codec\_ctx\_t}}
+\index{vpx\_codec\_ctx\_t@{vpx\_codec\_ctx\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_ctx\_t}{vpx\_codec\_ctx\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structvpx__codec__ctx}{vpx\+\_\+codec\+\_\+ctx}} \mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}}}
+
+
+
+Codec context structure. 
+
+All codecs \mbox{\hyperlink{rfc2119_MUST}{MUST}} support this context structure fully. In general, this data should be considered private to the codec algorithm, and not be manipulated or examined by the calling application. Applications may reference the \textquotesingle{}name\textquotesingle{} member to get a printable description of the algorithm. 
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{group__codec_gada1084710837ad363b92f2379dd2b8d2}\label{group__codec_gada1084710837ad363b92f2379dd2b8d2}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_err\_t@{vpx\_codec\_err\_t}}
+\index{vpx\_codec\_err\_t@{vpx\_codec\_err\_t}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_err\_t}{vpx\_codec\_err\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}}}
+
+
+
+Algorithm return codes. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_OK@{VPX\_CODEC\_OK}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_OK@{VPX\_CODEC\_OK}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}} 
+VPX\+\_\+\+CODEC\+\_\+\+OK&Operation completed without error. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_ERROR@{VPX\_CODEC\_ERROR}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_ERROR@{VPX\_CODEC\_ERROR}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}} 
+VPX\+\_\+\+CODEC\+\_\+\+ERROR&Unspecified error. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_MEM\_ERROR@{VPX\_CODEC\_MEM\_ERROR}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_MEM\_ERROR@{VPX\_CODEC\_MEM\_ERROR}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}} 
+VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR&Memory operation failed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_ABI\_MISMATCH@{VPX\_CODEC\_ABI\_MISMATCH}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_ABI\_MISMATCH@{VPX\_CODEC\_ABI\_MISMATCH}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2afe8f723512f728bc518bbfba3b96d324}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2afe8f723512f728bc518bbfba3b96d324}} 
+VPX\+\_\+\+CODEC\+\_\+\+ABI\+\_\+\+MISMATCH&ABI version mismatch. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_INCAPABLE@{VPX\_CODEC\_INCAPABLE}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_INCAPABLE@{VPX\_CODEC\_INCAPABLE}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}} 
+VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE&Algorithm does not have required capability. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_UNSUP\_BITSTREAM@{VPX\_CODEC\_UNSUP\_BITSTREAM}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_UNSUP\_BITSTREAM@{VPX\_CODEC\_UNSUP\_BITSTREAM}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2afff886e57782098a3df13d4e349ca973}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2afff886e57782098a3df13d4e349ca973}} 
+VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+BITSTREAM&The given bitstream is not supported. The bitstream was unable to be parsed at the highest level. The decoder is unable to proceed. This error \mbox{\hyperlink{rfc2119_SHOULD}{SHOULD}} be treated as fatal to the stream. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_UNSUP\_FEATURE@{VPX\_CODEC\_UNSUP\_FEATURE}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_UNSUP\_FEATURE@{VPX\_CODEC\_UNSUP\_FEATURE}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2a8a86701e65d826d82651537aadd6c539}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2a8a86701e65d826d82651537aadd6c539}} 
+VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+FEATURE&Encoded bitstream uses an unsupported feature. The decoder does not implement a feature required by the encoder. This return code should only be used for features that prevent future pictures from being properly decoded. This error \mbox{\hyperlink{rfc2119_MAY}{MAY}} be treated as fatal to the stream or \mbox{\hyperlink{rfc2119_MAY}{MAY}} be treated as fatal to the current GOP. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_CORRUPT\_FRAME@{VPX\_CODEC\_CORRUPT\_FRAME}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_CORRUPT\_FRAME@{VPX\_CODEC\_CORRUPT\_FRAME}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2a29d03c009e0479dbf4ecbd8db1011b85}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2a29d03c009e0479dbf4ecbd8db1011b85}} 
+VPX\+\_\+\+CODEC\+\_\+\+CORRUPT\+\_\+\+FRAME&The coded data for this stream is corrupt or incomplete. There was a problem decoding the current frame. This return code should only be used for failures that prevent future pictures from being properly decoded. This error \mbox{\hyperlink{rfc2119_MAY}{MAY}} be treated as fatal to the stream or \mbox{\hyperlink{rfc2119_MAY}{MAY}} be treated as fatal to the current GOP. If decoding is continued for the current GOP, artifacts may be present. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_INVALID\_PARAM@{VPX\_CODEC\_INVALID\_PARAM}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_INVALID\_PARAM@{VPX\_CODEC\_INVALID\_PARAM}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}} 
+VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM&An application-\/supplied parameter is not valid. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_CODEC\_LIST\_END@{VPX\_CODEC\_LIST\_END}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_CODEC\_LIST\_END@{VPX\_CODEC\_LIST\_END}}}\mbox{\Hypertarget{group__codec_ggada1084710837ad363b92f2379dd2b8d2a452450a5adfcc14ef8a0ac12611dae21}\label{group__codec_ggada1084710837ad363b92f2379dd2b8d2a452450a5adfcc14ef8a0ac12611dae21}} 
+VPX\+\_\+\+CODEC\+\_\+\+LIST\+\_\+\+END&An iterator reached the end of list. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{group__codec_gaeb4bba376f987595b3ad11253adf86d9}\label{group__codec_gaeb4bba376f987595b3ad11253adf86d9}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_bit\_depth@{vpx\_bit\_depth}}
+\index{vpx\_bit\_depth@{vpx\_bit\_depth}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_bit\_depth}{vpx\_bit\_depth}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\+\_\+bit\+\_\+depth}}}
+
+
+
+Bit depth for codec
+\begin{DoxyItemize}
+\item This enumeration determines the bit depth of the codec. 
+\end{DoxyItemize}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_BITS\_8@{VPX\_BITS\_8}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_BITS\_8@{VPX\_BITS\_8}}}\mbox{\Hypertarget{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a664e60a9d8c84563836073d88ae1cfe8}\label{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a664e60a9d8c84563836073d88ae1cfe8}} 
+VPX\+\_\+\+BITS\+\_\+8&8 bits \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_BITS\_10@{VPX\_BITS\_10}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_BITS\_10@{VPX\_BITS\_10}}}\mbox{\Hypertarget{group__codec_ggaeb4bba376f987595b3ad11253adf86d9aaecd7245969d06b539de89cf580401e1}\label{group__codec_ggaeb4bba376f987595b3ad11253adf86d9aaecd7245969d06b539de89cf580401e1}} 
+VPX\+\_\+\+BITS\+\_\+10&10 bits \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VPX\_BITS\_12@{VPX\_BITS\_12}!Common Algorithm Interface@{Common Algorithm Interface}}\index{Common Algorithm Interface@{Common Algorithm Interface}!VPX\_BITS\_12@{VPX\_BITS\_12}}}\mbox{\Hypertarget{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a7d053a31e269b4d3746e88b0ff424862}\label{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a7d053a31e269b4d3746e88b0ff424862}} 
+VPX\+\_\+\+BITS\+\_\+12&12 bits \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{group__codec_ga163037ae037ac760da65e4130c7d4767}\label{group__codec_ga163037ae037ac760da65e4130c7d4767}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_version@{vpx\_codec\_version}}
+\index{vpx\_codec\_version@{vpx\_codec\_version}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_version()}{vpx\_codec\_version()}}
+{\footnotesize\ttfamily int vpx\+\_\+codec\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return the version information (as an integer) 
+
+Returns a packed encoding of the library version number. This will only include the major.\+minor.\+patch component of the version number. Note that this encoded value should be accessed through the macros provided, as the encoding may change in the future. \mbox{\Hypertarget{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}\label{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_version\_str@{vpx\_codec\_version\_str}}
+\index{vpx\_codec\_version\_str@{vpx\_codec\_version\_str}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_version\_str()}{vpx\_codec\_version\_str()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+version\+\_\+str (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return the version information (as a string) 
+
+Returns a printable string containing the full library version number. This may contain additional text following the three digit version number, as to indicate release candidates, prerelease versions, etc. \mbox{\Hypertarget{group__codec_gadd9d73842c7d006a84f5113f855f73c9}\label{group__codec_gadd9d73842c7d006a84f5113f855f73c9}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_version\_extra\_str@{vpx\_codec\_version\_extra\_str}}
+\index{vpx\_codec\_version\_extra\_str@{vpx\_codec\_version\_extra\_str}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_version\_extra\_str()}{vpx\_codec\_version\_extra\_str()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+version\+\_\+extra\+\_\+str (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return the version information (as a string) 
+
+Returns a printable \char`\"{}extra string\char`\"{}. This is the component of the string returned by \mbox{\hyperlink{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}{vpx\+\_\+codec\+\_\+version\+\_\+str()}} following the three digit version number. \mbox{\Hypertarget{group__codec_ga79cbf3d41086b2214653d794557e15ae}\label{group__codec_ga79cbf3d41086b2214653d794557e15ae}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_build\_config@{vpx\_codec\_build\_config}}
+\index{vpx\_codec\_build\_config@{vpx\_codec\_build\_config}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_build\_config()}{vpx\_codec\_build\_config()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+build\+\_\+config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Return the build configuration. 
+
+Returns a printable string containing an encoded version of the build configuration. This may be useful to vpx support. \mbox{\Hypertarget{group__codec_ga723b3bb6778e7362bb2eb2058348a530}\label{group__codec_ga723b3bb6778e7362bb2eb2058348a530}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_iface\_name@{vpx\_codec\_iface\_name}}
+\index{vpx\_codec\_iface\_name@{vpx\_codec\_iface\_name}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_iface\_name()}{vpx\_codec\_iface\_name()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+iface\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$}]{iface }\end{DoxyParamCaption})}
+
+
+
+Return the name for a given interface. 
+
+Returns a human readable string for name of the given codec interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em iface} & Interface pointer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__codec_ga550c4616424a08e85fc102486846141e}\label{group__codec_ga550c4616424a08e85fc102486846141e}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_err\_to\_string@{vpx\_codec\_err\_to\_string}}
+\index{vpx\_codec\_err\_to\_string@{vpx\_codec\_err\_to\_string}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_err\_to\_string()}{vpx\_codec\_err\_to\_string()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+err\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}}}]{err }\end{DoxyParamCaption})}
+
+
+
+Convert error number to printable string. 
+
+Returns a human readable string for the last error returned by the algorithm. The returned error will be one line and will not contain any newline characters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em err} & Error number. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__codec_gaea707e8aaeb2badbf40f1c1dc32462b4}\label{group__codec_gaea707e8aaeb2badbf40f1c1dc32462b4}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_error@{vpx\_codec\_error}}
+\index{vpx\_codec\_error@{vpx\_codec\_error}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_error()}{vpx\_codec\_error()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Retrieve error synopsis for codec context. 
+
+Returns a human readable string for the last error returned by the algorithm. The returned error will be one line and will not contain any newline characters.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__codec_ga68a900e49d568c5c39b6a53e25b5d4a8}\label{group__codec_ga68a900e49d568c5c39b6a53e25b5d4a8}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_error\_detail@{vpx\_codec\_error\_detail}}
+\index{vpx\_codec\_error\_detail@{vpx\_codec\_error\_detail}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_error\_detail()}{vpx\_codec\_error\_detail()}}
+{\footnotesize\ttfamily const char $\ast$ vpx\+\_\+codec\+\_\+error\+\_\+detail (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Retrieve detailed error information for codec context. 
+
+Returns a human readable string providing detailed information about the last error.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em NULL} & No detailed information is available. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__codec_ga6ae21d96909660d0ac978b59a863f53b}\label{group__codec_ga6ae21d96909660d0ac978b59a863f53b}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_destroy@{vpx\_codec\_destroy}}
+\index{vpx\_codec\_destroy@{vpx\_codec\_destroy}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_destroy()}{vpx\_codec\_destroy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Destroy a codec instance. 
+
+Destroys a codec context, freeing any associated memory buffers.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The codec algorithm initialized. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR}}} & Memory allocation failed. \\
+\hline
+\end{DoxyRetVals}
+\mbox{\Hypertarget{group__codec_ga43adff58759093401235fb99247c82b8}\label{group__codec_ga43adff58759093401235fb99247c82b8}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_get\_caps@{vpx\_codec\_get\_caps}}
+\index{vpx\_codec\_get\_caps@{vpx\_codec\_get\_caps}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_get\_caps()}{vpx\_codec\_get\_caps()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}} vpx\+\_\+codec\+\_\+get\+\_\+caps (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$}]{iface }\end{DoxyParamCaption})}
+
+
+
+Get the capabilities of an algorithm. 
+
+Retrieves the capabilities bitfield from the algorithm\textquotesingle{}s interface.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em iface} & Pointer to the algorithm interface \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}\label{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}} 
+\index{Common Algorithm Interface@{Common Algorithm Interface}!vpx\_codec\_control\_@{vpx\_codec\_control\_}}
+\index{vpx\_codec\_control\_@{vpx\_codec\_control\_}!Common Algorithm Interface@{Common Algorithm Interface}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_control\_()}{vpx\_codec\_control\_()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+control\+\_\+ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{int}]{ctrl\+\_\+id,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Control algorithm. 
+
+This function is used to exchange algorithm specific data with the codec instance. This can be used to implement features specific to a particular algorithm.
+
+This wrapper function dispatches the request to the helper function associated with the given ctrl\+\_\+id. It tries to call this function transparently, but will return \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}} if the request could not be dispatched.
+
+Note that this function should not be used directly. Call the \mbox{\hyperlink{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}{vpx\+\_\+codec\+\_\+control}} wrapper macro instead.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em ctrl\+\_\+id} & Algorithm specific control identifier\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & The control request was processed. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}}} & The control request was not processed. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}} & The data was not valid. \\
+\hline
+\end{DoxyRetVals}

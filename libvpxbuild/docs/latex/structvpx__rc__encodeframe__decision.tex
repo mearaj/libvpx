@@ -1,0 +1,45 @@
+\hypertarget{structvpx__rc__encodeframe__decision}{}\doxysubsection{vpx\+\_\+rc\+\_\+encodeframe\+\_\+decision Struct Reference}
+\label{structvpx__rc__encodeframe__decision}\index{vpx\_rc\_encodeframe\_decision@{vpx\_rc\_encodeframe\_decision}}
+
+
+Encode frame decision made by the external rate control model.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+ext\+\_\+ratectrl.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__decision_a3afa3736d1d0077805ae19fcfaab629f}{q\+\_\+index}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__decision_aca8ad3f842c315e677c53a298bc4a3c0}{max\+\_\+frame\+\_\+size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Encode frame decision made by the external rate control model. 
+
+The encoder will receive the decision from the external rate control model through get\+\_\+encodeframe\+\_\+decision() defined in vpx\+\_\+rc\+\_\+funcs\+\_\+t.
+
+If max\+\_\+frame\+\_\+size = 0, the encoding ignores max frame size limit. If max\+\_\+frame\+\_\+size = -\/1, the encoding uses VP9\textquotesingle{}s max frame size as the limit. If the encoded frame size is larger than max\+\_\+frame\+\_\+size, the frame is recoded to meet the size limit, following VP9\textquotesingle{}s recoding principles. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__rc__encodeframe__decision_a3afa3736d1d0077805ae19fcfaab629f}\label{structvpx__rc__encodeframe__decision_a3afa3736d1d0077805ae19fcfaab629f}} 
+\index{vpx\_rc\_encodeframe\_decision@{vpx\_rc\_encodeframe\_decision}!q\_index@{q\_index}}
+\index{q\_index@{q\_index}!vpx\_rc\_encodeframe\_decision@{vpx\_rc\_encodeframe\_decision}}
+\doxyparagraph{\texorpdfstring{q\_index}{q\_index}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+decision\+::q\+\_\+index}
+
+Quantizer step index \mbox{[}0..255\mbox{]} \mbox{\Hypertarget{structvpx__rc__encodeframe__decision_aca8ad3f842c315e677c53a298bc4a3c0}\label{structvpx__rc__encodeframe__decision_aca8ad3f842c315e677c53a298bc4a3c0}} 
+\index{vpx\_rc\_encodeframe\_decision@{vpx\_rc\_encodeframe\_decision}!max\_frame\_size@{max\_frame\_size}}
+\index{max\_frame\_size@{max\_frame\_size}!vpx\_rc\_encodeframe\_decision@{vpx\_rc\_encodeframe\_decision}}
+\doxyparagraph{\texorpdfstring{max\_frame\_size}{max\_frame\_size}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+decision\+::max\+\_\+frame\+\_\+size}
+
+Maximal frame size allowed to encode a frame 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/vpx\+\_\+ext\+\_\+ratectrl.\+h\end{DoxyCompactItemize}

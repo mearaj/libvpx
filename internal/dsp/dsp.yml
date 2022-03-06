@@ -1,0 +1,470 @@
+root: ../../libvpxsrc
+out: .
+package: dsp
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+  - name: uint8_t
+    value: uint8
+  - name: int64_t
+    value: int64
+  - name: int16_t
+    value: int16
+  - name: uint32_t
+    value: uint32
+  - name: uint16_t
+    value: uint16
+  - name: uint64_t
+    value: uint64
+  - name: int8_t
+    value: int8
+use_go_int: true
+#replace:
+idents:
+  - name: vpx_dsp_rtcd
+    rename: DspRtcd
+  - name: once
+    rename: ports.Once
+  - name: vpx_prob
+    alias: true
+  - name: vpx_tree_index
+    alias: true
+  - name: vpx_skin_pixel
+    rename: VpxSkinPixel
+  - name: vpx_setup_noise
+    rename: VpxSetupNoise
+  - name: vpx_plane_add_noise_c
+    rename: VpxPlaneAddNoiseC
+  - name: vpx_plane_add_noise_sse2
+    rename: VpxPlaneAddNoiseSse2
+  - name: vpx_post_proc_down_and_across_mb_row_c
+    rename: VpxPostProcDownAndAcrossMbRowC
+  - name: vpx_post_proc_down_and_across_mb_row_sse2
+    rename: VpxPostProcDownAndAcrossMbRowSse2
+  - name: vpx_post_proc_down_and_across_mb_row
+    rename: VpxPostProcDownAndAcrossMbRow
+  - name: vpx_mbpost_proc_across_ip_c
+    rename: VpxMbPostProcAcrossIpC
+  - name: vpx_mbpost_proc_across_ip_sse2
+    rename: VpxMbPostProcAcrossIpSse2
+  - name: vpx_mbpost_proc_across_ip
+    rename: VpxMbPostProcAcrossIp
+  - name: vpx_mbpost_proc_down_c
+    rename: VpxMbPostProcDownC
+  - name: vpx_mbpost_proc_down_sse2
+    rename: VpxMbPostProcDownSse2
+  - name: vpx_mbpost_proc_down
+    rename: VpxMbPostProcDown
+  - name: d207_predictor
+    rename: D207Predictor
+  - name: d63_predictor
+    rename: D63Predictor
+  - name: d45_predictor
+    rename: D45Predictor
+  - name: d117_predictor
+    rename: D117Predictor
+  - name: d135_predictor
+    rename: D135Predictor
+  - name: d153_predictor
+    rename: D153Predictor
+  - name: v_predictor
+    rename: VPredictor
+  - name: h_predictor
+    rename: HPredictor
+  - name: tm_predictor
+    rename: TmPredictor
+  - name: dc_128_predictor
+    rename: Dc128Predictor
+  - name: dc_left_predictor
+    rename: DcLeftPredictor
+  - name: dc_top_predictor
+    rename: DcTopPredictor
+  - name: dc_predictor
+    rename: DcPredictor
+  - name: vpx_he_predictor_4x4_c
+    rename: VpxHePredictor4x4C
+  - name: vpx_ve_predictor_4x4_c
+    rename: VpxVePredictor4x4C
+  - name: vpx_d207_predictor_4x4_c
+    rename: VpxD207Predictor4x4C
+  - name: vpx_d63_predictor_4x4_c
+    rename: VpxD63Predictor4x4C
+  - name: vpx_d63e_predictor_4x4_c
+    rename: VpxD63ePredictor4x4C
+  - name: vpx_d45_predictor_4x4_c
+    rename: VpxD45Predictor4x4C
+  - name: vpx_d45e_predictor_4x4_c
+    rename: VpxD45ePredictor4x4C
+  - name: vpx_d117_predictor_4x4_c
+    rename: VpxD117Predictor4x4C
+  - name: vpx_d135_predictor_4x4_c
+    rename: VpxD135Predictor4x4C
+  - name: vpx_d153_predictor_4x4_c
+    rename: VpxD153Predictor4x4C
+  - name: vpx_d207_predictor_8x8_c
+    rename: VpxD207Predictor8x8C
+  - name: vpx_d207_predictor_16x16_c
+    rename: VpxD207Predictor16x16C
+  - name: vpx_d207_predictor_32x32_c
+    rename: VpxD207Predictor32x32C
+  - name: vpx_d63_predictor_8x8_c
+    rename: VpxD63Predictor8x8C
+  - name: vpx_d63_predictor_16x16_c
+    rename: VpxD63Predictor16x16C
+  - name: vpx_d63_predictor_32x32_c
+    rename: VpxD63Predictor32x32C
+  - name: vpx_d45_predictor_8x8_c
+    rename: VpxD45Predictor8x8C
+  - name: vpx_d45_predictor_16x16_c
+    rename: VpxD45Predictor16x16C
+  - name: vpx_d45_predictor_32x32_c
+    rename: VpxD45Predictor32x32C
+  - name: vpx_d117_predictor_8x8_c
+    rename: VpxD117Predictor8x8C
+  - name: vpx_d117_predictor_16x16_c
+    rename: VpxD117Predictor16x16C
+  - name: vpx_d117_predictor_32x32_c
+    rename: VpxD117Predictor32x32C
+  - name: vpx_d135_predictor_8x8_c
+    rename: VpxD135Predictor8x8C
+  - name: vpx_d135_predictor_16x16_c
+    rename: VpxD135Predictor16x16C
+  - name: vpx_d135_predictor_32x32_c
+    rename: VpxD135Predictor32x32C
+  - name: vpx_d153_predictor_8x8_c
+    rename: Vpxd153Predictor8x8C
+  - name: vpx_d153_predictor_16x16_c
+    rename: Vpxd153Predictor16x16C
+  - name: vpx_d153_predictor_32x32_c
+    rename: Vpxd153Predictor32x32_c
+  - name: vpx_v_predictor_4x4_c
+    rename: VpxVPredictor4x4C
+  - name: vpx_v_predictor_8x8_c
+    rename: VpxVPredictor8x8C
+  - name: vpx_v_predictor_16x16_c
+    rename: VpxVPredictor16x16C
+  - name: vpx_v_predictor_32x32_c
+    rename: VpxVPredictor32x32C
+  - name: vpx_h_predictor_4x4_c
+    rename: VpxHPredictor4x4C
+  - name: vpx_h_predictor_8x8_c
+    rename: VpxHPredictor8x8C
+  - name: vpx_h_predictor_16x16_c
+    rename: VpxHPredictor16x16C
+  - name: vpx_h_predictor_32x32_c
+    rename: VpxHPredictor32x32C
+  - name: vpx_tm_predictor_4x4_c
+    rename: VpxTmPredictor4x4C
+  - name: vpx_tm_predictor_8x8_c
+    rename: VpxTmPredictor8x8C
+  - name: vpx_tm_predictor_16x16_c
+    rename: VpxTmPredictor16x16C
+  - name: vpx_tm_predictor_32x32_c
+    rename: VpxTmPredictor32x32C
+  - name: vpx_dc_128_predictor_4x4_c
+    rename: VpxDc128Predictor4x4C
+  - name: vpx_dc_128_predictor_8x8_c
+    rename: VpxDc128Predictor8x8C
+  - name: vpx_dc_128_predictor_16x16_c
+    rename: VpxDc128Predictor16x16C
+  - name: vpx_dc_128_predictor_32x32_c
+    rename: VpxDc128Predictor32x32C
+  - name: vpx_dc_left_predictor_4x4_c
+    rename: VpxDcLeftPredictor4x4C
+  - name: vpx_dc_left_predictor_8x8_c
+    rename: VpxDcLeftPredictor8x8C
+  - name: vpx_dc_left_predictor_16x16_c
+    rename: VpxDcLeftPredictor16x16C
+  - name: vpx_dc_left_predictor_32x32_c
+    rename: VpxDcLeftPredictor32x32C
+  - name: vpx_dc_top_predictor_4x4_c
+    rename: VpxDcTopPredictor4x4C
+  - name: vpx_dc_top_predictor_8x8_c
+    rename: VpxDcTopPredictor8x8C
+  - name: vpx_dc_top_predictor_16x16_c
+    rename: VpxDcTopPredictor16x16C
+  - name: vpx_dc_top_predictor_32x32_c
+    rename: VpxDcTopPredictor32x32C
+  - name: vpx_dc_predictor_4x4_c
+    rename: VpxDcPredictor4x4C
+  - name: vpx_dc_predictor_8x8_c
+    rename: VpxDcPredictor8x8C
+  - name: vpx_dc_predictor_16x16_c
+    rename: VpxDcPredictor16x16C
+  - name: vpx_dc_predictor_32x32_c
+    rename: VpxDcPredictor32x32C
+  - name: vpx_variance16x16_c
+    rename: VpxVariance16x16C
+  - name: vpx_variance8x8
+    rename: VpxVariance8x8
+  - name: vpx_variance8x8_c
+    rename: VpxVariance8x8C
+  - name: vpx_variance4x4_c
+    rename: VpxVariance4x4C
+  - name: tran_low_t
+    alias: true
+  - name: tran_coef_t
+    alias: true
+  - name: tran_high_t
+    alias: true
+  - name: int32_t
+    alias: true
+  - name: int16
+    alias: true
+  - name: __int32_t
+    alias: true
+  - name: __int16_t
+    alias: true
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  #  - name: vpx_dsp/x86/avg_intrin_avx2.c
+  #    rename: avg_intrin_avx2.go
+  #  - name: vpx_dsp/x86/avg_intrin_sse2.c
+  #    rename: avg_intrin_sse2.go
+  #  - name: vpx_dsp/x86/avg_pred_sse2.c
+  #    rename: avg_pred_sse2.go
+  #  - name: vpx_dsp/x86/bitdepth_conversion_avx2.h
+  #    rename: bitdepth_conversion_avx2_h.go
+  #  - name: vpx_dsp/x86/bitdepth_conversion_sse2.h
+  #    rename: bitdepth_conversion_sse2_h.go
+  #  - name: vpx_dsp/x86/convolve_avx2.h
+  #    rename: convolve_avx2_h.go
+  - name: vpx_dsp/x86/convolve.h
+    rename: convolve_h.go
+  #  - name: vpx_dsp/x86/convolve_sse2.h
+  #    rename: convolve_sse2_h.go
+  #  - name: vpx_dsp/x86/convolve_ssse3.h
+  #    rename: convolve_ssse3_h.go
+  #  - name: vpx_dsp/x86/fwd_dct32x32_impl_avx2.h
+  #    rename: fwd_dct32x32_impl_avx2_h.go
+  #  - name: vpx_dsp/x86/fwd_dct32x32_impl_sse2.h
+  #    rename: fwd_dct32x32_impl_sse2_h.go
+  #  - name: vpx_dsp/x86/fwd_txfm_avx2.c
+  #    rename: fwd_txfm_avx2.go
+  #  - name: vpx_dsp/x86/fwd_txfm_impl_sse2.h
+  #    rename: fwd_txfm_impl_sse2_h.go
+  #  - name: vpx_dsp/x86/fwd_txfm_sse2.c
+  #    rename: fwd_txfm_sse2.go
+  #  - name: vpx_dsp/x86/fwd_txfm_sse2.h
+  #    rename: fwd_txfm_sse2_h.go
+  #  - name: vpx_dsp/x86/highbd_convolve_avx2.c
+  #    rename: highbd_convolve_avx2.go
+  #  - name: vpx_dsp/x86/highbd_idct16x16_add_sse2.c
+  #    rename: highbd_idct16x16_add_sse2.go
+  #  - name: vpx_dsp/x86/highbd_idct16x16_add_sse4.c
+  #    rename: highbd_idct16x16_add_sse4.go
+  #  - name: vpx_dsp/x86/highbd_idct32x32_add_sse2.c
+  #    rename: highbd_idct32x32_add_sse2.go
+  #  - name: vpx_dsp/x86/highbd_idct32x32_add_sse4.c
+  #    rename: highbd_idct32x32_add_sse4.go
+  #  - name: vpx_dsp/x86/highbd_idct4x4_add_sse2.c
+  #    rename: highbd_idct4x4_add_sse2.go
+  #  - name: vpx_dsp/x86/highbd_idct4x4_add_sse4.c
+  #    rename: highbd_idct4x4_add_sse4.go
+  #  - name: vpx_dsp/x86/highbd_idct8x8_add_sse2.c
+  #    rename: highbd_idct8x8_add_sse2.go
+  #  - name: vpx_dsp/x86/highbd_idct8x8_add_sse4.c
+  #    rename: highbd_idct8x8_add_sse4.go
+  #  - name: vpx_dsp/x86/highbd_intrapred_intrin_sse2.c
+  #    rename: highbd_intrapred_intrin_sse2.go
+  #  - name: vpx_dsp/x86/highbd_intrapred_intrin_ssse3.c
+  #    rename: highbd_intrapred_intrin_ssse3.go
+  #  - name: vpx_dsp/x86/highbd_inv_txfm_sse2.h
+  #    rename: highbd_inv_txfm_sse2_h.go
+  #  - name: vpx_dsp/x86/highbd_inv_txfm_sse4.h
+  #    rename: highbd_inv_txfm_sse4_h.go
+  #  - name: vpx_dsp/x86/highbd_loopfilter_sse2.c
+  #    rename: highbd_loopfilter_sse2.go
+  #  - name: vpx_dsp/x86/highbd_quantize_intrin_sse2.c
+  #    rename: highbd_quantize_intrin_sse2.go
+  #  - name: vpx_dsp/x86/highbd_variance_sse2.c
+  #    rename: highbd_variance_sse2.go
+  #  - name: vpx_dsp/x86/inv_txfm_sse2.c
+  #    rename: inv_txfm_sse2.go
+  #  - name: vpx_dsp/x86/inv_txfm_sse2.h
+  #    rename: inv_txfm_sse2_h.go
+  #  - name: vpx_dsp/x86/inv_txfm_ssse3.c
+  #    rename: inv_txfm_ssse3.go
+  #  - name: vpx_dsp/x86/inv_txfm_ssse3.h
+  #    rename: inv_txfm_ssse3_h.go
+  #  - name: vpx_dsp/x86/loopfilter_avx2.c
+  #    rename: loopfilter_avx2.go
+  #  - name: vpx_dsp/x86/loopfilter_sse2.c
+  #    rename: loopfilter_sse2.go
+  #  - name: vpx_dsp/x86/mem_sse2.h
+  #    rename: mem_sse2_h.go
+  #  - name: vpx_dsp/x86/post_proc_sse2.c
+  #    rename: post_proc_sse2.go
+  #  - name: vpx_dsp/x86/quantize_avx.c
+  #    rename: quantize_avx.go
+  #  - name: vpx_dsp/x86/quantize_sse2.c
+  #    rename: quantize_sse2.go
+  #  - name: vpx_dsp/x86/quantize_sse2.h
+  #    rename: quantize_sse2_h.go
+  #  - name: vpx_dsp/x86/quantize_ssse3.c
+  #    rename: quantize_ssse3.go
+  #  - name: vpx_dsp/x86/quantize_ssse3.h
+  #    rename: quantize_ssse3_h.go
+  #  - name: vpx_dsp/x86/sad4d_avx2.c
+  #    rename: sad4d_avx2.go
+  #  - name: vpx_dsp/x86/sad4d_avx512.c
+  #    rename: sad4d_avx512.go
+  #  - name: vpx_dsp/x86/sad_avx2.c
+  #    rename: sad_avx2.go
+  #  - name: vpx_dsp/x86/sum_squares_sse2.c
+  #    rename: sum_squares_sse2.go
+  #  - name: vpx_dsp/x86/tmp
+  #    rename: tmgo
+  #  - name: vpx_dsp/x86/transpose_sse2.h
+  #    rename: transpose_sse2_h.go
+  #  - name: vpx_dsp/x86/txfm_common_sse2.h
+  #    rename: txfm_common_sse2_h.go
+  #  - name: vpx_dsp/x86/variance_avx2.c
+  #    rename: variance_avx2.go
+  #  - name: vpx_dsp/x86/variance_sse2.c
+  #    rename: variance_sse2.go
+  #  - name: vpx_dsp/x86/vpx_subpixel_4t_intrin_sse2.c
+  #    rename: vpx_subpixel_4t_intrin_sse2.go
+  #  - name: vpx_dsp/x86/vpx_subpixel_8t_intrin_avx2.c
+  #    rename: vpx_subpixel_8t_intrin_avx2.go
+  #  - name: vpx_dsp/x86/vpx_subpixel_8t_intrin_ssse3.c
+  #    rename: vpx_subpixel_8t_intrin_ssse3.go
+  - name: vpx_dsp/add_noise.c
+    go: add_noise.go
+  - name: vpx_dsp/avg.c
+    go: avg.go
+  #  - name: vpx_dsp/bitreader.h
+  #    go: bitreader_h.go
+  - name: vpx_dsp/bitreader.c
+    go: bitreader.go
+  #  - name: vpx_dsp/bitreader_buffer.h
+  #    go: bitreader_buffer_h.go
+  - name: vpx_dsp/bitreader_buffer.c
+    go: bitreader_buffer.go
+  #  - name: vpx_dsp/bitwriter.h
+  #    go: bitwriter_h.go
+  - name: vpx_dsp/bitwriter.c
+    go: bitwriter.go
+  #  - name: vpx_dsp/bitwriter_buffer.h
+  #    go: bitwriter_buffer_h.go
+  - name: vpx_dsp/bitwriter_buffer.c
+    go: bitwriter_buffer.go
+  - name: vpx_dsp/deblock.c
+    go: deblock.go
+  - name: vpx_dsp/fastssim.c
+    go: fastssim.go
+  #  - name: vpx_dsp/fwd_txfm.h
+  #    go: fwd_txfm_h.go
+  - name: vpx_dsp/fwd_txfm.c
+    go: fwd_txfm.go
+  - name: vpx_dsp/intrapred.c
+    go: intrapred.go
+  #  - name: vpx_dsp/inv_txfm.h
+  #    go: inv_txfm_h.go
+  - name: vpx_dsp/inv_txfm.c
+    go: inv_txfm.go
+  - name: vpx_dsp/loopfilter.c
+    go: loopfilter.go
+  #  - name: vpx_dsp/postproc.h
+  #    go: postproc_h.go
+  #  - name: vpx_dsp/prob.h
+  #    go: prob_h.go
+  #    skip:
+  #      - int8
+  #      - uint8
+  - name: vpx_dsp/prob.c
+    go: prob.go
+    skip:
+      - int8
+      - uint8
+  #  - name: vpx_dsp/psnr.h
+  #    go: psnr_h.go
+  - name: vpx_dsp/psnr.c
+    go: psnr.go
+  - name: vpx_dsp/psnrhvs.c
+    go: psnrhvs.go
+  #  - name: vpx_dsp/quantize.h
+  #    go: quantize_h.go
+  - name: vpx_dsp/quantize.c
+    go: quantize.go
+  - name: vpx_dsp/sad.c
+    go: sad.go
+  #  - name: vpx_dsp/skin_detection.h
+  #    go: skin_detection_h.go
+  - name: vpx_dsp/skin_detection.c
+    go: skin_detection.go
+  #  - name: vpx_dsp/ssim.h
+  #    go: ssim_h.go
+  #  - name: vpx_dsp/ssim.c
+  #    go: ssim.go
+  - name: vpx_dsp/subtract.c
+    go: subtract.go
+  - name: vpx_dsp/sum_squares.c
+    go: sum_squares.go
+  - name: vpx_dsp/txfm_common.h
+    go: txfm_common_h.go
+  #  - name: vpx_dsp/variance.h
+  #    go: variance_h.go
+  - name: vpx_dsp/variance.c
+    go: variance.go
+  - name: vpx_dsp/vpx_convolve.c
+    go: vpx_convolve.go
+  - name: vpx_dsp/vpx_dsp_common.h
+    go: vpx_dsp_common_h.go
+  - name: vpx_dsp/vpx_dsp_rtcd.c
+    go: dsp_rtcd.go
+    replace:
+      - regexp: '"ports"\n'
+        new: |
+          "github.com/mearaj/libvpx/internal/ports"
+
+  #  - name: vpx_dsp/vpx_filter.h
+  #    go: vpx_filter.go
+  - name: dsp_test.go
+    content: |
+      package dsp
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include
+
+sys_include:
+  - ./includes
+  - /usr/include

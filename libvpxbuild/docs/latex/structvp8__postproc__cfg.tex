@@ -1,0 +1,46 @@
+\hypertarget{structvp8__postproc__cfg}{}\doxysubsection{vp8\+\_\+postproc\+\_\+cfg Struct Reference}
+\label{structvp8__postproc__cfg}\index{vp8\_postproc\_cfg@{vp8\_postproc\_cfg}}
+
+
+post process flags  
+
+
+
+
+{\ttfamily \#include $<$vp8.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structvp8__postproc__cfg_ae9adc230642ac230f39eb4c531cf85e5}\label{structvp8__postproc__cfg_ae9adc230642ac230f39eb4c531cf85e5}} 
+int {\bfseries post\+\_\+proc\+\_\+flag}
+\begin{DoxyCompactList}\small\item\em the types of post processing to be done, should be combination of \char`\"{}vp8\+\_\+postproc\+\_\+level\char`\"{} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structvp8__postproc__cfg_afe919a9546e79798d840b1492f7e0249}{deblocking\+\_\+level}}
+\item 
+int \mbox{\hyperlink{structvp8__postproc__cfg_a32f28e4003e5d9bf55d188247f3f156c}{noise\+\_\+level}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+post process flags 
+
+This define a structure that describe the post processing settings. For the best objective measure (using the PSNR metric) set post\+\_\+proc\+\_\+flag to VP8\+\_\+\+DEBLOCK and deblocking\+\_\+level to 1. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvp8__postproc__cfg_afe919a9546e79798d840b1492f7e0249}\label{structvp8__postproc__cfg_afe919a9546e79798d840b1492f7e0249}} 
+\index{vp8\_postproc\_cfg@{vp8\_postproc\_cfg}!deblocking\_level@{deblocking\_level}}
+\index{deblocking\_level@{deblocking\_level}!vp8\_postproc\_cfg@{vp8\_postproc\_cfg}}
+\doxyparagraph{\texorpdfstring{deblocking\_level}{deblocking\_level}}
+{\footnotesize\ttfamily int vp8\+\_\+postproc\+\_\+cfg\+::deblocking\+\_\+level}
+
+the strength of deblocking, valid range \mbox{[}0, 16\mbox{]} \mbox{\Hypertarget{structvp8__postproc__cfg_a32f28e4003e5d9bf55d188247f3f156c}\label{structvp8__postproc__cfg_a32f28e4003e5d9bf55d188247f3f156c}} 
+\index{vp8\_postproc\_cfg@{vp8\_postproc\_cfg}!noise\_level@{noise\_level}}
+\index{noise\_level@{noise\_level}!vp8\_postproc\_cfg@{vp8\_postproc\_cfg}}
+\doxyparagraph{\texorpdfstring{noise\_level}{noise\_level}}
+{\footnotesize\ttfamily int vp8\+\_\+postproc\+\_\+cfg\+::noise\+\_\+level}
+
+the strength of additive noise, valid range \mbox{[}0, 16\mbox{]} 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vp8_8h}{vp8.\+h}}\end{DoxyCompactItemize}

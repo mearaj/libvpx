@@ -1,0 +1,99 @@
+\hypertarget{structvpx__roi__map}{}\doxysubsection{vpx\+\_\+roi\+\_\+map Struct Reference}
+\label{structvpx__roi__map}\index{vpx\_roi\_map@{vpx\_roi\_map}}
+
+
+vpx region of interest map  
+
+
+
+
+{\ttfamily \#include $<$vp8cx.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structvpx__roi__map_a2173c817469ff1e6adcd099fc3f0a164}{enabled}}
+\item 
+unsigned char $\ast$ \mbox{\hyperlink{structvpx__roi__map_aba69e211b81d622977ba07ac47b61075}{roi\+\_\+map}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__roi__map_a3fdcecd472553d08a99ced02cda5c9a6}{rows}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__roi__map_a5458459aaf16b14b86fb0adef32757c8}{cols}}
+\item 
+int \mbox{\hyperlink{structvpx__roi__map_aa41b78c77cb7f2f24ad5b336c40cdf3c}{delta\+\_\+q}} \mbox{[}8\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__roi__map_aca3e926d9612ac6530092f7cfb0dc34c}{delta\+\_\+lf}} \mbox{[}8\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__roi__map_a2547af0f5b4f9c42cb5fb902803245d9}{skip}} \mbox{[}8\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__roi__map_a570cce9ea40de31cce7a070e11cb5678}{ref\+\_\+frame}} \mbox{[}8\mbox{]}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__roi__map_a3354ff458e229361b53a0b2d1bf68cfb}{static\+\_\+threshold}} \mbox{[}4\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+vpx region of interest map 
+
+These defines the data structures for the region of interest map 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__roi__map_a2173c817469ff1e6adcd099fc3f0a164}\label{structvpx__roi__map_a2173c817469ff1e6adcd099fc3f0a164}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!enabled@{enabled}}
+\index{enabled@{enabled}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{enabled}{enabled}}
+{\footnotesize\ttfamily uint8\+\_\+t vpx\+\_\+roi\+\_\+map\+::enabled}
+
+If ROI is enabled. \mbox{\Hypertarget{structvpx__roi__map_aba69e211b81d622977ba07ac47b61075}\label{structvpx__roi__map_aba69e211b81d622977ba07ac47b61075}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!roi\_map@{roi\_map}}
+\index{roi\_map@{roi\_map}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{roi\_map}{roi\_map}}
+{\footnotesize\ttfamily unsigned char$\ast$ vpx\+\_\+roi\+\_\+map\+::roi\+\_\+map}
+
+An id between 0-\/3 (0-\/7 for vp9) for each 16x16 (8x8 for VP9) region within a frame. \mbox{\Hypertarget{structvpx__roi__map_a3fdcecd472553d08a99ced02cda5c9a6}\label{structvpx__roi__map_a3fdcecd472553d08a99ced02cda5c9a6}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!rows@{rows}}
+\index{rows@{rows}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{rows}{rows}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+roi\+\_\+map\+::rows}
+
+Number of rows. \mbox{\Hypertarget{structvpx__roi__map_a5458459aaf16b14b86fb0adef32757c8}\label{structvpx__roi__map_a5458459aaf16b14b86fb0adef32757c8}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!cols@{cols}}
+\index{cols@{cols}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{cols}{cols}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+roi\+\_\+map\+::cols}
+
+Number of columns. \mbox{\Hypertarget{structvpx__roi__map_aa41b78c77cb7f2f24ad5b336c40cdf3c}\label{structvpx__roi__map_aa41b78c77cb7f2f24ad5b336c40cdf3c}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!delta\_q@{delta\_q}}
+\index{delta\_q@{delta\_q}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{delta\_q}{delta\_q}}
+{\footnotesize\ttfamily int vpx\+\_\+roi\+\_\+map\+::delta\+\_\+q\mbox{[}8\mbox{]}}
+
+VP8 only uses the first 4 segments. VP9 uses 8 segments. Quantizer deltas. Valid range\+: \mbox{[}-\/63, 63\mbox{]}. \mbox{\Hypertarget{structvpx__roi__map_aca3e926d9612ac6530092f7cfb0dc34c}\label{structvpx__roi__map_aca3e926d9612ac6530092f7cfb0dc34c}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!delta\_lf@{delta\_lf}}
+\index{delta\_lf@{delta\_lf}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{delta\_lf}{delta\_lf}}
+{\footnotesize\ttfamily int vpx\+\_\+roi\+\_\+map\+::delta\+\_\+lf\mbox{[}8\mbox{]}}
+
+Loop filter deltas. Valid range\+: \mbox{[}-\/63, 63\mbox{]}. \mbox{\Hypertarget{structvpx__roi__map_a2547af0f5b4f9c42cb5fb902803245d9}\label{structvpx__roi__map_a2547af0f5b4f9c42cb5fb902803245d9}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!skip@{skip}}
+\index{skip@{skip}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{skip}{skip}}
+{\footnotesize\ttfamily int vpx\+\_\+roi\+\_\+map\+::skip\mbox{[}8\mbox{]}}
+
+skip and ref frame segment is only used in VP9. Skip this block. \mbox{\Hypertarget{structvpx__roi__map_a570cce9ea40de31cce7a070e11cb5678}\label{structvpx__roi__map_a570cce9ea40de31cce7a070e11cb5678}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!ref\_frame@{ref\_frame}}
+\index{ref\_frame@{ref\_frame}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{ref\_frame}{ref\_frame}}
+{\footnotesize\ttfamily int vpx\+\_\+roi\+\_\+map\+::ref\+\_\+frame\mbox{[}8\mbox{]}}
+
+Reference frame for this block. \mbox{\Hypertarget{structvpx__roi__map_a3354ff458e229361b53a0b2d1bf68cfb}\label{structvpx__roi__map_a3354ff458e229361b53a0b2d1bf68cfb}} 
+\index{vpx\_roi\_map@{vpx\_roi\_map}!static\_threshold@{static\_threshold}}
+\index{static\_threshold@{static\_threshold}!vpx\_roi\_map@{vpx\_roi\_map}}
+\doxyparagraph{\texorpdfstring{static\_threshold}{static\_threshold}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+roi\+\_\+map\+::static\+\_\+threshold\mbox{[}4\mbox{]}}
+
+Static breakout threshold for each segment. Only used in VP8. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vp8cx_8h}{vp8cx.\+h}}\end{DoxyCompactItemize}

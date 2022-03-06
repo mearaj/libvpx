@@ -1,0 +1,81 @@
+\hypertarget{vpx__decoder_8h}{}\doxysubsection{vpx/vpx\+\_\+decoder.h File Reference}
+\label{vpx__decoder_8h}\index{vpx/vpx\_decoder.h@{vpx/vpx\_decoder.h}}
+
+
+Describes the decoder algorithm interface to applications.  
+
+
+{\ttfamily \#include \char`\"{}./vpx\+\_\+codec.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./vpx\+\_\+frame\+\_\+buffer.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__codec__stream__info}{vpx\+\_\+codec\+\_\+stream\+\_\+info}}
+\begin{DoxyCompactList}\small\item\em Stream properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__codec__dec__cfg}{vpx\+\_\+codec\+\_\+dec\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em Initialization Configurations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries VPX\+\_\+\+DECODER\+\_\+\+ABI\+\_\+\+VERSION}
+\begin{DoxyCompactList}\small\item\em Current ABI version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__decoder_ga9e33b8ee81025d5fc3d01b0975ad5f96}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+PUT\+\_\+\+SLICE}}~0x10000
+\begin{DoxyCompactList}\small\item\em Decoder capabilities bitfield. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__decoder_ga0ef59ca8067ac1dc8c8378042277ccc8}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+PUT\+\_\+\+FRAME}}~0x20000
+\item 
+\#define \mbox{\hyperlink{group__decoder_ga7825ade982ab85a5583d3d8a669baa3b}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+POSTPROC}}~0x40000
+\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+ERROR\+\_\+\+CONCEALMENT}~0x80000
+\begin{DoxyCompactList}\small\item\em Can conceal errors due to packet loss. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+INPUT\+\_\+\+FRAGMENTS}~0x100000
+\begin{DoxyCompactList}\small\item\em Can receive encoded frames one fragment at a time. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+FRAME\+\_\+\+THREADING}~0x200000
+\begin{DoxyCompactList}\small\item\em Can support frame-\/based multi-\/threading. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__decoder_ga32c2ab619fbb5c575546cc0b623a1a09}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+EXTERNAL\+\_\+\+FRAME\+\_\+\+BUFFER}}~0x400000
+\item 
+\#define \mbox{\hyperlink{group__decoder_ga6fe14f30254aff769412b128b29664cc}{VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+POSTPROC}}~0x10000
+\begin{DoxyCompactList}\small\item\em Initialization-\/time Feature Enabling. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+ERROR\+\_\+\+CONCEALMENT}~0x20000
+\begin{DoxyCompactList}\small\item\em Conceal errors in decoded frames. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+INPUT\+\_\+\+FRAGMENTS}~0x40000
+\begin{DoxyCompactList}\small\item\em The input frame should be passed to the decoder one fragment at a time. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+USE\+\_\+\+FRAME\+\_\+\+THREADING}~0x80000
+\begin{DoxyCompactList}\small\item\em Enable frame-\/based multi-\/threading. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__decoder_ga8c2f0b12f1bd4927eb3c68b01eab19d3}{vpx\+\_\+codec\+\_\+dec\+\_\+init}}(ctx,  iface,  cfg,  flags)~  \mbox{\hyperlink{group__decoder_ga6435c3e8cb9408f1c0c3d052a3a577b7}{vpx\+\_\+codec\+\_\+dec\+\_\+init\+\_\+ver}}(ctx, iface, cfg, flags, \mbox{\hyperlink{group__decoder_ga462b459e7ae13937e1eae1776245db12}{VPX\+\_\+\+DECODER\+\_\+\+ABI\+\_\+\+VERSION}})
+\begin{DoxyCompactList}\small\item\em Convenience macro for \mbox{\hyperlink{group__decoder_ga6435c3e8cb9408f1c0c3d052a3a577b7}{vpx\+\_\+codec\+\_\+dec\+\_\+init\+\_\+ver()}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__stream__info}{vpx\+\_\+codec\+\_\+stream\+\_\+info}} \mbox{\hyperlink{group__decoder_gac3958811635f37082e7ac9767a36333d}{vpx\+\_\+codec\+\_\+stream\+\_\+info\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Stream properties. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__dec__cfg}{vpx\+\_\+codec\+\_\+dec\+\_\+cfg}} \mbox{\hyperlink{group__decoder_gabb3fcdfd4fee8c3e5940aaedb0ef99b1}{vpx\+\_\+codec\+\_\+dec\+\_\+cfg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Initialization Configurations. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}{vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t}}) (void $\ast$user\+\_\+priv, const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img)
+\begin{DoxyCompactList}\small\item\em put frame callback prototype \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{group__cap__put__slice_gaab464940e2102efa0604b7788eb2e3b1}{vpx\+\_\+codec\+\_\+put\+\_\+slice\+\_\+cb\+\_\+fn\+\_\+t}}) (void $\ast$user\+\_\+priv, const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img, const \mbox{\hyperlink{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}{vpx\+\_\+image\+\_\+rect\+\_\+t}} $\ast$valid, const \mbox{\hyperlink{vpx__image_8h_ac183d7e2b0fbebd1b1bebc24d8d23241}{vpx\+\_\+image\+\_\+rect\+\_\+t}} $\ast$update)
+\begin{DoxyCompactList}\small\item\em put slice callback prototype \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__decoder_ga6435c3e8cb9408f1c0c3d052a3a577b7}{vpx\+\_\+codec\+\_\+dec\+\_\+init\+\_\+ver}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface, const \mbox{\hyperlink{group__decoder_gabb3fcdfd4fee8c3e5940aaedb0ef99b1}{vpx\+\_\+codec\+\_\+dec\+\_\+cfg\+\_\+t}} $\ast$cfg, \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}} flags, int ver)
+\begin{DoxyCompactList}\small\item\em Initialize a decoder instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__decoder_gadfee4664d644175d5aac1465ef11c4b0}{vpx\+\_\+codec\+\_\+peek\+\_\+stream\+\_\+info}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface, const uint8\+\_\+t $\ast$data, unsigned int data\+\_\+sz, \mbox{\hyperlink{group__decoder_gac3958811635f37082e7ac9767a36333d}{vpx\+\_\+codec\+\_\+stream\+\_\+info\+\_\+t}} $\ast$si)
+\begin{DoxyCompactList}\small\item\em Parse stream info from a buffer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__decoder_ga552f1044d36a84e8b05ce6902e9ae8c9}{vpx\+\_\+codec\+\_\+get\+\_\+stream\+\_\+info}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__decoder_gac3958811635f37082e7ac9767a36333d}{vpx\+\_\+codec\+\_\+stream\+\_\+info\+\_\+t}} $\ast$si)
+\begin{DoxyCompactList}\small\item\em Return information about the current stream. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__decoder_ga3441e157a7a69108bca9a069f2ee8e0d}{vpx\+\_\+codec\+\_\+decode}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, const uint8\+\_\+t $\ast$data, unsigned int data\+\_\+sz, void $\ast$user\+\_\+priv, long deadline)
+\begin{DoxyCompactList}\small\item\em Decode data. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$ \mbox{\hyperlink{group__decoder_gac23542417b964c7f7cd6767e72775b54}{vpx\+\_\+codec\+\_\+get\+\_\+frame}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}} $\ast$iter)
+\begin{DoxyCompactList}\small\item\em Decoded frames iterator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__cap__put__frame_ga299c2d1b265a22a680f117dd686e31ce}{vpx\+\_\+codec\+\_\+register\+\_\+put\+\_\+frame\+\_\+cb}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}{vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t}} cb, void $\ast$user\+\_\+priv)
+\begin{DoxyCompactList}\small\item\em Register for notification of frame completion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__cap__put__slice_gaffcc69a8134406fc653500759b696b8e}{vpx\+\_\+codec\+\_\+register\+\_\+put\+\_\+slice\+\_\+cb}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__cap__put__slice_gaab464940e2102efa0604b7788eb2e3b1}{vpx\+\_\+codec\+\_\+put\+\_\+slice\+\_\+cb\+\_\+fn\+\_\+t}} cb, void $\ast$user\+\_\+priv)
+\begin{DoxyCompactList}\small\item\em Register for notification of slice completion. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__cap__external__frame__buffer_gad209e7c3f6a330d11846be70a880182c}{vpx\+\_\+codec\+\_\+set\+\_\+frame\+\_\+buffer\+\_\+functions}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{vpx__frame__buffer_8h_a178a7aeb9acedc2d9e5227cea1301169}{vpx\+\_\+get\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}} cb\+\_\+get, \mbox{\hyperlink{vpx__frame__buffer_8h_a79d9a6a92e4eb753fc2d27f50d996de1}{vpx\+\_\+release\+\_\+frame\+\_\+buffer\+\_\+cb\+\_\+fn\+\_\+t}} cb\+\_\+release, void $\ast$cb\+\_\+priv)
+\begin{DoxyCompactList}\small\item\em Pass in external frame buffers for the decoder to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Describes the decoder algorithm interface to applications. 
+
+This file describes the interface between an application and a video decoder algorithm. 

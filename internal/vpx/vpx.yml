@@ -1,0 +1,631 @@
+root: ../../libvpxsrc
+out: .
+package: vpx
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+use_go_int: true
+replace:
+  - old: EXIT_SUCCESS
+    new: 1
+  - old: EXIT_FAILURE
+    new: 0
+  - regexp: '"mem"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/mem"
+
+idents:
+  - name: vp8_postproc_cfg_t
+    alias: true
+  - name: vpx_ref_frame_t
+    alias: true
+  - name: vpx_ref_frame_type_t
+    rename: VpxRefFrameType
+  - name: vp9_ref_frame_t
+    alias: true
+  - name: vpx_roi_map_t
+    alias: true
+  - name: vpx_active_map
+    alias: true
+  - name: vpx_active_map_t
+    alias: true
+  - name: vpx_scaling_mode_t
+    alias: true
+  - name: vpx_codec_ctx_t
+    alias: true
+  - name: vpx_svc_layer_id_t
+    alias: true
+  - name: vpx_svc_ref_frame_config_t
+    alias: true
+  - name: vpx_svc_frame_drop_t
+    alias: true
+  - name: vpx_svc_spatial_layer_sync_t
+    alias: true
+  - name: vpx_codec_priv_enc_mr_cfg_t
+    alias: true
+  - name: vpx_svc_ref_frame_config_t
+    alias: true
+  - name: vpx_codec_enc_cfg_t
+    alias: true
+  - name: vpx_codec_enc_cfg_map_t
+    alias: true
+  - name: vpx_codec_priv_cb_pair_t
+    alias: true
+  - name: vpx_codec_frame_buffer_t
+    alias: true
+  - name: vpx_rc_frame_stats_t
+    alias: true
+  - name: vpx_rc_firstpass_stats_t
+    alias: true
+  - name: vpx_svc_spatial_layer_sync_t
+    alias: true
+  - name: vpx_rc_encodeframe_decision_t
+    alias: true
+  - name: vpx_rc_encodeframe_info_t
+    alias: true
+  - name: vpx_rc_encodeframe_result_t
+    alias: true
+  - name: vpx_codec_cx_pkt_t
+    alias: true
+  - name: vpx_rc_config_t
+    alias: true
+  - name: vpx_codec_ctrl_fn_map_t
+    alias: true
+  - name: vpx_rc_funcs_t
+    alias: true
+  - name: vpx_img_fmt_t
+    rename: ImgFmt
+  - name: vpx_image_t
+    alias: true
+  - name: vpx_codec_priv_t
+    rename: CodecPriv
+  - name: vpx_bit_depth_t
+    rename: BitDepth
+  - name: vpx_codec_stream_info_t
+    alias: true
+  - name: vpx_get_frame_buffer_cb_fn_t
+    rename: GetFrameBufferCbFn
+  - name: vpx_release_frame_buffer_cb_fn_t
+    rename: ReleaseFrameBufferCbFn
+  - name: vpx_rc_create_model_cb_fn_t
+    rename: RcCreateModelCbFn
+  - name: vpx_rc_send_firstpass_stats_cb_fn_t
+    rename: RcSendFirstpassStatsCbFn
+  - name: vpx_rc_get_encodeframe_decision_cb_fn_t
+    rename: RcGetEncodeframeDecisionCbFn
+  - name: vpx_rc_update_encodeframe_result_cb_fn_t
+    rename: RcUpdateEncodeframeResultCbFn
+  - name: vpx_rc_delete_model_cb_fn_t
+    rename: RcDeleteModelCbFn
+  - name: vpx_codec_init_fn_t
+    rename: CodecInitFn
+  - name: vpx_codec_destroy_fn_t
+    rename: CodecDestroyFn
+  - name: vpx_codec_peek_si_fn_t
+    rename: CodecPeekSiFn
+  - name: vpx_codec_get_si_fn_t
+    rename: CodecGetSiFn
+  - name: vpx_codec_control_fn_t
+    rename: CodecControlFn
+  - name: vpx_codec_decode_fn_t
+    rename: CodecDecodeFn
+  - name: vpx_codec_get_frame_fn_t
+    rename: CodecGetFrameFn
+  - name: vpx_codec_set_fb_fn_t
+    rename: CodecSetFbFn
+  - name: vpx_codec_encode_fn_t
+    rename: CodecEncodeFn
+  - name: vpx_codec_get_cx_data_fn_t
+    rename: CodecGetCxDataFn
+  - name: vpx_codec_enc_config_set_fn_t
+    rename: CodecEncConfigSetFn
+  - name: vpx_codec_get_global_headers_fn_t
+    rename: CodecGetGlobalHeadersFn
+  - name: vpx_codec_get_preview_frame_fn_t
+    rename: CodecGetPreviewFrameFn
+  - name: vpx_codec_enc_mr_get_mem_loc_fn_t
+    rename: CodecEncMrGetMemLocFn
+  - name: vpx_codec_iface_t
+    rename: CodecIFace
+  - name: vpx_codec_alg_priv_t
+    rename: CodecAlgPvt
+  - name: vpx_codec_err_t
+    rename: CodecErr
+  - name: vpx_codec_priv_output_cx_pkt_cb_pair_t
+    rename: CodecPvtOutputCxPktCbPair
+  - name: vpx_color_range_t
+    rename: ColorRange
+  - name: vpx_color_space_t
+    rename: ColorSpace
+  - name: vpx_svc_layer_id
+    rename: SvcLayerId
+  - name: vpx_scaling_mode
+    rename: ScalingMode
+  - name: vpx_codec_enc_init_ver
+    rename: VpxCodecEncInitVer
+  - name: vp8_com_control_id
+    rename: Vp8ComControlId
+  - name: get_alg_priv
+    rename: GetAlgPvt
+  - name: vp8_postproc_level
+    rename: Vp8PostProcLevel
+  - name: vp8_postproc_cfg
+    rename: Vp8PostProcCfg
+  - name: vpx_ref_frame
+    rename: RefFrame
+  - name: vp9_ref_frame
+    rename: Vp9RefFrame
+  - name: Vp8PostProcCfg
+  - name: vpx_codec_control_
+    rename: CodecControl
+  - name: vpx_codec_control_VP8_SET_REFERENCE
+    rename: Vp8SetReference
+  - name: vpx_codec_control_VP9_DECODE_SVC_SPATIAL_LAYER
+    rename: Vp9DecodeSvcSpatialLayer
+  - name: vpx_codec_control_VP8_COPY_REFERENCE
+    rename: Vp8CopyReference
+  - name: vpx_codec_control_VP8_SET_POSTPROC
+    rename: Vp8SetPostProc
+  - name: vpx_codec_control_VP9_GET_REFERENCE
+    rename: Vp9GetReference
+  - name: vpx_codec_ctx
+    rename: CodecCtx
+  - name: ctrl_id
+    rename: CtrlId
+  - name: Frame_type
+  - name: vp8e_enc_control_id
+    rename: Vp8eEncControlId
+  - name: vpx_roi_map
+    rename: RoiMap
+  - name: vp8e_token_partitions
+    rename: Vp8eTokenPartitions
+  - name: vp9e_tune_content
+    rename: Vp9eTuneContent
+  - name: vp8e_tuning
+    rename: Vp8eTuning
+  - name: vpx_svc_ref_frame_config
+    rename: SvcRefFrameConfig
+  - name: vpx_svc_frame_drop
+    rename: SvcFrameDrop
+  - name: vpx_svc_spatial_layer_sync
+    rename: SvcSpatialLayerSync
+  - name: vpx_codec_control_VP8E_SET_ROI_MAP
+    rename: Vp8eSetRoiMap
+  - name: vpx_codec_control_VP8E_SET_ACTIVEMAP
+    rename: Vp8eSetActiveMap
+  - name: vpx_codec_control_VP8E_SET_SCALEMODE
+    rename: Vp8eSetScaleMode
+  - name: vpx_codec_control_VP8E_SET_CPUUSED
+    rename: Vp8eSetCpuUsed
+  - name: vpx_codec_control_VP8E_SET_ENABLEAUTOALTREF
+    rename: Vp8eSetEnableAutoAltRef
+  - name: vpx_codec_control_VP8E_SET_NOISE_SENSITIVITY
+    rename: Vp8eSetNoiseSensitivity
+  - name: vpx_codec_control_VP8E_SET_SHARPNESS
+    rename: Vp8eSetSharpness
+  - name: vpx_codec_control_VP8E_SET_STATIC_THRESHOLD
+    rename: Vp8eSetStaticThreshold
+  - name: vpx_codec_control_VP8E_SET_TOKEN_PARTITIONS
+    rename: Vp8eSetTokenPartitions
+  - name: vpx_codec_control_VP8E_GET_LAST_QUANTIZER
+    rename: Vp8eGetLastQuantizer
+  - name: vpx_codec_control_VP8E_GET_LAST_QUANTIZER_64
+    rename: Vp8eGetLastQuantizer64
+  - name: vpx_codec_control_VP8E_SET_ARNR_MAXFRAMES
+    rename: Vp8eSetArnrMaxFrames
+  - name: vpx_codec_control_VP8E_SET_ARNR_STRENGTH
+    rename: Vp8eSetArnrStrength
+  - name: vpx_codec_control_VP8E_SET_ARNR_TYPE
+    rename: Vp8eSetArnrType
+  - name: vpx_codec_control_VP8E_SET_TUNING
+    rename: Vp8eSetTuning
+  - name: vpx_codec_control_VP8E_SET_CQ_LEVEL
+    rename: Vp8eSetCqLevel
+  - name: vpx_codec_control_VP8E_SET_MAX_INTRA_BITRATE_PCT
+    rename: Vp8eSetMaxIntraBitratePct
+  - name: vpx_codec_control_VP8E_SET_FRAME_FLAGS
+    rename: Vp8eSetFrameFlags
+  - name: vpx_codec_control_VP9E_SET_MAX_INTER_BITRATE_PCT
+    rename: Vp9eSetMaxInterBitratePct
+  - name: vpx_codec_control_VP9E_SET_GF_CBR_BOOST_PCT
+    rename: Vp9eSetGfCbrBoostPct
+  - name: vpx_codec_control_VP8E_SET_TEMPORAL_LAYER_ID
+    rename: Vp8eSetTemporalLayerId
+  - name: vpx_codec_control_VP8E_SET_SCREEN_CONTENT_MODE
+    rename: Vp8eSetScreenContentMode
+  - name: vpx_codec_control_VP9E_SET_LOSSLESS
+    rename: Vp9eSetLossless
+  - name: vpx_codec_control_VP9E_SET_TILE_COLUMNS
+    rename: Vp9eSetTileColumns
+  - name: vpx_codec_control_VP9E_SET_TILE_ROWS
+    rename: Vp9eSetTileRows
+  - name: vpx_codec_control_VP9E_SET_FRAME_PARALLEL_DECODING
+    rename: Vp9eSetFrameParallelDecoding
+  - name: vpx_codec_control_VP9E_SET_AQ_MODE
+    rename: Vp9eSetAqMode
+  - name: vpx_codec_control_VP9E_SET_FRAME_PERIODIC_BOOST
+    rename: Vp9eSetFramePeriodicBoost
+  - name: vpx_codec_control_VP9E_SET_NOISE_SENSITIVITY
+    rename: Vp9eSetNoiseSensitivity
+  - name: vpx_codec_control_VP9E_SET_SVC
+    rename: Vp9eSetSvc
+  - name: vpx_codec_control_VP9E_SET_ROI_MAP
+    rename: Vp9eSetRoiMap
+  - name: vpx_codec_control_VP9E_SET_SVC_PARAMETERS
+    rename: Vp9eSetSvcParameters
+  - name: vpx_codec_control_VP9E_SET_SVC_LAYER_ID
+    rename: Vp9eSetSvcLayerId
+  - name: vpx_codec_control_VP9E_SET_TUNE_CONTENT
+    rename: Vp9eSetTuneContent
+  - name: vpx_codec_control_VP9E_GET_SVC_LAYER_ID
+    rename: Vp9eGetSvcLayerId
+  - name: vpx_codec_control_VP9E_REGISTER_CX_CALLBACK
+    rename: Vp9eRegisterCxCallback
+  - name: vpx_codec_control_VP9E_SET_COLOR_SPACE
+    rename: Vp9eSetColorSpace
+  - name: vpx_codec_control_VP9E_SET_TEMPORAL_LAYERING_MODE
+    rename: Vp9eSetTemporalLayeringMode
+  - name: vpx_codec_control_VP9E_SET_MIN_GF_INTERVAL
+    rename: Vp9eSetMinGfInterval
+  - name: vpx_codec_control_VP9E_SET_MAX_GF_INTERVAL
+    rename: Vp9eSetMaxGfInterval
+  - name: vpx_codec_control_VP9E_GET_ACTIVEMAP
+    rename: Vp9eGetActiveMap
+  - name: vpx_codec_control_VP9E_SET_COLOR_RANGE
+    rename: Vp9eSetColorRange
+  - name: vpx_codec_control_VP9E_SET_SVC_REF_FRAME_CONFIG
+    rename: Vp9eSetSvcRefFrameConfig
+  - name: vpx_codec_control_VP9E_SET_RENDER_SIZE
+    rename: Vp9eSetRenderSize
+  - name: vpx_codec_control_VP9E_SET_TARGET_LEVEL
+    rename: Vp9eSetTargetLevel
+  - name: vpx_codec_control_VP9E_SET_ROW_MT
+    rename: Vp9eSetRowMt
+  - name: vpx_codec_control_VP9E_GET_LEVEL
+    rename: Vp9eGetLevel
+  - name: vpx_codec_control_VP9E_SET_ALT_REF_AQ
+    rename: Vp9eSetAltRefAq
+  - name: vpx_codec_control_VP8E_SET_GF_CBR_BOOST_PCT
+    rename: Vp8eSetGfCbrBoostPct
+  - name: vpx_codec_control_VP9E_ENABLE_MOTION_VECTOR_UNIT_TEST
+    rename: Vp9eEnableMotionVectorUnitTest
+  - name: vpx_codec_control_VP9E_SET_SVC_INTER_LAYER_PRED
+    rename: Vp9eSetSvcInterLayerPred
+  - name: vpx_codec_control_VP9E_SET_SVC_FRAME_DROP_LAYER
+    rename: Vp9eSetSvcFrameDropLayer
+  - name: vpx_codec_control_VP9E_GET_SVC_REF_FRAME_CONFIG
+    rename: Vp9eGetSvcRefFrameConfig
+  - name: vpx_codec_control_VP9E_SET_SVC_GF_TEMPORAL_REF
+    rename: Vp9eSetSvcGfTemporalRef
+  - name: vpx_codec_control_VP9E_SET_SVC_SPATIAL_LAYER_SYNC
+    rename: Vp9eSetSvcSpatialLayerSync
+  - name: vpx_codec_control_VP9E_SET_TPL
+    rename: Vp9eSetTpl
+  - name: vpx_codec_control_VP9E_SET_POSTENCODE_DROP
+    rename: Vp9eSetPostEncodeDrop
+  - name: vpx_codec_control_VP9E_SET_DELTA_Q_UV
+    rename: Vp9eSetDeltaQUv
+  - name: vpx_codec_control_VP9E_SET_DISABLE_OVERSHOOT_MAXQ_CBR
+    rename: Vp9eSetDisableOverShootMaxqCbr
+  - name: vpx_codec_control_VP9E_SET_DISABLE_LOOPFILTER
+    rename: Vp9eSetDisableLoopFilter
+  - name: vpx_codec_control_VP9E_SET_EXTERNAL_RATE_CONTROL
+    rename: Vp9eSetExternalRateControl
+  - name: vpx_codec_control_VP9E_SET_RTC_EXTERNAL_RATECTRL
+    rename: Vp9eSetRtcExternalRateCtrl
+  - name: vpx_codec_control_VP9E_GET_LOOPFILTER_LEVEL
+    rename: Vp9eGetLoopFilterLevel
+  - name: vpx_codec_control_VP9E_GET_LAST_QUANTIZER_SVC_LAYERS
+    rename: Vp9eGetLastQuantizerSvcLayers
+  - name: vpx_codec_control_VP8E_SET_RTC_EXTERNAL_RATECTRL
+    rename: Vp8eSetRtcExternalRateCtrl
+  - name: vp8_dec_control_id
+    rename: Vp8DecControlId
+  - name: vpx_decrypt_cb
+    rename: DecryptCb
+  - name: decrypt_state
+    rename: DecryptState
+  - name: vpx_decrypt_init
+    rename: DecryptInit
+  - name: vpx_codec_control_VP8D_GET_LAST_REF_UPDATES
+    rename: Vp8dGetLastRefUpdates
+  - name: vpx_codec_control_VP8D_GET_FRAME_CORRUPTED
+    rename: Vp8dGetFrameCorrupted
+  - name: vpx_codec_control_VP8D_GET_LAST_REF_USED
+    rename: Vp8dGetLastRefUsed
+  - name: vpx_codec_control_VPXD_SET_DECRYPTOR
+    rename: dSetDecryptor
+  - name: vpx_codec_control_VP8D_SET_DECRYPTOR
+    rename: Vp8dSetDecryptor
+  - name: vpx_codec_control_VP9D_GET_FRAME_SIZE
+    rename: Vp9dGetFrameSize
+  - name: vpx_codec_control_VP9D_GET_DISPLAY_SIZE
+    rename: Vp9dGetDisplaySize
+  - name: vpx_codec_control_VP9D_GET_BIT_DEPTH
+    rename: Vp9dGetBitDepth
+  - name: vpx_codec_control_VP9_SET_BYTE_ALIGNMENT
+    rename: Vp9SetByteAlignment
+  - name: vpx_codec_control_VP9_INVERT_TILE_DECODE_ORDER
+    rename: Vp9InvertTitleDecodeOrder
+  - name: vpx_codec_control_VP9_SET_SKIP_LOOP_FILTER
+    rename: Vp9SetSkipLoopFilter
+  - name: vpx_codec_control_VPXD_GET_LAST_QUANTIZER
+    rename: VpxdGetLastQuantizer
+  - name: vpx_codec_control_VP9D_SET_ROW_MT
+    rename: Vp9dSetRowMt
+  - name: vpx_codec_control_VP9D_SET_LOOP_FILTER_OPT
+    rename: Vp9dSetLoopFilterOpt
+  - name: vpx_codec_iface
+    rename: CodecIFace
+  - name: vpx_codec_priv_enc_mr_cfg
+    rename: CodecPvtEncMrCfg
+  - name: vpx_codec_ctrl_fn_map
+    rename: FnMap
+  - name: vpx_codec_enc_cfg_map
+    rename: CodecEncCfgMap
+  - name: vpx_codec_alg_priv
+    rename: CodecAlgPvt
+  - name: vpx_codec_priv_cb_pair
+    rename: CodecPvtCbPair
+  - name: vpx_codec_priv
+    rename: CodecPvt
+  - name: vpx_codec_pkt_list
+    rename: CodecPktList
+  - name: vpx_internal_error_info
+    rename: InternalErrorInfo
+  - name: vpx_codec_dec_iface
+    rename: CodecDecIFace
+  - name: vpx_codec_enc_iface
+    rename: CodecEncIFace
+  - name: vpx_img_fmt
+    rename: ImgFmt
+  - name: vpx_codec_frame_buffer
+    rename: CodecFrameBuffer
+  - name: vpx_rc_frame_stats
+    rename: RcFrameStats
+  - name: vpx_rc_firstpass_stats
+    rename: RcFirstPassStats
+  - name: vpx_rc_config
+    rename: RcConfig
+  - name: vpx_rc_encodeframe_decision
+    rename: RcEncodeFrameDecision
+  - name: vpx_rc_encodeframe_info
+    rename: RcEncodeFrameInfo
+  - name: vpx_rc_encodeframe_result
+    rename: RcEncodeFrameResult
+  - name: vpx_rc_status_t
+    rename: RcStatus
+  - name: vpx_rc_funcs
+    rename: RcFuncs
+  - name: check_size_argument_overflow
+    rename: CheckSizeArgumentOverflow
+  - name: get_malloc_address_location
+    rename: GetMallocAddressLocation
+  - name: get_aligned_malloc_size
+    rename: GetAlignedMallocSize
+  - name: set_actual_malloc_address
+    rename: SetActualMallocAddress
+  - name: get_actual_malloc_address
+    rename: GetActualMallocAddress
+  - name: vpx_memalign
+    rename: mem.VpxMemAlign
+  - name: vpx_malloc
+    rename: Malloc
+  - name: vpx_calloc
+    rename: Calloc
+  - name: vpx_free
+    rename: mem.VpxFree
+  - name: vpx_codec_version
+    rename: CodecVersion
+  - name: vpx_codec_version_str
+    rename: CodecVersionStr
+  - name: vpx_codec_version_extra_str
+    rename: CodecVersionExtraStr
+  - name: vpx_codec_iface_name
+    rename: CodecIFaceName
+  - name: vpx_codec_err_to_string
+    rename: CodecErrToString
+  - name: vpx_codec_error
+    rename: CodecError
+    alias: true
+  - name: vpx_codec_error_detail
+    rename: CodecErrorDetail
+  - name: vpx_codec_destroy
+    rename: CodecDestroy
+  - name: vpx_codec_get_caps
+    rename: CodecGetCaps
+  - name: vpx_internal_error
+    rename: InternalError
+  - name: vpx_codec_dec_init_ver
+    rename: CodecDecInitVer
+  - name: vpx_codec_peek_stream_info
+    rename: CodecPeekStreamInfo
+  - name: vpx_codec_get_stream_info
+    rename: CodecGetStreamInfo
+  - name: vpx_codec_decode
+    rename: CodecDecode
+  - name: vpx_codec_get_frame
+    rename: CodecGetFrame
+  - name: vpx_codec_register_put_frame_cb
+    rename: CodecRegisterPutFrameCb
+  - name: vpx_codec_register_put_slice_cb
+    rename: CodecRegisterPutSliceCb
+  - name: vpx_codec_set_frame_buffer_functions
+    rename: CodecSetFrameBufferFunctions
+  - name: vpx_codec_pts_t
+    rename: CodecPts
+  - name: vpx_codec_frame_flags_t
+    rename: CodecFrameFlags
+  - name: vpx_codec_er_flags_t
+    rename: CodecErFlags
+  - name: vpx_codec_cx_pkt_kind
+    rename: CodecCxPktKind
+  - name: vpx_codec_cx_pkt
+    rename: CodecCxPkt
+  - name: vpx_codec_enc_output_cx_pkt_cb_fn_t
+    rename: CodecEncOutputCxPktCbFn
+  - name: vpx_codec_enc_output_cx_cb_pair
+    rename: CodecEncOutputCxCbPair
+  - name: vpx_codec_enc_cfg
+    rename: CodecEncCfg
+  - name: vpx_svc_parameters
+    rename: SvcParameters
+  - name: vpx_image
+    rename: Image
+  - name: img_alloc_helper
+    rename: ImgAllocHelper
+  - name: vpx_img_alloc
+    rename: ImgAlloc
+  - name: vpx_img_wrap
+    rename: ImgWrap
+  - name: vpx_img_set_rect
+    rename: ImgSetRect
+  - name: vpx_img_flip
+    rename: ImgFlip
+  - name: vpx_img_free
+    rename: ImgFree
+  - name: vpx_image_rect_t
+    rename: ImageRect
+  - name: vpx_fixed_buf_t
+    rename: FixedBuf
+  - name: vpx_rational_t
+    rename: Rational
+  - name: vpx_svc_extra_cfg_t
+    rename: SvcExtraCfg
+  - name: vpx_codec_stream_info
+    rename: CodecStreamInfo
+  - name: vpx_codec_dec_cfg
+    rename: CodecDecCfg
+  - name: vpx_codec_dec_cfg_t
+    alias: true
+  - name: vpx_bit_depth
+    rename: BitDepth
+  - name: vpx_codec_caps_t
+    rename: CodecCaps
+  - name: vpx_codec_flags_t
+    rename: CodecFlags
+  - name: vpx_codec_iter_t
+    rename: CodecIter
+  - name: vpx_usec_timer
+    rename: VpxUsecTimer
+  - name: vpx_usec_timer_start
+    rename: VpxUsecTimerStart
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  - name: vpx_version.h
+    go: version
+  - name: vpx_config.h
+    go: config
+  - name: vpx/vp8.h
+    go: vp8.go
+  - name: vpx/vp8cx.h
+    go: vp8cx.go
+  - name: vpx/vp8dx.h
+    go: vp8dx.go
+  - name: vpx/vpx_codec.h
+    go: codec_h.go
+    skip:
+      - vpx_codec_iface
+      - vpx_codec_iface_t
+      - vpx_codec_priv
+  - name: vpx/vpx_decoder.h
+    go: decoder_h.go
+  - name: vpx/vpx_ext_ratectrl.h
+    go: ratectrl.go
+  - name: vpx/vpx_frame_buffer.h
+    go: buffer.go
+    replace:
+      - old: min_size
+        new: minSize
+  - name: vpx/vpx_image.h
+    go: image_h.go
+  - name: vpx/vpx_integer.h
+  - name: vpx/internal/vpx_codec_internal.h
+    go: codec_internal
+    skip:
+      - vpx_codec_alg_priv_t
+      - vpx_codec_alg_priv
+  - name: vpx/src/vpx_codec.c
+    go: codec.go
+  - name: vpx/src/vpx_decoder.c
+    go: decoder.go
+    skip:
+      - get_alg_priv
+    replace:
+      - old: 'Peek_si'
+        new: 'PeekSi'
+      - old: 'Get_si'
+        new: 'GetSi'
+      - old: 'Get_frame'
+        new: 'GetFrame'
+      - old: 'Set_fb_fn'
+        new: 'SetFbFn'
+  - name: vpx/vpx_encoder.h
+    go: encoder_h.go
+  - name: vpx/src/vpx_encoder.c
+    go: encoder.go
+    replace:
+      - old: 'Mr_get_mem_loc'
+        new: 'MrGetMemLoc'
+      - old: 'Cfg_map_count'
+        new: 'CfgMapCount'
+      - old: 'Cfg_maps'
+        new: 'CfgMaps'
+      - old: 'Get_cx_data'
+        new: 'GetCxData'
+      - old: 'Get_preview'
+        new: 'GetPreview'
+      - old: 'Get_glob_hdrs'
+        new: 'GetGlobHdrs'
+      - old: 'Cfg_set'
+        new: 'CfgSet'
+    skip:
+      - vpx_codec_pkt_list_get
+  - name: vpx/src/vpx_image.c
+    go: image.go
+  - name: vpx_mem/include/vpx_mem_intrnl.h
+    go: mem_intrnl_h.go
+  - name: vpx_test.go
+    content: |
+      package vpx
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include

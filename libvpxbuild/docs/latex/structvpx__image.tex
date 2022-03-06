@@ -1,0 +1,180 @@
+\hypertarget{structvpx__image}{}\doxysubsection{vpx\+\_\+image Struct Reference}
+\label{structvpx__image}\index{vpx\_image@{vpx\_image}}
+
+
+Image Descriptor.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+image.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}} \mbox{\hyperlink{structvpx__image_a1d734f8afa9200a21c2d9f6bcf8c04d8}{fmt}}
+\item 
+\mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\+\_\+color\+\_\+space\+\_\+t}} \mbox{\hyperlink{structvpx__image_a8fda4fb8430e4cede2a4ee7d28dd0a6c}{cs}}
+\item 
+\mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\+\_\+color\+\_\+range\+\_\+t}} \mbox{\hyperlink{structvpx__image_af451ddd9be4cf49958e253a2b8dd12a9}{range}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_ac7b7d569142f878155b28141653adcd6}{w}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_a9d1070804dfe08cd5becd68d597fee69}{h}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_aac11754e8f8e4fb9e7b3a721ce8be0f1}{bit\+\_\+depth}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_a806bf23143bf00a0b3fdbd6ba030c483}{d\+\_\+w}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_a31bc5f045d4f3c2b6bb0f57bb53078e7}{d\+\_\+h}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_a1fe4736c2554836d510589cdbbece76a}{r\+\_\+w}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_ad969a04e4a11749f3718ef5909db6da8}{r\+\_\+h}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_affaf210489dcefebd90b87fd5f12dc0b}{x\+\_\+chroma\+\_\+shift}}
+\item 
+unsigned int \mbox{\hyperlink{structvpx__image_a1e3d9b699d46ca32e3916d1ac635a4a2}{y\+\_\+chroma\+\_\+shift}}
+\item 
+unsigned char $\ast$ \mbox{\hyperlink{structvpx__image_ab6258308ba7a5f4a113348120e20e2ce}{planes}} \mbox{[}4\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__image_ac9c7b83e3eea44cb680956f90dc789cf}{stride}} \mbox{[}4\mbox{]}
+\item 
+int \mbox{\hyperlink{structvpx__image_a53a02fad822151eb8eeb2f64f195e1f6}{bps}}
+\item 
+\mbox{\Hypertarget{structvpx__image_a28ae6c046dfca87de4fca4e67cab563d}\label{structvpx__image_a28ae6c046dfca87de4fca4e67cab563d}} 
+void $\ast$ {\bfseries user\+\_\+priv}
+\begin{DoxyCompactList}\small\item\em The following member may be set by the application to associate data with this image. \end{DoxyCompactList}\item 
+unsigned char $\ast$ \mbox{\hyperlink{structvpx__image_a3c9b7a7a68e4a9665b47433a1e96d78b}{img\+\_\+data}}
+\item 
+int \mbox{\hyperlink{structvpx__image_a4d2c8d41b67f7d3f3114212a8d8afdce}{img\+\_\+data\+\_\+owner}}
+\item 
+int \mbox{\hyperlink{structvpx__image_a33e8c75d8efc5d4f389e8fc09283a4cc}{self\+\_\+allocd}}
+\item 
+void $\ast$ \mbox{\hyperlink{structvpx__image_a4b138b7d146dc75ef5d8947d421b0533}{fb\+\_\+priv}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Image Descriptor. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__image_a1d734f8afa9200a21c2d9f6bcf8c04d8}\label{structvpx__image_a1d734f8afa9200a21c2d9f6bcf8c04d8}} 
+\index{vpx\_image@{vpx\_image}!fmt@{fmt}}
+\index{fmt@{fmt}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{fmt}{fmt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vpx__image_8h_ad491e9c858d337700cca18afc8412545}{vpx\+\_\+img\+\_\+fmt\+\_\+t}} vpx\+\_\+image\+::fmt}
+
+Image Format \mbox{\Hypertarget{structvpx__image_a8fda4fb8430e4cede2a4ee7d28dd0a6c}\label{structvpx__image_a8fda4fb8430e4cede2a4ee7d28dd0a6c}} 
+\index{vpx\_image@{vpx\_image}!cs@{cs}}
+\index{cs@{cs}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{cs}{cs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vpx__image_8h_a85da5b654f2c6f6d6f0460e878612319}{vpx\+\_\+color\+\_\+space\+\_\+t}} vpx\+\_\+image\+::cs}
+
+Color Space \mbox{\Hypertarget{structvpx__image_af451ddd9be4cf49958e253a2b8dd12a9}\label{structvpx__image_af451ddd9be4cf49958e253a2b8dd12a9}} 
+\index{vpx\_image@{vpx\_image}!range@{range}}
+\index{range@{range}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{range}{range}}
+{\footnotesize\ttfamily \mbox{\hyperlink{vpx__image_8h_af5ad1e56d2358d280518c5112b252875}{vpx\+\_\+color\+\_\+range\+\_\+t}} vpx\+\_\+image\+::range}
+
+Color Range \mbox{\Hypertarget{structvpx__image_ac7b7d569142f878155b28141653adcd6}\label{structvpx__image_ac7b7d569142f878155b28141653adcd6}} 
+\index{vpx\_image@{vpx\_image}!w@{w}}
+\index{w@{w}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::w}
+
+Stored image width \mbox{\Hypertarget{structvpx__image_a9d1070804dfe08cd5becd68d597fee69}\label{structvpx__image_a9d1070804dfe08cd5becd68d597fee69}} 
+\index{vpx\_image@{vpx\_image}!h@{h}}
+\index{h@{h}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::h}
+
+Stored image height \mbox{\Hypertarget{structvpx__image_aac11754e8f8e4fb9e7b3a721ce8be0f1}\label{structvpx__image_aac11754e8f8e4fb9e7b3a721ce8be0f1}} 
+\index{vpx\_image@{vpx\_image}!bit\_depth@{bit\_depth}}
+\index{bit\_depth@{bit\_depth}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{bit\_depth}{bit\_depth}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::bit\+\_\+depth}
+
+Stored image bit-\/depth \mbox{\Hypertarget{structvpx__image_a806bf23143bf00a0b3fdbd6ba030c483}\label{structvpx__image_a806bf23143bf00a0b3fdbd6ba030c483}} 
+\index{vpx\_image@{vpx\_image}!d\_w@{d\_w}}
+\index{d\_w@{d\_w}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{d\_w}{d\_w}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::d\+\_\+w}
+
+Displayed image width \mbox{\Hypertarget{structvpx__image_a31bc5f045d4f3c2b6bb0f57bb53078e7}\label{structvpx__image_a31bc5f045d4f3c2b6bb0f57bb53078e7}} 
+\index{vpx\_image@{vpx\_image}!d\_h@{d\_h}}
+\index{d\_h@{d\_h}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{d\_h}{d\_h}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::d\+\_\+h}
+
+Displayed image height \mbox{\Hypertarget{structvpx__image_a1fe4736c2554836d510589cdbbece76a}\label{structvpx__image_a1fe4736c2554836d510589cdbbece76a}} 
+\index{vpx\_image@{vpx\_image}!r\_w@{r\_w}}
+\index{r\_w@{r\_w}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{r\_w}{r\_w}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::r\+\_\+w}
+
+Intended rendering image width \mbox{\Hypertarget{structvpx__image_ad969a04e4a11749f3718ef5909db6da8}\label{structvpx__image_ad969a04e4a11749f3718ef5909db6da8}} 
+\index{vpx\_image@{vpx\_image}!r\_h@{r\_h}}
+\index{r\_h@{r\_h}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{r\_h}{r\_h}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::r\+\_\+h}
+
+Intended rendering image height \mbox{\Hypertarget{structvpx__image_affaf210489dcefebd90b87fd5f12dc0b}\label{structvpx__image_affaf210489dcefebd90b87fd5f12dc0b}} 
+\index{vpx\_image@{vpx\_image}!x\_chroma\_shift@{x\_chroma\_shift}}
+\index{x\_chroma\_shift@{x\_chroma\_shift}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{x\_chroma\_shift}{x\_chroma\_shift}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::x\+\_\+chroma\+\_\+shift}
+
+subsampling order, X \mbox{\Hypertarget{structvpx__image_a1e3d9b699d46ca32e3916d1ac635a4a2}\label{structvpx__image_a1e3d9b699d46ca32e3916d1ac635a4a2}} 
+\index{vpx\_image@{vpx\_image}!y\_chroma\_shift@{y\_chroma\_shift}}
+\index{y\_chroma\_shift@{y\_chroma\_shift}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{y\_chroma\_shift}{y\_chroma\_shift}}
+{\footnotesize\ttfamily unsigned int vpx\+\_\+image\+::y\+\_\+chroma\+\_\+shift}
+
+subsampling order, Y \mbox{\Hypertarget{structvpx__image_ab6258308ba7a5f4a113348120e20e2ce}\label{structvpx__image_ab6258308ba7a5f4a113348120e20e2ce}} 
+\index{vpx\_image@{vpx\_image}!planes@{planes}}
+\index{planes@{planes}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{planes}{planes}}
+{\footnotesize\ttfamily unsigned char$\ast$ vpx\+\_\+image\+::planes\mbox{[}4\mbox{]}}
+
+pointer to the top left pixel for each plane \mbox{\Hypertarget{structvpx__image_ac9c7b83e3eea44cb680956f90dc789cf}\label{structvpx__image_ac9c7b83e3eea44cb680956f90dc789cf}} 
+\index{vpx\_image@{vpx\_image}!stride@{stride}}
+\index{stride@{stride}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{stride}{stride}}
+{\footnotesize\ttfamily int vpx\+\_\+image\+::stride\mbox{[}4\mbox{]}}
+
+stride between rows for each plane \mbox{\Hypertarget{structvpx__image_a53a02fad822151eb8eeb2f64f195e1f6}\label{structvpx__image_a53a02fad822151eb8eeb2f64f195e1f6}} 
+\index{vpx\_image@{vpx\_image}!bps@{bps}}
+\index{bps@{bps}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{bps}{bps}}
+{\footnotesize\ttfamily int vpx\+\_\+image\+::bps}
+
+bits per sample (for packed formats) \mbox{\Hypertarget{structvpx__image_a3c9b7a7a68e4a9665b47433a1e96d78b}\label{structvpx__image_a3c9b7a7a68e4a9665b47433a1e96d78b}} 
+\index{vpx\_image@{vpx\_image}!img\_data@{img\_data}}
+\index{img\_data@{img\_data}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{img\_data}{img\_data}}
+{\footnotesize\ttfamily unsigned char$\ast$ vpx\+\_\+image\+::img\+\_\+data}
+
+private \mbox{\Hypertarget{structvpx__image_a4d2c8d41b67f7d3f3114212a8d8afdce}\label{structvpx__image_a4d2c8d41b67f7d3f3114212a8d8afdce}} 
+\index{vpx\_image@{vpx\_image}!img\_data\_owner@{img\_data\_owner}}
+\index{img\_data\_owner@{img\_data\_owner}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{img\_data\_owner}{img\_data\_owner}}
+{\footnotesize\ttfamily int vpx\+\_\+image\+::img\+\_\+data\+\_\+owner}
+
+private \mbox{\Hypertarget{structvpx__image_a33e8c75d8efc5d4f389e8fc09283a4cc}\label{structvpx__image_a33e8c75d8efc5d4f389e8fc09283a4cc}} 
+\index{vpx\_image@{vpx\_image}!self\_allocd@{self\_allocd}}
+\index{self\_allocd@{self\_allocd}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{self\_allocd}{self\_allocd}}
+{\footnotesize\ttfamily int vpx\+\_\+image\+::self\+\_\+allocd}
+
+private \mbox{\Hypertarget{structvpx__image_a4b138b7d146dc75ef5d8947d421b0533}\label{structvpx__image_a4b138b7d146dc75ef5d8947d421b0533}} 
+\index{vpx\_image@{vpx\_image}!fb\_priv@{fb\_priv}}
+\index{fb\_priv@{fb\_priv}!vpx\_image@{vpx\_image}}
+\doxyparagraph{\texorpdfstring{fb\_priv}{fb\_priv}}
+{\footnotesize\ttfamily void$\ast$ vpx\+\_\+image\+::fb\+\_\+priv}
+
+Frame buffer data associated with the image. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vpx__image_8h}{vpx\+\_\+image.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,66 @@
+\hypertarget{vp8dx_8h}{}\doxysubsection{vpx/vp8dx.h File Reference}
+\label{vp8dx_8h}\index{vpx/vp8dx.h@{vpx/vp8dx.h}}
+
+
+Provides definitions for using VP8 or VP9 within the vpx Decoder interface.  
+
+
+{\ttfamily \#include \char`\"{}./vp8.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__decrypt__init}{vpx\+\_\+decrypt\+\_\+init}}
+\begin{DoxyCompactList}\small\item\em Structure to hold decryption state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__vp8__decoder_ga10cdcbbc04aa831558688f4a4149fcbd}{vpx\+\_\+decrypt\+\_\+cb}}) (void $\ast$decrypt\+\_\+state, const unsigned char $\ast$input, unsigned char $\ast$output, int count)
+\item 
+typedef struct \mbox{\hyperlink{structvpx__decrypt__init}{vpx\+\_\+decrypt\+\_\+init}} \mbox{\hyperlink{group__vp8__decoder_gabd2a3fe4fc3cfe2afa78f0aaf9c9c6a0}{vpx\+\_\+decrypt\+\_\+init}}
+\begin{DoxyCompactList}\small\item\em Structure to hold decryption state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__vp8__decoder_gaf9dd3f2e6d1412106ee791af768e57c1}{vp8\+\_\+dec\+\_\+control\+\_\+id}} \{ \newline
+\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0b6055c47120f28e3de959960ee0a02b}{VP8\+D\+\_\+\+GET\+\_\+\+LAST\+\_\+\+REF\+\_\+\+UPDATES}} = VP8\+\_\+\+DECODER\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+START
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1af9f82d9e7930e6a2244b30b031b79599}{VP8\+D\+\_\+\+GET\+\_\+\+FRAME\+\_\+\+CORRUPTED}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aa57d870ac8cf395fdc86da4a8939b10b}{VP8\+D\+\_\+\+GET\+\_\+\+LAST\+\_\+\+REF\+\_\+\+USED}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7fbdffa6018163d0ecf12b50276beba0}{VPXD\+\_\+\+SET\+\_\+\+DECRYPTOR}}
+, \newline
+{\bfseries VP8\+D\+\_\+\+SET\+\_\+\+DECRYPTOR} = VPXD\+\_\+\+SET\+\_\+\+DECRYPTOR
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a7a8d537472fc7561bd86c7395994ba37}{VP9\+D\+\_\+\+GET\+\_\+\+FRAME\+\_\+\+SIZE}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1aec6eaaa866488cfe1d0cb83cab302ebd}{VP9\+D\+\_\+\+GET\+\_\+\+DISPLAY\+\_\+\+SIZE}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a0c0d6174e3dd0ae615913d940a2bbdeb}{VP9\+D\+\_\+\+GET\+\_\+\+BIT\+\_\+\+DEPTH}}
+, \newline
+\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5a045a5e858c7641aea8987fed5e24b4}{VP9\+\_\+\+SET\+\_\+\+BYTE\+\_\+\+ALIGNMENT}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a1c4fc468749a2ef88e148f09210ce73c}{VP9\+\_\+\+INVERT\+\_\+\+TILE\+\_\+\+DECODE\+\_\+\+ORDER}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a999ed127a9ddb4be322a5a93eaed1233}{VP9\+\_\+\+SET\+\_\+\+SKIP\+\_\+\+LOOP\+\_\+\+FILTER}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1ab1998be4a82605b6ce2a931210878916}{VP9\+\_\+\+DECODE\+\_\+\+SVC\+\_\+\+SPATIAL\+\_\+\+LAYER}}
+, \newline
+\mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a96ef4253540f901d6bd46afeef3d41c3}{VPXD\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a387b0251963942c5589c830a77dfa46b}{VP9\+D\+\_\+\+SET\+\_\+\+ROW\+\_\+\+MT}}
+, \mbox{\hyperlink{group__vp8__decoder_ggaf9dd3f2e6d1412106ee791af768e57c1a5d6eacaeb7072d962bdb16acb1eeca61}{VP9\+D\+\_\+\+SET\+\_\+\+LOOP\+\_\+\+FILTER\+\_\+\+OPT}}
+, {\bfseries VP8\+\_\+\+DECODER\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+MAX}
+ \}
+\begin{DoxyCompactList}\small\item\em VP8 decoder control functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP8}
+\label{_amgrp0b829b38ff2e659173b35cd78e0735bd}%
+This interface provides the capability to decode VP8 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+dx\+\_\+algo}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+dx} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP9}
+\label{_amgrp9a787aae8f239d3b1cb9aeff16fb31ef}%
+This interface provides the capability to decode VP9 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+dx\+\_\+algo}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+dx} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Provides definitions for using VP8 or VP9 within the vpx Decoder interface. 
+

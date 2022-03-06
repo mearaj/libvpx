@@ -1,0 +1,3 @@
+/*!\page example_vpx_temporal_svc_encoder vpx_temporal_svc_encoder
+   \includelineno vpx_temporal_svc_encoder.c
+*/

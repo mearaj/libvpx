@@ -1,0 +1,61 @@
+\hypertarget{vp8_8h}{}\doxysubsection{vpx/vp8.h File Reference}
+\label{vp8_8h}\index{vpx/vp8.h@{vpx/vp8.h}}
+
+
+Provides controls common to both the VP8 encoder and decoder.  
+
+
+{\ttfamily \#include \char`\"{}./vpx\+\_\+codec.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./vpx\+\_\+image.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\+\_\+postproc\+\_\+cfg}}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__ref__frame}{vpx\+\_\+ref\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em reference frame data struct \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvp9__ref__frame}{vp9\+\_\+ref\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em VP9 specific reference frame data struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structvp8__postproc__cfg}{vp8\+\_\+postproc\+\_\+cfg}} \mbox{\hyperlink{group__vp8_ga63451227ec446b9f19a01295df0149ed}{vp8\+\_\+postproc\+\_\+cfg\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}} \mbox{\hyperlink{group__vp8_ga92c261efaccb0c421c4ea5612173e2be}{vpx\+\_\+ref\+\_\+frame\+\_\+type\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em reference frame type \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__ref__frame}{vpx\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga9daac046e0ba0ec4de4f50a0e7743287}{vpx\+\_\+ref\+\_\+frame\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em reference frame data struct \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvp9__ref__frame}{vp9\+\_\+ref\+\_\+frame}} \mbox{\hyperlink{group__vp8_ga7d1ce2fcd41f15e2f6feb2a1296151fa}{vp9\+\_\+ref\+\_\+frame\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em VP9 specific reference frame data struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__vp8_ga8cadbc8e0af3da96ef7a2dbd4ed06599}{vp8\+\_\+com\+\_\+control\+\_\+id}} \{ \newline
+\mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a7abc38d739a5ef49c36d9b2cd88e64a6}{VP8\+\_\+\+SET\+\_\+\+REFERENCE}} = 1
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a5375b3ea3a4867d50daee6f5971c7470}{VP8\+\_\+\+COPY\+\_\+\+REFERENCE}} = 2
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a43e85c68bc1c1473f4a94b005a59482c}{VP8\+\_\+\+SET\+\_\+\+POSTPROC}} = 3
+, \mbox{\hyperlink{group__vp8_gga8cadbc8e0af3da96ef7a2dbd4ed06599a91e44472b21c720a9a7d087c7226d083}{VP9\+\_\+\+GET\+\_\+\+REFERENCE}} = 128
+, \newline
+{\bfseries VP8\+\_\+\+COMMON\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+MAX}
+, {\bfseries VP8\+\_\+\+DECODER\+\_\+\+CTRL\+\_\+\+ID\+\_\+\+START} = 256
+ \}
+\begin{DoxyCompactList}\small\item\em Control functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8_ga99557e20eb37826e6792cd8819121770}{vp8\+\_\+postproc\+\_\+level}} \{ \newline
+{\bfseries VP8\+\_\+\+NOFILTERING} = 0
+, {\bfseries VP8\+\_\+\+DEBLOCK} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 0
+, {\bfseries VP8\+\_\+\+DEMACROBLOCK} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 1
+, {\bfseries VP8\+\_\+\+ADDNOISE} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 2
+, \newline
+{\bfseries VP8\+\_\+\+MFQE} = 1 \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} 3
+ \}
+\begin{DoxyCompactList}\small\item\em post process flags \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8_gad8ab72d8a178a68339dad2987358c331}{vpx\+\_\+ref\+\_\+frame\+\_\+type}} \{ {\bfseries VP8\+\_\+\+LAST\+\_\+\+FRAME} = 1
+, {\bfseries VP8\+\_\+\+GOLD\+\_\+\+FRAME} = 2
+, {\bfseries VP8\+\_\+\+ALTR\+\_\+\+FRAME} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em reference frame type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Provides controls common to both the VP8 encoder and decoder. 
+

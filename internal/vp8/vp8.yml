@@ -1,0 +1,692 @@
+root: ../../libvpxsrc
+out: .
+package: vp8
+int_size: 8
+ptr_size: 8
+define:
+  - name: PRId64
+    value: '"ll" "d"'
+  - name: uint8_t
+    value: uint8
+  - name: int64_t
+    value: int64
+  - name: uint32_t
+    value: uint32
+  - name: int8_t
+    value: int8
+  - name: int16_t
+    value: int16
+use_go_int: true
+replace:
+  - old: YV12_BUFFER_CONFIG
+    new: scale.Yv12BufferConfig
+  - old: vpx_atomic_int
+    new: util.VpxAtomicInt
+  - regexp: '"vpx"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/vpx"
+
+  - regexp: '"scale"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/scale"
+
+  - regexp: '"mem"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/mem"
+
+  - regexp: '"dsp"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/dsp"
+
+  - regexp: '"ports"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/ports"
+
+  - regexp: '"util"\n'
+    new: |
+      "github.com/mearaj/libvpx/internal/util"
+
+  - old: VP8BORDERINPIXELS
+    new: scale.VP8BORDERINPIXELS
+  - regexp: '__assert_fail.*'
+    new: |
+      // Todo:
+      log.Fatal("error")
+  - old: size_t
+    new: uint64
+
+idents:
+  - name: vpx_codec_stream_info_t
+    rename: vpx.CodecStreamInfo
+  - name: vpx_codec_stream_info
+    rename: vpx.CodecStreamInfo
+  - name: vp8_stream_info_t
+    alias: true
+  - name: mem_seg_id_t
+    rename: MemSegId
+  - name: vpx_codec_priv_t
+    rename: vpx.CodecPriv
+  - name: vpx_codec_dec_cfg_t
+    rename: vpx.CodecDecCfg
+  - name: vpx_codec_dec_cfg
+    rename: vpx.CodecDecCfg
+  - name: vp8_postproc_cfg_t
+    rename: vpx.Vp8PostProcCfg
+  - name: vpx_decrypt_cb
+    rename: vpx.DecryptCb
+  - name: vpx_image_t
+    rename: vpx.Image
+  - name: vpx_codec_ctx_t
+    rename: vpx.CodecCtx
+  - name: vpx_codec_alg_priv
+    rename: CodecAlgPvt
+  - name: vpx_codec_alg_priv_t
+    alias: true
+  - name: vpx_codec_priv_enc_mr_cfg_t
+    rename: vpx.CodecPvtEncMrCfg
+  - name: vpx_codec_err_t
+    rename: vpx.CodecErr
+  - name: VPX_CODEC_UNSUP_BITSTREAM
+    rename: vpx.VPX_CODEC_UNSUP_BITSTREAM
+  - name: VPX_CODEC_CORRUPT_FRAME
+    rename: vpx.VPX_CODEC_CORRUPT_FRAME
+  - name: VPX_IMG_FMT_I420
+    rename: vpx.VPX_IMG_FMT_I420
+  - name: vpx_internal_error
+    rename: vpx.InternalError
+  - name: vpx_internal_error_info
+    rename: vpx.InternalErrorInfo
+  - name: vpx_img_fmt_t
+    rename: vpx.ImgFmt
+  - name: VPX_CODEC_INVALID_PARAM
+    rename: vpx.VPX_CODEC_INVALID_PARAM
+  - name: VPX_CODEC_MEM_ERROR
+    rename: vpx.VPX_CODEC_MEM_ERROR
+  - name: vpx_codec_iter_t
+    rename: vpx.CodecIter
+  - name: vpx_ref_frame_t
+    rename: vpx.RefFrame
+  - name: vpx_scale_rtcd
+    rename: scale.ScaleRtcd
+  - name: vpx_codec_ctrl_fn_map_t
+    rename: vpx.FnMap
+  - name: VP8_COMMON
+    alias: true
+  - name: vpx_codec_iface_t
+    rename: vpx.CodecIFace
+  - name: vpx_codec_vp8_dx
+    rename: CodecDxFn
+  - name: vpx_codec_caps_t
+    rename: vpx.CodecCaps
+  - name: vpx_codec_vp8_dx_algo
+    rename: vp8DxAlgo
+  - name: vpx_calloc
+    rename: mem.VpxCalloc
+  - name: vpx_malloc
+    rename: mem.VpxMalloc
+  - name: vpx_free
+    rename: mem.VpxFree
+  - name: vpx_dsp_rtcd
+    rename: dsp.DspRtcd
+  - name: vpx_clear_system_state
+    rename: ports.ClearSystemState
+  - name: vp8_decoder_create_threads
+    rename: DecoderCreateThreads
+  - name: vpx_atomic_load_acquire
+    rename: util.AtomicLoadAcquire
+  - name: vpx_ref_frame_type
+    rename: vpx.VpxRefFrameType
+  - name: vpx_decrypt_init
+    rename: vpx.DecryptInit
+  - name: vp8_ctf_maps
+    rename: vp8CtfMaps
+  - name: vpx_codec_dec_iface
+    rename: vpx.CodecDecIFace
+  - name: vpx_codec_enc_iface
+    rename: vpx.CodecEncIFace
+  - name: update_error_state
+    rename: UpdateErrorState
+  - name: vp8_ppflags_t
+    rename: Vp8PpFlags
+  - name: vp8_yv12_de_alloc_frame_buffer
+    rename: scale.Vp8Yv12DeAllocFrameBuffer
+  - name: vp8_yv12_alloc_frame_buffer
+    rename: scale.Vp8Yv12AllocFrameBuffer
+  - name: vpx_memalign
+    rename: mem.VpxMemAlign
+  - name: postproc_state
+    rename: PostProcState
+  - name: once
+    rename: ports.Once
+  - name: vp8_rtcd
+    rename: Vp8Rtcd
+  - name: vp8_yv12_copy_frame_c
+    rename: scale.Vp8Yv12CopyFrameC
+  - name: vpx_atomic_store_release
+    rename: util.VpxAtomicStoreRelease
+  - name: macroblockd
+    rename: MacroBlockd
+  - name: MACROBLOCKD
+    alias: true
+  - name: modeinfo
+    rename: ModeInfo
+  - name: MODE_INFO
+    alias: true
+  - name: yv12_buffer_config
+    rename: scale.Yv12BufferConfig
+  - name: vp8_yv12_extend_frame_borders_c
+    rename: scale.Vp8Yv12ExtendFrameBorders
+  - name: blockd
+    rename: Blockd
+  - name: BLOCKD
+    alias: true
+  - name: vp8bc_index_t
+    alias: true
+  - name: vp8_prob
+    rename: uint8
+  - name: vp8_tree
+    rename: '[]int8'
+  - name: sumvfref_t
+    rename: int
+  - name: vp8_tree_index
+    alias: true
+  - name: MV_REFERENCE_FRAME
+    rename: int
+  - name: MB_LVL_FEATURES
+    rename: int
+  - name: ENTROPY_CONTEXT
+    rename: int8
+  - name: FRAME_TYPE
+    rename: int
+  - name: MB_PREDICTION_MODE
+    rename: int
+  - name: VPX_SCALING
+    rename: int
+  - name: END_USAGE
+    rename: int
+  - name: MODE
+    rename: int
+  - name: FRAMETYPE_FLAGS
+    rename: int
+  - name: vpx_rational
+    rename: vpx.Rational
+  - name: vpx_fixed_buf_t
+    rename: vpx.FixedBuf
+  - name: vpx_codec_pkt_list
+    rename: vpx.CodecPktList
+  - name: vp8e_tuning
+    rename: vpx.Vp8eTuning
+  - name: vpx_skin_pixel
+    rename: dsp.VpxSkinPixel
+  - name: vpx_setup_noise
+    rename: dsp.VpxSetupNoise
+  - name: vpx_plane_add_noise_sse2
+    rename: dsp.VpxPlaneAddNoiseC
+  - name: vpx_post_proc_down_and_across_mb_row_sse2
+    rename: dsp.VpxPostProcDownAndAcrossMbRowC
+  - name: vpx_mbpost_proc_across_ip_sse2
+    rename: dsp.VpxMbPostProcAcrossIpC
+  - name: vpx_mbpost_proc_down_sse2
+    rename: dsp.VpxMbPostProcDownC
+  - name: vp8_copy_mem8x4_mmx
+    rename: vp8_copy_mem8x4_c
+  - name: vpx_v_predictor_16x16_sse2
+    rename: dsp.VpxVPredictor16x16C
+  - name: vpx_h_predictor_16x16_sse2
+    rename: dsp.VpxHPredictor16x16C
+  - name: vpx_tm_predictor_16x16_sse2
+    rename: dsp.VpxTmPredictor16x16C
+  - name: vpx_dc_128_predictor_16x16_sse2
+    rename: dsp.VpxDc128Predictor16x16C
+  - name: vpx_dc_top_predictor_16x16_sse2
+    rename: dsp.VpxDcTopPredictor16x16C
+  - name: vpx_dc_left_predictor_16x16_sse2
+    rename: dsp.VpxDcLeftPredictor16x16C
+  - name: vpx_dc_predictor_16x16_sse2
+    rename: dsp.VpxDcPredictor16x16C
+  - name: vpx_v_predictor_8x8_sse2
+    rename: dsp.VpxVPredictor8x8C
+  - name: vpx_h_predictor_8x8_sse2
+    rename: dsp.VpxHPredictor8x8C
+  - name: vpx_tm_predictor_8x8_sse2
+    rename: dsp.VpxTmPredictor8x8C
+  - name: vpx_dc_128_predictor_8x8_sse2
+    rename: dsp.VpxDc128Predictor8x8C
+  - name: vpx_dc_top_predictor_8x8_sse2
+    rename: dsp.VpxDcTopPredictor8x8C
+  - name: vpx_dc_left_predictor_8x8_sse2
+    rename: dsp.VpxDcLeftPredictor8x8C
+  - name: vpx_dc_predictor_8x8_sse2
+    rename: dsp.VpxDcPredictor8x8C
+  - name: vpx_dc_predictor_4x4_sse2
+    rename: dsp.VpxDcPredictor4x4C
+  - name: vpx_tm_predictor_4x4_sse2
+    rename: dsp.VpxTmPredictor4x4C
+  - name: vpx_ve_predictor_4x4_c
+    rename: dsp.VpxVePredictor4x4C
+  - name: vpx_he_predictor_4x4_c
+    rename: dsp.VpxHePredictor4x4C
+  - name: vpx_d45e_predictor_4x4_c
+    rename: dsp.VpxD45ePredictor4x4C
+  - name: vpx_d135_predictor_4x4_c
+    rename: dsp.VpxD135Predictor4x4C
+  - name: vpx_d117_predictor_4x4_c
+    rename: dsp.VpxD117Predictor4x4C
+  - name: vpx_d63e_predictor_4x4_c
+    rename: dsp.VpxD63ePredictor4x4C
+  - name: vpx_d153_predictor_4x4
+    rename: dsp.VpxD153Predictor4x4C
+  - name: vpx_d207_predictor_4x4_sse2
+    rename: dsp.VpxD207Predictor4x4C
+  - name: VP8_BD_VALUE
+    rename: uint64
+  - name: filter_by_weight
+    rename: FilterByWeight
+  - name: vp8_filter_by_weight4x4_c
+    rename: Vp8FilterByWeight4x4C
+  - name: vp8_loop_filter_simple_horizontal_edge_c
+    rename: Vp8LoopFilterSimpleHorizontalEdgeC
+  - name: vp8_loop_filter_simple_horizontal_edge_sse2
+    rename: Vp8LoopFilterSimpleHorizontalEdgeC
+  - name: vp8_loop_filter_simple_vertical_edge_c
+    rename: Vp8LoopFilterSimpleVerticalEdgeC
+  - name: vp8_loop_filter_simple_vertical_edge_sse2
+    rename: Vp8LoopFilterSimpleVerticalEdgeC
+  - name: vp8_short_inv_walsh4x4_c
+    rename: Vp8ShortInvWalsh4x4C
+  - name: vp8_short_inv_walsh4x4_sse2
+    rename: Vp8ShortInvWalsh4x4C
+  - name: vp8_dc_only_idct_add_c
+    rename: Vp8DcOnlyIdctAddC
+  - name: vp8_dc_only_idct_add_mmx
+    rename: Vp8DcOnlyIdctAddC
+  - name: vp8_dequant_idct_add_c
+    rename: Vp8DequantIdctAddC
+  - name: vp8_dequant_idct_add_mmx
+    rename: Vp8DequantIdctAddC
+  - name: vp8_sixtap_predict4x4_c
+    rename: Vp8SixtapPredict4x4C
+  - name: vp8_sixtap_predict4x4
+    rename: Vp8SixtapPredict4x4C
+  - name: vp8_sixtap_predict8x4_c
+    rename: Vp8SixtapPredict8x4C
+  - name: vp8_sixtap_predict8x4
+    rename: Vp8SixtapPredict8x4C
+  - name: vp8_sixtap_predict8x8_c
+    rename: Vp8SixtapPredict8x8C
+  - name: vp8_sixtap_predict8x8
+    rename: Vp8SixtapPredict8x8C
+  - name: vp8_sixtap_predict16x16_c
+    rename: Vp8SixtapPredict16x16C
+  - name: vp8_sixtap_predict16x16
+    rename: Vp8SixtapPredict16x16C
+  - name: vp8_bilinear_predict4x4_c
+    rename: Vp8BilinearPredict4x4C
+  - name: vp8_bilinear_predict4x4_sse2
+    rename: Vp8BilinearPredict4x4C
+  - name: vp8_bilinear_predict8x4_c
+    rename: Vp8BilinearPredict8x4C
+  - name: vp8_bilinear_predict8x4_sse2
+    rename: Vp8BilinearPredict8x4C
+  - name: vp8_bilinear_predict8x8_c
+    rename: Vp8BilinearPredict8x8C
+  - name: vp8_bilinear_predict8x8
+    rename: Vp8BilinearPredict8x8C
+  - name: vp8_bilinear_predict16x16_c
+    rename: Vp8BilinearPredict16x16C
+  - name: vp8_bilinear_predict16x16
+    rename: Vp8BilinearPredict16x16C
+  - name: vp8_filter_by_weight16x16_c
+    rename: Vp8FilterByWeight16x16C
+  - name: vp8_filter_by_weight16x16_sse2
+    rename: Vp8FilterByWeight16x16C
+  - name: vp8_filter_by_weight8x8_c
+    rename: Vp8FilterByWeight8x8C
+  - name: vp8_filter_by_weight8x8_sse2
+    rename: Vp8FilterByWeight8x8C
+  - name: vpx_variance16x16
+    rename: dsp.VpxVariance16x16C
+  - name: vpx_variance8x8_sse2
+    rename: dsp.VpxVariance8x8C
+  - name: vpx_variance4x4_sse2
+    rename: dsp.VpxVariance4x4C
+  - name: vp8_copy_mem16x16_c
+    rename: Vp8CopyMem16x16C
+  - name: vp8_copy_mem16x16_sse2
+    rename: Vp8CopyMem16x16C
+  - name: vp8_copy_mem8x8_c
+    rename: Vp8CopyMem8x8C
+  - name: vp8_copy_mem8x8_sse2
+    rename: Vp8CopyMem8x8C
+  - name: vp8_copy_mem8x8_mmx
+    rename: Vp8CopyMem8x8C
+
+#  - name: c_bool_coder_spec
+#    alias: true
+#  - name: c_bool_writer
+#    alias: true
+#  - name: c_bool_reader
+#    alias: true
+
+# List of files to convert. Supports wildcards (*.c).
+files:
+  #  - name: vp8/common/x86/bilinear_filter_sse2.c
+  #    go: com_bilinear_filter_sse2.go
+  - name: vp8/common/x86/idct_blk_mmx.c
+    go: com_idct_blk_mmx.go
+  - name: vp8/common/x86/idct_blk_sse2.c
+    go: com_idct_blk_sse2.go
+  - name: vp8/common/x86/loopfilter_x86.c
+    go: com_loopfilter.go
+  #  - name: vp8/common/x86/vp8_asm_stubs.c
+  #    go: com_vp8_asm_stubs.go
+  - name: vp8/common/alloccommon.c
+    go: com_alloc.go
+  - name: vp8/common/blockd.c
+    go: com_blockd.go
+    skip:
+      - MV_REFERENCE_FRAME
+      - MB_LVL_FEATURES
+      - ENTROPY_CONTEXT
+      - FRAME_TYPE
+      - MB_PREDICTION_MODE
+  - name: vp8/common/common.h
+    go: com_common_h.go
+  - name: vp8/common/context.c
+    go: com_context.go
+  - name: vp8/common/dequantize.c
+    go: com_dequantize.go
+  - name: vp8/common/entropy.c
+    go: com_entropy.go
+  - name: vp8/common/entropymode.c
+    go: com_entropymode.go
+    skip:
+      - sumvfref_t
+      - vp8_tree
+      - sub_mv_ref_prob # fixed n defined in hack.go
+      - vp8_sub_mv_ref_prob2 # fixed n defined in hack.go
+      - vp8_mbsplits # fixed n defined in hack.go
+      - vp8_mbsplit_count # fixed n defined in hack.go
+      - vp8_mbsplit_probs # fixed n defined in hack.go
+      - vp8_bmode_tree # fixed n defined in hack.go
+      - vp8_ymode_tree # fixed n defined in hack.go
+      - vp8_kf_ymode_tree # fixed n defined in hack.go
+      - vp8_uv_mode_tree # fixed n defined in hack.go
+      - vp8_mbsplit_tree # fixed n defined in hack.go
+      - vp8_mv_ref_tree # fixed n defined in hack.go
+      - vp8_sub_mv_ref_tree # fixed n defined in hack.go
+      - vp8_small_mvtree # fixed n defined in hack.go
+  - name: vp8/common/entropymv.c
+    go: com_entropymv.go
+    replace:
+      - old: 'mv_max       uint64 = 1023'
+        new: 'mv_max        = 1023'
+      - old: 'MVvals       uint64 = uint64((mv_max * 2) + 1)'
+        new: 'MVvals        = (mv_max * 2) + 1'
+      - old: 'mvfp_max     uint64 = math.MaxUint8'
+        new: 'mvfp_max      = math.MaxUint8'
+      - old: 'MVfpvals     uint64 = uint64((mvfp_max * 2) + 1)'
+        new: 'MVfpvals      = (mvfp_max * 2) + 1'
+      - old: 'mvlong_width uint64 = 10'
+        new: 'mvlong_width  = 10'
+      - old: 'mvnum_short  uint64 = 8'
+        new: 'mvnum_short   = 8'
+      - old: 'mvpis_short  uint64 = 0'
+        new: 'mvpis_short   = 0'
+      - old: 'MVPsign      uint64 = 1'
+        new: 'MVPsign       = 1'
+      - old: 'MVPshort     uint64 = 2'
+        new: 'MVPshort      = 2'
+      - old: 'MVPbits      uint64 = uint64(MVPshort + mvnum_short - 1)'
+        new: 'MVPbits       = MVPshort + mvnum_short - 1'
+      - old: 'MVPcount     uint64 = uint64(MVPbits + mvlong_width)'
+        new: 'MVPcount      = MVPbits + mvlong_width'
+  - name: vp8/common/extend.c
+    go: com_extend.go
+  - name: vp8/common/filter.c
+    go: com_filter.go
+  - name: vp8/common/findnearmv.c
+    go: com_findnearmv.go
+    replace:
+      - regexp: 'switch cur_mb.Mbmi.Mode'
+        new: 'switch int(cur_mb.Mbmi.Mode)'
+      - old: 'near_mv_ref_cnts[CNT_SPLITMV] = int(libc.BoolToInt((int(above.Mbmi.Mode) == SPLITMV)+(int(left.Mbmi.Mode) == SPLITMV)))*2 + int(libc.BoolToInt(int(aboveleft.Mbmi.Mode) == SPLITMV))'
+        new: 'near_mv_ref_cnts[CNT_SPLITMV] = int(libc.BoolToInt(int(above.Mbmi.Mode) == int(SPLITMV)) +libc.BoolToInt(int(left.Mbmi.Mode) == SPLITMV))*2 + int(libc.BoolToInt(int(aboveleft.Mbmi.Mode) == SPLITMV))'
+      - old: '[sign_bias == 0]'
+        new: '[libc.BoolToInt(sign_bias == 0)]'
+  - name: vp8/common/header.h
+    go: com_header_h.go
+  - name: vp8/common/idct_blk.c
+    go: com_idct_blk.go
+  - name: vp8/common/idctllm.c
+    go: com_idctllm.go
+  - name: vp8/common/invtrans.h
+    go: com_invtrans_h.go
+    replace:
+      - old: '= SPLITMV'
+        new: '= int(SPLITMV)'
+  - name: vp8/common/loopfilter.h
+    go: com_loopfilter_h.go
+  - name: vp8/common/loopfilter_filters.c
+    go: com_loopfilter_filters.go
+  - name: vp8/common/mbpitch.c
+    go: com_mbpitch.go
+  - name: vp8/common/mfqe.c
+    go: com_mfqe.go
+    replace:
+      - old: 'udp += (*uint8)(unsafe.Pointer(uintptr(uvd_stride)))'
+        new: 'udp = (*uint8)(unsafe.Add(unsafe.Pointer(udp), uintptr(uvd_stride)))'
+      - old: 'vdp += (*uint8)(unsafe.Pointer(uintptr(uvd_stride)))'
+        new: 'vdp = (*uint8)(unsafe.Add(unsafe.Pointer(udp), uintptr(uvd_stride)))'
+      - old: 'vdp += (*uint8)(unsafe.Pointer(uintptr(dest.Uv_stride)))'
+        new: 'vdp = (*uint8)(unsafe.Add(unsafe.Pointer(vdp), uintptr(dest.Uv_stride)))'
+      - old: 'act       uint'
+        new: 'act       uint32'
+      - old: 'actd      uint'
+        new: 'actd      uint32'
+      - old: 'sad       uint'
+        new: 'sad       uint32'
+      - old: 'usad      uint'
+        new: 'usad      uint32'
+      - old: 'vsad      uint'
+        new: 'vsad      uint32'
+      - old: 'sse       uint'
+        new: 'sse       uint32'
+      - old: 'thr       uint'
+        new: 'thr       uint32'
+      - old: 'thrsq     uint'
+        new: 'thrsq     uint32'
+      - old: 'actrisk   uint'
+        new: 'actrisk   uint32'
+      - old: 'uint(libc.BoolToInt(actd > act*5))'
+        new: 'uint32(libc.BoolToInt(actd > act*5))'
+      - old: 'uint(qdiff >> 4)'
+        new: 'uint32(qdiff >> 4)'
+      - old: 'return actd'
+        new: 'return uint(actd)'
+      - old: 'int_sqrt(sad)'
+        new: 'uint32(int_sqrt(uint(sad)))'
+  - name: vp8/common/modecont.c
+    go: com_modecont.go
+  - name: vp8/common/mv.h
+    go: com_mv_h.go
+  - name: vp8/common/onyx.h
+    go: com_onyx_h.go
+    skip:
+      - VPX_SCALING
+      - END_USAGE
+      - MODE
+      - FRAMETYPE_FLAGS
+  - name: vp8/common/onyxc_int.h
+    go: com_onyxc_int_h.go
+    replace:
+      - old: 'const MAXQ uint8 = math.MaxInt8'
+        new: 'const MAXQ = math.MaxInt8'
+  - name: vp8/common/onyxd.h
+    go: com_onyxd_h.go
+  #  - name: vp8/common/postproc.h
+  #    go: com_postproc_h.go
+  - name: vp8/common/postproc.c
+    go: com_postproc.go
+  - name: vp8/common/ppflags.h
+    go: com_ppflags_h.go
+    replace:
+      - old: uint64
+  - name: vp8/common/quant_common.c
+    go: com_quant_common.go
+  - name: vp8/common/reconinter.c
+    go: reconinter.go
+  - name: vp8/common/reconintra.c
+    go: com_reconintra.go
+  - name: vp8/common/reconintra4x4.c
+    go: com_reconintra4x4.go
+    skip:
+      - intra_pred_fn
+    idents:
+      - name: pred
+        rename: predalt
+  - name: vp8/common/rtcd.c
+    go: com_rtcd.go
+    replace:
+      - old: setup_rtcd_internal
+        new: SetupRtcdInternal
+  - name: vp8/common/setupintrarecon.c
+    go: com_setupintrarecon.go
+  - name: vp8/common/swapyv12buffer.c
+    go: com_swapyv12buffer.go
+  - name: vp8/common/systemdependent.h
+    go: com_systemdependent_h.go
+  - name: vp8/common/treecoder.h
+    go: com_treecoder_h.go
+    replace:
+      - old: 'ref = INTRA_FRAME'
+        new: 'ref = int(INTRA_FRAME)'
+      - old: 'ref < MAX_REF_FRAMES'
+        new: 'ref < int(MAX_REF_FRAMES)'
+      - old: 'skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != B_PRED && int(mode_info_context.Mbmi.Mode) != SPLITMV && mode_info_context.Mbmi.Mb_skip_coeff != 0))'
+        new: 'skip_lf    int = int(libc.BoolToInt(int(mode_info_context.Mbmi.Mode) != int(B_PRED) && int(mode_info_context.Mbmi.Mode) != int(SPLITMV) && mode_info_context.Mbmi.Mb_skip_coeff !=0))'
+    skip:
+      - vp8_prob
+      - vp8_tree
+  - name: vp8/common/vp8_loopfilter.c
+    go: com_vp8_loopfilter.go
+  - name: vp8/common/vp8_skin_detection.c
+    go: com_vp8_skin_detection.go
+    replace:
+      - old: 's += (*uint8)(unsafe.Pointer(uintptr(p)))'
+        new: 's = (*uint8)(unsafe.Add(unsafe.Pointer(s), uintptr(p)))'
+  - name: vp8/decoder/dboolhuff.c
+    go: dec_dboolhuff.go
+    skip:
+      - BOOL_DECODER
+      - VP8_BD_VALUE
+    idents:
+      - name: size_t
+        alias: true
+  - name: vp8/decoder/decodeframe.c
+    go: dec_decode_frame
+    replace:
+      - old: 'FILE'
+        new: 'stdio.File'
+  - name: vp8/decoder/decodemv.c
+    go: dec_decodemv.go
+    replace:
+      - old: 'cnt[CNT_NEAREST] += int(libc.BoolToInt((cnt[CNT_SPLITMV] > 0) & (nmv.As_int == near_mvs[CNT_NEAREST].As_int)))'
+        new: 'cnt[CNT_NEAREST] += int(libc.BoolToInt(cnt[CNT_SPLITMV] > 0) & libc.BoolToInt (nmv.As_int == near_mvs[CNT_NEAREST].As_int))'
+      - old: 'cnt[CNT_SPLITMV] = int(libc.BoolToInt((int(above.Mbmi.Mode) == SPLITMV)+(int(left.Mbmi.Mode) == SPLITMV)))*2 + int(libc.BoolToInt(int(aboveleft.Mbmi.Mode) == SPLITMV))'
+        new: 'cnt[CNT_SPLITMV] = int(libc.BoolToInt(int(above.Mbmi.Mode) == SPLITMV)+libc.BoolToInt(int(left.Mbmi.Mode) == SPLITMV))*2 + int(libc.BoolToInt(int(aboveleft.Mbmi.Mode) == SPLITMV))'
+  - name: vp8/decoder/decoderthreading.h
+    go: dec_decoderthreading_h.go
+  - name: vp8/decoder/detokenize.c
+    go: dec_detokenize.go
+    replace:
+      - old: 'l = (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), int(libc.BoolToInt(i > 19))<<1)) + ((i & 3) > 1)'
+        new: 'l = (*byte)(unsafe.Add(unsafe.Pointer(l_ctx), int(libc.BoolToInt(i > 19)<<1 + libc.BoolToInt((i & 3) > 1))))'
+  - name: vp8/decoder/onyxd_if.c
+    go: dec_onyxd_if.go
+    replace:
+      - old: '_setjmp(([1]__jmp_buf_tag)(pbi.Common.Error.Jmp)) != 0 {'
+        new: 'pbi.Common.Error.Setjmp != 0 {'
+      - old: '_setjmp(([1]__jmp_buf_tag)(fb.Pbi[0].Common.Error.Jmp)) != 0 {'
+        new: 'fb.Pbi[0].Common.Error.Setjmp != 0 {'
+  - name: vp8/decoder/onyxd_int.h
+    go: dec_onyxd_int_h.go
+  - name: vp8/decoder/threading.c
+    go: dec_threading.go
+  - name: vp8/decoder/treereader.h
+    go: dec_treereader_h.go
+  - name: vp8/vp8_dx_iface.c
+    go: dx_iface.go
+    skip:
+      - vp8_ctf_maps
+      - vpx_codec_stream_info_t
+      - update_error_state
+      - vpx_codec_vp8_dx_algo
+    replace:
+      - old: 'si.W = uint((*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 6)) | *(*uint8)(unsafe.Add(unsafe.Pointer(clear), 7))<<8) & uint8(0x3FFF))'
+        new: 'si.W = uint((*(*uint16)(unsafe.Add(unsafe.Pointer(clear), 6)) | *(*uint16)(unsafe.Add(unsafe.Pointer(clear), 7))<<8) & uint16(0x3FFF))'
+      - old: 'si.H = uint((*(*uint8)(unsafe.Add(unsafe.Pointer(clear), 8)) | *(*uint8)(unsafe.Add(unsafe.Pointer(clear), 9))<<8) & uint8(0x3FFF))'
+        new: 'si.H = uint((*(*uint16)(unsafe.Add(unsafe.Pointer(clear), 8)) | *(*uint16)(unsafe.Add(unsafe.Pointer(clear), 9))<<8) & uint16(0x3FFF))'
+      - old: 'if _setjmp(([1]__jmp_buf_tag)(pbi.Common.Error.Jmp)) != 0 {'
+        new: 'if pbi.Common.Error.Setjmp != 0 {'
+      - old: VPX_PLANE_Y
+        new: vpx.VPX_PLANE_Y
+      - old: VPX_PLANE_U
+        new: vpx.VPX_PLANE_U
+      - old: VPX_PLANE_V
+        new: vpx.VPX_PLANE_V
+      - old: VPX_PLANE_ALPHA
+        new: vpx.VPX_PLANE_ALPHA
+      - old: VPX_CODEC_USE_POSTPROC
+        new: vpx.VPX_CODEC_USE_POSTPROC
+      - old: (oci, ALTREF_FRAME)
+        new: (oci, int(ALTREF_FRAME))
+      - old: (oci, GOLDEN_FRAME)
+        new: (oci, int(GOLDEN_FRAME))
+      - old: (oci, LAST_FRAME)
+        new: (oci, int(LAST_FRAME))
+  - name: vp8_test.go
+    content: |
+      package vp8
+
+      import "testing"
+
+      func TestBuild(t *testing.T) {
+
+      }
+
+include:
+  - .
+  #  - third_party/libyuv/include
+  #  - third_party/googletest/src/include
+  - tools/
+  - vpx
+  - vp8/
+  - vp8/common
+  - vp8/decoder
+  - vp8/encoder
+  - vp9/
+  - vp9/common
+  - vp9/decoder
+  - vp9/encoder
+  - vpx/
+  - vpx/internal
+  - vpx/src
+  - vpx_dsp/
+  - vpx_mem/
+  - vpx_mem/include
+  - vpx_ports/
+  - vpx_scale/
+  - vpx_scale/generic
+  - vpx_scale/mips
+  - build/
+  - build_debug/
+  - vpx_util/
+  #  - docs/
+  #  - examples/
+  #  - test/
+  - third_party/libyuv/include
+
+sys_include:
+  - ./includes
+  - /usr/include

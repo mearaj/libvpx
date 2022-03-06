@@ -1,0 +1,59 @@
+\hypertarget{structvpx__rc__encodeframe__result}{}\doxysubsection{vpx\+\_\+rc\+\_\+encodeframe\+\_\+result Struct Reference}
+\label{structvpx__rc__encodeframe__result}\index{vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}}
+
+
+Frame coding result.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+ext\+\_\+ratectrl.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structvpx__rc__encodeframe__result_a6027fb3230818c94b97b5a3665c72753}{sse}}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structvpx__rc__encodeframe__result_aeec8657ac20c266ecf69487d2af25978}{bit\+\_\+count}}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structvpx__rc__encodeframe__result_a8bd6cf9bbc780256390d51dcab7fad24}{pixel\+\_\+count}}
+\item 
+int \mbox{\hyperlink{structvpx__rc__encodeframe__result_a51e720171e4397e00703886dd5a85195}{actual\+\_\+encoding\+\_\+qindex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Frame coding result. 
+
+The encoder will send the result to the external rate control model through update\+\_\+encodeframe\+\_\+result() defined in vpx\+\_\+rc\+\_\+funcs\+\_\+t. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__rc__encodeframe__result_a6027fb3230818c94b97b5a3665c72753}\label{structvpx__rc__encodeframe__result_a6027fb3230818c94b97b5a3665c72753}} 
+\index{vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}!sse@{sse}}
+\index{sse@{sse}!vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}}
+\doxyparagraph{\texorpdfstring{sse}{sse}}
+{\footnotesize\ttfamily int64\+\_\+t vpx\+\_\+rc\+\_\+encodeframe\+\_\+result\+::sse}
+
+sum of squared error of the reconstructed frame \mbox{\Hypertarget{structvpx__rc__encodeframe__result_aeec8657ac20c266ecf69487d2af25978}\label{structvpx__rc__encodeframe__result_aeec8657ac20c266ecf69487d2af25978}} 
+\index{vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}!bit\_count@{bit\_count}}
+\index{bit\_count@{bit\_count}!vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}}
+\doxyparagraph{\texorpdfstring{bit\_count}{bit\_count}}
+{\footnotesize\ttfamily int64\+\_\+t vpx\+\_\+rc\+\_\+encodeframe\+\_\+result\+::bit\+\_\+count}
+
+number of bits spent on coding the frame \mbox{\Hypertarget{structvpx__rc__encodeframe__result_a8bd6cf9bbc780256390d51dcab7fad24}\label{structvpx__rc__encodeframe__result_a8bd6cf9bbc780256390d51dcab7fad24}} 
+\index{vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}!pixel\_count@{pixel\_count}}
+\index{pixel\_count@{pixel\_count}!vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}}
+\doxyparagraph{\texorpdfstring{pixel\_count}{pixel\_count}}
+{\footnotesize\ttfamily int64\+\_\+t vpx\+\_\+rc\+\_\+encodeframe\+\_\+result\+::pixel\+\_\+count}
+
+number of pixels in YUV planes of the frame \mbox{\Hypertarget{structvpx__rc__encodeframe__result_a51e720171e4397e00703886dd5a85195}\label{structvpx__rc__encodeframe__result_a51e720171e4397e00703886dd5a85195}} 
+\index{vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}!actual\_encoding\_qindex@{actual\_encoding\_qindex}}
+\index{actual\_encoding\_qindex@{actual\_encoding\_qindex}!vpx\_rc\_encodeframe\_result@{vpx\_rc\_encodeframe\_result}}
+\doxyparagraph{\texorpdfstring{actual\_encoding\_qindex}{actual\_encoding\_qindex}}
+{\footnotesize\ttfamily int vpx\+\_\+rc\+\_\+encodeframe\+\_\+result\+::actual\+\_\+encoding\+\_\+qindex}
+
+the actual qindex used to encode the frame 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/vpx\+\_\+ext\+\_\+ratectrl.\+h\end{DoxyCompactItemize}

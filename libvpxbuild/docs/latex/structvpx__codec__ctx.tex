@@ -1,0 +1,96 @@
+\hypertarget{structvpx__codec__ctx}{}\doxysubsection{vpx\+\_\+codec\+\_\+ctx Struct Reference}
+\label{structvpx__codec__ctx}\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+
+
+Codec context structure.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+codec.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structvpx__codec__ctx_a7ed1bf8f6434ea2df01da8011849c6cb}{name}}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ \mbox{\hyperlink{structvpx__codec__ctx_af5986790e3420beda77f3a9b64f6b953}{iface}}
+\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{structvpx__codec__ctx_a6f448802b0675013fd8c5179675c30de}{err}}
+\item 
+const char $\ast$ \mbox{\hyperlink{structvpx__codec__ctx_ad785c88ae862dd9129965c72723260bd}{err\+\_\+detail}}
+\item 
+\mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}} \mbox{\hyperlink{structvpx__codec__ctx_a76546548086c060a6bd21cb55037fb2b}{init\+\_\+flags}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>const struct \mbox{\hyperlink{structvpx__codec__dec__cfg}{vpx\_codec\_dec\_cfg}} $\ast$ \mbox{\hyperlink{structvpx__codec__ctx_a3033c08dd62713d56d875ea51575bd2b}{dec}}\\
+\>const struct \mbox{\hyperlink{structvpx__codec__enc__cfg}{vpx\_codec\_enc\_cfg}} $\ast$ {\bfseries enc}\\
+\>const void $\ast$ {\bfseries raw}\\
+\} \mbox{\hyperlink{structvpx__codec__ctx_a75647250ef1522c14bf749e1f868e46e}{config}}\\
+
+\end{tabbing}\item 
+\mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\+\_\+codec\+\_\+priv\+\_\+t}} $\ast$ \mbox{\hyperlink{structvpx__codec__ctx_acee775fd5b7580e112e245ce39733f92}{priv}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Codec context structure. 
+
+All codecs \mbox{\hyperlink{rfc2119_MUST}{MUST}} support this context structure fully. In general, this data should be considered private to the codec algorithm, and not be manipulated or examined by the calling application. Applications may reference the \textquotesingle{}name\textquotesingle{} member to get a printable description of the algorithm. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__codec__ctx_a7ed1bf8f6434ea2df01da8011849c6cb}\label{structvpx__codec__ctx_a7ed1bf8f6434ea2df01da8011849c6cb}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!name@{name}}
+\index{name@{name}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const char$\ast$ vpx\+\_\+codec\+\_\+ctx\+::name}
+
+Printable interface name \mbox{\Hypertarget{structvpx__codec__ctx_af5986790e3420beda77f3a9b64f6b953}\label{structvpx__codec__ctx_af5986790e3420beda77f3a9b64f6b953}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!iface@{iface}}
+\index{iface@{iface}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{iface}{iface}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}}$\ast$ vpx\+\_\+codec\+\_\+ctx\+::iface}
+
+Interface pointers \mbox{\Hypertarget{structvpx__codec__ctx_a6f448802b0675013fd8c5179675c30de}\label{structvpx__codec__ctx_a6f448802b0675013fd8c5179675c30de}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!err@{err}}
+\index{err@{err}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{err}{err}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+ctx\+::err}
+
+Last returned error \mbox{\Hypertarget{structvpx__codec__ctx_ad785c88ae862dd9129965c72723260bd}\label{structvpx__codec__ctx_ad785c88ae862dd9129965c72723260bd}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!err\_detail@{err\_detail}}
+\index{err\_detail@{err\_detail}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{err\_detail}{err\_detail}}
+{\footnotesize\ttfamily const char$\ast$ vpx\+\_\+codec\+\_\+ctx\+::err\+\_\+detail}
+
+Detailed info, if available \mbox{\Hypertarget{structvpx__codec__ctx_a76546548086c060a6bd21cb55037fb2b}\label{structvpx__codec__ctx_a76546548086c060a6bd21cb55037fb2b}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!init\_flags@{init\_flags}}
+\index{init\_flags@{init\_flags}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{init\_flags}{init\_flags}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}} vpx\+\_\+codec\+\_\+ctx\+::init\+\_\+flags}
+
+Flags passed at init time \mbox{\Hypertarget{structvpx__codec__ctx_a3033c08dd62713d56d875ea51575bd2b}\label{structvpx__codec__ctx_a3033c08dd62713d56d875ea51575bd2b}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!dec@{dec}}
+\index{dec@{dec}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{dec}{dec}}
+{\footnotesize\ttfamily const struct \mbox{\hyperlink{structvpx__codec__dec__cfg}{vpx\+\_\+codec\+\_\+dec\+\_\+cfg}}$\ast$ vpx\+\_\+codec\+\_\+ctx\+::dec}
+
+\texorpdfstring{$<$}{<} Decoder Configuration Pointer Encoder Configuration Pointer \mbox{\Hypertarget{structvpx__codec__ctx_a75647250ef1522c14bf749e1f868e46e}\label{structvpx__codec__ctx_a75647250ef1522c14bf749e1f868e46e}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!config@{config}}
+\index{config@{config}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  vpx\+\_\+codec\+\_\+ctx\+::config}
+
+Configuration pointer aliasing union \mbox{\Hypertarget{structvpx__codec__ctx_acee775fd5b7580e112e245ce39733f92}\label{structvpx__codec__ctx_acee775fd5b7580e112e245ce39733f92}} 
+\index{vpx\_codec\_ctx@{vpx\_codec\_ctx}!priv@{priv}}
+\index{priv@{priv}!vpx\_codec\_ctx@{vpx\_codec\_ctx}}
+\doxyparagraph{\texorpdfstring{priv}{priv}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\+\_\+codec\+\_\+priv\+\_\+t}}$\ast$ vpx\+\_\+codec\+\_\+ctx\+::priv}
+
+Algorithm private storage 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vpx__codec_8h}{vpx\+\_\+codec.\+h}}\end{DoxyCompactItemize}

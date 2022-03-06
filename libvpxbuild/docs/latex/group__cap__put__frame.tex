@@ -1,0 +1,61 @@
+\hypertarget{group__cap__put__frame}{}\doxysubsection{Frame-\/\+Based Decoding Functions}
+\label{group__cap__put__frame}\index{Frame-\/Based Decoding Functions@{Frame-\/Based Decoding Functions}}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}{vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t}}) (void $\ast$user\+\_\+priv, const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img)
+\begin{DoxyCompactList}\small\item\em put frame callback prototype \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__cap__put__frame_ga299c2d1b265a22a680f117dd686e31ce}{vpx\+\_\+codec\+\_\+register\+\_\+put\+\_\+frame\+\_\+cb}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, \mbox{\hyperlink{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}{vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t}} cb, void $\ast$user\+\_\+priv)
+\begin{DoxyCompactList}\small\item\em Register for notification of frame completion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+The following function is required to be implemented for all decoders that advertise the VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+PUT\+\_\+\+FRAME capability. Calling this function for codecs that don\textquotesingle{}t advertise this capability will result in an error code being returned, usually VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE. 
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\Hypertarget{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}\label{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}} 
+\index{Frame-\/Based Decoding Functions@{Frame-\/Based Decoding Functions}!vpx\_codec\_put\_frame\_cb\_fn\_t@{vpx\_codec\_put\_frame\_cb\_fn\_t}}
+\index{vpx\_codec\_put\_frame\_cb\_fn\_t@{vpx\_codec\_put\_frame\_cb\_fn\_t}!Frame-\/Based Decoding Functions@{Frame-\/Based Decoding Functions}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_put\_frame\_cb\_fn\_t}{vpx\_codec\_put\_frame\_cb\_fn\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t) (void $\ast$user\+\_\+priv, const \mbox{\hyperlink{vpx__image_8h_ae49d966a03920bdefb7478bc18e8b18b}{vpx\+\_\+image\+\_\+t}} $\ast$img)}
+
+
+
+put frame callback prototype 
+
+This callback is invoked by the decoder to notify the application of the availability of decoded image data. 
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{group__cap__put__frame_ga299c2d1b265a22a680f117dd686e31ce}\label{group__cap__put__frame_ga299c2d1b265a22a680f117dd686e31ce}} 
+\index{Frame-\/Based Decoding Functions@{Frame-\/Based Decoding Functions}!vpx\_codec\_register\_put\_frame\_cb@{vpx\_codec\_register\_put\_frame\_cb}}
+\index{vpx\_codec\_register\_put\_frame\_cb@{vpx\_codec\_register\_put\_frame\_cb}!Frame-\/Based Decoding Functions@{Frame-\/Based Decoding Functions}}
+\doxyparagraph{\texorpdfstring{vpx\_codec\_register\_put\_frame\_cb()}{vpx\_codec\_register\_put\_frame\_cb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} vpx\+\_\+codec\+\_\+register\+\_\+put\+\_\+frame\+\_\+cb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{group__cap__put__frame_gab570c589b333dcccf61b3164cc95234e}{vpx\+\_\+codec\+\_\+put\+\_\+frame\+\_\+cb\+\_\+fn\+\_\+t}}}]{cb,  }\item[{void $\ast$}]{user\+\_\+priv }\end{DoxyParamCaption})}
+
+
+
+Register for notification of frame completion. 
+
+Registers a given function to be called when a decoded frame is available.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em ctx} & Pointer to this instance\textquotesingle{}s context \\
+\hline
+\mbox{\texttt{ in}}  & {\em cb} & Pointer to the callback function \\
+\hline
+\mbox{\texttt{ in}}  & {\em user\+\_\+priv} & User\textquotesingle{}s private data\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}} & Callback successfully registered. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}}} & Decoder context not initialized. \\
+\hline
+{\em \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}} & Algorithm not capable of posting frame completion. \\
+\hline
+\end{DoxyRetVals}

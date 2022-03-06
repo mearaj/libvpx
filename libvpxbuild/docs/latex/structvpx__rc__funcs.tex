@@ -1,0 +1,75 @@
+\hypertarget{structvpx__rc__funcs}{}\doxysubsection{vpx\+\_\+rc\+\_\+funcs Struct Reference}
+\label{structvpx__rc__funcs}\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+
+
+Callback function set for external rate control.  
+
+
+
+
+{\ttfamily \#include $<$vpx\+\_\+ext\+\_\+ratectrl.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+vpx\+\_\+rc\+\_\+create\+\_\+model\+\_\+cb\+\_\+fn\+\_\+t \mbox{\hyperlink{structvpx__rc__funcs_a42018da8738118e26c7c794d75990df7}{create\+\_\+model}}
+\item 
+vpx\+\_\+rc\+\_\+send\+\_\+firstpass\+\_\+stats\+\_\+cb\+\_\+fn\+\_\+t \mbox{\hyperlink{structvpx__rc__funcs_a20650a36f534e644f8a6d4857d8ad7c2}{send\+\_\+firstpass\+\_\+stats}}
+\item 
+vpx\+\_\+rc\+\_\+get\+\_\+encodeframe\+\_\+decision\+\_\+cb\+\_\+fn\+\_\+t \mbox{\hyperlink{structvpx__rc__funcs_a3cf04d445786ab5508803abdd5f58577}{get\+\_\+encodeframe\+\_\+decision}}
+\item 
+vpx\+\_\+rc\+\_\+update\+\_\+encodeframe\+\_\+result\+\_\+cb\+\_\+fn\+\_\+t \mbox{\hyperlink{structvpx__rc__funcs_a9a400b964a01c4dfcc4fc10a0565a4b6}{update\+\_\+encodeframe\+\_\+result}}
+\item 
+vpx\+\_\+rc\+\_\+delete\+\_\+model\+\_\+cb\+\_\+fn\+\_\+t \mbox{\hyperlink{structvpx__rc__funcs_ae8b0d3830d49cb7fb806dab3ebb936c8}{delete\+\_\+model}}
+\item 
+void $\ast$ \mbox{\hyperlink{structvpx__rc__funcs_a8d44fc305a9799f885f21b3386720d02}{priv}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Callback function set for external rate control. 
+
+The user can enable external rate control by registering a set of callback functions with the codec control flag VP9\+E\+\_\+\+SET\+\_\+\+EXTERNAL\+\_\+\+RATE\+\_\+\+CONTROL. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__rc__funcs_a42018da8738118e26c7c794d75990df7}\label{structvpx__rc__funcs_a42018da8738118e26c7c794d75990df7}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!create\_model@{create\_model}}
+\index{create\_model@{create\_model}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{create\_model}{create\_model}}
+{\footnotesize\ttfamily vpx\+\_\+rc\+\_\+create\+\_\+model\+\_\+cb\+\_\+fn\+\_\+t vpx\+\_\+rc\+\_\+funcs\+::create\+\_\+model}
+
+Create an external rate control model. \mbox{\Hypertarget{structvpx__rc__funcs_a20650a36f534e644f8a6d4857d8ad7c2}\label{structvpx__rc__funcs_a20650a36f534e644f8a6d4857d8ad7c2}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!send\_firstpass\_stats@{send\_firstpass\_stats}}
+\index{send\_firstpass\_stats@{send\_firstpass\_stats}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{send\_firstpass\_stats}{send\_firstpass\_stats}}
+{\footnotesize\ttfamily vpx\+\_\+rc\+\_\+send\+\_\+firstpass\+\_\+stats\+\_\+cb\+\_\+fn\+\_\+t vpx\+\_\+rc\+\_\+funcs\+::send\+\_\+firstpass\+\_\+stats}
+
+Send first pass stats to the external rate control model. \mbox{\Hypertarget{structvpx__rc__funcs_a3cf04d445786ab5508803abdd5f58577}\label{structvpx__rc__funcs_a3cf04d445786ab5508803abdd5f58577}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!get\_encodeframe\_decision@{get\_encodeframe\_decision}}
+\index{get\_encodeframe\_decision@{get\_encodeframe\_decision}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{get\_encodeframe\_decision}{get\_encodeframe\_decision}}
+{\footnotesize\ttfamily vpx\+\_\+rc\+\_\+get\+\_\+encodeframe\+\_\+decision\+\_\+cb\+\_\+fn\+\_\+t vpx\+\_\+rc\+\_\+funcs\+::get\+\_\+encodeframe\+\_\+decision}
+
+Get encodeframe decision from the external rate control model. \mbox{\Hypertarget{structvpx__rc__funcs_a9a400b964a01c4dfcc4fc10a0565a4b6}\label{structvpx__rc__funcs_a9a400b964a01c4dfcc4fc10a0565a4b6}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!update\_encodeframe\_result@{update\_encodeframe\_result}}
+\index{update\_encodeframe\_result@{update\_encodeframe\_result}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{update\_encodeframe\_result}{update\_encodeframe\_result}}
+{\footnotesize\ttfamily vpx\+\_\+rc\+\_\+update\+\_\+encodeframe\+\_\+result\+\_\+cb\+\_\+fn\+\_\+t vpx\+\_\+rc\+\_\+funcs\+::update\+\_\+encodeframe\+\_\+result}
+
+Update encodeframe result to the external rate control model. \mbox{\Hypertarget{structvpx__rc__funcs_ae8b0d3830d49cb7fb806dab3ebb936c8}\label{structvpx__rc__funcs_ae8b0d3830d49cb7fb806dab3ebb936c8}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!delete\_model@{delete\_model}}
+\index{delete\_model@{delete\_model}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{delete\_model}{delete\_model}}
+{\footnotesize\ttfamily vpx\+\_\+rc\+\_\+delete\+\_\+model\+\_\+cb\+\_\+fn\+\_\+t vpx\+\_\+rc\+\_\+funcs\+::delete\+\_\+model}
+
+Delete the external rate control model. \mbox{\Hypertarget{structvpx__rc__funcs_a8d44fc305a9799f885f21b3386720d02}\label{structvpx__rc__funcs_a8d44fc305a9799f885f21b3386720d02}} 
+\index{vpx\_rc\_funcs@{vpx\_rc\_funcs}!priv@{priv}}
+\index{priv@{priv}!vpx\_rc\_funcs@{vpx\_rc\_funcs}}
+\doxyparagraph{\texorpdfstring{priv}{priv}}
+{\footnotesize\ttfamily void$\ast$ vpx\+\_\+rc\+\_\+funcs\+::priv}
+
+Private data for the external rate control model. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/vpx\+\_\+ext\+\_\+ratectrl.\+h\end{DoxyCompactItemize}

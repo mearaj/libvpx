@@ -1,0 +1,143 @@
+\hypertarget{vpx__codec_8h}{}\doxysubsection{vpx/vpx\+\_\+codec.h File Reference}
+\label{vpx__codec_8h}\index{vpx/vpx\_codec.h@{vpx/vpx\_codec.h}}
+
+
+Describes the codec algorithm interface to applications.  
+
+
+{\ttfamily \#include \char`\"{}./vpx\+\_\+image.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./vpx\+\_\+integer.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__codec__ctx}{vpx\+\_\+codec\+\_\+ctx}}
+\begin{DoxyCompactList}\small\item\em Codec context structure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries VPX\+\_\+\+DEPRECATED}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is deprecated. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga725e874689726a0df88873b93c50254e}{VPX\+\_\+\+DECLSPEC\+\_\+\+DEPRECATED}}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is deprecated. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+UNUSED}
+\begin{DoxyCompactList}\small\item\em Decorator indicating a function is potentially unused. \end{DoxyCompactList}\item 
+\#define {\bfseries VPX\+\_\+\+CODEC\+\_\+\+ABI\+\_\+\+VERSION}
+\begin{DoxyCompactList}\small\item\em Current ABI version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gae10ad7f9548170aef77df09d48ad108a}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+DECODER}}~0x1
+\item 
+\#define \mbox{\hyperlink{group__codec_gab2e8b76fff95ebd573a17bdc11f8a441}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+ENCODER}}~0x2
+\item 
+\#define \mbox{\hyperlink{group__codec_ga8edce93a29457f2de6c0f92e3b3c192d}{VPX\+\_\+\+CODEC\+\_\+\+CAP\+\_\+\+HIGHBITDEPTH}}~0x4
+\item 
+\#define \mbox{\hyperlink{group__codec_gadebddd67347fe47c0772b1e06b6173ba}{VPX\+\_\+\+VERSION\+\_\+\+MAJOR}}(v)~  (((v) $>$$>$ 16) \& 0xff)
+\item 
+\#define \mbox{\hyperlink{group__codec_ga4a5ce4588576306dee0d95e8f8706f86}{VPX\+\_\+\+VERSION\+\_\+\+MINOR}}(v)~  (((v) $>$$>$ 8) \& 0xff)
+\item 
+\#define \mbox{\hyperlink{group__codec_ga4acf2cf4c35ff123d17cd67c069fdbaa}{VPX\+\_\+\+VERSION\+\_\+\+PATCH}}(v)~  (((v) $>$$>$ 0) \& 0xff)
+\item 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+major}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 16) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version major number. \end{DoxyCompactList}\item 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+minor}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 8) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version minor number. \end{DoxyCompactList}\item 
+\#define {\bfseries vpx\+\_\+codec\+\_\+version\+\_\+patch}()~((\mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}}() $>$$>$ 0) \& 0xff)
+\begin{DoxyCompactList}\small\item\em Return the version patch number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gac1b91e04698c1bd4c0a2b8aa85b08cd2}{vpx\+\_\+codec\+\_\+control}}(ctx,  id,  data)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control wrapper macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_gaa7409a4cb58b155912f41a4d39d81a8a}{VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE}}(id,  typ)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control type definition macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga147463efbdbe3b9823e054fe2d56851b}{VPX\+\_\+\+CTRL\+\_\+\+USE\+\_\+\+TYPE\+\_\+\+DEPRECATED}}(id,  typ)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control deprecated type definition macro \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__codec_ga2610354d13efd9ca04fb95823aeda773}{VPX\+\_\+\+CTRL\+\_\+\+VOID}}(id)
+\begin{DoxyCompactList}\small\item\em vpx\+\_\+codec\+\_\+control void type definition macro \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef long \mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec capabilities bitfield. \end{DoxyCompactList}\item 
+typedef long \mbox{\hyperlink{group__codec_ga3b36d5af89ddc463489fe5bde0a57877}{vpx\+\_\+codec\+\_\+flags\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Initialization-\/time Feature Enabling. \end{DoxyCompactList}\item 
+typedef const struct vpx\+\_\+codec\+\_\+iface \mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec interface structure. \end{DoxyCompactList}\item 
+typedef struct vpx\+\_\+codec\+\_\+priv \mbox{\hyperlink{group__codec_ga1e262f91be9141a7176335fd409397ab}{vpx\+\_\+codec\+\_\+priv\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec private data structure. \end{DoxyCompactList}\item 
+typedef const void $\ast$ \mbox{\hyperlink{group__codec_ga6ea348f76b1f8a1fe50e14db684146c6}{vpx\+\_\+codec\+\_\+iter\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Iterator. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__codec__ctx}{vpx\+\_\+codec\+\_\+ctx}} \mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Codec context structure. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\+\_\+bit\+\_\+depth}} {\bfseries vpx\+\_\+bit\+\_\+depth\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Bit depth for codec
+\begin{DoxyItemize}
+\item This enumeration determines the bit depth of the codec. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \{ \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2af1dcde74b1c5ff7b29f31246dfd90986}{VPX\+\_\+\+CODEC\+\_\+\+OK}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2abd8a8f9c2588adab5d764d957e265135}{VPX\+\_\+\+CODEC\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a96c6d2600dc0ec25c2cb798e8d2f4760}{VPX\+\_\+\+CODEC\+\_\+\+MEM\+\_\+\+ERROR}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afe8f723512f728bc518bbfba3b96d324}{VPX\+\_\+\+CODEC\+\_\+\+ABI\+\_\+\+MISMATCH}}
+, \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a4470784ba5a3ef84dc0697d5489dd292}{VPX\+\_\+\+CODEC\+\_\+\+INCAPABLE}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2afff886e57782098a3df13d4e349ca973}{VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+BITSTREAM}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a8a86701e65d826d82651537aadd6c539}{VPX\+\_\+\+CODEC\+\_\+\+UNSUP\+\_\+\+FEATURE}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a29d03c009e0479dbf4ecbd8db1011b85}{VPX\+\_\+\+CODEC\+\_\+\+CORRUPT\+\_\+\+FRAME}}
+, \newline
+\mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2ab5857f7b5f03f8ca164fab8843a979df}{VPX\+\_\+\+CODEC\+\_\+\+INVALID\+\_\+\+PARAM}}
+, \mbox{\hyperlink{group__codec_ggada1084710837ad363b92f2379dd2b8d2a452450a5adfcc14ef8a0ac12611dae21}{VPX\+\_\+\+CODEC\+\_\+\+LIST\+\_\+\+END}}
+ \}
+\begin{DoxyCompactList}\small\item\em Algorithm return codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__codec_gaeb4bba376f987595b3ad11253adf86d9}{vpx\+\_\+bit\+\_\+depth}} \{ \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a664e60a9d8c84563836073d88ae1cfe8}{VPX\+\_\+\+BITS\+\_\+8}} = 8
+, \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9aaecd7245969d06b539de89cf580401e1}{VPX\+\_\+\+BITS\+\_\+10}} = 10
+, \mbox{\hyperlink{group__codec_ggaeb4bba376f987595b3ad11253adf86d9a7d053a31e269b4d3746e88b0ff424862}{VPX\+\_\+\+BITS\+\_\+12}} = 12
+ \}
+\begin{DoxyCompactList}\small\item\em Bit depth for codec
+\begin{DoxyItemize}
+\item This enumeration determines the bit depth of the codec. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{group__codec_ga163037ae037ac760da65e4130c7d4767}{vpx\+\_\+codec\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as an integer) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga67ff2560b27ec557edb9d1874f7f7fb1}{vpx\+\_\+codec\+\_\+version\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as a string) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_gadd9d73842c7d006a84f5113f855f73c9}{vpx\+\_\+codec\+\_\+version\+\_\+extra\+\_\+str}} (void)
+\begin{DoxyCompactList}\small\item\em Return the version information (as a string) \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga79cbf3d41086b2214653d794557e15ae}{vpx\+\_\+codec\+\_\+build\+\_\+config}} (void)
+\begin{DoxyCompactList}\small\item\em Return the build configuration. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga723b3bb6778e7362bb2eb2058348a530}{vpx\+\_\+codec\+\_\+iface\+\_\+name}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface)
+\begin{DoxyCompactList}\small\item\em Return the name for a given interface. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga550c4616424a08e85fc102486846141e}{vpx\+\_\+codec\+\_\+err\+\_\+to\+\_\+string}} (\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} err)
+\begin{DoxyCompactList}\small\item\em Convert error number to printable string. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_gaea707e8aaeb2badbf40f1c1dc32462b4}{vpx\+\_\+codec\+\_\+error}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Retrieve error synopsis for codec context. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{group__codec_ga68a900e49d568c5c39b6a53e25b5d4a8}{vpx\+\_\+codec\+\_\+error\+\_\+detail}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Retrieve detailed error information for codec context. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__codec_ga6ae21d96909660d0ac978b59a863f53b}{vpx\+\_\+codec\+\_\+destroy}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx)
+\begin{DoxyCompactList}\small\item\em Destroy a codec instance. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gad2b690c0ef83cbd83a7234078791913f}{vpx\+\_\+codec\+\_\+caps\+\_\+t}} \mbox{\hyperlink{group__codec_ga43adff58759093401235fb99247c82b8}{vpx\+\_\+codec\+\_\+get\+\_\+caps}} (\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$iface)
+\begin{DoxyCompactList}\small\item\em Get the capabilities of an algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{group__codec_gada1084710837ad363b92f2379dd2b8d2}{vpx\+\_\+codec\+\_\+err\+\_\+t}} \mbox{\hyperlink{group__codec_gaf7849b69cc390b21d889c8c71f69ec14}{vpx\+\_\+codec\+\_\+control\+\_\+}} (\mbox{\hyperlink{group__codec_ga621c71f96af0ebfda035f46f60aa1bc9}{vpx\+\_\+codec\+\_\+ctx\+\_\+t}} $\ast$ctx, int ctrl\+\_\+id,...)
+\begin{DoxyCompactList}\small\item\em Control algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Describes the codec algorithm interface to applications. 
+
+This file describes the interface between an application and a video codec algorithm.
+
+An application instantiates a specific codec instance by using \mbox{\hyperlink{group__decoder_ga8c2f0b12f1bd4927eb3c68b01eab19d3}{vpx\+\_\+codec\+\_\+dec\+\_\+init()}} or \mbox{\hyperlink{group__encoder_ga3d490a2a9a6acd7c9ef82a603155f3cf}{vpx\+\_\+codec\+\_\+enc\+\_\+init()}} and a pointer to the algorithm\textquotesingle{}s interface structure\+: 
+\begin{DoxyPre}
+    my\_app.c:
+      extern vpx\_codec\_iface\_t my\_codec;
+      \{
+          vpx\_codec\_ctx\_t algo;
+          int threads = 4;
+          vpx\_codec\_dec\_cfg\_t cfg = \{ threads, 0, 0 \};
+          res = \mbox{\hyperlink{group__decoder_ga8c2f0b12f1bd4927eb3c68b01eab19d3}{vpx\_codec\_dec\_init(\&algo, \&my\_codec, \&cfg, 0)}};
+      \}
+    \end{DoxyPre}
+
+
+Once initialized, the instance is manged using other functions from the vpx\+\_\+codec\+\_\+$\ast$ family. 

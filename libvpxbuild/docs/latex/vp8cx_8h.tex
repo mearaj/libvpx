@@ -1,0 +1,211 @@
+\hypertarget{vp8cx_8h}{}\doxysubsection{vpx/vp8cx.h File Reference}
+\label{vp8cx_8h}\index{vpx/vp8cx.h@{vpx/vp8cx.h}}
+
+
+Provides definitions for using VP8 or VP9 encoder algorithm within the vpx Codec Interface.  
+
+
+{\ttfamily \#include \char`\"{}./vp8.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./vpx\+\_\+encoder.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./vpx\+\_\+ext\+\_\+ratectrl.\+h\char`\"{}}\newline
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structvpx__roi__map}{vpx\+\_\+roi\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em vpx region of interest map \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__active__map}{vpx\+\_\+active\+\_\+map}}
+\begin{DoxyCompactList}\small\item\em vpx active region map \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__scaling__mode}{vpx\+\_\+scaling\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em vpx image scaling mode \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__layer__id}{vpx\+\_\+svc\+\_\+layer\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em vp9 svc layer parameters \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame flag parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__frame__drop}{vpx\+\_\+svc\+\_\+frame\+\_\+drop}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame dropping parameters. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structvpx__svc__spatial__layer__sync}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync}}
+\begin{DoxyCompactList}\small\item\em vp9 svc spatial layer sync parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gafb51c67e5743275146bc1fc425727da3}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+LAST}}~(1 $<$$<$ 16)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the last frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gabb5e95343a2738abef44eca13059da33}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+GF}}~(1 $<$$<$ 17)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the golden frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga650ab0baea12be91082226a5cc18776a}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+REF\+\_\+\+ARF}}~(1 $<$$<$ 21)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t reference the alternate reference frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga602edb6b02a89cb2db7a16d6dffba583}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+LAST}}~(1 $<$$<$ 18)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the last frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gab01d066c5236457d345ce1cab4c41d6b}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+GF}}~(1 $<$$<$ 22)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the golden frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga1cff46a5287e73a620660030d40b9e6c}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ARF}}~(1 $<$$<$ 23)
+\begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t update the alternate reference frame. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_gacb64c00adcb361f72a9a3028eb12f5ff}{VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+GF}}~(1 $<$$<$ 19)
+\begin{DoxyCompactList}\small\item\em Force golden frame update. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga50584fe4bdb62ff935347576539650b7}{VP8\+\_\+\+EFLAG\+\_\+\+FORCE\+\_\+\+ARF}}~(1 $<$$<$ 24)
+\begin{DoxyCompactList}\small\item\em Force alternate reference frame update. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__vp8__encoder_ga5b91ad179910d4efc23aef66c7b2148b}{VP8\+\_\+\+EFLAG\+\_\+\+NO\+\_\+\+UPD\+\_\+\+ENTROPY}}~(1 $<$$<$ 20)
+\begin{DoxyCompactList}\small\item\em Disable entropy update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}} \mbox{\hyperlink{group__vp8__encoder_gae5db03d2e5dfebf41e36ed3a78cf3738}{VPX\+\_\+\+SCALING\+\_\+\+MODE}}
+\begin{DoxyCompactList}\small\item\em vpx 1-\/D scaling mode \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga3cb12c63f036011e188eacc7f25353f5}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE}}
+\begin{DoxyCompactList}\small\item\em Temporal layering mode enum for VP9 SVC. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__roi__map}{vpx\+\_\+roi\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga96ca68fa2cc61c584255da66c98311fa}{vpx\+\_\+roi\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx region of interest map \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__active__map}{vpx\+\_\+active\+\_\+map}} \mbox{\hyperlink{group__vp8__encoder_ga07ddda574f58506212aa94595e558d6e}{vpx\+\_\+active\+\_\+map\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx active region map \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__scaling__mode}{vpx\+\_\+scaling\+\_\+mode}} \mbox{\hyperlink{group__vp8__encoder_ga4e46f6c67cfa949207e1daa0584f0da9}{vpx\+\_\+scaling\+\_\+mode\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vpx image scaling mode \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__layer__id}{vpx\+\_\+svc\+\_\+layer\+\_\+id}} \mbox{\hyperlink{group__vp8__encoder_ga277102e1e112d6d97687da48d0397b61}{vpx\+\_\+svc\+\_\+layer\+\_\+id\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc layer parameters \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__ref__frame__config}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config}} \mbox{\hyperlink{group__vp8__encoder_gaa9de17289d263427dfa0ecc27517cb10}{vpx\+\_\+svc\+\_\+ref\+\_\+frame\+\_\+config\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame flag parameters. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__frame__drop}{vpx\+\_\+svc\+\_\+frame\+\_\+drop}} \mbox{\hyperlink{group__vp8__encoder_gac8d3a0417e29daf952fb4ca53a5a2b01}{vpx\+\_\+svc\+\_\+frame\+\_\+drop\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc frame dropping parameters. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structvpx__svc__spatial__layer__sync}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync}} \mbox{\hyperlink{group__vp8__encoder_gafe6ed894d1768033dc9dd799443ac292}{vpx\+\_\+svc\+\_\+spatial\+\_\+layer\+\_\+sync\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em vp9 svc spatial layer sync parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga6deae3d561c838952552c3d3756322ec}{vp8e\+\_\+enc\+\_\+control\+\_\+id}} \{ \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca25a828dbab350f80db769a8f53e3940f}{VP8\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP}} = 8
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca6c904eb7e9e4aa58052742b56f1b4497}{VP8\+E\+\_\+\+SET\+\_\+\+ACTIVEMAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7a6db9fd1c434d2e4d91b3935777ab9f}{VP8\+E\+\_\+\+SET\+\_\+\+SCALEMODE}} = 11
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca953ff0eaa2fcdc2ecd627e449b026853}{VP8\+E\+\_\+\+SET\+\_\+\+CPUUSED}} = 13
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca24a5530efabb8b4949d01622b1d72cb0}{VP8\+E\+\_\+\+SET\+\_\+\+ENABLEAUTOALTREF}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3fa90cb70bade72af3c2d8d91471a36c}{VP8\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca815930923fff388825ee3cc4ef69bb28}{VP8\+E\+\_\+\+SET\+\_\+\+SHARPNESS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab34559df04d3d662616300ed0682dcfd}{VP8\+E\+\_\+\+SET\+\_\+\+STATIC\+\_\+\+THRESHOLD}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca462a4f14f39a6eb5c4a4004fc8d0ad75}{VP8\+E\+\_\+\+SET\+\_\+\+TOKEN\+\_\+\+PARTITIONS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5bb0569b813853e981a61c97697cbecd}{VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad2cfc9712d2eab30b5a59a60d0daaade}{VP8\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+64}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca628d73f1a69fadd8aa57e0dfef578da8}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+MAXFRAMES}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca0a8c40a768af935ae73faa53355c3244}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+STRENGTH}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4e0a0af58670012026c213083cd48f3a}{VP8\+E\+\_\+\+SET\+\_\+\+ARNR\+\_\+\+TYPE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca126ccbe7bde63b59cec5ea68a82dd498}{VP8\+E\+\_\+\+SET\+\_\+\+TUNING}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd4f5b730bddb9788c3d0b82218ec503}{VP8\+E\+\_\+\+SET\+\_\+\+CQ\+\_\+\+LEVEL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca09c69ff4a3aabdb307d4f24027dfc4c1}{VP8\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTRA\+\_\+\+BITRATE\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecad8a730e3be2912848ac97b651680dc14}{VP8\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+FLAGS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca05c677432387056a74b92d0546c80fd4}{VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+INTER\+\_\+\+BITRATE\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae38181c436d82d8554b43303e18cff0b}{VP9\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca97533c494b55a54f6136cc2788966a03}{VP8\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacbd74e1cbae2b8a95907ea5eabbbe590}{VP8\+E\+\_\+\+SET\+\_\+\+SCREEN\+\_\+\+CONTENT\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7224f4edeeaf940584e6fe3ff2345b86}{VP9\+E\+\_\+\+SET\+\_\+\+LOSSLESS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c221dc99c51eb5e6304461aed9b5f5b}{VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+COLUMNS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5c6da58a82728ce850d0b2c9188f9fa2}{VP9\+E\+\_\+\+SET\+\_\+\+TILE\+\_\+\+ROWS}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7e61bfc05a2eb5a53d8f2091ebc5d40e}{VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PARALLEL\+\_\+\+DECODING}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca375af288e2d7fa169cbfef4ba586c1d2}{VP9\+E\+\_\+\+SET\+\_\+\+AQ\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca064d768f60d2d60a07c160174c3df266}{VP9\+E\+\_\+\+SET\+\_\+\+FRAME\+\_\+\+PERIODIC\+\_\+\+BOOST}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecace6096a9fbe83dc72ed6a54a81ce215b}{VP9\+E\+\_\+\+SET\+\_\+\+NOISE\+\_\+\+SENSITIVITY}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca88f29897083911e08434857aeff77407}{VP9\+E\+\_\+\+SET\+\_\+\+SVC}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca238a2ff6df22a651f6ef251ea0d81715}{VP9\+E\+\_\+\+SET\+\_\+\+ROI\+\_\+\+MAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca7836375eec7f50dc580a2a8ace9c9055}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+PARAMETERS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca090ad9dcb1f2eea2af60f4737c5bf514}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca87292610b42f00676aebdc75b63227de}{VP9\+E\+\_\+\+SET\+\_\+\+TUNE\+\_\+\+CONTENT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae5198050ccb3c1aed11fee8a9fb3be18}{VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+LAYER\+\_\+\+ID}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca4a8cf2d34935d9d7e05149fd19673dd7}{VP9\+E\+\_\+\+REGISTER\+\_\+\+CX\+\_\+\+CALLBACK}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecab67a3db9b16d938513d1ee6a69b24e02}{VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+SPACE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca34af61e36500e1455aa2fc5bf62183ea}{VP9\+E\+\_\+\+SET\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca04ae4a1b699c5d22f2510c7509124ea9}{VP9\+E\+\_\+\+SET\+\_\+\+MIN\+\_\+\+GF\+\_\+\+INTERVAL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae8a09d2ee42538af1c00bc403c6d29d8}{VP9\+E\+\_\+\+SET\+\_\+\+MAX\+\_\+\+GF\+\_\+\+INTERVAL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecade5d0ccfb428b3f443e47aba7354586f}{VP9\+E\+\_\+\+GET\+\_\+\+ACTIVEMAP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca5197d959e8a124180de5f7a4bb240595}{VP9\+E\+\_\+\+SET\+\_\+\+COLOR\+\_\+\+RANGE}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaa0d822d0d1efa1868ce05d8523a8836b}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacabcfc4edba61f54d6a7b7592a64e48b}{VP9\+E\+\_\+\+SET\+\_\+\+RENDER\+\_\+\+SIZE}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca2e6d09f137b021acf240cdfc1a7372a8}{VP9\+E\+\_\+\+SET\+\_\+\+TARGET\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8ec97b90e57f4ddba099cd881a509360}{VP9\+E\+\_\+\+SET\+\_\+\+ROW\+\_\+\+MT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3030515b85602b997d76b6e26093708b}{VP9\+E\+\_\+\+GET\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaee9ecd5c9530a1bb3a770c9aee6c1f66}{VP9\+E\+\_\+\+SET\+\_\+\+ALT\+\_\+\+REF\+\_\+\+AQ}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca816c34530f29b611644592f439addfae}{VP8\+E\+\_\+\+SET\+\_\+\+GF\+\_\+\+CBR\+\_\+\+BOOST\+\_\+\+PCT}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca323d7dc55db6b5762849ac40f504936d}{VP9\+E\+\_\+\+ENABLE\+\_\+\+MOTION\+\_\+\+VECTOR\+\_\+\+UNIT\+\_\+\+TEST}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca13dd95dd05c39d2f4db73d9c03add7b1}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+INTER\+\_\+\+LAYER\+\_\+\+PRED}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca9c3914bdf858bcb1c8e8a2922bd97783}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+FRAME\+\_\+\+DROP\+\_\+\+LAYER}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3e61dbe3054c7e51c45e5883a994bad7}{VP9\+E\+\_\+\+GET\+\_\+\+SVC\+\_\+\+REF\+\_\+\+FRAME\+\_\+\+CONFIG}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca3f592e28996106e5f4cf7d3be44f4fbf}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+GF\+\_\+\+TEMPORAL\+\_\+\+REF}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca75400bbb30c8e4c3690446bea6ac2be3}{VP9\+E\+\_\+\+SET\+\_\+\+SVC\+\_\+\+SPATIAL\+\_\+\+LAYER\+\_\+\+SYNC}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca8cc35557a64db25075d35e2b34373864}{VP9\+E\+\_\+\+SET\+\_\+\+TPL}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca474cce061fe13ef1d408b0a0224d887d}{VP9\+E\+\_\+\+SET\+\_\+\+POSTENCODE\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecaff9d5b81d7fa5578a640a7afa3cc5ec8}{VP9\+E\+\_\+\+SET\+\_\+\+DELTA\+\_\+\+Q\+\_\+\+UV}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca73257656241aac7371e60fa99c8b797b}{VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+OVERSHOOT\+\_\+\+MAXQ\+\_\+\+CBR}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecacd2d31e611840edb87a0484a9ef1781a}{VP9\+E\+\_\+\+SET\+\_\+\+DISABLE\+\_\+\+LOOPFILTER}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae899930430f09c2082e4fa3d7772ef20}{VP9\+E\+\_\+\+SET\+\_\+\+EXTERNAL\+\_\+\+RATE\+\_\+\+CONTROL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecae49dc24c62281fa8d17bbaa3c22fb6bb}{VP9\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca249badba7f5ee05962fed693c9424c4f}{VP9\+E\+\_\+\+GET\+\_\+\+LOOPFILTER\+\_\+\+LEVEL}}
+, \mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322ecac711667f05bf3c80acbdb94ea1e13217}{VP9\+E\+\_\+\+GET\+\_\+\+LAST\+\_\+\+QUANTIZER\+\_\+\+SVC\+\_\+\+LAYERS}}
+, \newline
+\mbox{\hyperlink{group__vp8__encoder_gga6deae3d561c838952552c3d3756322eca28a08f7ee44abb2073c48ba7a18f04b5}{VP8\+E\+\_\+\+SET\+\_\+\+RTC\+\_\+\+EXTERNAL\+\_\+\+RATECTRL}}
+ \}
+\begin{DoxyCompactList}\small\item\em VPx encoder control functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga70071b1bb6cac9a1ef0ea3d8362ff94f}{vpx\+\_\+scaling\+\_\+mode\+\_\+1d}} \{ {\bfseries VP8\+E\+\_\+\+NORMAL} = 0
+, {\bfseries VP8\+E\+\_\+\+FOURFIVE} = 1
+, {\bfseries VP8\+E\+\_\+\+THREEFIVE} = 2
+, {\bfseries VP8\+E\+\_\+\+ONETWO} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em vpx 1-\/D scaling mode \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_gabe875c0c3993e488ffb342cf548a8ce8}{vp9e\+\_\+temporal\+\_\+layering\+\_\+mode}} \{ \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ac9713fea328d8c59130250a6d5b35add}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+NOLAYERING}} = 0
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a680204f7c9d48155170bcb3fc6e673e8}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+\+BYPASS}} = 1
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8a7bb06aacd0b926d40a7df261fa2937b9}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0101}} = 2
+, \mbox{\hyperlink{group__vp8__encoder_ggabe875c0c3993e488ffb342cf548a8ce8ad2a4ba7d6535ce3514fec130c806d457}{VP9\+E\+\_\+\+TEMPORAL\+\_\+\+LAYERING\+\_\+\+MODE\+\_\+0212}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Temporal layering mode enum for VP9 SVC. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga5f7508ba3fb453b47f62313ed0b864d2}{vp8e\+\_\+token\+\_\+partitions}} \{ {\bfseries VP8\+\_\+\+ONE\+\_\+\+TOKENPARTITION} = 0
+, {\bfseries VP8\+\_\+\+TWO\+\_\+\+TOKENPARTITION} = 1
+, {\bfseries VP8\+\_\+\+FOUR\+\_\+\+TOKENPARTITION} = 2
+, {\bfseries VP8\+\_\+\+EIGHT\+\_\+\+TOKENPARTITION} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em VP8 token partition mode. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga76d4298d5ee58718597f307a290211a9}{vp9e\+\_\+tune\+\_\+content}} \{ {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+DEFAULT}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+SCREEN}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+FILM}
+, {\bfseries VP9\+E\+\_\+\+CONTENT\+\_\+\+INVALID}
+ \}
+\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga371dbc29054b3d46364af996ad42ab94}{vp8e\+\_\+tuning}} \{ {\bfseries VP8\+\_\+\+TUNE\+\_\+\+PSNR}
+, {\bfseries VP8\+\_\+\+TUNE\+\_\+\+SSIM}
+ \}
+\begin{DoxyCompactList}\small\item\em VP8 model tuning parameters. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}{SVC\+\_\+\+LAYER\+\_\+\+DROP\+\_\+\+MODE}} \{ \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a84363e856c23be36b1cec8e6f86d6712}{CONSTRAINED\+\_\+\+LAYER\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a91fdaca8868dbd1a1c073bf1675c134c}{LAYER\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a6ae5f6715816a5d8af0f880a46604753}{FULL\+\_\+\+SUPERFRAME\+\_\+\+DROP}}
+, \mbox{\hyperlink{group__vp8__encoder_gga3205681fab504015432ce09e6e3fdce4a36d6bf5e257bcc352660ee059b427d43}{CONSTRAINED\+\_\+\+FROM\+\_\+\+ABOVE\+\_\+\+DROP}}
+ \}
+\begin{DoxyCompactList}\small\item\em VP9 svc frame dropping mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP8}
+\label{_amgrp0b829b38ff2e659173b35cd78e0735bd}%
+This interface provides the capability to encode raw VP8 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+cx\+\_\+algo}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp8\+\_\+cx} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Algorithm interface for VP9}
+\label{_amgrp9a787aae8f239d3b1cb9aeff16fb31ef}%
+This interface provides the capability to encode raw VP9 streams. \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+cx\+\_\+algo}
+\item 
+\mbox{\hyperlink{group__codec_gae99c3b04f4a567a311211cce3ae6b83b}{vpx\+\_\+codec\+\_\+iface\+\_\+t}} $\ast$ {\bfseries vpx\+\_\+codec\+\_\+vp9\+\_\+cx} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Provides definitions for using VP8 or VP9 encoder algorithm within the vpx Codec Interface. 
+

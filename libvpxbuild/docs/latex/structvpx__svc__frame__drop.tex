@@ -1,0 +1,51 @@
+\hypertarget{structvpx__svc__frame__drop}{}\doxysubsection{vpx\+\_\+svc\+\_\+frame\+\_\+drop Struct Reference}
+\label{structvpx__svc__frame__drop}\index{vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}}
+
+
+vp9 svc frame dropping parameters.  
+
+
+
+
+{\ttfamily \#include $<$vp8cx.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structvpx__svc__frame__drop_a519c245794a2cd3c3d8e502d92ad1435}{framedrop\+\_\+thresh}} \mbox{[}5\mbox{]}
+\item 
+\mbox{\hyperlink{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}{SVC\+\_\+\+LAYER\+\_\+\+DROP\+\_\+\+MODE}} \mbox{\hyperlink{structvpx__svc__frame__drop_acdde4f09ba5bdaff7e6418bb15350a99}{framedrop\+\_\+mode}}
+\item 
+int \mbox{\hyperlink{structvpx__svc__frame__drop_aed72507d558a7133fe3493d501798f26}{max\+\_\+consec\+\_\+drop}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+vp9 svc frame dropping parameters. 
+
+This defines the frame drop thresholds for each spatial layer, and the frame dropping mode\+: 0 = layer based frame dropping (default), 1 = constrained dropping where current layer drop forces all upper spatial layers to drop. 
+
+\doxysubsubsection{Field Documentation}
+\mbox{\Hypertarget{structvpx__svc__frame__drop_a519c245794a2cd3c3d8e502d92ad1435}\label{structvpx__svc__frame__drop_a519c245794a2cd3c3d8e502d92ad1435}} 
+\index{vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}!framedrop\_thresh@{framedrop\_thresh}}
+\index{framedrop\_thresh@{framedrop\_thresh}!vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}}
+\doxyparagraph{\texorpdfstring{framedrop\_thresh}{framedrop\_thresh}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+frame\+\_\+drop\+::framedrop\+\_\+thresh\mbox{[}5\mbox{]}}
+
+Frame drop thresholds \mbox{\Hypertarget{structvpx__svc__frame__drop_acdde4f09ba5bdaff7e6418bb15350a99}\label{structvpx__svc__frame__drop_acdde4f09ba5bdaff7e6418bb15350a99}} 
+\index{vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}!framedrop\_mode@{framedrop\_mode}}
+\index{framedrop\_mode@{framedrop\_mode}!vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}}
+\doxyparagraph{\texorpdfstring{framedrop\_mode}{framedrop\_mode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{group__vp8__encoder_ga3205681fab504015432ce09e6e3fdce4}{SVC\+\_\+\+LAYER\+\_\+\+DROP\+\_\+\+MODE}} vpx\+\_\+svc\+\_\+frame\+\_\+drop\+::framedrop\+\_\+mode}
+
+Layer-\/based or constrained dropping. \mbox{\Hypertarget{structvpx__svc__frame__drop_aed72507d558a7133fe3493d501798f26}\label{structvpx__svc__frame__drop_aed72507d558a7133fe3493d501798f26}} 
+\index{vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}!max\_consec\_drop@{max\_consec\_drop}}
+\index{max\_consec\_drop@{max\_consec\_drop}!vpx\_svc\_frame\_drop@{vpx\_svc\_frame\_drop}}
+\doxyparagraph{\texorpdfstring{max\_consec\_drop}{max\_consec\_drop}}
+{\footnotesize\ttfamily int vpx\+\_\+svc\+\_\+frame\+\_\+drop\+::max\+\_\+consec\+\_\+drop}
+
+Maximum consecutive drops, for any layer. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vpx/\mbox{\hyperlink{vp8cx_8h}{vp8cx.\+h}}\end{DoxyCompactItemize}
