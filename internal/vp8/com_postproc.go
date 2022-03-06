@@ -3,7 +3,6 @@ package vp8
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
 	"github.com/mearaj/libvpx/internal/dsp"
-	"github.com/mearaj/libvpx/internal/mem"
 	"github.com/mearaj/libvpx/internal/ports"
 	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/vpx"
@@ -112,7 +111,7 @@ func vp8_post_proc_frame(oci *VP8Common, dest *scale.Yv12BufferConfig, ppflags *
 	}
 	if flags&VP8D_ADDNOISE != 0 {
 		if oci.Postproc_state.Generated_noise == nil {
-			oci.Postproc_state.Generated_noise = (*int8)(mem.VpxCalloc(uint64(oci.Width+256), uint64(unsafe.Sizeof(int8(0)))))
+			oci.Postproc_state.Generated_noise = &make([]int8, oci.Width+256)[0]
 			if oci.Postproc_state.Generated_noise == nil {
 				return 1
 			}

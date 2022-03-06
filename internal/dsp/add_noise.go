@@ -1,10 +1,9 @@
 package dsp
 
 import (
+	"github.com/gotranspile/cxgo/runtime/libc"
 	"math"
 	"unsafe"
-
-	"github.com/gotranspile/cxgo/runtime/libc"
 )
 
 func VpxPlaneAddNoiseC(start *uint8, noise *int8, blackclamp int, whiteclamp int, width int, height int, pitch int) {

@@ -398,7 +398,7 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 		vpx_atomic_init(&pbi.B_multithreaded_rd, 1)
 		pbi.Decoding_thread_count = uint(core_count - 1)
 		for {
-			pbi.H_decoding_thread = (**pthread.Thread)(mem.VpxCalloc(uint64(unsafe.Sizeof((*pthread.Thread)(nil))), uint64(pbi.Decoding_thread_count)))
+			pbi.H_decoding_thread = (**pthread.Thread)(libc.Calloc(int(unsafe.Sizeof((*pthread.Thread)(nil))), int(pbi.Decoding_thread_count)))
 			if pbi.H_decoding_thread == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->h_decoding_thread)"))
 			}
@@ -407,7 +407,7 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 			}
 		}
 		for {
-			pbi.H_event_start_decoding = (*sem_t)(mem.VpxCalloc(uint64(unsafe.Sizeof(sem_t{})), uint64(pbi.Decoding_thread_count)))
+			pbi.H_event_start_decoding = (*sem_t)(libc.Calloc(int(unsafe.Sizeof(sem_t{})), int(pbi.Decoding_thread_count)))
 			if pbi.H_event_start_decoding == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->h_event_start_decoding)"))
 			}
@@ -431,7 +431,7 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 			}
 		}
 		for {
-			pbi.De_thread_data = (*DECODETHREAD_DATA)(mem.VpxCalloc(uint64(unsafe.Sizeof(DECODETHREAD_DATA{})), uint64(pbi.Decoding_thread_count)))
+			pbi.De_thread_data = (*DECODETHREAD_DATA)(libc.Calloc(int(unsafe.Sizeof(DECODETHREAD_DATA{})), int(pbi.Decoding_thread_count)))
 			if pbi.De_thread_data == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->de_thread_data)"))
 			}
@@ -466,54 +466,54 @@ func DecoderCreateThreads(pbi *VP8D_COMP) {
 }
 func vp8mt_de_alloc_temp_buffers(pbi *VP8D_COMP, mb_rows int) {
 	var i int
-	mem.VpxFree(unsafe.Pointer(pbi.Mt_current_mb_col))
+	libc.Free(unsafe.Pointer(pbi.Mt_current_mb_col))
 	pbi.Mt_current_mb_col = nil
 	if pbi.Mt_yabove_row != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_yabove_row))
+		libc.Free(unsafe.Pointer(pbi.Mt_yabove_row))
 		pbi.Mt_yabove_row = nil
 	}
 	if pbi.Mt_uabove_row != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_uabove_row))
+		libc.Free(unsafe.Pointer(pbi.Mt_uabove_row))
 		pbi.Mt_uabove_row = nil
 	}
 	if pbi.Mt_vabove_row != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_vabove_row))
+		libc.Free(unsafe.Pointer(pbi.Mt_vabove_row))
 		pbi.Mt_vabove_row = nil
 	}
 	if pbi.Mt_yleft_col != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_yleft_col))
+		libc.Free(unsafe.Pointer(pbi.Mt_yleft_col))
 		pbi.Mt_yleft_col = nil
 	}
 	if pbi.Mt_uleft_col != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_uleft_col))
+		libc.Free(unsafe.Pointer(pbi.Mt_uleft_col))
 		pbi.Mt_uleft_col = nil
 	}
 	if pbi.Mt_vleft_col != nil {
 		for i = 0; i < mb_rows; i++ {
-			mem.VpxFree(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
+			libc.Free(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))))
 			*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = nil
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.Mt_vleft_col))
+		libc.Free(unsafe.Pointer(pbi.Mt_vleft_col))
 		pbi.Mt_vleft_col = nil
 	}
 }
@@ -539,7 +539,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 		}
 		uv_width = width >> 1
 		for {
-			pbi.Mt_current_mb_col = (*util.VpxAtomicInt)(mem.VpxMalloc(uint64(pc.Mb_rows * int(unsafe.Sizeof(util.VpxAtomicInt{})))))
+			pbi.Mt_current_mb_col = (*util.VpxAtomicInt)(libc.Malloc(pc.Mb_rows * int(unsafe.Sizeof(util.VpxAtomicInt{}))))
 			if pbi.Mt_current_mb_col == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate pbi->mt_current_mb_col"))
 			}
@@ -551,7 +551,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			vpx_atomic_init((*util.VpxAtomicInt)(unsafe.Add(unsafe.Pointer(pbi.Mt_current_mb_col), unsafe.Sizeof(util.VpxAtomicInt{})*uintptr(i))), 0)
 		}
 		for {
-			pbi.Mt_yabove_row = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_yabove_row = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_yabove_row == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_yabove_row)"))
 			}
@@ -572,7 +572,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			libc.MemSet(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))), 0, (width+(int(scale.VP8BORDERINPIXELS<<1)))*int(unsafe.Sizeof(uint8(0))))
 		}
 		for {
-			pbi.Mt_uabove_row = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_uabove_row = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_uabove_row == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_uabove_row)"))
 			}
@@ -593,7 +593,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			libc.MemSet(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))), 0, (uv_width+scale.VP8BORDERINPIXELS)*int(unsafe.Sizeof(uint8(0))))
 		}
 		for {
-			pbi.Mt_vabove_row = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_vabove_row = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_vabove_row == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_vabove_row)"))
 			}
@@ -614,7 +614,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			libc.MemSet(unsafe.Pointer(*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vabove_row), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))), 0, (uv_width+scale.VP8BORDERINPIXELS)*int(unsafe.Sizeof(uint8(0))))
 		}
 		for {
-			pbi.Mt_yleft_col = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_yleft_col = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_yleft_col == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_yleft_col)"))
 			}
@@ -624,7 +624,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 		}
 		for i = 0; i < pc.Mb_rows; i++ {
 			for {
-				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof(uint8(0))*16), 1))
+				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(libc.Calloc(int(unsafe.Sizeof(uint8(0))*16), 1))
 				if (*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_yleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))) == nil {
 					vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate pbi->mt_yleft_col[i]"))
 				}
@@ -634,7 +634,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			}
 		}
 		for {
-			pbi.Mt_uleft_col = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_uleft_col = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_uleft_col == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_uleft_col)"))
 			}
@@ -644,7 +644,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 		}
 		for i = 0; i < pc.Mb_rows; i++ {
 			for {
-				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof(uint8(0))*8), 1))
+				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(libc.Calloc(int(unsafe.Sizeof(uint8(0))*8), 1))
 				if (*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_uleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))) == nil {
 					vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate pbi->mt_uleft_col[i]"))
 				}
@@ -654,7 +654,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 			}
 		}
 		for {
-			pbi.Mt_vleft_col = (**uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof((*uint8)(nil))), uint64(pc.Mb_rows)))
+			pbi.Mt_vleft_col = (**uint8)(libc.Calloc(int(unsafe.Sizeof((*uint8)(nil))), pc.Mb_rows))
 			if pbi.Mt_vleft_col == nil {
 				vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate (pbi->mt_vleft_col)"))
 			}
@@ -664,7 +664,7 @@ func vp8mt_alloc_temp_buffers(pbi *VP8D_COMP, width int, prev_mb_rows int) {
 		}
 		for i = 0; i < pc.Mb_rows; i++ {
 			for {
-				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(mem.VpxCalloc(uint64(unsafe.Sizeof(uint8(0))*8), 1))
+				*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i))) = (*uint8)(libc.Calloc(int(unsafe.Sizeof(uint8(0))*8), 1))
 				if (*(**uint8)(unsafe.Add(unsafe.Pointer(pbi.Mt_vleft_col), unsafe.Sizeof((*uint8)(nil))*uintptr(i)))) == nil {
 					vpx.InternalError(&pbi.Common.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate pbi->mt_vleft_col[i]"))
 				}
@@ -689,13 +689,13 @@ func vp8_decoder_remove_threads(pbi *VP8D_COMP) {
 		if pbi.Allocated_decoding_thread_count != 0 {
 			sem_destroy(&pbi.H_event_end_decoding)
 		}
-		mem.VpxFree(unsafe.Pointer(pbi.H_decoding_thread))
+		libc.Free(unsafe.Pointer(pbi.H_decoding_thread))
 		pbi.H_decoding_thread = nil
-		mem.VpxFree(unsafe.Pointer(pbi.H_event_start_decoding))
+		libc.Free(unsafe.Pointer(pbi.H_event_start_decoding))
 		pbi.H_event_start_decoding = nil
-		mem.VpxFree(unsafe.Pointer(pbi.Mb_row_di))
+		libc.Free(unsafe.Pointer(pbi.Mb_row_di))
 		pbi.Mb_row_di = nil
-		mem.VpxFree(unsafe.Pointer(pbi.De_thread_data))
+		libc.Free(unsafe.Pointer(pbi.De_thread_data))
 		pbi.De_thread_data = nil
 		vp8mt_de_alloc_temp_buffers(pbi, pbi.Common.Mb_rows)
 	}

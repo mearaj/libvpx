@@ -113,7 +113,7 @@ func reset(worker *VPxWorker) int {
 			worker.Impl_.Mutex_.Destroy()
 			pthread.CondFree(&worker.Impl_.Condition_)
 		Error:
-			vpx_free(unsafe.Pointer(worker.Impl_))
+			libc.Free(unsafe.Pointer(worker.Impl_))
 			worker.Impl_ = nil
 			return 0
 		}
@@ -137,7 +137,7 @@ func end(worker *VPxWorker) {
 		worker.Impl_.Thread_.Join(nil)
 		worker.Impl_.Mutex_.Destroy()
 		pthread.CondFree(&worker.Impl_.Condition_)
-		vpx_free(unsafe.Pointer(worker.Impl_))
+		libc.Free(unsafe.Pointer(worker.Impl_))
 		worker.Impl_ = nil
 	}
 	libc.Assert(worker.Status_ == VPxWorkerStatus(NOT_OK))

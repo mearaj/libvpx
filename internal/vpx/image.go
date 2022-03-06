@@ -1,10 +1,12 @@
 package vpx
 
 import (
-	"github.com/gotranspile/cxgo/runtime/libc"
-	"github.com/mearaj/libvpx/internal/mem"
 	"math"
 	"unsafe"
+
+	"github.com/gotranspile/cxgo/runtime/libc"
+
+	"github.com/mearaj/libvpx/internal/mem"
 )
 
 func ImgAllocHelper(img *Image, fmt ImgFmt, d_w uint, d_h uint, buf_align uint, stride_align uint, img_data *uint8) *Image {
@@ -101,7 +103,7 @@ func ImgAllocHelper(img *Image, fmt ImgFmt, d_w uint, d_h uint, buf_align uint, 
 		stride_in_bytes = s
 	}
 	if img == nil {
-		img = &make([]Image, 1)[0]
+		img = new(Image)
 		if img == nil {
 			goto fail
 		}
@@ -223,7 +225,7 @@ func ImgFlip(img *Image) {
 func ImgFree(img *Image) {
 	if img != nil {
 		if img.Img_data != nil && img.Img_data_owner != 0 {
-			mem.VpxFree(unsafe.Pointer(img.Img_data))
+			libc.Free(unsafe.Pointer(img.Img_data))
 		}
 		if img.Self_allocd != 0 {
 			libc.Free(unsafe.Pointer(img))

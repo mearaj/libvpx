@@ -20,7 +20,7 @@ func initialize_dec() {
 }
 func remove_decompressor(pbi *VP8D_COMP) {
 	vp8_remove_common(&pbi.Common)
-	mem.VpxFree(unsafe.Pointer(pbi))
+	libc.Free(unsafe.Pointer(pbi))
 }
 func create_decompressor(oxcf *VP8D_CONFIG) *VP8D_COMP {
 	var pbi *VP8D_COMP = (*VP8D_COMP)(mem.VpxMemAlign(32, uint64(unsafe.Sizeof(VP8D_COMP{}))))

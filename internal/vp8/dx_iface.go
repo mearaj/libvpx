@@ -3,7 +3,6 @@ package vp8
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
 	"github.com/mearaj/libvpx/internal/dsp"
-	"github.com/mearaj/libvpx/internal/mem"
 	"github.com/mearaj/libvpx/internal/ports"
 	"github.com/mearaj/libvpx/internal/scale"
 	"github.com/mearaj/libvpx/internal/util"
@@ -39,7 +38,7 @@ type CodecAlgPvt struct {
 }
 
 func vp8_init_ctx(ctx *vpx.CodecCtx) int {
-	var priv *CodecAlgPvt = (*CodecAlgPvt)(mem.VpxCalloc(1, uint64(unsafe.Sizeof(CodecAlgPvt{}))))
+	var priv *CodecAlgPvt = new(CodecAlgPvt)
 	if priv == nil {
 		return 1
 	}
@@ -73,7 +72,7 @@ func vp8_init(ctx *vpx.CodecCtx, data *vpx.CodecPvtEncMrCfg) vpx.CodecErr {
 }
 func vp8_destroy(ctx *CodecAlgPvt) vpx.CodecErr {
 	vp8_remove_decoder_instances(&ctx.Yv12_frame_buffers)
-	mem.VpxFree(unsafe.Pointer(ctx))
+	libc.Free(unsafe.Pointer(ctx))
 	return vpx.CodecErr(VPX_CODEC_OK)
 }
 func vp8_peek_si_internal(data *uint8, data_sz uint, si *vpx.CodecStreamInfo, decrypt_cb vpx.DecryptCb, decrypt_state unsafe.Pointer) vpx.CodecErr {

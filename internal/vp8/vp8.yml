@@ -17,6 +17,12 @@ define:
     value: int8
   - name: int16_t
     value: int16
+  - name: vpx_calloc
+    value: calloc
+  - name: vpx_malloc
+    value: malloc
+  - name: vpx_free
+    value: free
 use_go_int: true
 replace:
   - old: YV12_BUFFER_CONFIG
@@ -121,12 +127,6 @@ idents:
     rename: vpx.CodecCaps
   - name: vpx_codec_vp8_dx_algo
     rename: vp8DxAlgo
-  - name: vpx_calloc
-    rename: mem.VpxCalloc
-  - name: vpx_malloc
-    rename: mem.VpxMalloc
-  - name: vpx_free
-    rename: mem.VpxFree
   - name: vpx_dsp_rtcd
     rename: dsp.DspRtcd
   - name: vpx_clear_system_state

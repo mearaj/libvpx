@@ -7,6 +7,12 @@ ptr_size: 8
 define:
   - name: PRId64
     value: '"ll" "d"'
+  - name: vpx_calloc
+    value: calloc
+  - name: vpx_malloc
+    value: malloc
+  - name: vpx_free
+    value: free
 use_go_int: true
 replace:
   - old: EXIT_SUCCESS
@@ -412,12 +418,6 @@ idents:
     rename: GetActualMallocAddress
   - name: vpx_memalign
     rename: mem.VpxMemAlign
-  - name: vpx_malloc
-    rename: Malloc
-  - name: vpx_calloc
-    rename: Calloc
-  - name: vpx_free
-    rename: mem.VpxFree
   - name: vpx_codec_version
     rename: CodecVersion
   - name: vpx_codec_version_str

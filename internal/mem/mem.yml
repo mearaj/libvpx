@@ -42,12 +42,6 @@ idents:
     rename: GetActualMallocAddress
   - name: vpx_memalign
     rename: VpxMemAlign
-  - name: vpx_malloc
-    rename: VpxMalloc
-  - name: vpx_calloc
-    rename: VpxCalloc
-  - name: vpx_free
-    rename: VpxFree
 
 
 # List of files to convert. Supports wildcards (*.c).
@@ -58,6 +52,10 @@ files:
     go: mem_h.go
   - name: vpx_mem/vpx_mem.c
     go: mem.go
+    skip:
+      - vpx_calloc
+      - vpx_malloc
+      - vpx_free
   - name: mem_test.go
     content: |
       package mem

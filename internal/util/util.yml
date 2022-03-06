@@ -7,6 +7,12 @@ ptr_size: 8
 define:
   - name: PRId64
     value: '"ll" "d"'
+  - name: vpx_malloc
+    value: calloc
+  - name: vpx_malloc
+    value: calloc
+  - name: vpx_free
+    value: free
 use_go_int: true
 replace:
   - old: int64_t

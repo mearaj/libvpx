@@ -17,12 +17,12 @@ func vp8_de_alloc_frame_buffers(oci *VP8Common) {
 	if oci.Post_proc_buffer_int_used != 0 {
 		scale.Vp8Yv12DeAllocFrameBuffer(&oci.Post_proc_buffer_int)
 	}
-	mem.VpxFree(unsafe.Pointer(oci.Pp_limits_buffer))
+	libc.Free(unsafe.Pointer(oci.Pp_limits_buffer))
 	oci.Pp_limits_buffer = nil
-	mem.VpxFree(unsafe.Pointer(oci.Postproc_state.Generated_noise))
+	libc.Free(unsafe.Pointer(oci.Postproc_state.Generated_noise))
 	oci.Postproc_state.Generated_noise = nil
-	mem.VpxFree(unsafe.Pointer(oci.Above_context))
-	mem.VpxFree(unsafe.Pointer(oci.Mip))
+	libc.Free(unsafe.Pointer(oci.Above_context))
+	libc.Free(unsafe.Pointer(oci.Mip))
 	oci.Above_context = nil
 	oci.Mip = nil
 }
@@ -57,12 +57,12 @@ func vp8_alloc_frame_buffers(oci *VP8Common, width int, height int) int {
 	oci.Mb_cols = width >> 4
 	oci.MBs = oci.Mb_rows * oci.Mb_cols
 	oci.Mode_info_stride = oci.Mb_cols + 1
-	oci.Mip = (*ModeInfo)(mem.VpxCalloc(uint64((oci.Mb_cols+1)*(oci.Mb_rows+1)), uint64(unsafe.Sizeof(ModeInfo{}))))
+	oci.Mip = &make([]ModeInfo, (oci.Mb_cols+1)*(oci.Mb_rows+1))[0]
 	if oci.Mip == nil {
 		goto allocation_fail
 	}
 	oci.Mi = (*ModeInfo)(unsafe.Add(unsafe.Pointer((*ModeInfo)(unsafe.Add(unsafe.Pointer(oci.Mip), unsafe.Sizeof(ModeInfo{})*uintptr(oci.Mode_info_stride)))), unsafe.Sizeof(ModeInfo{})*1))
-	oci.Above_context = (*ENTROPY_CONTEXT_PLANES)(mem.VpxCalloc(uint64(oci.Mb_cols*int(unsafe.Sizeof(ENTROPY_CONTEXT_PLANES{}))), 1))
+	oci.Above_context = (*ENTROPY_CONTEXT_PLANES)(libc.Calloc(oci.Mb_cols*int(unsafe.Sizeof(ENTROPY_CONTEXT_PLANES{})), 1))
 	if oci.Above_context == nil {
 		goto allocation_fail
 	}

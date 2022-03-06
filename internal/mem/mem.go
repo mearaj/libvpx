@@ -1,8 +1,9 @@
 package mem
 
 import (
-	"github.com/gotranspile/cxgo/runtime/libc"
 	"unsafe"
+
+	"github.com/gotranspile/cxgo/runtime/libc"
 )
 
 const VPX_MAX_ALLOCABLE_MEMORY = 0x10000000000
@@ -50,25 +51,4 @@ func VpxMemAlign(align uint64, size uint64) unsafe.Pointer {
 		SetActualMallocAddr(x, addr)
 	}
 	return x
-}
-func VpxMalloc(size uint64) unsafe.Pointer {
-	return VpxMemAlign(uint64(2*unsafe.Sizeof(unsafe.Pointer(nil))), size)
-}
-func VpxCalloc(num uint64, size uint64) unsafe.Pointer {
-	var x unsafe.Pointer
-	if CheckSizeArgOverflow(num, size) == 0 {
-		return nil
-	}
-	x = VpxMalloc(num * size)
-	if x != nil {
-		libc.MemSet(x, 0, int(num*size))
-	}
-	return x
-}
-func VpxFree(memblk unsafe.Pointer) {
-	if memblk != nil {
-		var addr unsafe.Pointer = GetActualMallocAddress(memblk)
-		_ = addr
-		addr = nil
-	}
 }
