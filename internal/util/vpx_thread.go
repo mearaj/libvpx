@@ -46,10 +46,10 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 		done   int        = 0
 	)
 	for done == 0 {
-		(&worker.Impl_.Mutex_).CLock()
+		worker.Impl_.Mutex_.CLock()
 		for worker.Status_ == VPxWorkerStatus(OK) {
-			(&worker.Impl_.Condition_).L = &worker.Impl_.Mutex_
-			(&worker.Impl_.Condition_).Wait()
+			worker.Impl_.Condition_.L = &worker.Impl_.Mutex_
+			worker.Impl_.Condition_.Wait()
 		}
 		if worker.Status_ == VPxWorkerStatus(WORK) {
 			execute(worker)
@@ -57,8 +57,8 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 		} else if worker.Status_ == VPxWorkerStatus(NOT_OK) {
 			done = 1
 		}
-		(&worker.Impl_.Condition_).Signal()
-		(&worker.Impl_.Mutex_).CUnlock()
+		worker.Impl_.Condition_.Signal()
+		worker.Impl_.Mutex_.CUnlock()
 	}
 	return nil
 }
@@ -66,18 +66,18 @@ func change_state(worker *VPxWorker, new_status VPxWorkerStatus) {
 	if worker.Impl_ == nil {
 		return
 	}
-	(&worker.Impl_.Mutex_).CLock()
+	worker.Impl_.Mutex_.CLock()
 	if worker.Status_ >= VPxWorkerStatus(OK) {
 		for worker.Status_ != VPxWorkerStatus(OK) {
-			(&worker.Impl_.Condition_).L = &worker.Impl_.Mutex_
-			(&worker.Impl_.Condition_).Wait()
+			worker.Impl_.Condition_.L = &worker.Impl_.Mutex_
+			worker.Impl_.Condition_.Wait()
 		}
 		if new_status != VPxWorkerStatus(OK) {
 			worker.Status_ = new_status
-			(&worker.Impl_.Condition_).Signal()
+			worker.Impl_.Condition_.Signal()
 		}
 	}
-	(&worker.Impl_.Mutex_).CUnlock()
+	worker.Impl_.Mutex_.CUnlock()
 }
 func vpxInit(worker *VPxWorker) {
 	*worker = VPxWorker{}
@@ -96,21 +96,21 @@ func reset(worker *VPxWorker) int {
 		if worker.Impl_ == nil {
 			return 0
 		}
-		if int((&worker.Impl_.Mutex_).Init(nil)) != 0 {
+		if int(worker.Impl_.Mutex_.Init(nil)) != 0 {
 			goto Error
 		}
 		if int(pthread.CondInit(&worker.Impl_.Condition_, nil)) != 0 {
-			(&worker.Impl_.Mutex_).Destroy()
+			worker.Impl_.Mutex_.Destroy()
 			goto Error
 		}
-		(&worker.Impl_.Mutex_).CLock()
+		worker.Impl_.Mutex_.CLock()
 		ok = int(libc.BoolToInt(int(pthread.Create(&worker.Impl_.Thread_, nil, thread_loop, unsafe.Pointer(worker))) == 0))
 		if ok != 0 {
 			worker.Status_ = VPxWorkerStatus(OK)
 		}
-		(&worker.Impl_.Mutex_).CUnlock()
+		worker.Impl_.Mutex_.CUnlock()
 		if ok == 0 {
-			(&worker.Impl_.Mutex_).Destroy()
+			worker.Impl_.Mutex_.Destroy()
 			pthread.CondFree(&worker.Impl_.Condition_)
 		Error:
 			vpx_free(unsafe.Pointer(worker.Impl_))
@@ -135,7 +135,7 @@ func end(worker *VPxWorker) {
 	if worker.Impl_ != nil {
 		change_state(worker, VPxWorkerStatus(NOT_OK))
 		worker.Impl_.Thread_.Join(nil)
-		(&worker.Impl_.Mutex_).Destroy()
+		worker.Impl_.Mutex_.Destroy()
 		pthread.CondFree(&worker.Impl_.Condition_)
 		vpx_free(unsafe.Pointer(worker.Impl_))
 		worker.Impl_ = nil

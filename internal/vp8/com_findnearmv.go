@@ -1,8 +1,9 @@
 package vp8
 
 import (
-	"github.com/gotranspile/cxgo/runtime/libc"
 	"unsafe"
+
+	"github.com/gotranspile/cxgo/runtime/libc"
 )
 
 const LEFT_TOP_MARGIN = 128
@@ -74,14 +75,14 @@ func above_block_mv(cur_mb *ModeInfo, b int, mi_stride int) uint32 {
 		}
 		b += 16
 	}
-	return (&cur_mb.Bmi[b-4]).Mv.As_int
+	return cur_mb.Bmi[b-4].Mv.As_int
 }
 func left_block_mode(cur_mb *ModeInfo, b int) B_PREDICTION_MODE {
 	if (b & 3) == 0 {
 		cur_mb = (*ModeInfo)(unsafe.Add(unsafe.Pointer(cur_mb), -int(unsafe.Sizeof(ModeInfo{})*1)))
 		switch int(cur_mb.Mbmi.Mode) {
 		case B_PRED:
-			return (&cur_mb.Bmi[b+3]).As_mode
+			return cur_mb.Bmi[b+3].As_mode
 		case DC_PRED:
 			return B_PREDICTION_MODE(B_DC_PRED)
 		case V_PRED:
@@ -101,7 +102,7 @@ func above_block_mode(cur_mb *ModeInfo, b int, mi_stride int) B_PREDICTION_MODE 
 		cur_mb = (*ModeInfo)(unsafe.Add(unsafe.Pointer(cur_mb), -int(unsafe.Sizeof(ModeInfo{})*uintptr(mi_stride))))
 		switch int(cur_mb.Mbmi.Mode) {
 		case B_PRED:
-			return (&cur_mb.Bmi[b+12]).As_mode
+			return cur_mb.Bmi[b+12].As_mode
 		case DC_PRED:
 			return B_PREDICTION_MODE(B_DC_PRED)
 		case V_PRED:

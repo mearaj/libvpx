@@ -128,7 +128,7 @@ func vp8_post_proc_frame(oci *VP8Common, dest *scale.Yv12BufferConfig, ppflags *
 				vpx.InternalError(&oci.Error, vpx.CodecErr(vpx.VPX_CODEC_MEM_ERROR), libc.CString("Failed to allocate MFQE framebuffer"))
 			}
 			oci.Post_proc_buffer_int_used = 1
-			libc.MemSet(unsafe.Pointer((&oci.Post_proc_buffer_int).Buffer_alloc), 128, int((&oci.Post_proc_buffer).Frame_size))
+			libc.MemSet(unsafe.Pointer(oci.Post_proc_buffer_int.Buffer_alloc), 128, int(oci.Post_proc_buffer.Frame_size))
 		}
 	}
 	ports.ClearSystemState()
