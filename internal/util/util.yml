@@ -20,6 +20,10 @@ idents:
     rename: VpxAtomicInit
   - name: vpx_atomic_store_release
     rename: VpxAtomicStoreRelease
+  - name: init
+    rename: vpxInit
+  - name: sync
+    rename: vpxSync
 files:
   - name: vpx_util/endian_inl.h
     go: endian_inl_h.go

@@ -3,6 +3,7 @@ package util
 import (
 	"github.com/gotranspile/cxgo/runtime/libc"
 	"github.com/gotranspile/cxgo/runtime/pthread"
+	"sync"
 	"unsafe"
 )
 
@@ -19,7 +20,7 @@ const (
 type VPxWorkerHook func(unsafe.Pointer, unsafe.Pointer) int
 type VPxWorkerImpl struct {
 	Mutex_     pthread.Mutex
-	Condition_ pthread_cond_t
+	Condition_ sync.Cond
 	Thread_    *pthread.Thread
 }
 type VPxWorker struct {
@@ -45,9 +46,10 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 		done   int        = 0
 	)
 	for done == 0 {
-		(&worker.Impl_.Mutex_).Lock()
+		(&worker.Impl_.Mutex_).CLock()
 		for worker.Status_ == VPxWorkerStatus(OK) {
-			pthread_cond_wait(&worker.Impl_.Condition_, &worker.Impl_.Mutex_)
+			(&worker.Impl_.Condition_).L = &worker.Impl_.Mutex_
+			(&worker.Impl_.Condition_).Wait()
 		}
 		if worker.Status_ == VPxWorkerStatus(WORK) {
 			execute(worker)
@@ -55,8 +57,8 @@ func thread_loop(ptr unsafe.Pointer) unsafe.Pointer {
 		} else if worker.Status_ == VPxWorkerStatus(NOT_OK) {
 			done = 1
 		}
-		pthread_cond_signal(&worker.Impl_.Condition_)
-		(&worker.Impl_.Mutex_).Unlock()
+		(&worker.Impl_.Condition_).Signal()
+		(&worker.Impl_.Mutex_).CUnlock()
 	}
 	return nil
 }
@@ -64,23 +66,24 @@ func change_state(worker *VPxWorker, new_status VPxWorkerStatus) {
 	if worker.Impl_ == nil {
 		return
 	}
-	(&worker.Impl_.Mutex_).Lock()
+	(&worker.Impl_.Mutex_).CLock()
 	if worker.Status_ >= VPxWorkerStatus(OK) {
 		for worker.Status_ != VPxWorkerStatus(OK) {
-			pthread_cond_wait(&worker.Impl_.Condition_, &worker.Impl_.Mutex_)
+			(&worker.Impl_.Condition_).L = &worker.Impl_.Mutex_
+			(&worker.Impl_.Condition_).Wait()
 		}
 		if new_status != VPxWorkerStatus(OK) {
 			worker.Status_ = new_status
-			pthread_cond_signal(&worker.Impl_.Condition_)
+			(&worker.Impl_.Condition_).Signal()
 		}
 	}
-	(&worker.Impl_.Mutex_).Unlock()
+	(&worker.Impl_.Mutex_).CUnlock()
 }
-func init(worker *VPxWorker) {
+func vpxInit(worker *VPxWorker) {
 	*worker = VPxWorker{}
 	worker.Status_ = VPxWorkerStatus(NOT_OK)
 }
-func sync(worker *VPxWorker) int {
+func vpxSync(worker *VPxWorker) int {
 	change_state(worker, VPxWorkerStatus(OK))
 	libc.Assert(worker.Status_ <= VPxWorkerStatus(OK))
 	return int(libc.BoolToInt(worker.Had_error == 0))
@@ -96,26 +99,26 @@ func reset(worker *VPxWorker) int {
 		if int((&worker.Impl_.Mutex_).Init(nil)) != 0 {
 			goto Error
 		}
-		if pthread_cond_init(&worker.Impl_.Condition_, nil) != 0 {
+		if int(pthread.CondInit(&worker.Impl_.Condition_, nil)) != 0 {
 			(&worker.Impl_.Mutex_).Destroy()
 			goto Error
 		}
-		(&worker.Impl_.Mutex_).Lock()
+		(&worker.Impl_.Mutex_).CLock()
 		ok = int(libc.BoolToInt(int(pthread.Create(&worker.Impl_.Thread_, nil, thread_loop, unsafe.Pointer(worker))) == 0))
 		if ok != 0 {
 			worker.Status_ = VPxWorkerStatus(OK)
 		}
-		(&worker.Impl_.Mutex_).Unlock()
+		(&worker.Impl_.Mutex_).CUnlock()
 		if ok == 0 {
 			(&worker.Impl_.Mutex_).Destroy()
-			pthread_cond_destroy(&worker.Impl_.Condition_)
+			pthread.CondFree(&worker.Impl_.Condition_)
 		Error:
 			vpx_free(unsafe.Pointer(worker.Impl_))
 			worker.Impl_ = nil
 			return 0
 		}
 	} else if worker.Status_ > VPxWorkerStatus(OK) {
-		ok = sync(worker)
+		ok = vpxSync(worker)
 	}
 	libc.Assert(ok == 0 || worker.Status_ == VPxWorkerStatus(OK))
 	return ok
@@ -133,14 +136,14 @@ func end(worker *VPxWorker) {
 		change_state(worker, VPxWorkerStatus(NOT_OK))
 		worker.Impl_.Thread_.Join(nil)
 		(&worker.Impl_.Mutex_).Destroy()
-		pthread_cond_destroy(&worker.Impl_.Condition_)
+		pthread.CondFree(&worker.Impl_.Condition_)
 		vpx_free(unsafe.Pointer(worker.Impl_))
 		worker.Impl_ = nil
 	}
 	libc.Assert(worker.Status_ == VPxWorkerStatus(NOT_OK))
 }
 
-var g_worker_interface VPxWorkerInterface = VPxWorkerInterface{Init: init, Reset: reset, Sync: sync, Launch: launch, Execute: execute, End: end}
+var g_worker_interface VPxWorkerInterface = VPxWorkerInterface{Init: vpxInit, Reset: reset, Sync: vpxSync, Launch: launch, Execute: execute, End: end}
 
 func vpx_set_worker_interface(winterface *VPxWorkerInterface) int {
 	if winterface == nil || winterface.Init == nil || winterface.Reset == nil || winterface.Sync == nil || winterface.Launch == nil || winterface.Execute == nil || winterface.End == nil {

@@ -15,6 +15,6 @@ replace (
 	github.com/mearaj/libvpx/vpx => ./internal/vpx
 )
 
-require github.com/gotranspile/cxgo v0.3.2
+require github.com/gotranspile/cxgo v0.3.3-0.20220306160746-757678937454
 
 require maze.io/x/math32 v0.0.0-20181106113604-c78ed91899f1 // indirect
